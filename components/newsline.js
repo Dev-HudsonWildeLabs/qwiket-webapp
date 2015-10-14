@@ -4,14 +4,14 @@ import PostQueue from './d4shared/postqueue.jsx'
 import Radium from 'radium'
 
 var Item=React.createClass({
-	itemClick(e,t){
+	itemClick:function(e,t){
 		//console.log('click %o %o',e,this.props);
 		window.scrollTo(0, 0);
 		window.location='#/context/'+this.props.community+'/topic/'+this.props.topic.threadid;
 			
 		
 	},
-	render(){
+	render:function(){
 		//console.log('Render Item %o',this.props)
 		let topic=this.props.topic;
 		let threadid=topic.threadid;
@@ -449,8 +449,7 @@ var Items=React.createClass({
 			this.fetch(true,true,nextProps);
 		}
 	},
-	
-	render: function(){
+	render:function(){
 		//console.log('render Items props=%o,state=%o',this.props,this.state);
 		let rows=[];
 		let topics=this.state.topics;

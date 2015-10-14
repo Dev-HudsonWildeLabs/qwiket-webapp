@@ -1,7 +1,7 @@
 import React from 'react'
 import PostContext from './d4shared/postcontext.jsx'
-import {Items,Item} from  './newsline.jsx' 
-import Local from  './local.jsx' 
+import {Items,Item} from  './newsline.js' 
+import Local from  './local.js' 
 import u from './d4shared/utils.jsx'
 
 var Context=React.createClass({

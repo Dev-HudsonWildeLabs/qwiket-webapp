@@ -1,9 +1,9 @@
 import React from 'react'
 import { Router, Route, Link } from 'react-router'
-import {MainPage} from  './app.jsx' 
-import {Newsline} from  './newsline.jsx' 
-import Local from  './local.jsx' 
-import Context from  './context.jsx' 
+import {MainPage} from  './app.js' 
+import {Newsline} from  './newsline.js' 
+import Local from  './local.js' 
+import Context from  './context.js' 
 /*
 const QwiketRouter = React.createClass({ 
 	render() { 

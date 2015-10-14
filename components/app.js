@@ -1,6 +1,13 @@
 var React = require('react');
 import InfoBox from './d4shared/infobox.jsx'
 import u from './d4shared/utils.jsx'
+if(__SERVER__){
+	var domino=require('domino');
+  	var $=require('jquery')(domino.createWindow());
+  	var XMLHttpRequest=require('xmlhttprequest').XMLHttpRequest;
+  	$.support.cors=true; // cross domain
+  	$.ajaxSettings.xhr=function(){return new XMLHttpRequest();};
+}
 
 let Community=React.createClass({
 	componentDidMount: function() {
@@ -14,6 +21,7 @@ let Community=React.createClass({
 		})
 	},
 	fetch:function(){
+		console.log('TRACE Community fetch')
 		$.ajax({
 	        url: "api?task=load_forums",
 	        dataType: 'json',
@@ -42,7 +50,7 @@ let Community=React.createClass({
 	},
 	
 	
-	render(){
+	render:function(){
 		let lines=[];
 		console.log('RENDER Community: this.params=%o',this)
 		//console.log('render %o',this.state);
@@ -64,8 +72,8 @@ let Community=React.createClass({
 
 let Online=React.createClass({
 	render: function(){
-		//console.log('app')
-		if(server.login){
+		console.log('render Online')
+		if(this.props.login){
 	      	return (
 	      	 <div className="collapse navbar-collapse" id="myNavbar">	
 			
@@ -80,7 +88,7 @@ let Online=React.createClass({
 		            	<li id="signup"><a href="#" data-toggle="modal" data-target="#signup_modal"><span className="glyphicon glyphicon-user"></span> Signup</a> </li>
 
 						<li className="divider"></li>
-						<li id="user_lang"><a href="#" data-toggle="modal" data-target="#userlang_modal"><i className="fa fa-language"></i> {server.lang}</a> </li>
+						<li id="user_lang"><a href="#" data-toggle="modal" data-target="#userlang_modal"><i className="fa fa-language"></i> {this.props.lang}</a> </li>
 						<li className="divider"></li>
 						<li id="help_menu"><a href="/docs"><span className="glyphicon glyphicon-info-sign"></span> Help</a></li>
 						<li id="support_menu"><a href="/docs#support" target="_help"><span className="glyphicon glyphicon-question-sign" ></span> Support</a></li>
@@ -101,12 +109,12 @@ let Online=React.createClass({
 	      
 	      	
 			<li className="dropdown">
-	            <a className="dropdown-toggle" data-toggle="dropdown" href="#">{server.username}
+	            <a className="dropdown-toggle" data-toggle="dropdown" href="#">{this.props.username}
 	            <span className="caret"></span></a>
 	            <ul className="dropdown-menu dropdown-menu-right">
 	            	<li id="logout"><a href="/?logout=1"><span className="glyphicon glyphicon-log-out"></span> Logout</a></li>
 					<li className="divider"></li>
-					<li id="user_lang"><a href="#" data-toggle="modal" data-target="#userlang_modal"><i className="fa fa-language"></i> {server.lang}</a> </li>
+					<li id="user_lang"><a href="#" data-toggle="modal" data-target="#userlang_modal"><i className="fa fa-language"></i> {this.props.lang}</a> </li>
 					<li className="divider"></li>
 					<li id="help_menu"><a href="/docs" target="_help"><span className="glyphicon glyphicon-info-sign"></span> Help</a></li>
 					<li id="support_menu"><a href="/docs#support" target="_help"><span className="glyphicon glyphicon-question-sign" ></span> Support</a></li>
@@ -151,11 +159,9 @@ var App = React.createClass({
 	},
 	getInitialState: function() {
 	  // console.log('getInitialState %s, %s',server.community, server.community_forums)
-	    return ({
-	      communityName:server.community,
-	      communityForums:server.community_forums
-		})
+  		return appInitialState;
 	},
+	
 	componentWillReceiveProps:function(nextProps){
 		//console.log('APP componentWillReceiveProps props=%o nextProps=%o',this.props,nextProps)
 		if(nextProps.params.community!=this.props.params.community)
@@ -182,18 +188,22 @@ var App = React.createClass({
 		    	this.reqAppState()
 	    	}
 	    	else {
+	    		if(__CLIENT__)
 	    		window.infoBox.setMessage('alert-danger', 'Error fetching posts from d4rum defender. Message: '+data.msg);
 	    	}
       	}); 
 	},
-	render(){
+	render:function(){
+		console.log("WELCOME HOME")
 		u.registerEvent('reqAppState',this.reqAppState,{me:this});
 		if(this.props.location.pathname=="/"){
-			window.location="#/newsline/"+server.forum+"/nevest";
+			if(__CLIENT__)
+			window.location="#/newsline/"+this.state.forum+"/nevest";
 		}
 		if(!this.state.communityForums.length){
 			this.fetchCommunityData(this.props.params.community);
 		}
+		console.log(2)
 		//this.reqAppState();
     	//console.log('Render App stte=%o',this.state)
 	    return (
@@ -218,12 +228,12 @@ var App = React.createClass({
           				<ul className="nav navbar-nav navbar">
          					<li><Community communityName={this.state.communityName} /></li>
         				</ul>
-		        	<Online ref={(c) => window.login = c}/>
+		        	<Online ref={(c) =>{ if(__CLIENT__) window.login = c}}/>
 		        		
 		        		
 			 	</nav>
 			 
-			 	<InfoBox ref={(c) => window.infoBox = c}/>
+			 	<InfoBox ref={(c) =>{ if(__CLIENT__) window.infoBox = c}}/>
 				{this.props.children}
 			</div>	  
       	);
