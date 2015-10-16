@@ -8,6 +8,7 @@ require("babel/register")({
  */
 global.__CLIENT__ = false;
 global.__SERVER__ = true;
+global.document='';
 //console.log("BABEL SERVER $$$$$$$$$$$$$$$$");
 if (process.env.NODE_ENV !== "production") {
 	if (!require("piping")({hook: true, includeModules: false})) {

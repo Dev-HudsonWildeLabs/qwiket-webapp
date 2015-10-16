@@ -1,8 +1,10 @@
 import React from 'react'
+import {Link} from 'react-router'
 import PostContext from './d4shared/postcontext.jsx'
 import {Items,Item} from  './newsline.js' 
 import Local from  './local.js' 
 import u from './d4shared/utils.jsx'
+
 
 var Context=React.createClass({
 	pushAppState:function(name,event){
@@ -65,7 +67,7 @@ var Context=React.createClass({
 		this.setState({nativeD4:true})
 		if(u.is(props.params.postid)){
 			$.ajax({
-		        url: "api?task=get_thread_for_post",
+		        url: "/api?task=get_thread_for_post",
 		        dataType: 'json',
 		        settings:{
 		            cache:false
@@ -87,7 +89,7 @@ var Context=React.createClass({
 			       // console.log('calling get_d4_status for postid url=%s,forum=%s',url,this.props.params.community)
 			        if(typeof(this.props.params.local)=='undefined'||this.props.params.local=='local'){
 				        $.ajax({
-					        url: "api?task=get_d4_status",
+					        url: "/api?task=get_d4_status",
 					        dataType: 'json',
 					        settings:{
 					            cache:false
@@ -124,7 +126,7 @@ var Context=React.createClass({
 		else
 		if(typeof(props.params.threadid)!='undefined'&&props.params.threadid){
 			$.ajax({
-		        url: "api?task=get_thread",
+		        url: "/api?task=get_thread",
 		        dataType: 'json',
 		        settings:{
 		            cache:false
@@ -145,7 +147,7 @@ var Context=React.createClass({
 			       // console.log('calling get_d4_status for threadid url=%s,forum=%s',url,this.props.params.community)
 			        if(typeof(this.props.params.local)=='undefined'||this.props.params.local=='local'){
 				        $.ajax({
-					        url: "api?task=get_d4_status",
+					        url: "/api?task=get_d4_status",
 					        dataType: 'json',
 					        settings:{
 					            cache:false
@@ -195,19 +197,19 @@ var Context=React.createClass({
     		postid=this.props.params.postid
     		cv=this.props.params.postid
     		ct='post'
-			native_href='#/context/'+community+'/post/'+cv+'/native'
-			local_href='#/context/'+community+'/post/'+cv+'/local'
-			showContextBtn=showContext?(<a href={'#/context/'+community+'/post/'+cv+'/local/'} 		  style={{textDecoration: "none"}} className="label label-default">Disqus View</a>)
-									  :(<a href={'#/context/'+community+'/post/'+cv+'/local/context'} style={{textDecoration: "none"}} className="label label-default">Context View</a>)
+			native_href='/context/'+community+'/post/'+cv+'/native'
+			local_href='/context/'+community+'/post/'+cv+'/local'
+			showContextBtn=showContext?(<Link to={'/context/'+community+'/post/'+cv+'/local/'} 		  style={{textDecoration: "none"}} className="label label-default">Disqus View</Link>)
+									  :(<Link to={'/context/'+community+'/post/'+cv+'/local/context'} style={{textDecoration: "none"}} className="label label-default">Context View</Link>)
     	}
     	else if(u.is(this.props.params.threadid)){
     		cv=this.props.params.threadid
     		//console.log('SETTING THREAD CV=%s',cv)
     		ct='thread'
-    		native_href='#/context/'+community+'/topic/'+this.props.params.threadid+'/native'
-			local_href='#/context/'+community+'/topic/'+this.props.params.threadid+'/local'
-			showContextBtn=showContext?(<a href={'#/context/'+community+'/topic/'+this.props.params.threadid+'/local/'} style={{textDecoration: "none"}} className="label label-default">Disqus View</a>)
-									  :(<a href={'#/context/'+community+'/topic/'+this.props.params.threadid+'/local/context'} style={{textDecoration: "none"}} className="label label-default">Context View</a>)
+    		native_href='/context/'+community+'/topic/'+this.props.params.threadid+'/native'
+			local_href='/context/'+community+'/topic/'+this.props.params.threadid+'/local'
+			showContextBtn=showContext?(<Link to={'/context/'+community+'/topic/'+this.props.params.threadid+'/local/'} style={{textDecoration: "none"}} className="label label-default">Disqus View</Link>)
+									  :(<Link to={'/context/'+community+'/topic/'+this.props.params.threadid+'/local/context'} style={{textDecoration: "none"}} className="label label-default">Context View</Link>)
     	}
     	//console.log('DEBUG showContext=%s, this.state=%o',showContext,this.state)    
     	//console.log('show context showContext=%s,showLocal=%s,qwiket_forumid=%s,qwiket_thread=%s,community=%s,ct=%s,cv=%s',showContext,showLocal,this.state.qwiket_forumid,this.state.qwiket_thread,community,ct,cv)
@@ -228,7 +230,7 @@ var Context=React.createClass({
 				//console.log('inside showLocal')
 			let native='';
 			if(this.state.nativeD4){
-				native=(<a href={native_href} style={{float:"right", textDecoration: "none"}} ><span className="hidden-xs">{forum_str}&nbsp;</span><span className="label label-default"></span>&nbsp;&nbsp;<i className="fa fa-chevron-right fa-lg"></i><i className="fa fa-chevron-right fa-lg"></i><i className="fa fa-chevron-right fa-lg"></i></a>)
+				native=(<Link to={native_href} style={{float:"right", textDecoration: "none"}} ><span className="hidden-xs">{forum_str}&nbsp;</span><span className="label label-default"></span>&nbsp;&nbsp;<i className="fa fa-chevron-right fa-lg"></i><i className="fa fa-chevron-right fa-lg"></i><i className="fa fa-chevron-right fa-lg"></i></Link>)
 			}
 			resp.push(
 				<div className="row" key={'context-wrap-'+cv}>                              
@@ -246,7 +248,7 @@ var Context=React.createClass({
 			resp.push(
 				<div className="row" key={'context-wrap-17'}>                              
 					<div className="panel panel-default" style={{marginTop:10}}>
-					  <div className="panel-heading"><span className="label label-success">{"Qwiket Fluid Context: "}<span className="hidden-xs">{forum_str}</span></span> <a  href={local_href} style={{float:"right", textDecoration: "none"}} ><span className="label label-default">{communityName+ " forum"}</span>&nbsp;&nbsp;<i className="fa fa-chevron-right fa-lg"></i><i className="fa fa-chevron-right fa-lg"></i><i className="fa fa-chevron-right fa-lg"></i></a></div>
+					  <div className="panel-heading"><span className="label label-success">{"Qwiket Fluid Context: "}<span className="hidden-xs">{forum_str}</span></span> <Link  to={local_href} style={{float:"right", textDecoration: "none"}} ><span className="label label-default">{communityName+ " forum"}</span>&nbsp;&nbsp;<i className="fa fa-chevron-right fa-lg"></i><i className="fa fa-chevron-right fa-lg"></i><i className="fa fa-chevron-right fa-lg"></i></Link></div>
 					  <div className="panel-body"><PostContext  key="postcontext1" local={false} scope='working' type='context' community={community} constraint_type={ct} constraint_value={cv}/></div>
 					</div>
 				</div>
@@ -259,9 +261,12 @@ var Context=React.createClass({
 				{resp}
 				</div>
 				<div className="col-md-3 hidden-xs hidden-sm ">
+					 
 					<div ><span className="label label-info">{sn}</span>
-		         		{sn?(<Items query={""} sitename={sn} orderby={0} community={community}/>):""}
+						{sn?(<Items query={""} sitename={sn} orderby={0} community={community}/>):""}
+		         	
 		         	</div>
+
 				</div>
 			</div>
 		)

@@ -1,13 +1,18 @@
 import React from 'react'
+import ReactDom from 'react-dom';
+
 import u from './d4shared/utils.jsx'
 import PostQueue from './d4shared/postqueue.jsx'
 import Radium from 'radium'
+import {Link,History} from 'react-router'
+
 
 var Item=React.createClass({
+	mixins: [ History ],
 	itemClick:function(e,t){
 		//console.log('click %o %o',e,this.props);
 		window.scrollTo(0, 0);
-		window.location='#/context/'+this.props.community+'/topic/'+this.props.topic.threadid;
+		this.history.pushState(null,'/context/'+this.props.community+'/topic/'+this.props.topic.threadid);
 			
 		
 	},
@@ -54,7 +59,7 @@ var Item=React.createClass({
 	    }*/
 	    
 	    if(description.length>description_length)
-	        description=description.slice(0,description_length)+'<span class="more"> <a href="'+link+'" class="inner-link" target="origin">more...</a></span>"';
+	        description=description.slice(0,description_length)+'<span class="more"> <Link to="'+link+'" class="inner-link" target="origin">more...</Link></span>"';
 	    if(text.length>text_length)
 	        text=text.slice(0,text_length)+'<span class="more"> more...</span>"';
 
@@ -243,11 +248,11 @@ var Item=React.createClass({
 				   		{(!sitename)?(<i className="fa fa-bars fa-lg"></i>):(<i className="fa fa-bars fa-sm"></i>)}
 				   	</button>
 					<ul className="dropdown-menu dropdown-menu-right" >
-				      	<li><a  className="discuss" href={"/#/local/"+threadid}><i className="fa fa-comments-o fa-fw fa-sm"></i>&nbsp;Comments</a></li>
-				      	<li><a  className="discuss" href={"/#/local/"+threadid}><i className="fa fa-thumbs-o-up fa-fw fa-sm"></i>&nbsp;Reshare on Qwiket</a></li>
-				      	<li><a  className="discuss" href={"/#/local/"+threadid}><i className="fa fa-facebook fa-fw fa-sm"></i>&nbsp;Share on Facebook</a></li>
-				      	<li><a  className="discuss" href={"/#/local/"+threadid}><i className="fa fa-share-alt fa-fw fa-sm"></i>&nbsp;Share link</a></li>
-				      	<li><a  className="discuss" href={"/#/local/"+threadid}><i className="fa fa-hand-paper-o fa-fw fa-sm"></i>&nbsp;Unplug this Feed</a></li>
+				      	<li><Link  className="discuss" to={"/local/"+threadid}><i className="fa fa-comments-o fa-fw fa-sm"></i>&nbsp;Comments</Link></li>
+				      	<li><Link  className="discuss" to={"/local/"+threadid}><i className="fa fa-thumbs-o-up fa-fw fa-sm"></i>&nbsp;Reshare on Qwiket</Link></li>
+				      	<li><Link  className="discuss" to={"/local/"+threadid}><i className="fa fa-facebook fa-fw fa-sm"></i>&nbsp;Share on Facebook</Link></li>
+				      	<li><Link  className="discuss" to={"/local/"+threadid}><i className="fa fa-share-alt fa-fw fa-sm"></i>&nbsp;Share link</Link></li>
+				      	<li><Link  className="discuss" to={"/local/"+threadid}><i className="fa fa-hand-paper-o fa-fw fa-sm"></i>&nbsp;Unplug this Feed</Link></li>
 				    </ul>
 					</div>	
 	        </div>
@@ -327,7 +332,7 @@ var Items=React.createClass({
 		
 		if(orderby>1){
 			$.ajax({
-			    url: "api?task=load_topics",
+			    url: "/api?task=load_topics",
 			    dataType: 'json',
 			    settings:{
 			        cache:false
@@ -371,7 +376,7 @@ var Items=React.createClass({
 		}
 		else{
 			$.ajax({
-			    url: "api?task=load_community_topics",
+			    url: "/api?task=load_community_topics",
 			    dataType: 'json',
 			    settings:{
 			        cache:false
@@ -467,7 +472,7 @@ var Items=React.createClass({
 	  			}
 	  			else
 	  			if(c.props.lastRow){
-	  				let el= React.findDOMNode(c);
+	  				let el= ReactDom.findDOMNode(c);
 					let j=$(el);
 					let offset=j.offset()
 					//console.log('offset=%o',offset);
@@ -487,15 +492,6 @@ var Items=React.createClass({
 			<span><i className="fa fa-refresh fa-spin"></i>&nbsp;Loading items from the server...</span>
 			</div>
       	);
-      /*	else
-      		return(
-			<div>
-			
-			<span><i className="fa fa-code"></i>&nbsp;No items available...</span>
-			</div>
-			)
-*/
-        
 	}
 });
 
@@ -506,7 +502,7 @@ var Items=React.createClass({
  */
 var Newsline=React.createClass({
 	pushAppState:function(name,event){
-		console.log('Newsline: received pushAppState event=%o',event)
+		//console.log('Newsline: received pushAppState event=%o',event)
 		this.setState({app:event.app})
 	},
 	getInitialState: function() {
@@ -515,10 +511,10 @@ var Newsline=React.createClass({
 	    };
 	},
 	componentDidMount: function() {
-		console.log('newsline mounted stararted');
+		//console.log('newsline mounted stararted');
 		//console.log('mount');
 		u.registerEvent('pushAppState',this.pushAppState,{me:this});
-		u.publishEvent('reqAppState',{}); 
+		u.publishEvent('reqAppState',{});  
 		/*if(typeof(this.props.params.orderby)=='undefined'){
 			let orderbyString='newest';
 			switch(server.orderby){
@@ -543,7 +539,7 @@ var Newsline=React.createClass({
 	           me.searchButtonClick();
 	        }
    		});
-   		console.log('newsline mounted completed');
+   		//console.log('newsline mounted completed');
 		
 	},	
 	componentWillUnmount:function(){
@@ -552,20 +548,24 @@ var Newsline=React.createClass({
 	componentWillReceiveProps:function(nextProps){
 		
 	},
-	searchButtonClick(){
+	searchButtonClick:function(){
 		//console.log('searching %o',$('#topics_search').val())
 
+		this.props.history.pushState(null,"/newsline/"+this.props.params.community+"/"+this.props.params.orderby+"/?search="+$('#topics_search').val());
+		//window.location="#/newsline/"+this.props.params.community+"/"+this.props.params.orderby+"/?search="+$('#topics_search').val();
 
-		window.location="#/newsline/"+this.props.params.community+"/"+this.props.params.orderby+"/?search="+$('#topics_search').val();
 	},
-	clearButtonClick(){
+	clearButtonClick:function(){
 		//console.log('clear %o',$('#topics_search').val())
 		$('#topics_search').val('');
-		window.location="#/newsline/"+this.props.params.community+"/"+this.props.params.orderby+"/";
+
+		this.props.history.pushState(null,"/newsline/"+this.props.params.community+"/"+this.props.params.orderby+"/");
+		//window.location="#/newsline/"+this.props.params.community+"/"+this.props.params.orderby+"/";
 	},
 	render: function(){
 		if(typeof(this.props.params.orderby)=='undefined'){
-			window.location='/#/newsline/'+this.props.params.community+'/newest';
+			this.props.history.pushState(null,'/newsline/'+this.props.params.community+'/newest');
+			//window.location='/newsline/'+this.props.params.community+'/newest';
 		}
 
 		let { query } = this.props.location
@@ -589,7 +589,7 @@ var Newsline=React.createClass({
 			orderby=3;
 		}
 	//	console.log('SEARCH %o',this.props.params.community+"/"+orderbyString+"?"+search)
-		console.log("RENDER NEWSLINE community %s forums %o",this.props.params.community,this.state.app.communityForums)
+		//console.log("RENDER NEWSLINE community %s forums %o",this.props.params.community,this.state.app.communityForums)
 		return (
 			<div className="container">				
 				<div id="leftpanel" className="col-xs-12 col-sm-8 col-md-7 col-lg-7">
@@ -599,7 +599,7 @@ var Newsline=React.createClass({
 						        
 						            <button onClick={this.searchButtonClick} type="button"   id="topics_search_btn" style={{float:"right",marginTop:15,marginRight:5}} className="btn btn-default "><i className="fa fa-search"></i></button>
 			     
-					        		<img className="newsline-logo  visible-md visible-lg"  style={{marginTop:15,float:"left"}}src="/build/css/logo2pale.png" alt="Qwiket"/>
+					        		<img className="newsline-logo  visible-md visible-lg"  style={{marginTop:15,float:"left"}}src="/css/logo2pale.png" alt="Qwiket"/>
 					        		<label className="visible-sm visible-md visible-lg" style={{marginTop:20,marginLeft:2,float:"left",color:"#222"}}> Search:</label>
 					        		<label className="visible-xs" style={{marginTop:24,marginLeft:12,float:"left",color:"#222"}}> <i className="fa fa-search fa-lg"></i></label>
 					        		<div className="form-group" style={{float:"right",marginBottom:15,marginTop:15,marginRight:5}}>
@@ -608,10 +608,10 @@ var Newsline=React.createClass({
 			          			</div>
 		          				<div style={{float:'top'}}>
 		          				<div className="btn-group btn-group-xs" role="group" style={{float:"top",marginTop:-4,marginBottom:15}}>
-						            <a id="timeline_by_shared"  href={"#/newsline/"+this.props.params.community+"/newest"}  type="button" className={"btn btn-primary"+(orderby==0?" active":"")}>{lang['timeline_by_shared']}</a>
-						            <a id="timeline_by_published" href={"#/newsline/"+this.props.params.community+"/published"}  type="button" className={"btn btn-primary"+(orderby==1?" active":"")}>{lang['timeline_by_published']}</a>
-						            <a id="starred" type="button" href={"#/newsline/"+this.props.params.community+"/selected"}  className={"btn btn-primary"+(orderby==2?" active":"")}>{lang['starred']}</a>
-						            <a id="history" type="button" href={"#/newsline/"+this.props.params.community+"/myhistory"}  className={"btn btn-primary"+(orderby==3?" active":"")}>{lang['history']}</a>
+						            <Link id="timeline_by_shared"  to={"/newsline/"+this.props.params.community+"/newest"}  type="button" className={"btn btn-primary"+(orderby==0?" active":"")}>{window.server.lang['timeline_by_shared']}</Link>
+						            <Link id="timeline_by_published" to={"/newsline/"+this.props.params.community+"/published"}  type="button" className={"btn btn-primary"+(orderby==1?" active":"")}>{window.server.lang['timeline_by_published']}</Link>
+						            <Link id="starred" type="button" to={"/newsline/"+this.props.params.community+"/selected"}  className={"btn btn-primary"+(orderby==2?" active":"")}>{window.server.lang['starred']}</Link>
+						            <Link id="history" type="button" to={"/newsline/"+this.props.params.community+"/myhistory"}  className={"btn btn-primary"+(orderby==3?" active":"")}>{window.server.lang['history']}</Link>
 		         				</div>
 		         				</div>
          					</div>		

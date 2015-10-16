@@ -1,18 +1,18 @@
 var webpack = require("webpack");
 var config = require("./webpack.client.js");
 
-var hostname = process.env.HOSTNAME || "localhost";
+var hostname = process.env.WEBPACK_HOSTNAME || "localhost";
 
 config.cache = true;
 config.debug = true;
-config.devtool = "eval";
+config.devtool = "source-map";
 
 config.entry.unshift(
-	"webpack-dev-server/client?http://" + hostname + ":8080",
+	"webpack-dev-server/client?http://" + hostname + ":8080/",
 	"webpack/hot/only-dev-server"
 );
 
-config.output.publicPath = "http://" + hostname + ":8080/dist/";
+config.output.publicPath = "http://" + hostname + ":8080/";
 config.output.hotUpdateMainFilename = "update/[hash]/update.json";
 config.output.hotUpdateChunkFilename = "update/[hash]/[id].update.js";
 
