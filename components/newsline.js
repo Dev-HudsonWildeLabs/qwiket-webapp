@@ -1,3 +1,4 @@
+require("babel/register");
 import React from 'react'
 import ReactDom from 'react-dom';
 
@@ -5,6 +6,10 @@ import u from './d4shared/utils.jsx'
 import PostQueue from './d4shared/postqueue.jsx'
 import Radium from 'radium'
 import {Link,History} from 'react-router'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import {fetchTopics,clearTopics} from './d4shared/actions/newslineAction';
+import {fetchPosts,clearPosts} from './d4shared/actions/postsAction';
 
 
 var Item=React.createClass({
@@ -236,12 +241,12 @@ var Item=React.createClass({
 	    		}
 	    	}
 	    }
-	    //console.log(this.props)
+	    //console.log(topic.stamp)
 	    return (
 	    <li ref="NewsItem"  className="list-group-item" threadid={threadid} style={styles.post}>
 	        <div>
 		       	<span ref="SharedBySpan" style={styles.sharedby}>{sb}&nbsp;<a ref="SharedByLink" style={styles.sblink} href={shared_by_profileurl} target="_blank">{user_name}</a>&nbsp;{pb}
-	        		<span >{u.timeConverter(date)}</span>
+	        		<span >{u.timeConverter(date,(window.firstRender?topic.stamp:0))}</span>
 	        	</span>
         		<div ref ="ItemMenu" className="dropdown"  style={styles.menu}>
 				   	<button type="button" className="btn btn-link dropdown-toggle"  data-toggle="dropdown" >
@@ -297,7 +302,7 @@ var Items=React.createClass({
 		u.registerEvent('topScroll',this.topScroll,{me:this});
 		//Utils.registerEvent('bottomScroll',this.bottomScroll,this);
 		
-		this.fetch(true,true,this.props)
+		//this.fetch(true,true,this.props)
 		//console.log('MOUNT state=%o',this.state)
 		
 	},
@@ -307,13 +312,30 @@ var Items=React.createClass({
 		//Utils.unregisterEvents(this);
 		//console.log('items UNMOUNT')
 	},
-	getInitialState: function() {
+	componentDidUpdate:function(prevProps, prevState){
+	    $(".rating").rating({
+	      stars: 3,
+	      max: 3,
+	      showClear: false,
+	      showCaption: false,
+	      size: 'xs'
+	    });
+
+	},
+	/*getInitialState: function() {
 	    return {
 	      topics:[],
 	      lastid:99999999999999999
 	    };
+	},*/
+	//fetchTopics(community = 'pointofviewworld', orderby = 0, lastid = common.MAXID, sitename = '', limit = 25, query = '') 
+	fetch:function(clear,remove,props){
+		console.log('fetch clear=%s,props=%o',clear,this.props)
+		if(remove)
+			props.clearTopics();
+		props.fetchTopics(clear,props.community,props.orderby,props.state,props.state.lastid,props.sitename,25,props.query);
 	},
-	
+	/*
 	fetch:function(clear,remove,props){
 		//console.log('fetch %o',props)
 		let orderby=props.orderby;
@@ -434,6 +456,7 @@ var Items=React.createClass({
 
 		}
 	},
+	*/
 	componentWillReceiveProps:function(nextProps){
 
 		//let scope=nextProps.scope;
@@ -457,13 +480,19 @@ var Items=React.createClass({
 	render:function(){
 		//console.log('render Items props=%o,state=%o',this.props,this.state);
 		let rows=[];
-		let topics=this.state.topics;
+		let topics=this.props.topics;
 		let l=topics.length;
 		let sitename=(typeof(this.props.sitename)!='undefined'&&this.props.sitename)?this.props.sitename:'';
 		//console.log('length=%s',l)
 		for(var i=0;i<l;i++){
+			
 			let p=topics[i];
+			
+			//console.log('p=%o',p)
+	  		
 	  		let xid=p.xid;
+	  		//console.log(xid)
+
 	  		//console.log(1)
 	  		let cb=(c) =>{
 	  			//console.log('INSIDE %o',c.props.lastRow);
@@ -501,20 +530,12 @@ var Items=React.createClass({
  * 
  */
 var Newsline=React.createClass({
-	pushAppState:function(name,event){
-		//console.log('Newsline: received pushAppState event=%o',event)
-		this.setState({app:event.app})
-	},
-	getInitialState: function() {
-	    return {
-	      app:{community:'',communityName:'',communityForums:[]}
-	    };
-	},
+	
 	componentDidMount: function() {
 		//console.log('newsline mounted stararted');
 		//console.log('mount');
-		u.registerEvent('pushAppState',this.pushAppState,{me:this});
-		u.publishEvent('reqAppState',{});  
+		//u.registerEvent('pushAppState',this.pushAppState,{me:this});
+		//u.publishEvent('reqAppState',{});  
 		/*if(typeof(this.props.params.orderby)=='undefined'){
 			let orderbyString='newest';
 			switch(server.orderby){
@@ -543,7 +564,7 @@ var Newsline=React.createClass({
 		
 	},	
 	componentWillUnmount:function(){
-		u.unregisterEvents('pushAppState',this);	
+		//u.unregisterEvents('pushAppState',this);	
 	},
 	componentWillReceiveProps:function(nextProps){
 		
@@ -563,6 +584,7 @@ var Newsline=React.createClass({
 		//window.location="#/newsline/"+this.props.params.community+"/"+this.props.params.orderby+"/";
 	},
 	render: function(){
+		//console.log('RENDER NEWSLINE props %o',this.props)
 		if(typeof(this.props.params.orderby)=='undefined'){
 			this.props.history.pushState(null,'/newsline/'+this.props.params.community+'/newest');
 			//window.location='/newsline/'+this.props.params.community+'/newest';
@@ -572,7 +594,7 @@ var Newsline=React.createClass({
     	let search = query && query.search ? query.search : '';
     	//console.log(search);
 
-		//console.log('PROPS %o',this.props.params)
+		//console.log('PROPS %o',this.props)
 		let orderbyString=this.props.params.orderby;
 		let orderby=0;
 		switch(orderbyString){
@@ -608,22 +630,22 @@ var Newsline=React.createClass({
 			          			</div>
 		          				<div style={{float:'top'}}>
 		          				<div className="btn-group btn-group-xs" role="group" style={{float:"top",marginTop:-4,marginBottom:15}}>
-						            <Link id="timeline_by_shared"  to={"/newsline/"+this.props.params.community+"/newest"}  type="button" className={"btn btn-primary"+(orderby==0?" active":"")}>{window.server.lang['timeline_by_shared']}</Link>
-						            <Link id="timeline_by_published" to={"/newsline/"+this.props.params.community+"/published"}  type="button" className={"btn btn-primary"+(orderby==1?" active":"")}>{window.server.lang['timeline_by_published']}</Link>
-						            <Link id="starred" type="button" to={"/newsline/"+this.props.params.community+"/selected"}  className={"btn btn-primary"+(orderby==2?" active":"")}>{window.server.lang['starred']}</Link>
-						            <Link id="history" type="button" to={"/newsline/"+this.props.params.community+"/myhistory"}  className={"btn btn-primary"+(orderby==3?" active":"")}>{window.server.lang['history']}</Link>
+						            <Link id="timeline_by_shared"  to={"/newsline/"+this.props.params.community+"/newest"}  type="button" className={"btn btn-primary"+(orderby==0?" active":"")}>By Newest</Link>
+						            <Link id="timeline_by_published" to={"/newsline/"+this.props.params.community+"/published"}  type="button" className={"btn btn-primary"+(orderby==1?" active":"")}>By Published</Link>
+						            <Link id="starred" type="button" to={"/newsline/"+this.props.params.community+"/selected"}  className={"btn btn-primary"+(orderby==2?" active":"")}>Selected</Link>
+						            <Link id="history" type="button" to={"/newsline/"+this.props.params.community+"/myhistory"}  className={"btn btn-primary"+(orderby==3?" active":"")}>Shared by me</Link>
 		         				</div>
 		         				</div>
          					</div>		
 		         			<div className="row">
 		         				<div style={{float:'bottom'}}>
-		         					<Items query={search}  orderby={orderby} community={this.props.params.community}/>
+		         					<Items query={search}  orderby={orderby} community={this.props.params.community} topics={this.props.topics.items} state={this.props.topics} clearTopics={this.props.clearTopicsAction.clearTopics} fetchTopics={this.props.fetchTopicsAction.fetchTopics}/>
 		         				</div>
 	         				</div>			
 					</div>
 					<div id="rightpanel" className="col-sx-1 col-sm-4 col-md-5 col-lg-5 visible-sm visible-md visible-lg">
 						<div className="list-group ">
-							<PostQueue scope='working' type='queue' community={this.props.params.community} communityForums={this.state.app.communityForums} constraint_type='community' constraint_value={this.props.params.community}/>
+							<PostQueue scope='working' type='community' community={this.props.params.community} communityForums={this.props.forums} posts={this.props.posts.items} constraint_type={""} constraint_value={0} fetchPosts={this.props.fetchPostsAction.fetchPosts} clearPosts={this.props.clearPostsAction.clearPosts} state={this.props.posts} />
 						</div>
 					</div>	
 			</div>
@@ -631,7 +653,29 @@ var Newsline=React.createClass({
 	}
 });
 module.exports ={
-	Newsline:Newsline,
+	Newsline: connect(mapStateToProps,mapDispatchToProps)(Newsline),
 	Items,
 	Item:Item
 } 
+
+function mapStateToProps(state) {
+ // console.log('INJECTING PROPS state.newsline=%o',state)
+  return {
+
+    topics: state.newsline.topics,
+    posts:state.newsline.posts,
+    forums:state.newsline.forums,
+    ls:state.newsline.ls,
+  };
+}
+function mapDispatchToProps(dispatch) {
+  return {
+  		fetchTopicsAction:bindActionCreators({ fetchTopics }, dispatch),
+		clearTopicsAction:bindActionCreators({ clearTopics }, dispatch),
+		fetchPostsAction:bindActionCreators({ fetchPosts }, dispatch),
+		clearPostsAction:bindActionCreators({ clearPosts}, dispatch)
+		};
+}
+
+
+

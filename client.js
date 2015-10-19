@@ -8,6 +8,8 @@ import Router from "react-router";
 import Transmit from "react-transmit";
 import routes from './routes';
 import {createHistory} from "history"; 
+import { Provider } from 'react-redux';
+import configureStore from './components/d4shared/store/configureStore'
 
 //console.log("ENTERED QWIKET !!!")
 // Set a device type based on window width, so that we can write media queries in javascript
@@ -34,9 +36,20 @@ const reactRoot = window.document.getElementById("react-root");
 //Router.run(routes, Router.HistoryLocation, function (Handler, state) {
  // ReactDom.render(routes, reactRoot);
 //});
+const initialState = window.__INITIAL_STATE__;
+const store = configureStore(initialState);
 import createBrowserHistory from 'history/lib/createBrowserHistory'
 let history = createBrowserHistory()
-ReactDom.render(<Router history={history}>{routes}</Router>, reactRoot)
+window.firstRender=true;
+ReactDom.render(<Provider store={store}><Router history={history}>{routes}</Router></Provider>, reactRoot)
+setTimeout(()=>window.firstRender=false,1000);
+$(".rating").rating({
+        stars: 3,
+        max: 3,
+        showClear: false,
+        showCaption: false,
+        size: 'xs'
+      });
   //..let React = require('react'), 
   //App = require('./router.jsx'); // Our custom react component
 

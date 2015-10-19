@@ -1,12 +1,17 @@
+require("babel/register");
 var React = require('react');
 import InfoBox from './d4shared/infobox.jsx'
 import u from './d4shared/utils.jsx'
 import {Link} from 'react-router'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import {selectCommunity} from './d4shared/actions/appAction.js';
 
 let Community=React.createClass({
 	
 	
 	render:function(){
+		console.log('Community render %o',this.props.communityName)
 		let lines=[];
 		//console.log('RENDER Community: this.params=%o',this.props)
 		//console.log('render %o',this.state);
@@ -15,12 +20,12 @@ let Community=React.createClass({
 			lines.push(<li id={"community_"+c.forum} key={"key_community_"+c.forum}><Link to={"/newsline/"+c.forum+"/newest"}><span className="glyphicon glyphicon-log-in"></span> {c.name}</Link></li>);
 		}
 		var styles={
-    	communityName:{
-    		color:'#fff',
-    		backgroundColor:'#222233',
-    		textDecoration:'none',
-    		marginLeft:30
-    	   	}
+	    	communityName:{
+	    		color:'#fff',
+	    		backgroundColor:'#222233',
+	    		textDecoration:'none',
+	    		marginLeft:30,
+	    	}
     	}
 	
 		return(
@@ -45,8 +50,9 @@ let Online=React.createClass({
     		textDecoration:'none'
     	   	},
     	button:{
-    		padding:5,
+    		padding:3,
     		marginTop:0,
+    		//marginBottom:15
     		//width:20,
     		//height:20
     		}   	
@@ -114,53 +120,26 @@ let Online=React.createClass({
 });
 
 var App = React.createClass({
-	/**
-	 * 
-	 * We have to hack this since there are no ways of propagating state to child components that are coming via router.
-	 */
-	reqAppState:function(){
-		//console.log('publish app state %o',this.state);
-		u.publishEvent('pushAppState',{app:{communityName:this.state.communityName,communityForums:this.state.communityForums}})
-	},
-	updateCommunitySet:function(name,event){
-		//console.log('updateCommunitySet received event %o',event)
-		this.setState({communityName:event.communityName,communityForums:event.communityForums});
-		this.reqAppState();
-	},
+	
 	componentDidMount: function() {
-		//console.log('app mounted started');
-		//console.log('app params=%o',this.props.params);
-		
-		u.registerEvent('updateCommunitySet',this.updateCommunitySet,{me:this});
 		if(this.props.location.pathname=="/"){
-			//console.log('pushState this.props=%o',this.props)
-			//if(__CLIENT__)
-			this.props.history.pushState(null,"/newsline/"+this.state.forum+"/newest");
-		//	return(<div/>);
+			console.log
+			console.log('redirect to %o',"/newsline/"+this.props.communityState.forum+"/newest")
+			this.props.history.pushState(null,"/newsline/"+this.props.communityState.forum+"/newest");
 		}
-		//console.log('app mounted completed');
-
-	},
-	componentWillUnmount:function(){
-		//console.log('postcontext unmount');
-		u.unregisterEvents('reqAppState',this);
-		u.unregisterEvents('updateCommunitySet',this); 
-	},
-	getInitialState: function() {
-	  // console.log('getInitialState %s, %s',server.community, server.community_forums)
-  		return window.server;
 	},
 	
 	componentWillReceiveProps:function(nextProps){
 		//console.log('APP componentWillReceiveProps props=%o nextProps=%o',this.props,nextProps)
-		if(nextProps.params.community!=this.props.params.community){
-			console.log('Community changing community',nextProps.params.community)
-			this.fetchCommunityData(nextProps.params.community)
-		}
+		//if(nextProps.params.community!=this.props.params.community){
+			//console.log('Community changing community',nextProps.params.community)
+			//this.props.fetchCommunityData(nextProps.params.community)
+		//}
 	},
 	fetchCommunityData:function(community){
 		//console.log('fetchCommunityData community=%s',community)
 		//this.setState({communityForums:[]})
+		/*
 		u.publishEvent('pushAppState',{app:{communityName:'',communityForums:[]}})
 		$.ajax({
 	        url: "/api?task=load_community_forums",
@@ -183,14 +162,18 @@ var App = React.createClass({
 	    		window.infoBox.setMessage('alert-danger', 'Error fetching posts from d4rum defender. Message: '+data.msg);
 	    	}
       	}); 
+*/
 	},
 	render:function(){
-	
+		console.log('render app %o',this.props)
 		u.registerEvent('reqAppState',this.reqAppState,{me:this});
 		
-		if(!this.state.communityForums.length){
+		/*if(!this.state.communityForums.length){
 			this.fetchCommunityData(this.props.params.community);
-		}
+		}*/
+		if(__CLIENT__)
+		if(this.props.communityState.forum!=this.props.params.community)
+			setTimeout(()=>this.props.selectCommunity(this.props.params.community));
 		
 		//this.reqAppState();
     	
@@ -224,18 +207,29 @@ var App = React.createClass({
 					</div>
   				
           			<div className="nav navbar-nav navbar">
-         				<div style={styles.community}><Community communities={this.state.communities} communityName={this.state.communityName} /></div>
+         				<div style={styles.community}><Community ref="Community" ls={this.props.communityState.ls} communities={this.props.communityState.communities} communityName={this.props.communityState.communityName} /></div>
         			</div>
-		        	<Online ref={(c) =>{ this.state.online = c}} login={this.state.login} lang={this.state.userLang}/>
+		        	<Online ref="Online" login={this.props.onlineState.login} lang={this.props.onlineState.userLang} username={this.props.onlineState.userName} avatar={this.props.onlineState.avatar}/>
 		      	</nav>
 			 
-			 	<InfoBox ref={(c) =>{ if(__CLIENT__) window.infoBox = c}}/>
+			 	<InfoBox ref="InfoBox" text={this.props.msg.text} type={this.props.msg.type}/>
 				{this.props.children}
 			</div>	  
       	);
     }
 });
 
-module.exports = {
-    MainPage: App
+function mapStateToProps(state) {
+	//console.log('mapStateToProps app')
+  return {
+    msg: state.msg,
+    communityState:state.app.community,
+    onlineState:state.app.online
+  };
 }
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ selectCommunity }, dispatch);
+}
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(App);

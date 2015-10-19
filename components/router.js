@@ -1,3 +1,4 @@
+require("babel/register");
 import React from 'react'
 import { Router, Route, Link } from 'react-router'
 import {MainPage} from  './app.js' 

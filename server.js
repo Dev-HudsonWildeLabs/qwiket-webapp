@@ -2,19 +2,27 @@ import {Server} from "hapi";
 import h2o2 from "h2o2";
 import inert from "inert";
 import React from "react";
-import ReactDOM from "react-dom/server";
+import {renderToString} from "react-dom/server";
 import {RoutingContext, match} from "react-router";
-//import createLocation from "history/lib/createLocation";
-import Transmit from "react-transmit";
+//import Transmit from "react-transmit";
 import routes from "./routes";
 import history from "history"
 import url from "url";
-var Wreck = require('wreck'); 
+import Wreck  from 'wreck'; 
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import Immutable from 'immutable';
+import mapify from 'es6-mapify'
+import configureStore from './components/d4shared/store/configureStore'
+
+
+
 //console.log(process)
 var hostname = process.env.HOSTNAME || "localhost";
 var apiServer = process.env.QWIKETAPI|| "localhost";
 var apiPort=process.env.QWIKETAPIPORT|| "8088";
 GLOBAL.window = GLOBAL;  
+window.firstRender=true;
 GLOBAL.$= require('jquery')
 
 
@@ -62,17 +70,17 @@ server.route({
 			passThrough: true,
 			mapUri (request, callback) {
 				let query=request.query;
-				console.log('INDEX /')
+			
 				let u="http://"+apiServer+":"+apiPort+"/api?task=landing";
-
+					console.log('INDEX / u=',u)
 				callback(null,u);
 				console.log('mapUri:', u)
 			},
 			onResponse (err, res, request, reply, settings, ttl) {
 				console.log('INSIDE 111')
 				Wreck.read(res, null, function(err, payload){
-					console.log('LANDING PAYLOAD:',JSON.parse(payload))
-					matchAndRender(err, payload,request,reply)
+					//console.log('LANDING PAYLOAD:',JSON.parse(payload))
+					matchAndRender(err, payload,request,reply,ttl);
 				})
 			
             	//console.log('res ',res)
@@ -89,15 +97,16 @@ server.route({
 			mapUri (request, callback) {
 				let query=request.query;
 				//console.log('query=%o',request)
-				let u="http://"+apiServer+":"+apiPort+"/api?task=landing&community="+encodeURIComponent(request.params.community);
+				let u="http://"+apiServer+":"+apiPort+"/api?task=landing&type=newsline&community="+encodeURIComponent(request.params.community);
 
 				callback(null,u);
 				console.log('mapUri:', u)
 			},
 			onResponse (err, res, request, reply, settings, ttl) {
+				
 				//console.log('INSIDE 222')
 				Wreck.read(res, null, function(err, payload){
-					matchAndRender(err, payload,request,reply)
+					matchAndRender(err, payload,request,reply,ttl);
 				})
 			
             	//console.log('res ',res)
@@ -107,21 +116,21 @@ server.route({
 });
 server.route({
 	method:  "GET",
-	path:    "/context/{community}/{params*}",
+	path:    "/context/{community}/post/{postid}",
 	handler: {
 		proxy: {
 			passThrough: true,
 			mapUri (request, callback) {
 				let query=request.query;
 				//console.log('query=%o',request)
-				let u="http://"+apiServer+":"+apiPort+"/api?task=landing&community="+encodeURIComponent(request.params.community);
+				let u="http://"+apiServer+":"+apiPort+"/api?task=landing&community="+encodeURIComponent(request.params.community+"&type=context&postid="+request.params.postid);
 
 				callback(null,u);
 				console.log('mapUri:', u)
 			},
 			onResponse (err, res, request, reply, settings, ttl) {
 				Wreck.read(res, null, function(err, payload){
-					matchAndRender(err, payload,request,reply)
+					matchAndRender(err, payload,request,reply,ttl);
 				})
 			
             	//console.log('res ',res)
@@ -174,7 +183,7 @@ server.route({
 			},
 			onResponse (err, res, request, reply, settings, ttl) {
 				//console.log('API RESPONSE',res);
-				reply(res);
+				reply(res).ttl(ttl);
 			}
 		}
 	}
@@ -199,18 +208,20 @@ server.route({
 			},
 			onResponse (err, res, request, reply, settings, ttl) {
 				
-				reply(res);
+				reply(res).ttl(ttl);
 			}
 		}
 	}
 });
 
-function matchAndRender (err, payload,request,reply) {
-	let y= JSON.parse(payload);
+function matchAndRender (err, payload,request,reply,ttl) {
+	var landing= JSON.parse(payload);
+	//console.log(landing)
 		//console.log(payload,y);
 		//reply(payload);
 		
-	window.server = y.server;
+	//window.server = landing.server;
+	//window.server.lang=landing.lang;
 
 	//console.log("STEP 2")
 	match({routes, location:request.url}, (error, redirectLocation, renderProps) => {
@@ -220,69 +231,79 @@ function matchAndRender (err, payload,request,reply) {
 			reply.redirect(redirectLocation.pathname + redirectLocation.search)
 		}
 		else if (error || !renderProps) {
-			console.log('continue');
+			console.log('continue'); 
 			reply.continue(); 
 		}
 		else {
 			//console.log(window.server);
 			//console.log('renderToString')
-			console.log(' calling renderToString:', Date.now() )
-			Transmit.renderToString(RoutingContext, renderProps).then(({reactString, reactData}) => {
+			let QwiketState;
+			//console.log(landing)
+			
+			const store = configureStore(landing);
+
+			//console.log(' calling renderToString:',renderProps/*, store.getState()*/ )
+			const html = renderToString(
+      		<Provider store={store}>
+        		<RoutingContext {...renderProps} />
+      		</Provider>
+    		);
+			console.log('renderToString done')
+			//Transmit.renderToString(RoutingContext, renderProps).then(({reactString, reactData}) => {
+				 const finalState = store.getState();
 				//console.log('renderToString returned !!!')
-				let output = (
+		
+				var output = (
 					`<!doctype html>
 					<html lang="en-us">
 						<head>
 							<meta charset="utf-8">
 
-						  <title>Qwiket </title>
-						  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-						  <meta http-equiv="Pragma" content="no-cache" />
-						  <meta http-equiv="Expires" content="0" />
-						    
-						  <meta name="viewport" content="width=device-width, initial-scale=1 minimum-scale=0.5"/>
-						  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
-						  <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-						  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+							<title>Qwiket </title>
+							<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+							<meta http-equiv="Pragma" content="no-cache" />
+							<meta http-equiv="Expires" content="0" />
 
-						  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
+							<meta name="viewport" content="width=device-width, initial-scale=1 minimum-scale=0.5"/>
+							<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+							<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+							<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-						<!-- Latest compiled and minified CSS -->
-						<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
+							<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
 
-						<!-- Latest compiled and minified JavaScript -->
-						<script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
+							<!-- Latest compiled and minified CSS -->
+							<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
 
-						  <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
-						  <link href='https://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
-						  <link href='https://fonts.googleapis.com/css?family=Sigmar+One' rel='stylesheet' type='text/css'>
+							<!-- Latest compiled and minified JavaScript -->
+							<script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
+
+							<link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+							<link href='https://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
+							<link href='https://fonts.googleapis.com/css?family=Sigmar+One' rel='stylesheet' type='text/css'>
 						    
 						    <script src="/js/star-rating.min.js" type="text/javascript"></script>
 						    <link href="/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
-						  <link rel="stylesheet" href="/css/newsline.css"/>
-						  <link rel="stylesheet" href="/css/d4rum.css"/>
-						  <link rel="icon" type="image/png" href="/css/logo2.png"/>
+							<link rel="stylesheet" href="/css/newsline.css"/>
+							<link rel="stylesheet" href="/css/d4rum.css"/>
+							<link rel="icon" type="image/png" href="/css/logo2.png"/>
 						</head>
-						<body>
-							<script id="server-payload">
-								window.server= ${JSON.stringify(window.server)}
-							</script>
-							<div id="react-root">${reactString}</div>
-							
+						<body>	
+							<div id="react-root">${html}</div>	
 								<!--<script src="/dist/client.js" type="text/javascript"></script>-->
-							
+							<script>
+          						window.__INITIAL_STATE__ = ${JSON.stringify(finalState)};
+        					</script>
+        					<script src=${'"'+(process.env.NODE_ENV === "production" ? "" : '//localhost:8080')+'/dist/client.js"'}></script>
 						</body>
 					</html>`
 				);
 				//console.log('>>>>>>>>>>>>>sss>>',output)
-				const webserver = process.env.NODE_ENV === "production" ? "" : "//localhost:8080";
+				//const webserver = process.env.NODE_ENV === "production" ? "" : "//localhost:8080";
 
-				output          = Transmit.injectIntoMarkup(output, reactData, [`${webserver}/dist/client.js`]);
+				//output          = Transmit.injectIntoMarkup(output, reactData, [`${webserver}/dist/client.js`]);
 				console.log(' output generated:', Date.now() )
-				reply(output);
-			}).catch((error) => {
-				console.error(error);
-			});
+				reply(output).ttl(ttl);
+			
 		}
 	});
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Router, Route, Link } from 'react-router'
-import {MainPage} from  './components/app.js' 
+import MainPage from  './components/app.js' 
 import {Newsline} from  './components/newsline.js' 
 import Local from  './components/local.js' 
 import Context from  './components/context.js' 
