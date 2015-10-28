@@ -36,7 +36,7 @@
   width:20px;
 
 }
-@media(max-width:767px){
+@media(max-width:517px){
   .topic-middle-right{
     width:60%;    
   }
@@ -56,21 +56,42 @@
     font-size: 0.7rem !important;
   }
 
+     .search-field{
+      width:120px !important;
+    }
+    .preview-box{
+      height:180px !important;
+    } 
+     .preview-topics{
+      font-size: 1.0rem !important;
+    }
+   
+  }
+@media(min-width:518px){
+  .topic-middle-right{
+    width:60%;    
+  }
+  .post-image{
+    width:24px;
+    height:24px;
 
+    }
+    .post-children{
+    font-size: 0.8rem !important;
+    }
 
-
-
-
-
-
-
-
+  .post-time{
+      font-size: 0.7rem !important;
+    } 
+  .post-bottom-arrow,.post-level-arrow{
+    font-size: 0.7rem !important;
+  }
 
      .search-field{
       width:200px !important;
     }
     .preview-box{
-      height:210px !important;
+      height:180px !important;
     } 
      .preview-topics{
       font-size: 1.1rem !important;
@@ -104,7 +125,7 @@
     }
     
      .search-field{
-      width:280px !important;
+      width:260px !important;
     }
     .preview-topics{
       font-size: 1.2rem !important;

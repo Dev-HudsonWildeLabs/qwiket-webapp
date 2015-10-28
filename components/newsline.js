@@ -95,7 +95,7 @@ var Item=React.createClass({
 		    		':active':{
 		    			color:'greay'
 		    		},
-	    			fontSize: '1.7rem'
+	    			fontSize: '1.5rem'
 	    		},
 	    		comment:{
 	    			fontSize: '1.2rem'
@@ -105,7 +105,7 @@ var Item=React.createClass({
 	    			padding:"5px 0 0 5px",
 	    			color:"#555",
 	    			margin:0,
-	    			position:"relative",
+	    			//position:"relative",
   					display:"inline-block",
   					fontSize: '1.3rem'
 	    		},
@@ -142,11 +142,11 @@ var Item=React.createClass({
   					//textAlign: "top",
    	 				marginTop: 10,
   					verticalAlign: "bottom",
-  					fontSize: '1.5rem'
+  					fontSize: '1.4rem'
 	    		},
 	    		footer:{
 	    			//float:"bottom",
-	    			width:"100%",
+	    			//width:"100%",
 	    			height:"2.4rem"
 	    			
 	    		},
@@ -187,7 +187,7 @@ var Item=React.createClass({
 	    			padding:"5px 0 0 5px",
 	    			color:"#555",
 	    			margin:0,
-	    			position:"relative",
+	    			//position:"relative",
   					display:"inline-block",
   					fontSize: '1.1rem'
 	    		},
@@ -218,16 +218,14 @@ var Item=React.createClass({
 	    		},
 	    		sitename:{
 	    			position:"relative",
-  					//float:"bottom",
   					display: "block",
-  					//textAlign: "top",
    	 				marginTop: 10,
   					verticalAlign: "bottom",
   					fontSize: '1.0rem'
 	    		},
 	    		footer:{
 	    			//float:"bottom",
-	    			width:"100%",
+	    			//width:"100%",
 	    			height:"0.1rem"
 	    			
 	    		},
@@ -243,7 +241,7 @@ var Item=React.createClass({
 	    }
 	    //console.log(topic.stamp)
 	    return (
-	    <li ref="NewsItem"  className="list-group-item" threadid={threadid} style={styles.post}>
+	    <div ref="NewsItem"  className="list-group-item" threadid={threadid} style={styles.post}>
 	        <div>
 		       	<span ref="SharedBySpan" style={styles.sharedby}>{sb}&nbsp;<a ref="SharedByLink" style={styles.sblink} href={shared_by_profileurl} target="_blank">{user_name}</a>&nbsp;{pb}
 	        		<span >{u.timeConverter(date,(window.firstRender?topic.stamp:0))}</span>
@@ -264,7 +262,7 @@ var Item=React.createClass({
 	        <div onClick={this.itemClick}>
 		      	<div ref="ItemComment" className="small" style={styles.comment}>{text}</div>
 		    	<span >
-		    		<a ref="ItemTitle" href={link}  style={styles.title} target="origin"><div dangerouslySetInnerHTML={{__html: title}}></div></a>
+		    		<a ref="ItemTitle" href={link}  className="" style={styles.title} target="origin"><div dangerouslySetInnerHTML={{__html: title}}></div></a>
 		    	</span>
 		        <div ref="Topic" style={styles.topic}>
 		        	<img ref="TopicImage" className="topic-image img-responsive" style={styles.image} src={image}/>
@@ -280,7 +278,7 @@ var Item=React.createClass({
 			    </div>
 		    </div>
 	        
-	    </li>
+	    </div>
 		);	  
 	}
 });
@@ -301,8 +299,8 @@ var Items=React.createClass({
 	componentDidMount: function() {
 		u.registerEvent('topScroll',this.topScroll,{me:this});
 		//Utils.registerEvent('bottomScroll',this.bottomScroll,this);
-		
-		//this.fetch(true,true,this.props)
+		if(this.props.topics.length==0)
+			this.fetch(true,true,this.props)
 		//console.log('MOUNT state=%o',this.state)
 		
 	},
@@ -333,7 +331,7 @@ var Items=React.createClass({
 		console.log('fetch clear=%s,props=%o',clear,this.props)
 		if(remove)
 			props.clearTopics();
-		props.fetchTopics(clear,props.community,props.orderby,props.state,props.state.lastid,props.sitename,25,props.query);
+		props.fetchTopics(clear,props.community,props.orderby,props.state,this.props.sideTopics,props.state.lastid,props.sitename,25,props.query);
 	},
 	/*
 	fetch:function(clear,remove,props){
@@ -473,7 +471,7 @@ var Items=React.createClass({
         });
 		}*/
 		if(this.props.orderby!=nextProps.orderby||this.props.query!=nextProps.query||this.props.community!=nextProps.community||this.props.sitename!=nextProps.sitename){
-		    console.log('componentWillReceiveProps props=%o',nextProps)
+		   // console.log('componentWillReceiveProps props=%o',nextProps)
 			this.fetch(true,true,nextProps);
 		}
 	},
@@ -560,6 +558,7 @@ var Newsline=React.createClass({
 	           me.searchButtonClick();
 	        }
    		});
+
    		//console.log('newsline mounted completed');
 		
 	},	
@@ -582,6 +581,9 @@ var Newsline=React.createClass({
 
 		this.props.history.pushState(null,"/newsline/"+this.props.params.community+"/"+this.props.params.orderby+"/");
 		//window.location="#/newsline/"+this.props.params.community+"/"+this.props.params.orderby+"/";
+	},
+	reportSelectedPostY:function(y){
+	
 	},
 	render: function(){
 		//console.log('RENDER NEWSLINE props %o',this.props)
@@ -613,39 +615,36 @@ var Newsline=React.createClass({
 	//	console.log('SEARCH %o',this.props.params.community+"/"+orderbyString+"?"+search)
 		//console.log("RENDER NEWSLINE community %s forums %o",this.props.params.community,this.state.app.communityForums)
 		return (
-			<div className="container">				
-				<div id="leftpanel" className="col-xs-12 col-sm-8 col-md-7 col-lg-7">
+			<div className="container" >				
+				<div id="leftpanel" className="col-xs-9 col-sm-8 col-md-8 col-lg-8" >
 							<div className="row">
-								<div className="form-inline col-xs-12 " style={{float:"right",marginBotton:15,backgroundColor:"#DDDDEE",borderTopLeftRadius:"4px",borderTopRightRadius:"4px",borderBottomRightRadius:"4px"}} role="form">           
-						            <button type="button" id="topics_search_clear_btn" onClick={this.clearButtonClick}  style={{float:"right",marginRight:5,marginTop:15}} className="btn btn-default "><i className="fa fa-times"></i></button>
+								<div className="form-inline col-xs-12" style={{float:"right",marginBottom:15,backgroundColor:"#8888AA",borderTopLeftRadius:"4px",borderTopRightRadius:"4px",borderBottomRightRadius:"4px"}} role="form">           
+						            <button type="button" id="topics_search_clear_btn" onClick={this.clearButtonClick}  style={{float:"right",marginRight:5,marginTop:10}} className="btn btn-default "><i className="fa fa-times"></i></button>
 						        
-						            <button onClick={this.searchButtonClick} type="button"   id="topics_search_btn" style={{float:"right",marginTop:15,marginRight:5}} className="btn btn-default "><i className="fa fa-search"></i></button>
+						            <button onClick={this.searchButtonClick} type="button"   id="topics_search_btn" style={{float:"right",marginTop:10,marginRight:5}} className="btn btn-default "><i className="fa fa-search"></i></button>
 			     
-					        		<img className="newsline-logo  visible-md visible-lg"  style={{marginTop:15,float:"left"}}src="/css/logo2pale.png" alt="Qwiket"/>
-					        		<label className="visible-sm visible-md visible-lg" style={{marginTop:20,marginLeft:2,float:"left",color:"#222"}}> Search:</label>
-					        		<label className="visible-xs" style={{marginTop:24,marginLeft:12,float:"left",color:"#222"}}> <i className="fa fa-search fa-lg"></i></label>
-					        		<div className="form-group" style={{float:"right",marginBottom:15,marginTop:15,marginRight:5}}>
-			          					<input type="text" className="form-control search-field" defaultValue={search}  id="topics_search" />
-			          				</div>	
+					        		
+					        		<label className="visible-md visible-lg" style={{marginTop:15,marginLeft:2,float:"left",color:"#fff"}}> Search:</label>
+					        		<label className="visible-xs visible-sm" style={{marginTop:15,marginLeft:12,float:"left",color:"#fff"}}> <i className="fa fa-search fa-lg"></i></label>
+					        			<input type="text" className="form-control search-field" style={{float:"right",margin:10,maxWidth:400}} defaultValue={search}  id="topics_search" />
+			          					
 			          			</div>
-		          				<div style={{float:'top'}}>
-		          				<div className="btn-group btn-group-xs" role="group" style={{float:"top",marginTop:-4,marginBottom:15}}>
+		          				
+		          				<div className="btn-group btn-group-xs" role="group" style={{float:"right",marginTop:-4,marginBottom:15}}>
 						            <Link id="timeline_by_shared"  to={"/newsline/"+this.props.params.community+"/newest"}  type="button" className={"btn btn-primary"+(orderby==0?" active":"")}>By Newest</Link>
 						            <Link id="timeline_by_published" to={"/newsline/"+this.props.params.community+"/published"}  type="button" className={"btn btn-primary"+(orderby==1?" active":"")}>By Published</Link>
 						            <Link id="starred" type="button" to={"/newsline/"+this.props.params.community+"/selected"}  className={"btn btn-primary"+(orderby==2?" active":"")}>Selected</Link>
 						            <Link id="history" type="button" to={"/newsline/"+this.props.params.community+"/myhistory"}  className={"btn btn-primary"+(orderby==3?" active":"")}>Shared by me</Link>
 		         				</div>
-		         				</div>
+		         				
          					</div>		
 		         			<div className="row">
-		         				<div style={{float:'bottom'}}>
-		         					<Items query={search}  orderby={orderby} community={this.props.params.community} topics={this.props.topics.items} state={this.props.topics} clearTopics={this.props.clearTopicsAction.clearTopics} fetchTopics={this.props.fetchTopicsAction.fetchTopics}/>
-		         				</div>
-	         				</div>			
+		         					<Items query={search}  orderby={orderby} community={this.props.params.community} sideTopics={false} topics={this.props.topics.items} state={this.props.topics} clearTopics={this.props.clearTopicsAction.clearTopics} fetchTopics={this.props.fetchTopicsAction.fetchTopics}/>
+		         			</div>			
 					</div>
-					<div id="rightpanel" className="col-sx-1 col-sm-4 col-md-5 col-lg-5 visible-sm visible-md visible-lg">
+					<div id="rightpanel" className="col-sx-3 col-sm-4 col-md-4 col-lg-4">
 						<div className="list-group ">
-							<PostQueue scope='working' type='community' community={this.props.params.community} communityForums={this.props.forums} posts={this.props.posts.items} constraint_type={""} constraint_value={0} fetchPosts={this.props.fetchPostsAction.fetchPosts} clearPosts={this.props.clearPostsAction.clearPosts} state={this.props.posts} />
+							<PostQueue scope='working' type='community' reportY={this.reportSelectedPostY} community={this.props.params.community} communityForums={this.props.forums} posts={this.props.posts.items} constraint_type={""} constraint_value={0} fetchPosts={this.props.fetchPostsAction.fetchPosts} clearPosts={this.props.clearPostsAction.clearPosts} state={this.props.posts} />
 						</div>
 					</div>	
 			</div>

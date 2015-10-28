@@ -3,38 +3,33 @@ import React from 'react'
 import {Link} from 'react-router'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import PostContext from './d4shared/postcontext.jsx'
 import {Items,Item} from  './newsline.js' 
 import Local from  './local.js' 
 import u from './d4shared/utils.jsx'
+import {fetchTopics,clearTopics} from './d4shared/actions/newslineAction';
+import {fetchContextTopicForPostid,fetchContextTopicForThread,clearContextTopic} from './d4shared/actions/contextAction';
+import {setChildTop} from './d4shared/actions/D4ContextAction';
+import PostContext from './d4shared/postcontext.jsx'
+
 
 
 var Context=React.createClass({
-	pushAppState:function(name,event){
-		//console.log('Context receive app state event=%o',event)
-		this.setState({app:event.app})
-	},
-	native:function(name,event){
+	
+	/*native:function(name,event){
 		//console.log('Context handling %s event=%o',name,event);
 		this.setState({nativeD4:event.on})
-	},
+	},*/
 	componentDidMount:function(){
 		//console.log('context mount params %o',this.props.params);
 		this.fetch(this.props)
-		$(".rating").rating({
-            stars:3,
-            max:3,
-            showClear:false,
-            showCaption:false,
-            size:'xs'
-		});
-		u.registerEvent('native',this.native,{me:this});
-		u.registerEvent('pushAppState',this.pushAppState,{me:this});
-		u.publishEvent('reqAppState',{}); 
+		
+		//u.registerEvent('native',this.native,{me:this});
+		//u.registerEvent('pushAppState',this.pushAppState,{me:this});
+		//u.publishEvent('reqAppState',{}); 
 	},
 	componentWillUnmount:function(){
-		u.unregisterEvents('native',this);
-		u.unregisterEvents('pushAppState',this);	
+		//u.unregisterEvents('native',this);
+		//u.unregisterEvents('pushAppState',this);	
 	},
 	componentDidUpdate:function(prevProps, prevState){
 		//console.log('context unmount params %o',this.props.params);
@@ -46,28 +41,25 @@ var Context=React.createClass({
             size:'xs'
 		});
 	},
-	getInitialState: function() {
-		/**
-		 * Note that by default nativeD4 state params is true until proven otherwise, gives a chance for a child component to go and get posts for native forum. If it can't it will trigger event "noNative" that will reset this state param
-		 * qwoketD4 which plays similiar role for local (qwiket hosted) forums is set to false as the check will be made by this component in any case and it will enable this state if succesful (adding a button to switch to context view of local forum)
-		 */
-	    return {
-	      topic:null,				/*the newsline item (topic)																*/
-	      qwiketD4:false, 			/*this thread on selected qwiket community forum is loaded on D4 						*/
-	      nativeD4:true,			/*this thread on native forum is loaded on D4  											*/
-	      qwiketForumid:0,          /*forumid of the qwiket community forum for this thread 								*/
-	      qwiketThread:""           /*Disqus thread id (or future similiar alternative from other services)                 */
-	     
-	    };
-	},
+	
 	componentWillReceiveProps:function(nextProps){
-		if(this.props.params.threadid!=nextProps.params.threadid||this.props.params.local!=nextProps.params.local){	
+		if(this.props.params.threadid!=nextProps.params.threadid||this.props.params.local!=nextProps.params.local||this.props.params.postid!=nextProps.params.postid){	
 			this.fetch(nextProps);
 		}
 	},
 	fetch:function(props){
+		if(u.is(props.params.postid)){
+			this.props.fetchContextTopicForPostid.fetchContextTopicForPostid(props.params.postid,props.context,props.params.community)
+		}
+		else if(u.is(props.params.threadid)){
+			this.props.fetchContextTopicForThread.fetchContextTopicForThread(props.params.threadid,props.context,props.params.community)
+		}
+
+	},
+	/*
+	fetch:function(props){
 		//console.log('FETCH props=%o',props );
-		this.setState({nativeD4:true})
+		//this.setState({nativeD4:true})
 		if(u.is(props.params.postid)){
 			$.ajax({
 		        url: "/api?task=get_thread_for_post",
@@ -185,17 +177,23 @@ var Context=React.createClass({
 	 		});
 		}
 	},
+	*/
+	reportSelectedPostY:function(y){
+			console.log(y)
+			this.props.setChildTopAction.setChildTop(y);
+	},
 	render:function(){
-		let communityName='';
-		if(u.is(this.state.app)){
-			communityName=this.state.app.communityName;
-		}
+		console.log('rendering Context %o',this.props)
+		let bg="#AAB"
+		let communityName=this.props.communityName;
+	
     	let community=this.props.params.community
     	let resp=[],postid=-1,cv,ct,native_href='',local_href='',showContextBtn
 		//console.log('render this.props=%o',this.props)
-		let showQwiketForum=(typeof this.props.params.local==='undefined'||this.props.params.local=='local')?((typeof this.props.params.local==='undefined'&&this.state.nativeD4)?false:true):false
-		let showContext=(!(typeof this.props.params.showcontext==='undefined')||this.state.nativeD4&&!showQwiketForum)?true:false
-
+		let showQwiketForum=(typeof this.props.params.local==='undefined'||this.props.params.local=='local')?((typeof this.props.params.local==='undefined'&&this.props.context.nativeD4)?false:true):false
+		let showContext=(!(typeof this.props.params.showcontext==='undefined')||this.props.context.nativeD4&&!showQwiketForum)?true:false
+		if(showQwiketForum)
+			bg="#CDC"
     	if(u.is(this.props.params.postid)){
     		postid=this.props.params.postid
     		cv=this.props.params.postid
@@ -216,29 +214,29 @@ var Context=React.createClass({
     	}
     	//console.log('DEBUG showContext=%s, this.state=%o',showContext,this.state)    
     	//console.log('show context showContext=%s,showLocal=%s,qwiket_forumid=%s,qwiket_thread=%s,community=%s,ct=%s,cv=%s',showContext,showLocal,this.state.qwiket_forumid,this.state.qwiket_thread,community,ct,cv)
-    	let localChild=this.state.topic?(showContext?(showQwiketForum?
-    		 (<PostContext  ref="QwiketContext" scope='working' local={true} forumid={this.state.qwiket_forumid} thread={this.state.qwiket_thread} type='context' community={community} constraint_type={ct} constraint_value={cv}/>)
-    		:(<PostContext  ref="NativeContext"scope='working' local={false} type='context' community={community} constraint_type={ct} constraint_value={cv}/>))
-    	    :(<Local ref="QwiketDisqus" url={local_href} community={community} topic={this.state.topic}/>))
+    	let localChild=this.props.context.topic?(showContext?(showQwiketForum?
+    		 (<PostContext  ref="QwiketContext" scope='working' reportY={this.reportSelectedPostY} local={true} forumid={this.props.context.qwiketForumid} thread={this.props.context.qwiketThread} type='context' community={community} constraint_type={ct} constraint_value={cv}/>)
+    		:(<PostContext  ref="NativeContext"scope='working' reportY={this.reportSelectedPostY} local={false} type='context' forumid={this.props.context.nativeForumid} thread={this.props.context.nativeThread} community={community} constraint_type={ct} constraint_value={cv}/>))
+    	    :(<Local ref="QwiketDisqus" url={local_href} community={community} topic={this.props.context.topic}/>))
     		:(<div/>)
     	
 	    let forum_str="Native";
-		if(this.state.topic){
-			resp.push(<div className="row" key={postid}><Item topic={this.state.topic} full={true} orderby={0}/></div>)
-			forum_str=this.state.topic.site_name;
+		if(this.props.context.topic){
+			resp.push(<div className="row" style={{borderTopLeftRadius: 4,borderTopRightRadius: 4,background:bg,padding:20}} key={postid}><Item topic={this.props.context.topic} full={true} orderby={0}/></div>)
+			forum_str=this.props.context.topic.site_name;
 			//console.log('forum_str %s',forum_str)
 		}
 		/**/
 		if(showQwiketForum){
 				//console.log('inside showLocal')
 			let native='';
-			if(this.state.nativeD4){
+			if(this.props.context.nativeD4){
 				native=(<Link to={native_href} style={{float:"right", textDecoration: "none"}} ><span className="hidden-xs">{forum_str}&nbsp;</span><span className="label label-default"></span>&nbsp;&nbsp;<i className="fa fa-chevron-right fa-lg"></i><i className="fa fa-chevron-right fa-lg"></i><i className="fa fa-chevron-right fa-lg"></i></Link>)
 			}
 			resp.push(
-				<div className="row" key={'context-wrap-'+cv}>                              
-					<div className="panel panel-default" style={{marginTop:10}}>
-					  <div className="panel-heading">{communityName} &nbsp;&nbsp;{this.state.d4?showContextBtn:''}{native}</div>
+				<div style={{background:bg,padding:2}} className="row" key={'context-wrap-'+cv}>                              
+					<div className="panel panel-default" style={{marginTop:10,marginBottom:0,paddingBottom:600,background:bg,borderBottomLeftRadius: 4,borderBottomRightRadius:4}}>
+					  <div  style={{background:bg}} className="panel-heading">{communityName} &nbsp;&nbsp;{this.props.context.qwiketd4?showContextBtn:''}{native}</div>
 					  <div className="panel-body">{localChild}</div>
 					</div>
 				</div>
@@ -246,27 +244,27 @@ var Context=React.createClass({
 		}
 		else{
 			if(ct=='thread')
-				cv=this.props.params.threadid;
+				cv=this.props.context.nativeThread;
 			//console.log('CV=%s',cv)
 			resp.push(
-				<div className="row" key={'context-wrap-17'}>                              
-					<div className="panel panel-default" style={{marginTop:10}}>
-					  <div className="panel-heading"><span className="label label-success">{"Qwiket Fluid Context: "}<span className="hidden-xs">{forum_str}</span></span> <Link  to={local_href} style={{float:"right", textDecoration: "none"}} ><span className="label label-default">{communityName+ " forum"}</span>&nbsp;&nbsp;<i className="fa fa-chevron-right fa-lg"></i><i className="fa fa-chevron-right fa-lg"></i><i className="fa fa-chevron-right fa-lg"></i></Link></div>
-					  <div className="panel-body"><PostContext  key="postcontext1" local={false} scope='working' type='context' community={community} constraint_type={ct} constraint_value={cv}/></div>
+				<div style={{background:bg,padding:2}} className="row" key={'context-wrap-17'}>                              
+					<div className="panel panel-default" style={{marginTop:10,marginBottom:0,paddingBottom:600,background:bg,borderBottomLeftRadius: 4,borderBottomRightRadius:4}}>
+					  <div style={{background:bg}}className="panel-heading"><span className="label label-default">{"Qwiket Fluid Context: "}<span className="hidden-xs">{forum_str}</span></span> <Link  to={local_href} style={{float:"right", textDecoration: "none"}} ><span className="label label-default">{communityName+ " forum"}</span>&nbsp;&nbsp;<i className="fa fa-chevron-right fa-lg"></i><i className="fa fa-chevron-right fa-lg"></i><i className="fa fa-chevron-right fa-lg"></i></Link></div>
+					  <div className="panel-body"><PostContext  reportY={this.reportSelectedPostY} key="postcontext1" local={false} scope='working' type='context' forumid={this.props.context.nativeForumid} thread={this.props.context.nativeThread} community={community} constraint_type={ct} constraint_value={cv}/></div>
 					</div>
 				</div>
 			)
 		}
-		let sn=this.state.topic?this.state.topic.site_name:''
+		let sn=this.props.context.topic?this.props.context.topic.site_name:''
 		return (	
 			<div className="container" >
-				<div className="col-md-9">
+				<div className="col-sm-9 col-md-9 col-lg-8">
 				{resp}
 				</div>
-				<div className="col-md-3 hidden-xs hidden-sm ">
+				<div className="col-sm-3 col-md-3 col-lg-4 hidden-xs  ">
 					 
 					<div ><span className="label label-info">{sn}</span>
-						{sn?(<Items query={""} sitename={sn} orderby={0} community={community}/>):""}
+						{sn?(<Items query={""} topics={this.props.sideTopics.items} state={this.props.sideTopics} sideTopics={true} clearTopics={this.props.clearTopicsAction.clearTopics} fetchTopics={this.props.fetchTopicsAction.fetchTopics} sitename={sn} orderby={0} community={community}/>):""}
 		         	
 		         	</div>
 
@@ -275,4 +273,24 @@ var Context=React.createClass({
 		)
 	}
 });
-module.exports = Context;
+
+function mapStateToProps(state) {
+//  console.log('INJECTING OUTER CONTEXTPROPS %o',state)
+  return {
+   context:state.context,
+   sideTopics:state.context.sideTopics,
+   communityName:state.app.community.communityName
+  };
+}
+function mapDispatchToProps(dispatch) {
+//	console.log('mapDispatch')
+  return {
+  		fetchTopicsAction:bindActionCreators({ fetchTopics }, dispatch),
+  		clearTopicsAction:bindActionCreators({ clearTopics }, dispatch),
+  		fetchContextTopicForPostid:bindActionCreators({ fetchContextTopicForPostid }, dispatch),
+		fetchContextTopicForThread:bindActionCreators({ fetchContextTopicForThread }, dispatch),
+		clearContextTopicAction:bindActionCreators({clearContextTopic},dispatch),
+		setChildTopAction:bindActionCreators({setChildTop},dispatch)
+	};
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Context)

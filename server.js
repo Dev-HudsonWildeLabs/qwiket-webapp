@@ -123,7 +123,79 @@ server.route({
 			mapUri (request, callback) {
 				let query=request.query;
 				//console.log('query=%o',request)
-				let u="http://"+apiServer+":"+apiPort+"/api?task=landing&community="+encodeURIComponent(request.params.community+"&type=context&postid="+request.params.postid);
+				let u="http://"+apiServer+":"+apiPort+"/api?task=landing&community="+request.params.community+"&type=context&postid="+request.params.postid;
+
+				callback(null,u);
+				console.log('mapUri:', u)
+			},
+			onResponse (err, res, request, reply, settings, ttl) {
+				Wreck.read(res, null, function(err, payload){
+					matchAndRender(err, payload,request,reply,ttl);
+				})
+			
+            	//console.log('res ',res)
+			}
+		}
+	}
+});
+server.route({
+	method:  "GET",
+	path:    "/context/{community}/post/{postid}/{local}",
+	handler: {
+		proxy: {
+			passThrough: true,
+			mapUri (request, callback) {
+				let query=request.query;
+				//console.log('query=%o',request)
+				let u="http://"+apiServer+":"+apiPort+"/api?task=landing&community="+request.params.community+"&type=context&postid="+request.params.postid+"&local="+request.params.local;
+
+				callback(null,u);
+				console.log('mapUri:', u)
+			},
+			onResponse (err, res, request, reply, settings, ttl) {
+				Wreck.read(res, null, function(err, payload){
+					matchAndRender(err, payload,request,reply,ttl);
+				})
+			
+            	//console.log('res ',res)
+			}
+		}
+	}
+});
+server.route({
+	method:  "GET",
+	path:    "/context/{community}/topic/{threadid}",
+	handler: {
+		proxy: {
+			passThrough: true,
+			mapUri (request, callback) {
+				let query=request.query;
+				console.log('CONTEXT query=%o',request)
+				let u="http://"+apiServer+":"+apiPort+"/api?task=landing&community="+encodeURIComponent(request.params.community+"&type=context&threadid="+request.params.threadid);
+
+				callback(null,u);
+				console.log('mapUri:', u)
+			},
+			onResponse (err, res, request, reply, settings, ttl) {
+				Wreck.read(res, null, function(err, payload){
+					matchAndRender(err, payload,request,reply,ttl);
+				})
+			
+            	//console.log('res ',res)
+			}
+		}
+	}
+});
+server.route({
+	method:  "GET",
+	path:    "/context/{community}/topic/{threadid}/{local}",
+	handler: {
+		proxy: {
+			passThrough: true,
+			mapUri (request, callback) {
+				let query=request.query;
+				console.log('CONTEXT query=%o',request)
+				let u="http://"+apiServer+":"+apiPort+"/api?task=landing&community="+encodeURIComponent(request.params.community+"&type=context&threadid="+request.params.threadid+"&local="+request.params.local);
 
 				callback(null,u);
 				console.log('mapUri:', u)
@@ -280,6 +352,7 @@ function matchAndRender (err, payload,request,reply,ttl) {
 							<link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 							<link href='https://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
 							<link href='https://fonts.googleapis.com/css?family=Sigmar+One' rel='stylesheet' type='text/css'>
+							<link href='https://fonts.googleapis.com/css?family=Black+Ops+One' rel='stylesheet' type='text/css'>
 						    
 						    <script src="/js/star-rating.min.js" type="text/javascript"></script>
 						    <link href="/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />

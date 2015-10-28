@@ -4,6 +4,8 @@ var Local=React.createClass({
 	
 	
 	render: function(){
+        console.log('LOCAL RENDER %o',this.props)
+        if(this.props.topic.title){
 		var t=this.props.topic.title.replace(/"/g,'\'');
 		t=t.replace(':','-');
 		let url="http://qwiket.com/"+this.props.community+"/"+this.props.topic.threadid+"/7/";
@@ -19,6 +21,11 @@ var Local=React.createClass({
                 url={url}
                 categoryId="3710580"/>
         );
+       }
+       else {
+        return(
+            <div/>)
+       }
 	}
 });
 module.exports = Local;
