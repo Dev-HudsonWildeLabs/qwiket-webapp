@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "4146e833bd9c1b97865f"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "65a50e29e7e013365e57"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -63655,10 +63655,11 @@
 		fetch: function fetch(clear, props) {
 			var _this = this;
 	
-			console.log('post fetch');
-			console.log(this.props);
+			//console.log('post fetch')
+			//console.log(this.props);
 			var type = props.type;
-	
+			if (type == 'tz') return;
+			if (type == "context:child") clear = true;
 			if (type == 'community') {
 				(function () {
 					var forums = props.communityForums;
@@ -64027,9 +64028,10 @@
 				//console.log('forumid=%s',p.forumid)
 				//console.log(this.props.communityForums[p.forumid])
 				var icon = '';
-				if (this.props.type.indexOf('context') < 0) icon = this.props.communityForums[p.forumid].icon;
+				//console.log("this.props.type=%o",this.props.type);
+				if (this.props.type.indexOf('community') >= 0) icon = this.props.communityForums[p.forumid].icon;
 				//console.log(icon)
-				rows.push(_react2['default'].createElement(_postJsx2['default'], { key: p.forumid * 1000000000 + p.qpostid, reportY: this.props.reportY, icon: icon, local: this.props.local, ref: cb, lastRow: i == l - 1, post: p, community: community, selectedPostid: this.props.constraint_value, type: this.props.type }));
+				rows.push(_react2['default'].createElement(_postJsx2['default'], { key: p.forumid * 1000000000 + p.qpostid, reportY: this.props.reportY, reportCoord: this.props.reportCoord, reportQueueCoord: this.props.reportQueueCoord, icon: icon, local: this.props.local, ref: cb, lastRow: i == l - 1, post: p, community: community, selectedPostid: this.props.constraint_value, type: this.props.type, startTransition: this.props.startTransition }));
 			}
 			if (l == 0) {
 				if (this.props.type == 'context:child') rows.push(_react2['default'].createElement(
@@ -64097,17 +64099,28 @@
 	
 		componentDidMount: function componentDidMount() {
 			// u.registerEvent('requestSelectedPosition',this.requestSelectedPosition,{me:this});
+			var el = _reactDom2['default'].findDOMNode(this);
+			var j = $(el);
+			var pos_offset = j.offset();
+			var pos_position = j.position();
 			if (this.props.post.id == this.props.selectedPostid && this.props.type.indexOf('level') >= 0) {
 				//console.log('---BEGIN selected post mounted publishing selectedPostPosition')
-				var el = _reactDom2['default'].findDOMNode(this);
-				var j = $(el);
-				var pos_offset = j.offset();
-				var pos_position = j.position();
-				this.props.reportY(pos_position.top);
-				console.log('DEBUG offset=%o position=%o', pos_offset, pos_position);
+	
+				if (this.props.reportY) this.props.reportY(pos_position.top);
 				//u.publishEvent('selectedPostPosition',{pos:pos_offset})
 				//u.publishEvent('childQueuePosition',{pos:pos_position});
 			}
+	
+			var rect = el.getBoundingClientRect();
+			pos_position = { top: Math.floor(rect.top), left: Math.floor(rect.left) };
+			if (this.props.reportCoord) this.props.reportCoord(this.props.post.id, pos_position);
+			if (this.props.reportQueueCoord) {
+				//console.log('pos = %o',pos_position)
+				var pos = pos_position;
+				pos.top += 300;
+				this.props.reportQueueCoord(this.props.type, pos);
+			}
+			//console.log('DEBUG offset=%o position=%o',pos_offset,pos_position)
 		},
 		componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
 			if (this.props.post.id != nextProps.post.id && this.props.post.id == this.props.selectedPostid && this.props.type.indexOf('level') >= 0) {
@@ -64117,7 +64130,7 @@
 				var pos_offset = j.offset();
 				var pos_position = j.position();
 				this.props.reportY(pos_position.top);
-				console.log('DEBUG offset=%o position=%o', pos_offset, pos_position);
+				//console.log('DEBUG offset=%o position=%o',pos_offset,pos_position)
 			}
 		},
 		componentWillUnmount: function componentWillUnmount() {
@@ -64138,8 +64151,8 @@
 	
 					var pos_position = j.position();
 					this.props.reportY(pos_position.top);
-					console.log('DEBUG offset=%o position=%o', pos_offset, pos_position);
-	
+					//console.log('DEBUG CLICKoffset=%o position=%o',pos_offset,pos_position)
+					this.props.startTransition(this.props.type, this.props.post.id);
 					//u.publishEvent('selectedPostPosition',{pos:pos_offset})
 					//u.publishEvent('childQueuePosition',{pos:pos_position});
 	
@@ -64154,10 +64167,11 @@
 		},
 		render: function render() {
 			var p = this.props.post;
+	
 			//console.log('rendering post %o icon=%o',p,this.props.icon);
 			var type = this.props.type;
 			//p.icon=this.props.icon;//communityForums[p.forumis].icon;
-			var hasContext = type.indexOf('context') >= 0 ? true : false;
+			var hasContext = type.indexOf('context') >= 0 || type.indexOf('tz') >= 0 ? true : false;
 			var bottomArrow = type.indexOf('parent') >= 0 && +p.id != -1 ? _react2['default'].createElement(
 				'span',
 				{ className: 'csol-xs-12' },
@@ -64183,6 +64197,7 @@
 					overflow: "hidden",
 					padding: "2px 0px 0px 10px",
 					marginBottom: "0",
+					opacity: p.hole ? 0.01 : 1,
 					backgroundColor: p.id == this.props.selectedPostid ? '#E5F5F0' : type.indexOf('level') < 0 ? hasContext ? '#fcfcF4' : '#FBFBFB' : '#FBFBFB'
 				},
 				nameSpan: {
@@ -72662,11 +72677,7 @@
 	
 			var forum_str = "Native";
 			if (this.props.context.topic) {
-				resp.push(_react2['default'].createElement(
-					'div',
-					{ className: 'row', style: { borderTopLeftRadius: 4, borderTopRightRadius: 4, background: bg, padding: 20 }, key: postid },
-					_react2['default'].createElement(_newslineJs.Item, { topic: this.props.context.topic, full: true, orderby: 0 })
-				));
+				//resp.push(<div className="row" style={{borderTopLeftRadius: 4,borderTopRightRadius: 4,background:bg,padding:20}} key={postid}><Item topic={this.props.context.topic} full={true} orderby={0}/></div>)
 				forum_str = this.props.context.topic.site_name;
 				//console.log('forum_str %s',forum_str)
 			}
@@ -72681,29 +72692,46 @@
 						_react2['default'].createElement(
 							'span',
 							{ className: 'hidden-xs' },
-							forum_str,
+							_react2['default'].createElement(
+								'span',
+								{ className: 'label label-default' },
+								forum_str
+							),
 							' '
 						),
 						_react2['default'].createElement('span', { className: 'label label-default' }),
 						'  ',
-						_react2['default'].createElement('i', { className: 'fa fa-chevron-right fa-lg' }),
-						_react2['default'].createElement('i', { className: 'fa fa-chevron-right fa-lg' }),
-						_react2['default'].createElement('i', { className: 'fa fa-chevron-right fa-lg' })
+						_react2['default'].createElement(
+							'span',
+							{ style: { marginTop: 2, float: "right", textDecoration: "none" } },
+							_react2['default'].createElement('i', { className: 'fa fa-chevron-right fa-lg' }),
+							_react2['default'].createElement('i', { className: 'fa fa-chevron-right fa-lg' }),
+							_react2['default'].createElement('i', { className: 'fa fa-chevron-right fa-lg' })
+						)
 					);
 				}
 				resp.push(_react2['default'].createElement(
 					'div',
-					{ style: { background: bg, padding: 2 }, className: 'row', key: 'context-wrap-' + cv },
+					{ style: { background: bg, padding: 0, borderRadius: 4 }, className: 'row', key: 'context-wrap-' + cv },
 					_react2['default'].createElement(
 						'div',
-						{ className: 'panel panel-default', style: { marginTop: 10, marginBottom: 0, paddingBottom: 600, background: bg, borderBottomLeftRadius: 4, borderBottomRightRadius: 4 } },
+						{ className: 'panel panel-default', style: { marginTop: 0, marginBottom: 0, paddingBottom: 600, background: bg, borderBottomLeftRadius: 4, borderBottomRightRadius: 4 } },
 						_react2['default'].createElement(
 							'div',
 							{ style: { background: bg }, className: 'panel-heading' },
-							communityName,
+							_react2['default'].createElement(
+								'span',
+								{ className: 'label label-default' },
+								communityName
+							),
 							'   ',
 							this.props.context.qwiketd4 ? showContextBtn : '',
 							native
+						),
+						_react2['default'].createElement(
+							'div',
+							{ style: { borderTopLeftRadius: 4, borderTopRightRadius: 4, background: bg, padding: 20 }, key: postid },
+							_react2['default'].createElement(_newslineJs.Item, { topic: this.props.context.topic, full: true, orderby: 0 })
 						),
 						_react2['default'].createElement(
 							'div',
@@ -72717,17 +72745,17 @@
 				//console.log('CV=%s',cv)
 				resp.push(_react2['default'].createElement(
 					'div',
-					{ style: { background: bg, padding: 2 }, className: 'row', key: 'context-wrap-17' },
+					{ style: { background: bg, padding: 0, borderRadius: 4 }, className: 'row', key: 'context-wrap-17' },
 					_react2['default'].createElement(
 						'div',
-						{ className: 'panel panel-default', style: { marginTop: 10, marginBottom: 0, paddingBottom: 600, background: bg, borderBottomLeftRadius: 4, borderBottomRightRadius: 4 } },
+						{ className: 'panel panel-default', style: { marginTop: 0, marginBottom: 0, paddingBottom: 600, background: bg, borderBottomLeftRadius: 4, borderBottomRightRadius: 4 } },
 						_react2['default'].createElement(
 							'div',
 							{ style: { background: bg }, className: 'panel-heading' },
 							_react2['default'].createElement(
 								'span',
 								{ className: 'label label-default' },
-								"Qwiket Fluid Context: ",
+								"Fluid Context: ",
 								_react2['default'].createElement(
 									'span',
 									{ className: 'hidden-xs' },
@@ -72737,17 +72765,26 @@
 							' ',
 							_react2['default'].createElement(
 								_reactRouter.Link,
-								{ to: local_href, style: { float: "right", textDecoration: "none" } },
+								{ to: local_href, style: { marginTop: 0, float: "right", textDecoration: "none" } },
 								_react2['default'].createElement(
 									'span',
 									{ className: 'label label-default' },
-									communityName + " forum"
+									communityName + ""
 								),
 								'  ',
-								_react2['default'].createElement('i', { className: 'fa fa-chevron-right fa-lg' }),
-								_react2['default'].createElement('i', { className: 'fa fa-chevron-right fa-lg' }),
-								_react2['default'].createElement('i', { className: 'fa fa-chevron-right fa-lg' })
+								_react2['default'].createElement(
+									'span',
+									{ style: { marginTop: 2, float: "right", textDecoration: "none" } },
+									_react2['default'].createElement('i', { className: 'fa fa-chevron-right fa-lg' }),
+									_react2['default'].createElement('i', { className: 'fa fa-chevron-right fa-lg' }),
+									_react2['default'].createElement('i', { className: 'fa fa-chevron-right fa-lg' })
+								)
 							)
+						),
+						_react2['default'].createElement(
+							'div',
+							{ style: { borderTopLeftRadius: 4, borderTopRightRadius: 4, background: bg, padding: 20 }, key: postid },
+							_react2['default'].createElement(_newslineJs.Item, { topic: this.props.context.topic, full: true, orderby: 0 })
 						),
 						_react2['default'].createElement(
 							'div',
@@ -72763,7 +72800,7 @@
 				{ className: 'container' },
 				_react2['default'].createElement(
 					'div',
-					{ className: 'col-sm-9 col-md-9 col-lg-8' },
+					{ className: 'col-xs-12 col-sm-9 col-md-9 col-lg-8' },
 					resp
 				),
 				_react2['default'].createElement(
@@ -72968,9 +73005,10 @@
 	var TRANSITION = 'TRANSITION';
 	exports.TRANSITION = TRANSITION;
 	
-	function transition(postid) {
+	function transition(postType, postid) {
 	  return {
 	    type: TRANSITION,
+	    postType: postType,
 	    postid: postid
 	  };
 	}
@@ -72985,10 +73023,10 @@
 	  };
 	}
 	
-	function startTransition(postid) {
+	function startTransition(postType, postid) {
 	  return function (dispatch) {
 	    //middleware thunk
-	    dispatch(transitionStart(postid));
+	    dispatch(transition(postType, postid));
 	    var timer = setInterval(function () {
 	      dispatch(transitionTick(timer));
 	    }, 100);
@@ -73035,9 +73073,9 @@
 	  return function (dispatch) {
 	    //middleware thunk
 	    dispatch(transitionStart(postid));
-	    var timer = setInterval(function () {
-	      dispatch(transitionTick(timer));
-	    }, 100);
+	    /*let timer=setInterval(()=>{
+	        dispatch(transitionTick(timer));
+	    },100)*/
 	  };
 	}
 	
@@ -73102,6 +73140,8 @@
 	
 	var _actionsPostsAction = __webpack_require__(659);
 	
+	var _actionsD4ContextAction = __webpack_require__(665);
+	
 	var _utilsJsx = __webpack_require__(338);
 	
 	var _utilsJsx2 = _interopRequireDefault(_utilsJsx);
@@ -73109,50 +73149,6 @@
 	var ReactCSSTransitionGroup = __webpack_require__(651);
 	var PostContext = _react2['default'].createClass({
 		displayName: 'PostContext',
-	
-		/*childColumn:function(name,event){
-	 	//console.log('PostContext handling %s event=%o',name,event);
-	 	this.setState({childColumn:event.on})
-	 },
-	 emptyForum:function(name,event){
-	 	this.setState({nonEmptyForum:event.on})
-	 },
-	 selectedPostPosition:function(name,event){
-	 	window.scrollTo(0,event.pos.top)
-	 },
-	 childQueuePosition:function(name,event){
-	 	//console.log('handling %s event=%o',name,event);
-	 	//this.setState({childQueuePosition:event.pos})
-	 },
-	 emptyColumn:function(name,event){
-	 	//console.log('PostContext handling %s event=%o',name,event);
-	 	if(event.on!=this.state.firstColumn){
-	 		u.publishEvent('requestSelectedPosition',{});
-	 		this.setState({firstColumn:event.on})
-	 	}
-	 },*/
-		componentDidMount: function componentDidMount() {
-			//console.log('postcontext mount');
-			/*	u.registerEvent('emptyColumn',this.emptyColumn,{me:this});
-	  	u.registerEvent('childQueuePosition',this.childQueuePosition,{me:this});
-	  	u.registerEvent('selectedPostPosition',this.selectedPostPosition,{me:this});
-	  	u.registerEvent('emptyForum',this.emptyForum,{me:this});
-	  	u.registerEvent('childColumn',this.childColumn,{me:this});*/
-		},
-		componentWillUnmount: function componentWillUnmount() {
-			//console.log('postcontext unmount');
-			/*	u.unregisterEvents('emptyColumn',this);
-	  	u.unregisterEvents('childQueuePosition',this);
-	  	u.unregisterEvents('selectedPostPosition',this);
-	  	u.unregisterEvents('emptyForum',this);
-	  	u.unregisterEvents('childColumn',this);*/
-		},
-		componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
-			//console.log('POSTCONTEXT: componentWillReceiveProps %o',nextProps)
-			//console.log(nextProps.constraint_type)
-			//if(nextProps.constraint_type=='thread'&&(nextProps.constraint_value!=this.props.constraint_value))
-			//this.setState({nonEmptyForum:false})//this.forceUpdate();
-		},
 	
 		render: function render() {
 			console.log("CONTEXT props=%o", this.props);
@@ -73219,7 +73215,44 @@
 						_react2['default'].createElement('i', { className: 'fa fa-arrow-circle-up fa-lg' })
 					)
 				);
-				console.log("parent items %o", this.props.d4context.parent);
+				//console.log("parent items %o",this.props.d4context.parent);	
+				/** 
+	   Transitions!
+	    **/
+				var tzs = [];
+				var transitions = this.props.d4context.transitions;
+	
+				for (var i = 0; i < transitions.length; i++) {
+					var trz = transitions[i];
+					var targetCoords = trz.targetCoords;
+					var targetTop = targetCoords.top;
+					var targetLeft = targetCoords.left;
+					var startCoords = trz.startCoords;
+					var startTop = startCoords.top;
+					var startLeft = startCoords.left;
+					var dx = (targetLeft - startLeft) / 4;
+					var dy = (targetTop - startTop) / 4;
+					var keyframes = _radium2['default'].keyframes({
+						'0%': { left: startLeft, top: startTop, opacity: 1 },
+						'25%': { left: startLeft + dx, top: startTop + dy, opacity: 0.75 },
+						'50%': { left: startLeft + 2 * dx, top: startTop + 2 * dy, opacity: 0.5 },
+						'75%': { left: startLeft + 3 * dx, top: startTop + 3 * dy, opacity: 0.3 },
+						'100%': { left: targetLeft, top: targetTop, opacity: 0.1 }
+					}, 'Transition');
+					var styles = {
+						inner: {
+							animation: keyframes + ' 3s ease 0s 1',
+							position: 'absolute'
+						}
+					};
+					tzs.push(_react2['default'].createElement(
+						'div',
+						{ key: trz.type, style: styles.inner },
+						_react2['default'].createElement(_postqueueJsx2['default'], { key: "tzx-queue-" + trz.type, reportY: this.props.reportY, scope: "transition", local: false, posts: trz.items, type: 'tz', forumid: this.props.forumid, community: community, constraint_type: 'tz', constraint_value: 'tz', search: '', fetchPosts: this.props.fetchPostsAction.fetchPosts, clearPosts: this.props.clearPostsAction.clearPosts, state: this.props.d4context.parent, startTransition: this.props.startTranstitionAction.startTransition })
+					));
+					console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$render transition top=%s,left=%s', trz.startCoords.top, trz.startCoords.left);
+				}
+	
 				return _react2['default'].createElement(
 					'div',
 					null,
@@ -73227,20 +73260,21 @@
 						'div',
 						{ className: 'col-xs-4', key: 'parent-queue-wrapper', style: this.props.d4context.parent.items.length > 1 && this.props.d4context.parent.items.length > 1 ? styles.visible : styles.hidden },
 						bottomArrow,
-						_react2['default'].createElement(_postqueueJsx2['default'], { key: 'parent-queue', reportY: this.props.reportY, scope: scope, local: this.props.local, posts: this.props.d4context.parent.items, type: 'context:parent', forumid: this.props.forumid, community: community, constraint_type: constraint_type, constraint_value: constraint_value, search: search, fetchPosts: this.props.fetchPostsAction.fetchPosts, clearPosts: this.props.clearPostsAction.clearPosts, state: this.props.d4context.parent })
+						_react2['default'].createElement(_postqueueJsx2['default'], { key: 'parent-queue', reportY: this.props.reportY, reportCoord: this.props.reportCoordAction.reportCoord, reportQueueCoord: this.props.reportDefaultQueueCoordAction.reportDefaultQueueCoord, scope: scope, local: this.props.local, posts: this.props.d4context.parent.items, type: 'context:parent', forumid: this.props.forumid, community: community, constraint_type: constraint_type, constraint_value: constraint_value, search: search, fetchPosts: this.props.fetchPostsAction.fetchPosts, clearPosts: this.props.clearPostsAction.clearPosts, state: this.props.d4context.parent, startTransition: this.props.startTranstitionAction.startTransition })
 					),
 					_react2['default'].createElement(
 						'div',
 						{ key: 'level-queue-wrapper', className: this.props.d4context.parent.items.length > 1 ? "col-xs-4" : "col-xs-8", style: this.props.d4context.level.items.length > 0 ? styles.levelQueue : [styles.hidden, styles.levelQueue] },
 						this.props.d4context.parent.items.length > 1 ? leftArrow : upArrow,
-						_react2['default'].createElement(_postqueueJsx2['default'], { key: 'level-queue', reportY: this.props.reportY, scope: scope, local: this.props.local, posts: this.props.d4context.level.items, type: 'context:level', forumid: this.props.forumid, community: community, constraint_type: constraint_type, constraint_value: constraint_value, search: search, fetchPosts: this.props.fetchPostsAction.fetchPosts, clearPosts: this.props.clearPostsAction.clearPosts, state: this.props.d4context.level })
+						_react2['default'].createElement(_postqueueJsx2['default'], { key: 'level-queue', reportY: this.props.reportY, reportCoord: this.props.reportCoordAction.reportCoord, reportQueueCoord: this.props.reportDefaultQueueCoordAction.reportDefaultQueueCoord, scope: scope, local: this.props.local, posts: this.props.d4context.level.items, type: 'context:level', forumid: this.props.forumid, community: community, constraint_type: constraint_type, constraint_value: constraint_value, search: search, fetchPosts: this.props.fetchPostsAction.fetchPosts, clearPosts: this.props.clearPostsAction.clearPosts, state: this.props.d4context.level, startTransition: this.props.startTranstitionAction.startTransition })
 					),
 					_react2['default'].createElement(
 						'div',
 						{ key: 'child-queue-wrapper', id: 'ch', className: 'col-xs-4', style: this.props.d4context.level.items.length > 0 && this.props.d4context.child.items.length > 0 ? styles.childQueue : [styles.hidden, styles.childQueue] },
 						leftArrow,
-						_react2['default'].createElement(_postqueueJsx2['default'], { key: 'child-queue', reportY: this.props.reportY, scope: scope, local: this.props.local, posts: this.props.d4context.child.items, 'data-spy': 'affix', forumid: this.props.forumid, type: 'context:child', community: community, constraint_type: constraint_type, constraint_value: constraint_value, search: search, fetchPosts: this.props.fetchPostsAction.fetchPosts, clearPosts: this.props.clearPostsAction.clearPosts, state: this.props.d4context.child })
-					)
+						_react2['default'].createElement(_postqueueJsx2['default'], { key: 'child-queue', reportY: this.props.reportY, reportCoord: this.props.reportCoordAction.reportCoord, reportQueueCoord: this.props.reportDefaultQueueCoordAction.reportDefaultQueueCoord, scope: scope, local: this.props.local, posts: this.props.d4context.child.items, 'data-spy': 'affix', forumid: this.props.forumid, type: 'context:child', community: community, constraint_type: constraint_type, constraint_value: constraint_value, search: search, fetchPosts: this.props.fetchPostsAction.fetchPosts, clearPosts: this.props.clearPostsAction.clearPosts, state: this.props.d4context.child, startTransition: this.props.startTranstitionAction.startTransition })
+					),
+					tzs
 				);
 			} else {
 				return _react2['default'].createElement(
@@ -73261,17 +73295,17 @@
 						_react2['default'].createElement(
 							'div',
 							{ className: 'col-xs-4', style: { padding: 1 } },
-							_react2['default'].createElement(_postqueueJsx2['default'], { key: 'parent-queue', reportY: this.props.reportY, scope: scope, local: this.props.local, type: 'context:parent', community: community, constraint_type: constraint_type, constraint_value: constraint_value, search: search })
+							_react2['default'].createElement(_postqueueJsx2['default'], { key: 'parent-queue', reportY: this.props.reportY, scope: scope, local: this.props.local, type: 'context:parent', community: community, constraint_type: constraint_type, constraint_value: constraint_value, search: search, startTransition: this.props.startTranstitionAction.startTransition })
 						),
 						_react2['default'].createElement(
 							'div',
 							{ className: 'col-xs-4', style: { padding: 1 } },
-							_react2['default'].createElement(_postqueueJsx2['default'], { key: 'parent-queue', reportY: this.props.reportY, scope: scope, local: this.props.local, type: 'context:level', community: community, constraint_type: constraint_type, constraint_value: constraint_value, search: search })
+							_react2['default'].createElement(_postqueueJsx2['default'], { key: 'parent-queue', reportY: this.props.reportY, scope: scope, local: this.props.local, type: 'context:level', community: community, constraint_type: constraint_type, constraint_value: constraint_value, search: search, startTransition: this.props.startTranstitionAction.startTransition })
 						),
 						_react2['default'].createElement(
 							'div',
 							{ id: 'ch', className: 'col-xs-4', style: { padding: 1 } },
-							_react2['default'].createElement(_postqueueJsx2['default'], { key: 'parent-queue', reportY: this.props.reportY, scope: scope, local: this.props.local, 'data-spy': 'affix', type: 'context:child', community: community, constraint_type: constraint_type, constraint_value: constraint_value, search: search })
+							_react2['default'].createElement(_postqueueJsx2['default'], { key: 'parent-queue', reportY: this.props.reportY, scope: scope, local: this.props.local, 'data-spy': 'affix', type: 'context:child', community: community, constraint_type: constraint_type, constraint_value: constraint_value, search: search, startTransition: this.props.startTranstitionAction.startTransition })
 						)
 					)
 				);
@@ -73292,7 +73326,10 @@
 		//	console.log('mapDispatch')
 		return {
 			fetchPostsAction: (0, _redux.bindActionCreators)({ fetchPosts: _actionsPostsAction.fetchPosts }, dispatch),
-			clearPostsAction: (0, _redux.bindActionCreators)({ clearPosts: _actionsPostsAction.clearPosts }, dispatch)
+			clearPostsAction: (0, _redux.bindActionCreators)({ clearPosts: _actionsPostsAction.clearPosts }, dispatch),
+			startTranstitionAction: (0, _redux.bindActionCreators)({ startTransition: _actionsD4ContextAction.startTransition }, dispatch),
+			reportCoordAction: (0, _redux.bindActionCreators)({ reportCoord: _actionsD4ContextAction.reportCoord }, dispatch),
+			reportDefaultQueueCoordAction: (0, _redux.bindActionCreators)({ reportDefaultQueueCoord: _actionsD4ContextAction.reportDefaultQueueCoord }, dispatch)
 		};
 	}
 	exports['default'] = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(PostContext);
@@ -76265,19 +76302,19 @@
 	function postContextReducer(state, action) {
 	  if (state === undefined) state = 0;
 	
-	  //console.log('newsline reducer state=%o')
+	  console.log('d4context reducer type=%o', action.type);
 	  switch (action.type) {
 	
 	    case d4Actions.TRANSITION:
 	      //figure out target and path.
 	      //trigger and secondaries if necessary
 	
-	      var type = action.type;
+	      var postType = action.postType;
 	      var tzx = Array();
 	      var start = Date.now();
 	      var end = Date.now() + TRANSITION_PERIOD;
-	
-	      if (type == "context:parent") {
+	      console.log("TRANSITION CREATE start=%s, end=%s,type=" + postType, start, end);
+	      if (postType == "context:parent") {
 	        tzx.type = PARENT_TO_LEVEL;
 	        /**
 	        *          Now find post in the parent queue. Three (or combination) options -
@@ -76288,10 +76325,11 @@
 	        *          
 	        * 
 	        **/
-	        var _post = undefined;
+	        var post = undefined;
 	        var items = state.parent.items;
 	        for (var i = 0; i < items.length; i++) {
-	          _post = items[i];
+	          var _post = items[i];
+	          console.log("PARENT post=%o", _post);
 	          if (_post.qpostid == action.postid) {
 	            if (i == items.lengh - 2) {
 	              tzx.push({ type: LEVEL_TO_DOUBLE, start: start, end: end });
@@ -76309,14 +76347,14 @@
 	                  items: it,
 	                  start: start,
 	                  end: end,
-	                  startCoord: state.postCoords.get(items[i + 1].qpostid),
+	                  startCoords: state.postCoords.get(items[i + 1].qpostid),
 	                  targetCoords: state.queueCoords.get("context:parent")
 	                });
 	              }
 	            }
 	            if (i >= 1) {
 	              items[i - 1].hole = true;
-	              tzx.push({ type: PARENT_TO_CHILD, items: [].concat(_toConsumableArray(_Object$assign({}, items[i - 1]))), start: start, end: end, startCoord: state.postCoords.get(items[i - 1].qpostid), targetCoords: state.queueCoords.get("context:child"), targetPostid: items[i - 1].qpostid, targetQueue: "contextLchild" });
+	              tzx.push({ type: PARENT_TO_CHILD, items: [].concat(_toConsumableArray(_Object$assign({}, items[i - 1]))), start: start, end: end, startCoords: state.postCoords.get(items[i - 1].qpostid), targetCoords: state.queueCoords.get("context:child"), targetPostid: items[i - 1].qpostid, targetQueue: "contextLchild" });
 	            }
 	            if (i == 0 && state.level.items.length > 0) {
 	              var it = [];
@@ -76325,79 +76363,114 @@
 	                it.push(_Object$assign({}, state.level.items[j]));
 	                state.level.items[j].hole = true;
 	              }
-	              tzx.push({ type: LEVEL_TO_CHILD, items: it, start: start, end: end, startCoord: state.postCoords.get(state.level.items[0].qpostid), targetCoords: state.queueCoords.get("context:child"), targetPostid: state.level.items[0].qpostid, targetQueue: "context:child" });
+	              tzx.push({ type: LEVEL_TO_CHILD, items: it, start: start, end: end, startCoords: state.postCoords.get(state.level.items[0].qpostid), targetCoords: state.queueCoords.get("context:child"), targetPostid: state.level.items[0].qpostid, targetQueue: "context:child" });
 	            }
-	            break;
+	            items[i].hole = true;
+	            tzx.push({ type: PARENT_TO_LEVEL, items: [].concat(_toConsumableArray(_Object$assign({}, items))), start: start, end: end, startCoords: state.postCoords.get(action.postid), targetCoords: state.queueCoords.get("context:level"), targetPostid: action.postid, targetQueue: "context:level" }); //primary
+	            for (var k = 0; k < state.child.items.length; k++) {
+	              state.childe.items[k].hole = true;
+	            }break;
 	          }
 	        }
-	        tzx.push({ type: PARENT_TO_LEVEL, items: [].concat(_toConsumableArray(Objectassign({}, items[i]))), start: start, end: end, startCoord: state.postCoords.get(action.postid), targetCoords: state.queueCoords.get("context:level"), targetPostid: action.postid, targetQueue: "context:level" }); //primary
-	        items[i].hole = true;
-	      } else if (type == "context:level") {
+	      } else if (postType == "context:level") {
 	        var items = state.level.items;
-	        for (var i = 0; i < items.length; i++) {
-	          post = items[i];
+	        for (var k = 0; k < state.child.items.length; k++) {
+	          state.child.items[k].hole = true;
+	        }for (var i = 0; i < items.length; i++) {
+	          var post = items[i];
 	          if (post.qpostid == action.postid) {
 	            return _Object$assign({}, state, { childColumnTop: state.postCoords.get(action.qpostid).top });
 	            break;
 	          }
 	        }
-	      } else if (type == "context:child") {
+	      } else if (postType == "context:child") {
+	        console.log("context:child selected post=" + state.postid);
 	        if (state.postid) {
 	          //find my parent in level queue and send it to parent queue
 	          for (var _i = 0; _i < state.level.items.length; _i++) {
-	            if (state.level.items[_i].qpostid == state.postid) {
-	              tzx.push({ type: LEVEL_TO_PARENT, items: [].concat(_toConsumableArray(Objectassign({}, state.level.items[_i]))), start: start, end: end, startCoord: state.postCoords.get(state.postid), targetCoords: state.queueCoords("context:parent"), targetPostid: state.postid, targetQueue: "context:parent" });
-	              var _it = [];
-	              for (var _j = _i + 1; _i < state.level.items.length; _j++) {
-	                //need to learn a better way to deep copy an array with es6
-	                _it.push(_Object$assign({}, state.level.items[_j]));
-	                state.level.items[_j].hole = true;
-	              }
-	              tzx.push({
-	                type: PARENT_DOWN,
-	                items: _it,
-	                start: start,
-	                end: end,
-	                startCoord: state.postCoords.get(state.level.items[_i + 1].postid),
-	                targetCoords: {
-	                  top: state.postCoords.get(state.level.items[_i + 1].postid).top + 200,
-	                  left: state.postCoords.get(state.level.items[_i + 1].postid).left },
-	                targetPostid: state.level.items[_i + 1].postid,
-	                targetQueue: "context:parent"
-	              });
+	            //console.log("level post %o",state.level.items[i].id)
+	            if (state.level.items[_i].id == state.postid) {
+	              console.log("found level state.postid=" + state.postid);
+	              tzx.push({ type: LEVEL_TO_PARENT, items: [].concat(_toConsumableArray(_Object$assign({}, state.level.items[_i]))), start: start, end: end, startCoords: state.postCoords.get(state.postid), targetCoords: state.queueCoords.get("context:parent"), targetPostid: state.postid, targetQueue: "context:parent" });
 	              break;
 	            }
 	          }
+	
 	          var it = [];
+	          for (var _j = 0; _j < state.parent.items.length; _j++) {
+	            //need to learn a better way to deep copy an array with es6
+	            it.push(_Object$assign({}, state.parent.items[_j]));
+	            state.parent.items[_j].hole = true;
+	          }
+	          if (it.length > 0) {
+	            tzx.push({
+	              type: PARENT_DOWN,
+	              items: it,
+	              start: start,
+	              end: end,
+	              startCoords: state.postCoords.get(state.parent.items[0].id),
+	              targetCoords: {
+	                top: state.postCoords.get(state.parent.items[0].id).top + 200,
+	                left: state.postCoords.get(state.parent.items[0].id).left },
+	              targetPostid: state.parent.items[0].id,
+	              targetQueue: "context:parent"
+	            });
+	          }
+	          it = [];
 	          for (var _i2 = 0; _i2 < state.child.items.length; _i2++) {
 	            //need to learn a better way to deep copy an array with es6
 	            it.push(_Object$assign({}, state.child.items[_i2]));
 	            state.child.items[_i2].hole = true;
 	          }
-	          tzx.push({ type: CHILD_tO_LEVEL, items: it, start: start, end: end, startCoord: state.postCoords.get(state.child.items[0].postid), targetCoords: state.queueCoords.get("context:level"), targetPostid: state.child.items[0].postid, targetQueue: "context:level" });
+	          console.log("postCoords %o, postid=" + state.child.items[0].id, state.postCoords);
+	          tzx.push({ type: CHILD_TO_LEVEL, items: it, start: start, end: end, startCoords: state.postCoords.get(state.child.items[0].id), targetCoords: state.queueCoords.get("context:level"), targetPostid: state.child.items[0].postid, targetQueue: "context:level" });
 	        }
 	      }
-	
-	      return _Object$assign({}, state, {
-	        transitions: tzx,
-	        postid: action.postid
-	      });
+	      return state;
+	    /*
+	    return Object.assign({},state,{
+	      transitions:tzx,
+	      postid:action.postid
+	    });*/
 	
 	    case d4Actions.TRANSITION_TICK:
 	      {
 	        var transitions = state.transitions;
+	        if (transitions.length == 0) {
+	          console.log("EMPTY TRANSITIONS");
+	          clearInterval(action.timer);
+	          return state;
+	        }
+	        console.log('TRANSITION_TICK transitions.length=%s', transitions.length);
 	        for (var _i3 = 0; _i3 < transitions.length; _i3++) {
 	          var tz = transitions[_i3];
 	          var _end = tz.end;
 	          var _start = Date.now();
+	          console.log("TICK tz=%o, start=%s, end=%s", tz, _start, _end);
+	          if (_start > _end) {
+	            console.log("start>end");
+	            clearInterval(action.timer);
+	            return state;
+	          }
+	          console.log(222);
 	          if (_end && tz.startCoords && tx.targetCoords) {
+	            console.log(333);
 	            var t = ((_end - _start) / TICK).toInteger();
 	            var startC = tz.startCoords;
 	            var targetC = tx.targetCoords;
 	            var y = targetC.top - startC.top;
 	            var x = targetC.left - startC.left;
+	            if (y < 2 && x < 2 || _start >= _end) {
+	              console.log("END TRANSTION tz=%o", tz);
+	              transitions = transitions.splice(_i3, 1);
+	              clearInterval(action.timer);
+	              return state; //TODO: mending holes
+	            }
+	            console.log("PROCEEDING TRANSITION x=%s,y=%s,t=%s", x, y, t);
+	
 	            var dy = (y / t).toInteger();
 	            var dx = (x / t).toInteger();
+	            console.log("PROCEEDING TRANSITION x=%s,y=%s,t=%s,dx=%s,dy=%s", x, y, t, dx, dy);
 	            tz.startCoords = { top: startC.top + dy, left: startC.left + dx };
 	            tz = _Object$assign({}, tz, { targetCoords: state.postCoords.get(postid) });
 	            transitions = transitions.splice(_i3, 1, tz);
@@ -76513,12 +76586,16 @@
 	        }
 	      });
 	    case d4Actions.SET_COORD:
+	      console.log('d4Actions.SET_COORD');
+	      console.log(state.postCoords);
 	      return _Object$assign({}, state, {
-	        postCoords: state.postCoords ? state.postCoords.set(action.postid, action.coord) : new _immutable2['default'].Map(action.postid, action.coord)
+	
+	        postCoords: state.postCoords ? state.postCoords.set(action.postid, action.coord) : new _immutable2['default'].Map([[action.postid, action.coord]])
 	      });
 	    case d4Actions.SET_DEFAULT_QUEUE_COORD:
+	      console.log('d4Actions.SET_DEFAULT_QUEUE_COORD');
 	      return _Object$assign({}, state, {
-	        queueCoords: state.queueCoords ? state.queueCoords.set(action.queue, action.coord) : new _immutable2['default'].Map(action.queue, action.coord)
+	        queueCoords: state.queueCoords ? state.queueCoords.set(action.queue, action.coord) : new _immutable2['default'].Map([[action.queue, action.coord]])
 	      });
 	    case d4Actions.SET_CHILD_TOP:
 	      return _Object$assign({}, state, {
