@@ -222,7 +222,7 @@ var Context=React.createClass({
     	
 	    let forum_str="Native";
 		if(this.props.context.topic){
-			resp.push(<div className="row" style={{borderTopLeftRadius: 4,borderTopRightRadius: 4,background:bg,padding:20}} key={postid}><Item topic={this.props.context.topic} full={true} orderby={0}/></div>)
+			//resp.push(<div className="row" style={{borderTopLeftRadius: 4,borderTopRightRadius: 4,background:bg,padding:20}} key={postid}><Item topic={this.props.context.topic} full={true} orderby={0}/></div>)
 			forum_str=this.props.context.topic.site_name;
 			//console.log('forum_str %s',forum_str)
 		}
@@ -231,12 +231,13 @@ var Context=React.createClass({
 				//console.log('inside showLocal')
 			let native='';
 			if(this.props.context.nativeD4){
-				native=(<Link to={native_href} style={{float:"right", textDecoration: "none"}} ><span className="hidden-xs">{forum_str}&nbsp;</span><span className="label label-default"></span>&nbsp;&nbsp;<i className="fa fa-chevron-right fa-lg"></i><i className="fa fa-chevron-right fa-lg"></i><i className="fa fa-chevron-right fa-lg"></i></Link>)
+				native=(<Link to={native_href} style={{float:"right", textDecoration: "none"}} ><span className="hidden-xs"><span className="label label-default">{forum_str}</span>&nbsp;</span><span className="label label-default"></span>&nbsp;&nbsp;<span style={{marginTop:2,float:"right", textDecoration: "none"}}><i className="fa fa-chevron-right fa-lg"></i><i className="fa fa-chevron-right fa-lg"></i><i className="fa fa-chevron-right fa-lg"></i></span></Link>)
 			}
 			resp.push(
-				<div style={{background:bg,padding:2}} className="row" key={'context-wrap-'+cv}>                              
-					<div className="panel panel-default" style={{marginTop:10,marginBottom:0,paddingBottom:600,background:bg,borderBottomLeftRadius: 4,borderBottomRightRadius:4}}>
-					  <div  style={{background:bg}} className="panel-heading">{communityName} &nbsp;&nbsp;{this.props.context.qwiketd4?showContextBtn:''}{native}</div>
+				<div style={{background:bg,padding:0,borderRadius: 4}} className="row" key={'context-wrap-'+cv}>                              
+					<div className="panel panel-default" style={{marginTop:0,marginBottom:0,paddingBottom:600,background:bg,borderBottomLeftRadius: 4,borderBottomRightRadius:4}}>
+					  <div  style={{background:bg}} className="panel-heading"><span className="label label-default">{communityName}</span> &nbsp;&nbsp;{this.props.context.qwiketd4?showContextBtn:''}{native}</div>
+					  <div  style={{borderTopLeftRadius: 4,borderTopRightRadius: 4,background:bg,padding:20}} key={postid}><Item topic={this.props.context.topic} full={true} orderby={0}/></div>
 					  <div className="panel-body">{localChild}</div>
 					</div>
 				</div>
@@ -247,9 +248,10 @@ var Context=React.createClass({
 				cv=this.props.context.nativeThread;
 			//console.log('CV=%s',cv)
 			resp.push(
-				<div style={{background:bg,padding:2}} className="row" key={'context-wrap-17'}>                              
-					<div className="panel panel-default" style={{marginTop:10,marginBottom:0,paddingBottom:600,background:bg,borderBottomLeftRadius: 4,borderBottomRightRadius:4}}>
-					  <div style={{background:bg}}className="panel-heading"><span className="label label-default">{"Qwiket Fluid Context: "}<span className="hidden-xs">{forum_str}</span></span> <Link  to={local_href} style={{float:"right", textDecoration: "none"}} ><span className="label label-default">{communityName+ " forum"}</span>&nbsp;&nbsp;<i className="fa fa-chevron-right fa-lg"></i><i className="fa fa-chevron-right fa-lg"></i><i className="fa fa-chevron-right fa-lg"></i></Link></div>
+				<div style={{background:bg,padding:0,borderRadius: 4}} className="row" key={'context-wrap-17'}>                              
+					<div className="panel panel-default" style={{marginTop:0,marginBottom:0,paddingBottom:600,background:bg,borderBottomLeftRadius: 4,borderBottomRightRadius:4}}>
+					  <div style={{background:bg}} className="panel-heading"><span className="label label-default">{"Fluid Context: "}<span className="hidden-xs">{forum_str}</span></span> <Link  to={local_href} style={{marginTop:0,float:"right", textDecoration: "none"}} ><span className="label label-default">{communityName+ ""}</span>&nbsp;&nbsp;<span style={{marginTop:2,float:"right", textDecoration: "none"}}><i className="fa fa-chevron-right fa-lg"></i><i className="fa fa-chevron-right fa-lg"></i><i className="fa fa-chevron-right fa-lg"></i></span></Link></div>
+					  <div  style={{borderTopLeftRadius: 4,borderTopRightRadius: 4,background:bg,padding:20}} key={postid}><Item topic={this.props.context.topic} full={true} orderby={0}/></div>
 					  <div className="panel-body"><PostContext  reportY={this.reportSelectedPostY} key="postcontext1" local={false} scope='working' type='context' forumid={this.props.context.nativeForumid} thread={this.props.context.nativeThread} community={community} constraint_type={ct} constraint_value={cv}/></div>
 					</div>
 				</div>
@@ -258,7 +260,7 @@ var Context=React.createClass({
 		let sn=this.props.context.topic?this.props.context.topic.site_name:''
 		return (	
 			<div className="container" >
-				<div className="col-sm-9 col-md-9 col-lg-8">
+				<div className="col-xs-12 col-sm-9 col-md-9 col-lg-8">
 				{resp}
 				</div>
 				<div className="col-sm-3 col-md-3 col-lg-4 hidden-xs  ">
