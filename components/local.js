@@ -4,7 +4,7 @@ var Local=React.createClass({
 	
 	
 	render: function(){
-        console.log('LOCAL RENDER %o',this.props)
+        //console.log('LOCAL RENDER %o',this.props)
         if(this.props.topic.title){
 		var t=this.props.topic.title.replace(/"/g,'\'');
 		t=t.replace(':','-');

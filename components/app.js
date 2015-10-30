@@ -14,11 +14,11 @@ let Community=React.createClass({
 	
 	
 	render:function(){
-		console.log('Community render %o',this.props.communityName)
+		//console.log('Community render %o',this.props.communityName)
 		let lines=[];
 		//console.log('RENDER Community: this.params=%o',this.props)
 		//console.log('render %o',this.state);
-		for(var i=0;i<this.props.communities.length;i++){
+		for(var i=0;i<this.props.communities.length;i++){ 
 			let c=this.props.communities[i]
 			lines.push(<li id={"community_"+c.forum} key={"key_community_"+c.forum}><Link to={"/newsline/"+c.forum+"/newest"}><span className="glyphicon glyphicon-log-in"></span> {c.name}</Link></li>);
 		}
@@ -126,8 +126,8 @@ var App = React.createClass({
 	
 	componentDidMount: function() {
 		if(this.props.location.pathname=="/"){
-			console.log
-			console.log('redirect to %o',"/newsline/"+this.props.communityState.forum+"/newest")
+			//console.log
+			//console.log('redirect to %o',"/newsline/"+this.props.communityState.forum+"/newest")
 			this.props.history.pushState(null,"/newsline/"+this.props.communityState.forum+"/newest");
 		}
 	},
@@ -172,7 +172,7 @@ var App = React.createClass({
     
   	},
   	onClick:function(){
-  		console.log('click');
+  		//console.log('click');
   		this.refs.BurgerMenu.toggleMenu();
   	},
 	render:function(){

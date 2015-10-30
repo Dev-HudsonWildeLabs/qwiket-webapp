@@ -22,7 +22,14 @@ var Context=React.createClass({
 	componentDidMount:function(){
 		//console.log('context mount params %o',this.props.params);
 		this.fetch(this.props)
-		
+		if(__CLIENT__)
+	  	 $(".rating").rating({
+	      stars: 3,
+	      max: 3,
+	      showClear: false,
+	      showCaption: false,
+	      size: 'xs'
+	    });
 		//u.registerEvent('native',this.native,{me:this});
 		//u.registerEvent('pushAppState',this.pushAppState,{me:this});
 		//u.publishEvent('reqAppState',{}); 
@@ -179,11 +186,11 @@ var Context=React.createClass({
 	},
 	*/
 	reportSelectedPostY:function(y){
-			console.log(y)
+			//console.log(y)
 			this.props.setChildTopAction.setChildTop(y);
 	},
 	render:function(){
-		console.log('rendering Context %o',this.props)
+		//console.log('rendering Context %o',this.props)
 		let bg="#AAB"
 		let communityName=this.props.communityName;
 	

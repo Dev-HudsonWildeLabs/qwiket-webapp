@@ -72,12 +72,12 @@ server.route({
 				let query=request.query;
 			
 				let u="http://"+apiServer+":"+apiPort+"/api?task=landing";
-					console.log('INDEX / u=',u)
+					//console.log('INDEX / u=',u)
 				callback(null,u);
-				console.log('mapUri:', u)
+				//console.log('mapUri:', u)
 			},
 			onResponse (err, res, request, reply, settings, ttl) {
-				console.log('INSIDE 111')
+				//console.log('INSIDE 111')
 				Wreck.read(res, null, function(err, payload){
 					//console.log('LANDING PAYLOAD:',JSON.parse(payload))
 					matchAndRender(err, payload,request,reply,ttl);
@@ -100,7 +100,7 @@ server.route({
 				let u="http://"+apiServer+":"+apiPort+"/api?task=landing&type=newsline&community="+encodeURIComponent(request.params.community);
 
 				callback(null,u);
-				console.log('mapUri:', u)
+				//console.log('mapUri:', u)
 			},
 			onResponse (err, res, request, reply, settings, ttl) {
 				
@@ -126,7 +126,7 @@ server.route({
 				let u="http://"+apiServer+":"+apiPort+"/api?task=landing&community="+request.params.community+"&type=context&postid="+request.params.postid;
 
 				callback(null,u);
-				console.log('mapUri:', u)
+				//console.log('mapUri:', u)
 			},
 			onResponse (err, res, request, reply, settings, ttl) {
 				Wreck.read(res, null, function(err, payload){
@@ -150,7 +150,7 @@ server.route({
 				let u="http://"+apiServer+":"+apiPort+"/api?task=landing&community="+request.params.community+"&type=context&postid="+request.params.postid+"&local="+request.params.local;
 
 				callback(null,u);
-				console.log('mapUri:', u)
+				//console.log('mapUri:', u)
 			},
 			onResponse (err, res, request, reply, settings, ttl) {
 				Wreck.read(res, null, function(err, payload){
@@ -170,11 +170,11 @@ server.route({
 			passThrough: true,
 			mapUri (request, callback) {
 				let query=request.query;
-				console.log('CONTEXT query=%o',request)
+				//console.log('CONTEXT query=%o',request)
 				let u="http://"+apiServer+":"+apiPort+"/api?task=landing&community="+encodeURIComponent(request.params.community+"&type=context&threadid="+request.params.threadid);
 
 				callback(null,u);
-				console.log('mapUri:', u)
+				//console.log('mapUri:', u)
 			},
 			onResponse (err, res, request, reply, settings, ttl) {
 				Wreck.read(res, null, function(err, payload){
@@ -194,11 +194,11 @@ server.route({
 			passThrough: true,
 			mapUri (request, callback) {
 				let query=request.query;
-				console.log('CONTEXT query=%o',request)
+				//console.log('CONTEXT query=%o',request)
 				let u="http://"+apiServer+":"+apiPort+"/api?task=landing&community="+encodeURIComponent(request.params.community+"&type=context&threadid="+request.params.threadid+"&local="+request.params.local);
 
 				callback(null,u);
-				console.log('mapUri:', u)
+				//console.log('mapUri:', u)
 			},
 			onResponse (err, res, request, reply, settings, ttl) {
 				Wreck.read(res, null, function(err, payload){
@@ -231,7 +231,7 @@ server.route({
 	handler: {
 		file: (request) => "static" + request.path
 	}
-});
+}); 
 /**
  * Endpoint that proxies all GitHub API requests to https://api.github.com.
  */
@@ -251,7 +251,7 @@ server.route({
 					query:    request.query
 				})
 				callback(null,u);
-				console.log('API PROXY:', u)
+				//console.log('API PROXY:', u)
 			},
 			onResponse (err, res, request, reply, settings, ttl) {
 				//console.log('API RESPONSE',res);
@@ -276,7 +276,7 @@ server.route({
 					query:    request.query
 				})
 				callback(null,u);
-				console.log('D4API PROXY:', u)
+				//console.log('D4API PROXY:', u)
 			},
 			onResponse (err, res, request, reply, settings, ttl) {
 				
@@ -320,7 +320,7 @@ function matchAndRender (err, payload,request,reply,ttl) {
         		<RoutingContext {...renderProps} />
       		</Provider>
     		);
-			console.log('renderToString done')
+			//console.log('renderToString done')
 			//Transmit.renderToString(RoutingContext, renderProps).then(({reactString, reactData}) => {
 				 const finalState = store.getState();
 				//console.log('renderToString returned !!!')
@@ -355,6 +355,7 @@ function matchAndRender (err, payload,request,reply,ttl) {
 							<link href='https://fonts.googleapis.com/css?family=Black+Ops+One' rel='stylesheet' type='text/css'>
 						    
 						    <script src="/js/star-rating.min.js" type="text/javascript"></script>
+						      <script src="/js/visible.js" type="text/javascript"></script>
 						    <link href="/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
 							<link rel="stylesheet" href="/css/newsline.css"/>
 							<link rel="stylesheet" href="/css/d4rum.css"/>
@@ -366,7 +367,7 @@ function matchAndRender (err, payload,request,reply,ttl) {
 							<script>
           						window.__INITIAL_STATE__ = ${JSON.stringify(finalState)};
         					</script>
-        					<script src=${'"'+(process.env.NODE_ENV === "production" ? "" : '//localhost:8080')+'/dist/client.js"'}></script>
+        					<script src=${'"'+(process.env.NODE_ENV === "production" ? "" : '//localhost:85')+'/dist/client.js"'}></script>
 						</body>
 					</html>`
 				);
@@ -374,7 +375,7 @@ function matchAndRender (err, payload,request,reply,ttl) {
 				//const webserver = process.env.NODE_ENV === "production" ? "" : "//localhost:8080";
 
 				//output          = Transmit.injectIntoMarkup(output, reactData, [`${webserver}/dist/client.js`]);
-				console.log(' output generated:', Date.now() )
+				//console.log(' output generated:', Date.now() )
 				reply(output).ttl(ttl);
 			
 		}

@@ -302,7 +302,14 @@ var Items=React.createClass({
 		if(this.props.topics.length==0)
 			this.fetch(true,true,this.props)
 		//console.log('MOUNT state=%o',this.state)
-		
+		$(".rating").rating({
+			            stars:3,
+			            max:3,
+			            showClear:false,
+			            showCaption:false,
+			            size:'xs'
+			        });
+		//console.log('MOUNTED')
 	},
 	componentWillUnmount:function(){
 		u.unregisterEvents('topScroll',this);
@@ -328,7 +335,7 @@ var Items=React.createClass({
 	},*/
 	//fetchTopics(community = 'pointofviewworld', orderby = 0, lastid = common.MAXID, sitename = '', limit = 25, query = '') 
 	fetch:function(clear,remove,props){
-		console.log('fetch clear=%s,props=%o',clear,this.props)
+		//console.log('fetch clear=%s,props=%o',clear,this.props)
 		if(remove)
 			props.clearTopics();
 		props.fetchTopics(clear,props.community,props.orderby,props.state,this.props.sideTopics,props.state.lastid,props.sitename,25,props.query);
@@ -474,6 +481,7 @@ var Items=React.createClass({
 		   // console.log('componentWillReceiveProps props=%o',nextProps)
 			this.fetch(true,true,nextProps);
 		}
+
 	},
 	render:function(){
 		//console.log('render Items props=%o,state=%o',this.props,this.state);
@@ -510,6 +518,7 @@ var Items=React.createClass({
 	  			<Item key={xid} sitename={sitename} community={this.props.community} ref={cb} lastRow={i==l-1} topic={p} full={false} orderby={this.props.orderby}/>
   			)
 	  	}
+
 	  	//if(rows.length>0)
       	return (
       		<div>
