@@ -1,0 +1,1621 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"hand",
+				"handleBottomScroll"
+			],
+			[
+				"bottom",
+				"bottomScroll"
+			],
+			[
+				"FALSE",
+				"false"
+			],
+			[
+				"for",
+				"foreach	foreach …"
+			],
+			[
+				"type",
+				"typeof"
+			],
+			[
+				"categor",
+				"category_xid"
+			],
+			[
+				"orderby",
+				"orderbyString"
+			],
+			[
+				"cler",
+				"clearButtonClick"
+			],
+			[
+				"top",
+				"topScroll"
+			],
+			[
+				"constraint",
+				"constraint_value"
+			],
+			[
+				"info",
+				"infoBox"
+			],
+			[
+				"global",
+				"global_identity"
+			],
+			[
+				"globa",
+				"global_identity"
+			],
+			[
+				"var",
+				"var_log"
+			],
+			[
+				"prev",
+				"preventDefault"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"bac",
+				"background-color"
+			],
+			[
+				"switch",
+				"switchTab"
+			],
+			[
+				"user",
+				"user_agent"
+			],
+			[
+				"stri",
+				"stripos"
+			],
+			[
+				"u",
+				"urlset"
+			],
+			[
+				"moda",
+				"modal_object"
+			],
+			[
+				"modal",
+				"modal_shown"
+			],
+			[
+				"load",
+				"loadItems"
+			],
+			[
+				"shared_b",
+				"shared_by_profileurl"
+			],
+			[
+				"pov_s",
+				"pov_simple_interests"
+			],
+			[
+				"identi",
+				"identifier"
+			],
+			[
+				"remove",
+				"removeClass"
+			],
+			[
+				"str_r",
+				"str_replace"
+			],
+			[
+				"adva",
+				"advanced_interests_option"
+			],
+			[
+				"appro",
+				"approval_count"
+			],
+			[
+				"html",
+				"htmlentities"
+			],
+			[
+				"share",
+				"share_approved"
+			],
+			[
+				"shar",
+				"share_approved"
+			],
+			[
+				"pre",
+				"prepare"
+			],
+			[
+				"filter",
+				"filter_categoryid"
+			],
+			[
+				"di",
+				"dirty"
+			],
+			[
+				"strn",
+				"strncasecmp"
+			],
+			[
+				"text",
+				"textContent"
+			],
+			[
+				"popu",
+				"PopupHandler"
+			],
+			[
+				"clear",
+				"clearItems"
+			],
+			[
+				"scroll",
+				"scrollDirty"
+			],
+			[
+				"las",
+				"last_shared_time"
+			],
+			[
+				"total",
+				"totalcups"
+			],
+			[
+				"inner",
+				"innerSubscribeNode"
+			],
+			[
+				"subsc",
+				"subscribeCategory"
+			],
+			[
+				"add",
+				"addClass"
+			],
+			[
+				"intere",
+				"interests_option"
+			],
+			[
+				"log",
+				"logService"
+			],
+			[
+				"is_a",
+				"is_available"
+			],
+			[
+				"timeline",
+				"timeline_by_shared"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "components/app.js",
+			"settings":
+			{
+				"buffer_size": 8603,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "|+| \"curl_getinfo($ch, CURLINFO_HTTP_CODE)\"\n|+| \"$match\"\n|+| \"$client->config\"\n|+| \"$property\"\n|+| \"$name\"\n|+| \"$content\"\n|+| \"$http_equiv\"\n",
+			"settings":
+			{
+				"buffer_size": 140,
+				"line_ending": "Windows",
+				"name": "Xdebug Watch",
+				"read_only": true,
+				"scratch": true
+			}
+		},
+		{
+			"file": "components/newsline.js",
+			"settings":
+			{
+				"buffer_size": 20553,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "components/router.js",
+			"settings":
+			{
+				"buffer_size": 2249,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "static/dist/client.js",
+			"settings":
+			{
+				"buffer_size": 1331473,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "components/d4shared/postcontext.jsx",
+			"settings":
+			{
+				"buffer_size": 6060,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "components/d4shared/postqueue.jsx",
+			"settings":
+			{
+				"buffer_size": 12772,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "components/d4shared/posts.jsx",
+			"settings":
+			{
+				"buffer_size": 5203,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "import {Server} from \"hapi\";\nimport h2o2 from \"h2o2\";\nimport inert from \"inert\";\nimport React from \"react\";\nimport ReactDOM from \"react-dom/server\";\nimport {RoutingContext, match} from \"react-router\";\n//import createLocation from \"history/lib/createLocation\";\nimport Transmit from \"react-transmit\";\nimport routes from \"./routes\";\nimport history from \"history\"\nimport url from \"url\";\nvar Wreck = require('wreck'); \n//console.log(process)\nvar hostname = process.env.HOSTNAME || \"localhost\";\nvar apiServer = process.env.QWIKETAPI|| \"localhost\";\nvar apiPort=process.env.QWIKETAPIPORT|| \"8088\";\nGLOBAL.window = GLOBAL;  \n\n\n/**\n * Start Hapi server on port 8000.\n */\n\n//console.info('$$$$$$$$######  process.env=%o',process.env)\nconsole.log('starting server 1 ',Date.now());\nconst server = new Server();\nconsole.log('starting server 2 ',Date.now());\nserver.connection({host: hostname, port: process.env.PORT || 8000});\nconsole.log('starting server 3 ',Date.now());\nserver.register([\n	h2o2,\n    inert\n], function (err) {\n	if (err) {\n		throw err;\n	}\nconsole.log('starting server 4 ',Date.now());\n	server.start(function () {\n		console.info(\"==> ✅  Server is listening\");\n		console.info(\"==> 🌎  Go to \" + server.info.uri.toLowerCase());\n	});\n});\nconsole.log('starting server 5 ',Date.now());\n\n/**\n * Attempt to serve static requests from the public folder.\n */ \nserver.route({\n	method:  \"GET\",\n	path:    \"/\",\n	handler: {\n		proxy: {\n			passThrough: true,\n			mapUri (request, callback) {\n				let query=request.query;\n				console.log('INDEX /')\n				let u=\"http://\"+apiServer+\":\"+apiPort+\"/api?task=landing\";\n\n				callback(null,u);\n				console.log('mapUri:', u)\n			},\n			onResponse (err, res, request, reply, settings, ttl) {\n				console.log('INSIDE 111')\n				Wreck.read(res, null, function(err, payload){\n					matchAndRender(err, payload,request,reply)\n				})\n			\n            	//console.log('res ',res)\n			}\n		}\n	}\n});\nserver.route({\n	method:  \"GET\",\n	path:    \"/newsline/{community}/{params*}\",\n	handler: {\n		proxy: {\n			passThrough: true,\n			mapUri (request, callback) {\n				let query=request.query;\n				//console.log('query=%o',request)\n				let u=\"http://\"+apiServer+\":\"+apiPort+\"/api?task=landing&community=\"+encodeURIComponent(request.params.community);\n\n				callback(null,u);\n				console.log('mapUri:', u)\n			},\n			onResponse (err, res, request, reply, settings, ttl) {\n				//console.log('INSIDE 222')\n				Wreck.read(res, null, function(err, payload){\n					matchAndRender(err, payload,request,reply)\n				})\n			\n            	//console.log('res ',res)\n			}\n		}\n	}\n});\nserver.route({\n	method:  \"GET\",\n	path:    \"/context/{community}/{params*}\",\n	handler: {\n		proxy: {\n			passThrough: true,\n			mapUri (request, callback) {\n				let query=request.query;\n				//console.log('query=%o',request)\n				let u=\"http://\"+apiServer+\":\"+apiPort+\"/api?task=landing&community=\"+encodeURIComponent(request.params.community);\n\n				callback(null,u);\n				console.log('mapUri:', u)\n			},\n			onResponse (err, res, request, reply, settings, ttl) {\n				Wreck.read(res, null, function(err, payload){\n					matchAndRender(err, payload,request,reply)\n				})\n			\n            	//console.log('res ',res)\n			}\n		}\n	}\n});\nserver.route({\n	method:  \"GET\",\n	path:    \"/css/{params*}\", \n	handler: {\n		file: (request) => \"static\" + request.path\n	}\n});\n\nserver.route({\n	method:  \"GET\",\n	path:    \"/js/{params*}\", \n	handler: {\n		file: (request) => \"static\" + request.path\n	}\n});\nserver.route({\n	method:  \"GET\",\n	path:    \"/dist/{params*}\", \n	handler: {\n		file: (request) => \"static\" + request.path\n	}\n});\n/**\n * Endpoint that proxies all GitHub API requests to https://api.github.com.\n */\nserver.route({\n	method: \"GET\",\n	path: \"/api/{params*}\",\n	handler: {\n		proxy: {\n			passThrough: true,\n			mapUri (request, callback) {\n				let u=\n				 url.format({\n					protocol: \"http\",\n					host:     apiServer+\":\"+apiPort,\n					\n					pathname: \"api\",\n					query:    request.query\n				})\n				callback(null,u);\n				console.log('API PROXY:', u)\n			},\n			onResponse (err, res, request, reply, settings, ttl) {\n				//console.log('API RESPONSE',res);\n				reply(res);\n			}\n		}\n	}\n});\nserver.route({\n	method: \"GET\",\n	path: \"/d4api/{params*}\",\n	handler: {\n		proxy: {\n			passThrough: true,\n			mapUri (request, callback) {\n				let u=\n				 url.format({\n					protocol: \"http\",\n					host:     apiServer+\":\"+apiPort,\n				\n					pathname: \"d4api\",\n					query:    request.query\n				})\n				callback(null,u);\n				console.log('D4API PROXY:', u)\n			},\n			onResponse (err, res, request, reply, settings, ttl) {\n				\n				reply(res);\n			}\n		}\n	}\n});\n\nfunction matchAndRender (err, payload,request,reply) {\n	let y= JSON.parse(payload);\n		//console.log(payload,y);\n		//reply(payload);\n		\n	window.server = y.server;\n\n	//console.log(\"STEP 2\")\n	match({routes, location:request.url}, (error, redirectLocation, renderProps) => {\n		//console.log('matched',error,redirectLocation, renderProps)\n		if (redirectLocation) { \n			console.log('redirect')\n			reply.redirect(redirectLocation.pathname + redirectLocation.search)\n		}\n		else if (error || !renderProps) {\n			console.log('continue');\n			reply.continue(); \n		}\n		else {\n			//console.log(window.server);\n			//console.log('renderToString')\n			console.log(' calling renderToString:', Date.now() )\n			Transmit.renderToString(RoutingContext, renderProps).then(({reactString, reactData}) => {\n				//console.log('renderToString returned !!!')\n				let output = (\n					`<!doctype html>\n					<html lang=\"en-us\">\n						<head>\n							<meta charset=\"utf-8\">\n\n						  <title>Qwiket </title>\n						  <meta http-equiv=\"Cache-Control\" content=\"no-cache, no-store, must-revalidate\" />\n						  <meta http-equiv=\"Pragma\" content=\"no-cache\" />\n						  <meta http-equiv=\"Expires\" content=\"0\" />\n						    \n						  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1 minimum-scale=0.5\"/>\n						  <link rel=\"stylesheet\" href=\"http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css\"/>\n						  <script type=\"text/javascript\" src=\"http://code.jquery.com/jquery-2.1.1.min.js\"></script>\n						  <script src=\"http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js\"></script>\n\n						  <link rel=\"stylesheet\" href=\"//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css\"/>\n\n						<!-- Latest compiled and minified CSS -->\n						<link rel=\"stylesheet\" href=\"//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css\">\n\n						<!-- Latest compiled and minified JavaScript -->\n						<script src=\"//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js\"></script>\n\n						  <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>\n						  <link href='https://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>\n						  <link href='https://fonts.googleapis.com/css?family=Sigmar+One' rel='stylesheet' type='text/css'>\n						    \n						    <script src=\"/js/star-rating.min.js\" type=\"text/javascript\"></script>\n						    <link href=\"/css/star-rating.min.css\" media=\"all\" rel=\"stylesheet\" type=\"text/css\" />\n						  <link rel=\"stylesheet\" href=\"/css/newsline.css\"/>\n						  <link rel=\"stylesheet\" href=\"/css/d4rum.css\"/>\n						  <link rel=\"icon\" type=\"image/png\" href=\"/css/logo2.png\"/>\n						</head>\n						<body>\n							<script id=\"server-payload\">\n								window.server= ${JSON.stringify(window.server)}\n							</script>\n							<div id=\"react-root\">${reactString}</div>\n							\n								<!--<script src=\"/dist/client.js\" type=\"text/javascript\"></script>-->\n							\n						</body>\n					</html>`\n				);\n				//console.log('>>>>>>>>>>>>>sss>>',output)\n				const webserver = process.env.NODE_ENV === \"production\" ? \"\" : \"//\" + hostname + \":8080\";\n\n				output          = Transmit.injectIntoMarkup(output, reactData, [`${webserver}/dist/client.js`]);\n				console.log(' output generated:', Date.now() )\n				reply(output);\n			}).catch((error) => {\n				console.error(error);\n			});\n		}\n	});\n}\n",
+			"file": "server.js",
+			"file_size": 8288,
+			"file_write_time": 130894241587341973,
+			"settings":
+			{
+				"buffer_size": 7976,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/projects/qwiket-api/server/api.php",
+			"settings":
+			{
+				"buffer_size": 81249,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "client.js",
+			"settings":
+			{
+				"buffer_size": 2086,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "webpack.client-watch.js",
+			"settings":
+			{
+				"buffer_size": 1368,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "webpack.client.js",
+			"settings":
+			{
+				"buffer_size": 1192,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "components/d4shared/post.jsx",
+			"settings":
+			{
+				"buffer_size": 5744,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "package.json",
+			"settings":
+			{
+				"buffer_size": 2314,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "components/d4shared/utils.jsx",
+			"settings":
+			{
+				"buffer_size": 4256,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "components/context.js",
+			"settings":
+			{
+				"buffer_size": 11655,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Windows",
+				"name": "Xdebug Context",
+				"read_only": true,
+				"scratch": true
+			}
+		},
+		{
+			"contents": "",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Windows",
+				"name": "Xdebug Stack",
+				"read_only": true,
+				"scratch": true
+			}
+		},
+		{
+			"contents": "=> C:\\projects\\d4rum\\server\\hub_data_service.php\n	|+| 4970\n=> C:\\projects\\d4rum\\server\\landing.php\n	|+| 180\n	|+| 182\n	|+| 254\n	|+| 273\n=> C:\\projects\\qwiket-api\\d4server\\api.php\n	|+| 2369\n=> C:\\projects\\qwiket-api\\server\\api.php\n	|+| 20\n	|+| 52\n	|+| 597\n	|+| 598\n	|+| 624\n=> C:\\projects\\qwiket\\d4server\\api.php\n	|+| 2324\n=> C:\\projects\\qwiket\\d4server\\hub_data_service.php\n	|+| 4463\n=> C:\\projects\\qwiket\\server\\D4crawler.php\n	|+| 23\n	|+| 82\n=> C:\\projects\\qwiket\\server\\api.php\n	|+| 555\n	|+| 1538\n	|+| 1621\n	|+| 1644\n=> C:\\projects\\qwiket\\server\\pov_data_service.php\n	|+| 87\n	|+| 1427\n=> C:\\qwiket\\newsline\\php\\pov_data_service.php\n	|+| 1548\n",
+			"settings":
+			{
+				"buffer_size": 643,
+				"line_ending": "Windows",
+				"name": "Xdebug Breakpoint",
+				"read_only": true,
+				"scratch": true
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 980.0,
+		"last_filter": "Package Control: ",
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"PHP Code Sniffer: ",
+				"PHP Code Sniffer: Sniff this file"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				"Code Folding: Unfold All"
+			],
+			[
+				"p",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 1060.0
+	},
+	"console":
+	{
+		"height": 294.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/projects/qwiket-webapp",
+		"/C/projects/qwiket-webapp/components",
+		"/C/projects/qwiket-webapp/components/d4shared",
+		"/C/projects/qwiket-webapp/static"
+	],
+	"file_history":
+	[
+		"/C/projects/qwiket-api/server/api.php",
+		"/C/Users/Nicholas/AppData/Roaming/Sublime Text 3/Packages/Xdebug Client/Xdebug.sublime-settings",
+		"/C/qwiket/apache/conf/extra/httpd-vhosts.conf",
+		"/C/projects/qwiket-webapp/components/app.js",
+		"/C/projects/qwiket-webapp/components/context.js",
+		"/C/projects/qwiket-webapp/components/local.js",
+		"/C/projects/qwiket-webapp/components/newsline.js",
+		"/C/projects/qwiket-webapp/components/router.js",
+		"/C/projects/qwiket-webapp/server-failed.js",
+		"/C/projects/qwiket-webapp/npm-debug.log",
+		"/C/projects/qwiket-webapp/components/Head.js",
+		"/C/projects/qwiket-webapp/components/d4shared/post.jsx",
+		"/C/projects/qwiket-webapp/webpack-config-failed.js",
+		"/C/projects/qwiket-webapp/package-failed.json",
+		"/C/projects/qwiket-webapp/preprocessor-failed.js",
+		"/C/projects/qwiket-webapp/hotLoadServer-failed.js",
+		"/C/projects/qwiket-webapp/Dockerfile-failed",
+		"/C/projects/qwiket-webapp/dispatcher-failed.js",
+		"/C/projects/qwiket-webapp/client-failed.js",
+		"/C/projects/qwiket-webapp/client.js",
+		"/C/projects/qwiket-webapp/server-express.js",
+		"/C/qwiket/apache/logs/access.log",
+		"/C/projects/qwiket-webapp/node_modules/react-disqus-thread/package.json",
+		"/C/projects/qwiket-webapp/node_modules/react-radio-group/package.json",
+		"/C/projects/qwiket/client/components/newsline.jsx",
+		"/C/projects/qwiket/client/index.js",
+		"/C/projects/qwiket/client/components/d4shared/postqueue.jsx",
+		"/C/projects/qwiket/client/components/d4shared/utils.jsx",
+		"/C/projects/qwiket/client/components/d4shared/post.jsx",
+		"/C/projects/qwiket/client/components/app.jsx",
+		"/C/projects/qwiket/client/components/d4shared/postcontext.jsx",
+		"/C/projects/qwiket/client/components/context.jsx",
+		"/C/projects/qwiket/server/api.php",
+		"/C/projects/qwiket/d4server/nodemanager_data_service.php",
+		"/C/projects/qwiket/d4server/hub_data_service.php",
+		"/C/projects/qwiket/client/components/local.jsx",
+		"/C/projects/qwiket/client/components/d4shared/posts.jsx",
+		"/C/projects/qwiket/client/components/router.jsx",
+		"/C/projects/qwiket/server/pov_data_service.php",
+		"/C/projects/qwiket/server/config.php",
+		"/C/projects/qwiket/server/D4crawler.php",
+		"/C/projects/qwiket/server/crawler.php",
+		"/C/projects/qwiket/server/link_client.php",
+		"/C/projects/qwiket/d4server/config.php",
+		"/C/projects/qwiket/d4server/api.php",
+		"/C/projects/qwiket/index.php",
+		"/C/projects/qwiket/build/app.js",
+		"/C/projects/qwiket/build/css/newsline.css",
+		"/C/projects/qwiket/build/css/d4rum.css",
+		"/C/projects/qwiket/server/landing.php",
+		"/c/projects/qwiket/build/app.js",
+		"/C/projects/qwiket/build/app.min.js.map",
+		"/C/projects/qwiket/.htaccess",
+		"/c/projects/qwiket/server/link_client.php",
+		"/C/projects/qwiket/client/components/d4shared/infobox.jsx",
+		"/C/projects/qwiket/build/bootstrap-hover-dropdown.min.js",
+		"/C/projects/qwiket/build/css/star-rating.min.css",
+		"/C/projects/qwiket/gulpfile.js",
+		"/C/projects/qwiket/package.json",
+		"/C/projects/qwiket/README.md",
+		"/C/qwiket/apache/conf/httpd.conf",
+		"/C/projects/d4rum/client/components/shared/README.md",
+		"/C/qwiket/newsline/index.php",
+		"/C/Users/Public/Desktop/desktop.ini",
+		"/C/qwiket/d4rum/php/d4rum_data_service.php",
+		"/C/qwiket/d4rum/php/nodemanager_data_service.php",
+		"/C/qwiket/d4rum/server/landing.php",
+		"/C/Users/Nicholas/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/C/qwiket/d4rum/server/user_manager.php",
+		"/C/qwiket/d4rum/php/user_manager.php",
+		"/C/qwiket/d4rum/php/usernode_data_service.php",
+		"/C/qwiket/d4rum/index.php",
+		"/C/END",
+		"/C/Users/Nicholas/AppData/Roaming/Sublime Text 3/Packages/Phpcs/phpcs.sublime-settings",
+		"/C/Users/Nicholas/AppData/Roaming/Sublime Text 3/Packages/DocBlockr/README.md",
+		"/C/qwiket/d4rum/server.js",
+		"/C/qwiket/d4rum/package.json",
+		"/C/qwiket/d4rum/gulpfile.js",
+		"/C/qwiket/d4rum/njs/router.js",
+		"/C/qwiket/d4rum/php/landing.php",
+		"/C/qwiket/d4rum/php/config.php",
+		"/C/qwiket/d4rum/php/log_data_service.php",
+		"/C/qwiket/d4rum/d4rum.sublime-project",
+		"/C/Users/Nicholas/AppData/Roaming/Sublime Text 3/Packages/User/Emmet.sublime-settings",
+		"/C/Users/Nicholas/AppData/Roaming/Sublime Text 3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
+		"/C/qwiket/d4rum/node_modules/grunt-contrib-jshint/node_modules/jshint/node_modules/cli/cli.js",
+		"/C/qwiket/newsline/php/d4_data_service.php",
+		"/C/qwiket/newsline/docs.php",
+		"/C/qwiket/newsline/php/link_client.php",
+		"/C/qwiket/newsline/disqus.txt",
+		"/C/qwiket/newsline/css/newsline.css",
+		"/C/qwiket/newsline/lib/main.js",
+		"/c/qwiket/newsline/php/api.php",
+		"/c/qwiket/newsline/php/crawler.php",
+		"/c/qwiket/newsline/php/pov_data_service.php",
+		"/c/qwiket/newsline/php/body_sprotyv.html",
+		"/c/qwiket/newsline/lib/share.js",
+		"/C/qwiket/newsline/dist/index.php",
+		"/C/qwiket/newsline/php/config.php",
+		"/C/qwiket/newsline/php/api.php",
+		"/C/qwiket/newsline/dist/php/pov_data_service.php",
+		"/C/qwiket/newsline/php/pov_data_service.php",
+		"/C/qwiket/newsline/php/docs_helper.php",
+		"/C/qwiket/newsline/.htaccess",
+		"/C/qwiket/newsline/dist/.htaccess",
+		"/C/qwiket/newsline/php/log_data_service.php",
+		"/C/qwiket/newsline/php/landing.php",
+		"/C/qwiket/newsline/dist/php/client_secrets.json",
+		"/C/qwiket/newsline/dist/new404.html",
+		"/C/qwiket/newsline/php/crawler.php",
+		"/C/qwiket/newsline/lib/interests.js",
+		"/C/qwiket/newsline/lib/share.js",
+		"/C/Users/Nicholas/Downloads/API Project-c90425e6979a.json",
+		"/C/qwiket/google-api-php-client/src/Google/Config.php",
+		"/C/qwiket/google-api-php-client/src/Google/Client.php",
+		"/C/qwiket/google-api-php-client/src/Google/Http/REST.php",
+		"/C/qwiket/google-api-php-client/src/Google/Auth/OAuth2.php",
+		"/C/qwiket/newsline/php/oauth2.php",
+		"/C/qwiket/newsline/php/sitemapper.php",
+		"/C/qwiket/newsline/dist/php/sitemapper.php",
+		"/C/qwiket/newsline/Gruntfile.js",
+		"/C/qwiket/newsline/sitemaps/newsline_sm_1435422891.xml",
+		"/C/qwiket/newsline/composer.json",
+		"/C/qwiket/newsline/php/sitemap_service.php",
+		"/C/qwiket/newsline/php/newsline_sm_1435422891.xml",
+		"/C/qwiket/newsline/php/nroport.php",
+		"/C/Users/Nicholas/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/qwiket/newsline/lib/approve.js"
+	],
+	"find":
+	{
+		"height": 64.0
+	},
+	"find_in_files":
+	{
+		"height": 176.0,
+		"where_history":
+		[
+			"c:/projects/qwiket-webapp/components",
+			"c:/projects/qwiket-webapp/",
+			"c:/projects/qwiket-webapp/components",
+			"c:/projects/qwiket-webapp/",
+			"c:/projects/qwiket/",
+			"c:/projects/qwiket/client",
+			"c:/projects/qwiket/",
+			"c:/projects/qwiket/submitTopic",
+			"c:/projects/qwiket/client/",
+			"c:/projects/qwiket/",
+			"c:/qwiket/newsline/",
+			"c:/qwiket/newsline/lib",
+			"c:/qwiket/newsline/php",
+			"c:/qwiket/newsline/lib",
+			"c:/qwiket/newsline/libn",
+			"c:/qwiket/newsline/php",
+			"c:/qwiket/newsline/lib",
+			"c:/qwiket/newsline/php",
+			"c:/qwiket/newsline/lib",
+			"c:/qwiket/newsline/php",
+			"c:/qwiket/newsline/lib",
+			"c:/qwiket/newsline/php",
+			"c:/qwiket/newsline/lib",
+			"c:/qwiket/newsline/php",
+			"c:/qwiket/newsline/lib",
+			"c:/qwiket/newsline/php",
+			"c:/qwiket/newsline/lib",
+			"c:/qwiket/newsline/php",
+			"c:/qwiket/newsline/",
+			"c:/qwiket/newsline/php",
+			"c:/qwiket/newsline/lib",
+			"c:/qwiket/newsline/php",
+			"c:/qwiket/newsline/lib",
+			"c:/qwiket/newsline/php",
+			"c:/qwiket/newsline/lib",
+			"c:/qwiket/newsline/php",
+			"c:/qwiket/newsline/lib",
+			"c:/qwiket/newsline/php",
+			"c:/qwiket/newsline/lib",
+			"/lib"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"items",
+			"$$$",
+			"image",
+			"build",
+			"logo2pale",
+			"build",
+			"api?task",
+			"findDOMNode",
+			"finddomnode",
+			"finddom",
+			"findom",
+			"finddomnode",
+			"d4api?task=load",
+			"load_queue",
+			"d4api",
+			"d4api?task",
+			"pushState",
+			"pushstate",
+			"Link",
+			"visible-lg",
+			"data-reactid=\".1",
+			"data-reactid=\".1n",
+			"#/",
+			"pushstate",
+			"#/",
+			"#",
+			"visible-lg",
+			"visible-lg\\\" href=\"",
+			"visible-lg\" href=\"",
+			"visible-lf",
+			"setstate",
+			"setState",
+			"ReactDom",
+			"SortedArray",
+			"SOrtedArray",
+			"SortedArray",
+			"build",
+			"bootbox",
+			"pushAppState",
+			"app",
+			"lang",
+			"server",
+			"link",
+			"href",
+			"shared_by_profileurl",
+			"href",
+			"#",
+			"native_href",
+			"#",
+			"landing",
+			"loadForum",
+			"landing",
+			"loadforums",
+			"landing",
+			"enviro",
+			"ocketio",
+			"registerEvent\n",
+			");\n",
+			"window",
+			"server",
+			"Utils",
+			"stage",
+			"peer",
+			"match",
+			"submittopic",
+			"inner-link",
+			"community_forums",
+			"server.post",
+			"onclick",
+			"get_thread_for_post",
+			"loadCommunityTopics",
+			"load",
+			"get_thread_for_post",
+			"textAlign",
+			"forum has not been",
+			"bottom",
+			"topic-site-name",
+			"topic-image",
+			"topic-middle",
+			"s",
+			"arrow",
+			"resp",
+			"args",
+			"loadqueueit",
+			"queue",
+			"resp",
+			"conta",
+			"r",
+			"container",
+			"splice",
+			"site_name",
+			"getthread",
+			"getD4ThreadId",
+			"Error fetching thread and forumid",
+			"getForumAndThreadForUrls",
+			"getD4Status",
+			"http://qwiket.com/usconservative/un-secretary-general-issues-despicable-statement-condemning-israel/7/",
+			"get_d4_status",
+			"getD4Status",
+			" let url=\"http://qwiket.com/\"+this.props.params.community+\"/\"+data.topic.threadid+\"/7/\";\n			        console.log('calling get_d4_status for postid url=%s,forum=%s',url,this.props.params.community)",
+			"getD4ThreadId",
+			"bottom-arrow",
+			"arrow",
+			"getD4ThreadId",
+			" getD4ThreadId($threadid)",
+			"load_queue",
+			"load_gugug",
+			"getThread",
+			"getthread",
+			"gettopic",
+			"lastid",
+			"last",
+			"lastid",
+			"loadPosts",
+			"queueitems",
+			"queue",
+			"load",
+			"unregisterEvent",
+			"inside",
+			"Breitbart",
+			"submittopic",
+			"submitto",
+			"submittopi",
+			"submitlink",
+			"unregisterEvents",
+			"topscroll",
+			"fetch",
+			"CDEbug"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"utils",
+			"h2"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 8,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "components/app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8603,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6506,
+								6506
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 4120.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 140,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								140,
+								140
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 15,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "components/newsline.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 20553,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								14348,
+								14348
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 8528.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "components/router.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2249,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 17,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "static/dist/client.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1331473,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								258936,
+								258936
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1102.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 16,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "components/d4shared/postcontext.jsx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6060,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								112,
+								112
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "components/d4shared/postqueue.jsx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 12772,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5264,
+								5264
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2887.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "components/d4shared/posts.jsx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5203,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1199,
+								1199
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 151.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 18,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "server.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7976,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1593,
+								1593
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 5424.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "/C/projects/qwiket-api/server/api.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 81249,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								821,
+								821
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 551.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"default_dir": "C:\\projects\\qwiket-webapp\\static",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 21,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "client.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2086,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1873,
+								1875
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1032.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "webpack.client-watch.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1368,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								203,
+								203
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 19,
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "webpack.client.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1192,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								115,
+								115
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 20,
+					"type": "text"
+				},
+				{
+					"buffer": 14,
+					"file": "components/d4shared/post.jsx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5744,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								183,
+								204
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 15,
+					"file": "package.json",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 2314,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1280,
+								1280
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 16,
+					"file": "components/d4shared/utils.jsx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4256,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1516,
+								1516
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1351.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 17,
+					"file": "components/context.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 11655,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8378,
+								8380
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 5599.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 18,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 13,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 19,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 12,
+					"type": "text"
+				},
+				{
+					"buffer": 20,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 643,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								643,
+								643
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 14,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 39.0
+	},
+	"input":
+	{
+		"height": 66.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				2,
+				1
+			],
+			[
+				0,
+				1,
+				1,
+				2
+			],
+			[
+				1,
+				1,
+				2,
+				2
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			0.7,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 248.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.xdebug":
+	{
+		"height": 220.0
+	},
+	"pinned_build_system": "Packages/User/JavaScript.sublime-build",
+	"project": "qwiket-webapp.sublime-project",
+	"replace":
+	{
+		"height": 74.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 2,
+	"settings":
+	{
+		"xdebug":
+		{
+			"restore_index":
+			{
+				"100":
+				{
+					"group": 0,
+					"index": 11
+				},
+				"103":
+				{
+					"group": 0,
+					"index": 12
+				},
+				"109":
+				{
+					"group": 0,
+					"index": 14
+				},
+				"110":
+				{
+					"group": 0,
+					"index": 8
+				},
+				"112":
+				{
+					"group": 0,
+					"index": 3
+				},
+				"124":
+				{
+					"group": 0,
+					"index": 13
+				},
+				"142":
+				{
+					"group": 0,
+					"index": 10
+				},
+				"161":
+				{
+					"group": 0,
+					"index": 5
+				},
+				"167":
+				{
+					"group": 0,
+					"index": 1
+				},
+				"67":
+				{
+					"group": 0,
+					"index": 0
+				},
+				"68":
+				{
+					"group": 0,
+					"index": 15
+				},
+				"71":
+				{
+					"group": 0,
+					"index": 2
+				},
+				"75":
+				{
+					"group": 0,
+					"index": 6
+				},
+				"76":
+				{
+					"group": 0,
+					"index": 7
+				},
+				"78":
+				{
+					"group": 0,
+					"index": 9
+				},
+				"96":
+				{
+					"group": 0,
+					"index": 4
+				}
+			},
+			"restore_layout":
+			{
+				"cells":
+				[
+					[
+						0,
+						0,
+						1,
+						1
+					]
+				],
+				"cols":
+				[
+					0.0,
+					1.0
+				],
+				"rows":
+				[
+					0.0,
+					1.0
+				]
+			}
+		}
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 556.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
