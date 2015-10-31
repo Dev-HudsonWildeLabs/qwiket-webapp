@@ -11,8 +11,8 @@ config.entry.unshift(
 	"webpack-dev-server/client?http://" + hostname + ":8080/",
 	"webpack/hot/only-dev-server"
 );
-
-config.output.publicPath = "http://" + hostname + ":8080/";
+config.output.crossOriginLoading="anonymous";
+config.output.publicPath = "http://" + hostname + ":8080";
 config.output.hotUpdateMainFilename = "update/[hash]/update.json";
 config.output.hotUpdateChunkFilename = "update/[hash]/[id].update.js";
 
@@ -38,6 +38,7 @@ config.devServer = {
 	lazy:        false,
 	quiet:       true,
 	noInfo:      false,
+
 	headers:     {"Access-Control-Allow-Origin": "*"},
 	stats:       {colors: true},
 	host:        hostname

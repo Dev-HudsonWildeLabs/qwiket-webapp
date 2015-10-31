@@ -51,140 +51,19 @@ var Context=React.createClass({
 	
 	componentWillReceiveProps:function(nextProps){
 		if(this.props.params.threadid!=nextProps.params.threadid||this.props.params.local!=nextProps.params.local||this.props.params.postid!=nextProps.params.postid){	
+			
 			this.fetch(nextProps);
 		}
 	},
 	fetch:function(props){
+		//console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@FETCH TOPIC %o",props)
 		if(u.is(props.params.postid)){
 			this.props.fetchContextTopicForPostid.fetchContextTopicForPostid(props.params.postid,props.context,props.params.community)
 		}
 		else if(u.is(props.params.threadid)){
 			this.props.fetchContextTopicForThread.fetchContextTopicForThread(props.params.threadid,props.context,props.params.community)
 		}
-
 	},
-	/*
-	fetch:function(props){
-		//console.log('FETCH props=%o',props );
-		//this.setState({nativeD4:true})
-		if(u.is(props.params.postid)){
-			$.ajax({
-		        url: "/api?task=get_thread_for_post",
-		        dataType: 'json',
-		        settings:{
-		            cache:false
-		        },
-		        data:{
-		   			postid:props.params.postid
-		        },
-		        context:this
-		    }).success(function(data) {
-		    	//console.log('get_thread_for_post SUCCESS data=%o',data)
-		    	if(data.success){
-			    	if (this.isMounted()) {
-			    		this.setState({
-			        		topic:data.topic
-			        		//native:true							
-						});
-			        }      
-			        let url="http://qwiket.com/"+this.props.params.community+"/"+data.topic.threadid+"/7/";
-			       // console.log('calling get_d4_status for postid url=%s,forum=%s',url,this.props.params.community)
-			        if(typeof(this.props.params.local)=='undefined'||this.props.params.local=='local'){
-				        $.ajax({
-					        url: "/api?task=get_d4_status",
-					        dataType: 'json',
-					        settings:{
-					            cache:false
-					        },
-					        data:{
-					   			url:url,
-					   			forum:this.props.params.community
-					        },
-					        context:this
-					    }).success(function(data) {
-					    	//console.log('get_d4_status SUCCESS data=%o',data)
-					    	if(data.success){
-					    		window.infoBox.clear();
-					    		
-						    	if (this.isMounted()) {
-						    		this.setState({
-						        		qwiketD4:data.d4,
-						        		qwiketForumid:data.forumid,
-						        		qwiketThread:data.thread
-									});
-						        }
-					    	}
-					    	else {
-					    		window.infoBox.setMessage('alert-danger', 'Error fetching posts from d4rum defender. Message: '+data.msg);
-					    	}
-				 		});
-					}
-		    	}
-		    	else {
-		    		window.infoBox.setMessage('alert-danger', 'Error fetching posts from d4rum defender. Message: '+data.msg);
-		    	}
-		  	});
-		}
-		else
-		if(typeof(props.params.threadid)!='undefined'&&props.params.threadid){
-			$.ajax({
-		        url: "/api?task=get_thread",
-		        dataType: 'json',
-		        settings:{
-		            cache:false
-		        },
-		        data:{
-		   			threadid:props.params.threadid
-		        },
-		        context:this
-		    }).success(function(data) {
-		    	//console.log('get_thread SUCCESS data=%o',data)
-		    	if(data.success){
-			    	if (this.isMounted()) {
-			    		this.setState({
-			        		topic:data.thread
-						});
-			        }
-			        let url="http://qwiket.com/"+this.props.params.community+"/"+data.thread.threadid+"/7/";
-			       // console.log('calling get_d4_status for threadid url=%s,forum=%s',url,this.props.params.community)
-			        if(typeof(this.props.params.local)=='undefined'||this.props.params.local=='local'){
-				        $.ajax({
-					        url: "/api?task=get_d4_status",
-					        dataType: 'json',
-					        settings:{
-					            cache:false
-					        },
-					        data:{
-					   			url:url,
-					   			forum:this.props.params.community
-					        },
-					        context:this
-					    }).success(function(data) {
-					    	//console.log('get_d4_status SUCCESS data=%o',data)
-					    	if(data.success){
-					    		//window.infoBox.clear();    		
-						    	if (this.isMounted()) {
-						    		this.setState({
-						        		qwiketD4:data.d4,
-						        		qwiketForumid:data.forumid,
-						        		qwiketThread:data.thread
-									});
-						        }
-					    	}
-					    	else {
-					    		//console.log('get_d4_status FAIL data=%o',data)
-					    		window.infoBox.setMessage('alert-danger', 'Error fetching posts from d4rum defender. Message: '+data.msg);
-					    	} 
-				 		});
-					}
-		    	}
-		    	else {
-		    		window.infoBox.setMessage('alert-danger', 'Error fetching posts from d4rum defender. Message: '+data.msg);
-		    	}	    
-	 		});
-		}
-	},
-	*/
 	reportSelectedPostY:function(y){
 			//console.log(y)
 			this.props.setChildTopAction.setChildTop(y);
@@ -197,8 +76,8 @@ var Context=React.createClass({
     	let community=this.props.params.community
     	let resp=[],postid=-1,cv,ct,native_href='',local_href='',showContextBtn
 		//console.log('render this.props=%o',this.props)
-		let showQwiketForum=(typeof this.props.params.local==='undefined'||this.props.params.local=='local')?((typeof this.props.params.local==='undefined'&&this.props.context.nativeD4)?false:true):false
-		let showContext=(!(typeof this.props.params.showcontext==='undefined')||this.props.context.nativeD4&&!showQwiketForum)?true:false
+		let showQwiketForum=(typeof this.props.params.local==='undefined'||this.props.params.local=='local')?((typeof this.props.params.local==='undefined'&&this.props.context.get("nativeD4"))?false:true):false
+		let showContext=(!(typeof this.props.params.showcontext==='undefined')||this.props.context.get("nativeD4")&&!showQwiketForum)?true:false
 		if(showQwiketForum)
 			bg="#CDC"
     	if(u.is(this.props.params.postid)){
@@ -221,30 +100,30 @@ var Context=React.createClass({
     	}
     	//console.log('DEBUG showContext=%s, this.state=%o',showContext,this.state)    
     	//console.log('show context showContext=%s,showLocal=%s,qwiket_forumid=%s,qwiket_thread=%s,community=%s,ct=%s,cv=%s',showContext,showLocal,this.state.qwiket_forumid,this.state.qwiket_thread,community,ct,cv)
-    	let localChild=this.props.context.topic?(showContext?(showQwiketForum?
-    		 (<PostContext  ref="QwiketContext" scope='working' reportY={this.reportSelectedPostY} local={true} forumid={this.props.context.qwiketForumid} thread={this.props.context.qwiketThread} type='context' community={community} constraint_type={ct} constraint_value={cv}/>)
-    		:(<PostContext  ref="NativeContext"scope='working' reportY={this.reportSelectedPostY} local={false} type='context' forumid={this.props.context.nativeForumid} thread={this.props.context.nativeThread} community={community} constraint_type={ct} constraint_value={cv}/>))
-    	    :(<Local ref="QwiketDisqus" url={local_href} community={community} topic={this.props.context.topic}/>))
+    	let localChild=this.props.context.get("topic")?(showContext?(showQwiketForum?
+    		 (<PostContext  ref="QwiketContext" scope='working' reportY={this.reportSelectedPostY} local={true} forumid={this.props.context.get("qwiketForumid")} thread={this.props.context.get("qwiketThread")} type='context' community={community} constraint_type={ct} constraint_value={cv}/>)
+    		:(<PostContext  ref="NativeContext"scope='working' reportY={this.reportSelectedPostY} local={false} type='context' forumid={this.props.context.get("nativeForumid")} thread={this.props.context.get("nativeThread")} community={community} constraint_type={ct} constraint_value={cv}/>))
+    	    :(<Local ref="QwiketDisqus" url={local_href} community={community} topic={this.props.context.get("topic")}/>))
     		:(<div/>)
     	
 	    let forum_str="Native";
-		if(this.props.context.topic){
+		if(this.props.context.get("topic")){
 			//resp.push(<div className="row" style={{borderTopLeftRadius: 4,borderTopRightRadius: 4,background:bg,padding:20}} key={postid}><Item topic={this.props.context.topic} full={true} orderby={0}/></div>)
-			forum_str=this.props.context.topic.site_name;
+			forum_str=this.props.context.get("topic").get("site_name");
 			//console.log('forum_str %s',forum_str)
 		}
 		/**/
 		if(showQwiketForum){
 				//console.log('inside showLocal')
 			let native='';
-			if(this.props.context.nativeD4){
+			if(this.props.context.get("nativeD4")){
 				native=(<Link to={native_href} style={{float:"right", textDecoration: "none"}} ><span className="hidden-xs"><span className="label label-default">{forum_str}</span>&nbsp;</span><span className="label label-default"></span>&nbsp;&nbsp;<span style={{marginTop:2,float:"right", textDecoration: "none"}}><i className="fa fa-chevron-right fa-lg"></i><i className="fa fa-chevron-right fa-lg"></i><i className="fa fa-chevron-right fa-lg"></i></span></Link>)
 			}
 			resp.push(
 				<div style={{background:bg,padding:0,borderRadius: 4}} className="row" key={'context-wrap-'+cv}>                              
 					<div className="panel panel-default" style={{marginTop:0,marginBottom:0,paddingBottom:600,background:bg,borderBottomLeftRadius: 4,borderBottomRightRadius:4}}>
-					  <div  style={{background:bg}} className="panel-heading"><span className="label label-default">{communityName}</span> &nbsp;&nbsp;{this.props.context.qwiketd4?showContextBtn:''}{native}</div>
-					  <div  style={{borderTopLeftRadius: 4,borderTopRightRadius: 4,background:bg,padding:20}} key={postid}><Item topic={this.props.context.topic} full={true} orderby={0}/></div>
+					  <div  style={{background:bg}} className="panel-heading"><span className="label label-default">{communityName}</span> &nbsp;&nbsp;{this.props.context.get("qwiketd4")?showContextBtn:''}{native}</div>
+					  <div  style={{borderTopLeftRadius: 4,borderTopRightRadius: 4,background:bg,padding:20}} key={postid}><Item topic={this.props.context.get("topic")} full={true} orderby={0}/></div>
 					  <div className="panel-body">{localChild}</div>
 					</div>
 				</div>
@@ -252,19 +131,19 @@ var Context=React.createClass({
 		}
 		else{
 			if(ct=='thread')
-				cv=this.props.context.nativeThread;
+				cv=this.props.context.get("nativeThread");
 			//console.log('CV=%s',cv)
 			resp.push(
 				<div style={{background:bg,padding:0,borderRadius: 4}} className="row" key={'context-wrap-17'}>                              
 					<div className="panel panel-default" style={{marginTop:0,marginBottom:0,paddingBottom:600,background:bg,borderBottomLeftRadius: 4,borderBottomRightRadius:4}}>
 					  <div style={{background:bg}} className="panel-heading"><span className="label label-default">{"Fluid Context: "}<span className="hidden-xs">{forum_str}</span></span> <Link  to={local_href} style={{marginTop:0,float:"right", textDecoration: "none"}} ><span className="label label-default">{communityName+ ""}</span>&nbsp;&nbsp;<span style={{marginTop:2,float:"right", textDecoration: "none"}}><i className="fa fa-chevron-right fa-lg"></i><i className="fa fa-chevron-right fa-lg"></i><i className="fa fa-chevron-right fa-lg"></i></span></Link></div>
-					  <div  style={{borderTopLeftRadius: 4,borderTopRightRadius: 4,background:bg,padding:20}} key={postid}><Item topic={this.props.context.topic} full={true} orderby={0}/></div>
-					  <div className="panel-body"><PostContext  reportY={this.reportSelectedPostY} key="postcontext1" local={false} scope='working' type='context' forumid={this.props.context.nativeForumid} thread={this.props.context.nativeThread} community={community} constraint_type={ct} constraint_value={cv}/></div>
+					  <div  style={{borderTopLeftRadius: 4,borderTopRightRadius: 4,background:bg,padding:20}} key={postid}><Item topic={this.props.context.get("topic")} full={true} orderby={0}/></div>
+					  <div className="panel-body"><PostContext  reportY={this.reportSelectedPostY} key="postcontext1" local={false} scope='working' type='context' forumid={this.props.context.get("nativeForumid")} thread={this.props.context.get("nativeThread")} community={community} constraint_type={ct} constraint_value={cv}/></div>
 					</div>
 				</div>
 			)
 		}
-		let sn=this.props.context.topic?this.props.context.topic.site_name:''
+		let sn=this.props.context.get("topic")?this.props.context.get("topic").get("site_name"):''
 		return (	
 			<div className="container" >
 				<div className="col-xs-12 col-sm-9 col-md-9 col-lg-8">
@@ -273,7 +152,7 @@ var Context=React.createClass({
 				<div className="col-sm-3 col-md-3 col-lg-4 hidden-xs  ">
 					 
 					<div ><span className="label label-info">{sn}</span>
-						{sn?(<Items query={""} topics={this.props.sideTopics.items} state={this.props.sideTopics} sideTopics={true} clearTopics={this.props.clearTopicsAction.clearTopics} fetchTopics={this.props.fetchTopicsAction.fetchTopics} sitename={sn} orderby={0} community={community}/>):""}
+						{sn?(<Items query={""} topics={this.props.sideTopics.get("items")} state={this.props.sideTopics} sideTopics={true} clearTopics={this.props.clearTopicsAction.clearTopics} fetchTopics={this.props.fetchTopicsAction.fetchTopics} sitename={sn} orderby={0} community={community}/>):""}
 		         	
 		         	</div>
 
@@ -287,8 +166,8 @@ function mapStateToProps(state) {
 //  console.log('INJECTING OUTER CONTEXTPROPS %o',state)
   return {
    context:state.context,
-   sideTopics:state.context.sideTopics,
-   communityName:state.app.community.communityName
+   sideTopics:state.context.get("sideTopics"),
+   communityName:state.app.get("community").get("communityName")
   };
 }
 function mapDispatchToProps(dispatch) {

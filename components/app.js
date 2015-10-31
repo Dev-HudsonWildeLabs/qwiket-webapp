@@ -18,10 +18,15 @@ let Community=React.createClass({
 		let lines=[];
 		//console.log('RENDER Community: this.params=%o',this.props)
 		//console.log('render %o',this.state);
-		for(var i=0;i<this.props.communities.length;i++){ 
+		/*for(var i=0;i<this.props.communities.count;i++){ 
 			let c=this.props.communities[i]
 			lines.push(<li id={"community_"+c.forum} key={"key_community_"+c.forum}><Link to={"/newsline/"+c.forum+"/newest"}><span className="glyphicon glyphicon-log-in"></span> {c.name}</Link></li>);
-		}
+		}*/
+		this.props.communities.forEach((item,index,array)=>{
+			let forum=item.get("forum");
+			let name=item.get("name");
+			lines.push(<li id={"community_"+forum} key={"key_community_"+forum}><Link to={"/newsline/"+forum+"/newest"}><span className="glyphicon glyphicon-log-in"></span> {name}</Link></li>);
+		})
 		var styles={
 	    	communityName:{
 	    		color:'#fff',
@@ -123,51 +128,14 @@ let Online=React.createClass({
 });
 
 var App = React.createClass({
-	
 	componentDidMount: function() {
 		if(this.props.location.pathname=="/"){
 			//console.log
 			//console.log('redirect to %o',"/newsline/"+this.props.communityState.forum+"/newest")
-			this.props.history.pushState(null,"/newsline/"+this.props.communityState.forum+"/newest");
+			this.props.history.pushState(null,"/newsline/"+this.props.communityState.get("forum")+"/newest");
 		}
 	},
-	
-	componentWillReceiveProps:function(nextProps){
-		//console.log('APP componentWillReceiveProps props=%o nextProps=%o',this.props,nextProps)
-		//if(nextProps.params.community!=this.props.params.community){
-			//console.log('Community changing community',nextProps.params.community)
-			//this.props.fetchCommunityData(nextProps.params.community)
-		//}
-	},
-	fetchCommunityData:function(community){
-		//console.log('fetchCommunityData community=%s',community)
-		//this.setState({communityForums:[]}
-		/*
-		u.publishEvent('pushAppState',{app:{communityName:'',communityForums:[]}})
-		$.ajax({
-	        url: "/api?task=load_community_forums",
-	        dataType: 'json',
-	        settings:{
-	            cache:false
-	        },
-	        data:{
-	        	community:community
-	   		},
-	        context:this
-	    }).success(function(data) {
-	    	if(data.success){
-	    		//console.log('fetchCommunityData: data arrived community %s',data)	
-		    	this.setState({communityName:data.communityName,communityForums:data.forums})
-		    	this.reqAppState()
-	    	}
-	    	else {
-	    		if(__CLIENT__)
-	    		window.infoBox.setMessage('alert-danger', 'Error fetching posts from d4rum defender. Message: '+data.msg);
-	    	}
-      	}); 
-*/
-	},
-	 showSettings: function(event) {
+	showSettings: function(event) {
     	event.preventDefault();
     
   	},
@@ -176,19 +144,12 @@ var App = React.createClass({
   		this.refs.BurgerMenu.toggleMenu();
   	},
 	render:function(){
-		   let Menu = BurgerMenu['push'];
-		 //  	console.log('render app %o',this.props)
+		let Menu = BurgerMenu['push'];
 		u.registerEvent('reqAppState',this.reqAppState,{me:this});
-		
-		/*if(!this.state.communityForums.length){
-			this.fetchCommunityData(this.props.params.community);
-		}*/
-		if(__CLIENT__)
-		if(this.props.communityState.forum!=this.props.params.community)
+		if(__CLIENT__&&(this.props.communityState.get("forum")!=this.props.params.community)){
+			console.log("getForum %o",this.props.communityState)
 			setTimeout(()=>this.props.selectCommunity(this.props.params.community));
-		
-		//this.reqAppState();
-    	
+		}
 	    var styles={
 	    	community:{
 	    		display:'block',
@@ -245,7 +206,7 @@ var App = React.createClass({
         	<div id="signup"><Link to="#" data-toggle="modal" data-target="#signup_modal"><span className="glyphicon glyphicon-user"></span> Signup</Link> </div>
 
 			<div className="divider"></div>
-			<div id="user_lang"><Link to="#" data-toggle="modal" data-target="#userlang_modal"><i className="fa fa-language"></i> {this.props.onlineState.userLang} </Link> </div>
+			<div id="user_lang"><Link to="#" data-toggle="modal" data-target="#userlang_modal"><i className="fa fa-language"></i> {this.props.onlineState.get("userLang")} </Link> </div>
 			<div className="divider"></div>
 			<div id="help_menu"><Link to="/docs"><span className="glyphicon glyphicon-info-sign"></span> Help</Link></div>
 			<div id="support_menu"><Link to="/docs#support" target="_help"><span className="glyphicon glyphicon-question-sign" ></span> Support</Link></div>
@@ -283,12 +244,12 @@ var App = React.createClass({
 					</div>
   		
           		
-         			<div style={styles.community}><Community ref="Community" ls={this.props.communityState.ls} communities={this.props.communityState.communities} communityName={this.props.communityState.communityName} /></div>
+         			<div style={styles.community}><Community ref="Community" ls={this.props.communityState.get("ls")} communities={this.props.communityState.get("communities")} communityName={this.props.communityState.get("communityName")} /></div>
         					
 		        </nav>
 		        
 		        <div className="col-xs-6">
-			 	<InfoBox ref="InfoBox" text={this.props.msg.text} type={this.props.msg.type}/>
+			 	<InfoBox ref="InfoBox" text={this.props.msg.get("text")} type={this.props.msg.get("type")}/>
 				</div>
 			 	
 
@@ -305,11 +266,11 @@ var App = React.createClass({
 });
 
 function mapStateToProps(state) {
-	//console.log('mapStateToProps app')
+	//console.log('mapStateToProps app %o',state.app)
   return {
     msg: state.msg,
-    communityState:state.app.community,
-    onlineState:state.app.online
+    communityState:state.app.get("community"),
+    onlineState:state.app.get("online")
   };
 }
 function mapDispatchToProps(dispatch) {

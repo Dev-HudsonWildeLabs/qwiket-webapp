@@ -171,10 +171,10 @@ server.route({
 			mapUri (request, callback) {
 				let query=request.query;
 				//console.log('CONTEXT query=%o',request)
-				let u="http://"+apiServer+":"+apiPort+"/api?task=landing&community="+encodeURIComponent(request.params.community+"&type=context&threadid="+request.params.threadid);
+				let u="http://"+apiServer+":"+apiPort+"/api?task=landing&community="+request.params.community+"&type=context&threadid="+request.params.threadid;
 
 				callback(null,u);
-				//console.log('mapUri:', u)
+				console.log('mapUri:', u)
 			},
 			onResponse (err, res, request, reply, settings, ttl) {
 				Wreck.read(res, null, function(err, payload){
@@ -251,7 +251,7 @@ server.route({
 					query:    request.query
 				})
 				callback(null,u);
-				//console.log('API PROXY:', u)
+				console.log('API PROXY:', u)
 			},
 			onResponse (err, res, request, reply, settings, ttl) {
 				//console.log('API RESPONSE',res);
@@ -288,6 +288,18 @@ server.route({
 
 function matchAndRender (err, payload,request,reply,ttl) {
 	var landing= JSON.parse(payload);
+	let app=Immutable.fromJS(landing.app);
+	let msg=Immutable.fromJS(landing.msg);
+	let newsline=Immutable.fromJS(landing.newsline);
+	let context=Immutable.fromJS(landing.context);
+	let d4context=Immutable.fromJS(landing.d4context);
+	landing={
+		msg,
+		app,
+		newsline,
+		context,
+		d4context
+	}
 	//console.log(landing)
 		//console.log(payload,y);
 		//reply(payload);

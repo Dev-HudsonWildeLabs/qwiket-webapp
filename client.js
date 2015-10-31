@@ -5,7 +5,7 @@
 import React from "react";
 var ReactDom = require('react-dom');
 import Router from "react-router";
-import Transmit from "react-transmit";
+import Immutable from 'immutable';
 import routes from './routes';
 import {createHistory} from "history"; 
 import { Provider } from 'react-redux';
@@ -37,7 +37,20 @@ const reactRoot = window.document.getElementById("react-root");
  // ReactDom.render(routes, reactRoot);
 //});
 const initialState = window.__INITIAL_STATE__;
-const store = configureStore(initialState);
+let app=Immutable.fromJS(initialState.app);
+  let msg=Immutable.fromJS(initialState.msg);
+  let newsline=Immutable.fromJS(initialState.newsline);
+  let context=Immutable.fromJS(initialState.context);
+  let d4context=Immutable.fromJS(initialState.d4context);
+  let landing={
+    msg,
+    app,
+    newsline,
+    context,
+    d4context
+  }
+console.log(landing);
+const store = configureStore(landing);
 import createBrowserHistory from 'history/lib/createBrowserHistory'
 let history = createBrowserHistory()
 window.firstRender=true;
