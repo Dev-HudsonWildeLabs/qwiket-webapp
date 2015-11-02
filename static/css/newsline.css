@@ -56,7 +56,7 @@
 }*/
 
 
-	@media(max-width:767px){
+	@media(min-width:267px){
 		.topic-middle-right{
 			width:60%;		
 		}
@@ -77,6 +77,30 @@
     } 
    
 	}
+  @media(min-width:568px){
+    .topic-middle-right{
+      width:60%;
+    }
+    .topic-image{
+        width:38%;
+    }
+    .newsline-logo1{
+      width:20px !important;
+     /* right:200px;*/
+       top:10px !important;
+      
+    }
+     .search-field{
+      width:220px !important;
+    }
+    .preview-topics{
+      font-size: 1.1rem !important;
+    }
+    .preview-box{
+      height:200px !important;
+    } 
+    
+  }
 	@media(min-width:768px){
 		.topic-middle-right{
 			width:60%;

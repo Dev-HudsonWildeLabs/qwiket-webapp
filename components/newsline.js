@@ -402,31 +402,31 @@ var Newsline=React.createClass({
 		}
 		return (
 			<div className="container" >				
-				<div id="leftpanel" className="col-xs-9 col-sm-8 col-md-8 col-lg-8" >
-							<div className="row">
-								<div className="form-inline col-xs-12" style={{float:"right",marginBottom:15,backgroundColor:"#8888AA",borderTopLeftRadius:"4px",borderTopRightRadius:"4px",borderBottomRightRadius:"4px"}} role="form">           
-						            <button type="button" id="topics_search_clear_btn" onClick={this.clearButtonClick}  style={{float:"right",marginRight:5,marginTop:10}} className="btn btn-default "><i className="fa fa-times"></i></button>
-						            <button onClick={this.searchButtonClick} type="button"   id="topics_search_btn" style={{float:"right",marginTop:10,marginRight:5}} className="btn btn-default "><i className="fa fa-search"></i></button>
-					        		<label className="visible-md visible-lg" style={{marginTop:15,marginLeft:2,float:"left",color:"#fff"}}> Search:</label>
-					        		<label className="visible-xs visible-sm" style={{marginTop:15,marginLeft:12,float:"left",color:"#fff"}}> <i className="fa fa-search fa-lg"></i></label>
-					        			<input type="text" className="form-control search-field" style={{float:"right",margin:10,maxWidth:400}} defaultValue={search}  id="topics_search" />
-			          			</div>
-		          				<div className="btn-group btn-group-xs" role="group" style={{float:"right",marginTop:-4,marginBottom:15}}>
-						            <Link id="timeline_by_shared"  to={"/newsline/"+this.props.params.community+"/newest"}  type="button" className={"btn btn-primary"+(orderby==0?" active":"")}>By Newest</Link>
-						            <Link id="timeline_by_published" to={"/newsline/"+this.props.params.community+"/published"}  type="button" className={"btn btn-primary"+(orderby==1?" active":"")}>By Published</Link>
-						            <Link id="starred" type="button" to={"/newsline/"+this.props.params.community+"/selected"}  className={"btn btn-primary"+(orderby==2?" active":"")}>Selected</Link>
-						            <Link id="history" type="button" to={"/newsline/"+this.props.params.community+"/myhistory"}  className={"btn btn-primary"+(orderby==3?" active":"")}>Shared by me</Link>
-		         				</div>
-         					</div>		
-		         			<div className="row">
-		         					<Items query={search}  orderby={orderby} community={this.props.params.community} sideTopics={false} topics={this.props.topics.get("items")} state={this.props.topics} clearTopics={this.props.clearTopicsAction.clearTopics} fetchTopics={this.props.fetchTopicsAction.fetchTopics}/>
-		         			</div>			
+				<div id="leftpanel" className="col-xs-7 col-sm-8 col-md-8 col-lg-8" >
+					<div className="row">
+							<div className="form-inline col-xs-12" style={{float:"right",marginBottom:15,backgroundColor:"#8888AA",borderTopLeftRadius:"4px",borderTopRightRadius:"4px",borderBottomRightRadius:"4px"}} role="form">           
+					            <button type="button" id="topics_search_clear_btn" onClick={this.clearButtonClick}  style={{float:"right",marginRight:5,marginTop:10}} className="btn btn-default visible-sm visible-md visible-lg"><i className="fa fa-times"></i></button>
+					            <button onClick={this.searchButtonClick} type="button"   id="topics_search_btn" style={{float:"right",marginTop:10,marginRight:5}} className="btn btn-default "><i className="fa fa-search"></i></button>
+				        		<label className="visible-md visible-lg" style={{marginTop:15,marginLeft:2,float:"left",color:"#fff"}}> Search:</label>
+				        		<label className="visible-sm" style={{marginTop:15,marginLeft:12,float:"left",color:"#fff"}}> <i className="fa fa-search fa-lg"></i></label>
+				        			<input type="text" className="form-control search-field" style={{float:"right",margin:10,maxWidth:400}} defaultValue={search}  id="topics_search" />
+		          			</div>
+	          				<div className="btn-group btn-group-xs" role="group" style={{float:"right",marginTop:-4,marginBottom:15}}>
+					            <Link id="timeline_by_shared"  to={"/newsline/"+this.props.params.community+"/newest"}  type="button" className={"btn btn-primary"+(orderby==0?" active":"")}>By Newest</Link>
+					            <Link id="timeline_by_published" to={"/newsline/"+this.props.params.community+"/published"}  type="button" className={"btn btn-primary"+(orderby==1?" active":"")}>By Published</Link>
+					            <Link id="starred" type="button" to={"/newsline/"+this.props.params.community+"/selected"}  className={"btn btn-primary"+(orderby==2?" active":"")}>Selected</Link>
+					            <Link id="history" type="button" to={"/newsline/"+this.props.params.community+"/myhistory"}  className={"btn btn-primary"+(orderby==3?" active":"")}>Shared by me</Link>
+	         				</div>
+     					</div>		
+	         			<div className="row">
+	         					<Items query={search}  orderby={orderby} community={this.props.params.community} sideTopics={false} topics={this.props.topics.get("items")} state={this.props.topics} clearTopics={this.props.clearTopicsAction.clearTopics} fetchTopics={this.props.fetchTopicsAction.fetchTopics}/>
+	         			</div>			
+				</div>
+				<div id="rightpanel" className="col-xs-5 col-sm-4 col-md-4 col-lg-4">
+					<div className="list-group ">
+						<PostQueue scope='working' type='community' reportY={this.reportSelectedPostY} community={this.props.params.community} communityForums={this.props.forums} posts={this.props.posts.get("items")} constraint_type={""} constraint_value={0} fetchPosts={this.props.fetchPostsAction.fetchPosts} clearPosts={this.props.clearPostsAction.clearPosts} state={this.props.posts} />
 					</div>
-					<div id="rightpanel" className="col-sx-3 col-sm-4 col-md-4 col-lg-4">
-						<div className="list-group ">
-							<PostQueue scope='working' type='community' reportY={this.reportSelectedPostY} community={this.props.params.community} communityForums={this.props.forums} posts={this.props.posts.get("items")} constraint_type={""} constraint_value={0} fetchPosts={this.props.fetchPostsAction.fetchPosts} clearPosts={this.props.clearPostsAction.clearPosts} state={this.props.posts} />
-						</div>
-					</div>	
+				</div>	
 			</div>
 		)
 	}

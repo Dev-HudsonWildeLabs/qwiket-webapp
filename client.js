@@ -7,6 +7,9 @@ var ReactDom = require('react-dom');
 import Router from "react-router";
 import Immutable from 'immutable';
 import routes from './routes';
+import App from './components/app.js';
+import Newsline from './components/newsline.js'
+import Context from './components/context.js'
 import {createHistory} from "history"; 
 import { Provider } from 'react-redux';
 import configureStore from './components/d4shared/store/configureStore'

@@ -1,7 +1,7 @@
 require("babel/register");
 var React = require('react');
 import BurgerMenu from 'react-burger-menu';
-
+import Radium from 'radium'
 
 import InfoBox from './d4shared/infobox.jsx'
 import u from './d4shared/utils.jsx'
@@ -127,7 +127,7 @@ let Online=React.createClass({
 	}
 });
 
-var App = React.createClass({
+ var App = React.createClass({
 	componentDidMount: function() {
 		if(this.props.location.pathname=="/"){
 			//console.log
@@ -154,8 +154,9 @@ var App = React.createClass({
 	    	community:{
 	    		display:'block',
 	    		float:"right",
-	    		width:300,
+	    		//width:300,
 	    		marginTop:10,
+	    		marginRight:20,
 	    		marginBottom:"auto"
 	    	},
 	    	collapse:{
@@ -186,21 +187,32 @@ var App = React.createClass({
     		},
     		logoMenu:{float:"left",marginLeft:-15,width:30,height:"auto"},
     		brandMenu:{color:"#fff",float:"left",marginLeft:20, fontFamily: "'Sigmar One', cursive", fontSize: "2.3rem"},
-    		brand:{fontFamily: "'Sigmar One', cursive", fontSize: "2.5rem",marginLeft:20,marginTop:10,padding:0}
+    		brand:{
+    			fontFamily: "'Sigmar One', cursive", 
+    			
+    			'@media (minWidth: 180px)': {
+   					fontSize: "1.8rem"
+  				},
+  				'@media (minWidth: 780px)': {
+   					fontSize: "2.5rem"
+  				},
+    			marginLeft:20,
+    			marginTop:10,
+    			padding:0}
     	
 	    }
 	   // console.log('Render App stte=%o',this.state)
 	    return (
-	    	<div id="outer-container" style={{minWidth:390}}>  
+	    	<div id="outer-container" style={{minWidth:460}}>  
 	    	<Menu ref="BurgerMenu" width={220} pageWrapId={ "page-wrap" } outerContainerId={"outer-container"} >
 	    	<div style={{height:200,display:"block",height:"200px",width:"auto"}}>
-	    	<div>
-	    	<img className="newsline-logo-menu"  style={styles.logoMenu} src="/css/logo2.png" alt="Qwiket"/>
-				     	
-			<Link id="logo" style={styles.brandMenu} className="visible-xs visible-sm visible-md visible-lg" to={'/newsline/'+this.props.params.community+'/newest'}> Qwiket </Link>
-			<br/><br/><span className="text-uppercase" style={styles.slogan}>the internet of us</span> <br/>
-			
-			</div>	
+		    	<div>
+		    	<img className="newsline-logo-menu"  style={styles.logoMenu} src="/css/logo2.png" alt="Qwiket"/>
+					     	
+				<Link id="logo" style={styles.brandMenu} className="visible-xs visible-sm visible-md visible-lg" to={'/newsline/'+this.props.params.community+'/newest'}> Qwiket </Link>
+				<br/><br/><span className="text-uppercase" style={styles.slogan}>the internet of us</span> <br/>
+				
+				</div>	
 			</div>      	
         	<div><Link to="/?login=1"><span className="glyphicon glyphicon-log-in"></span> Login [Disqus] </Link> </div>
         	<div id="signup"><Link to="#" data-toggle="modal" data-target="#signup_modal"><span className="glyphicon glyphicon-user"></span> Signup</Link> </div>
@@ -230,8 +242,8 @@ var App = React.createClass({
 				        <span className="icon-bar" onClick={this.onClick}></span>
 				        <span className="icon-bar" onClick={this.onClick}></span>
 				    </button>
-				    <img  className=" visible-sm visible-md visible-lg" style={styles.logo}  src="/css/logo2.png" alt="Qwiket"/>
-			     	<Link style={styles.brand} className="navbar-brand visible-md visible-lg" to={'/newsline/'+this.props.params.community+'/newest'}> Qwiket </Link>   
+				   
+			     	<Link to={'/newsline/'+this.props.params.community+'/newest'}>  <img  style={styles.logo}  src="/css/logo2.png" alt="Qwiket"/><span style={styles.brand}  className="navbar-brand ">Qwiket</span> </Link>   
 		      		
 		      		
 
@@ -264,7 +276,7 @@ var App = React.createClass({
       	);
     }
 });
-
+App=Radium(App)
 function mapStateToProps(state) {
 	//console.log('mapStateToProps app %o',state.app)
   return {
