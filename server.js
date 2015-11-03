@@ -293,6 +293,17 @@ function matchAndRender (err, payload,request,reply,ttl) {
 	let newsline=Immutable.fromJS(landing.newsline);
 	let context=Immutable.fromJS(landing.context);
 	let d4context=Immutable.fromJS(landing.d4context);
+	let meta=landing.meta;
+	let bot_comments=landing.bot_comments;
+	let comments_html='';
+	if(bot_comments&&bot_comments.length>0){
+		comments_html="<ul class='bot-comments>'";
+		for(let i=0;i<bot_comments.length;i++){
+			comments_html+="<li>"+bot_commentsp[i]+"</li>";
+		}
+		comments_html+="</ul>";
+
+	}
 	landing={
 		msg,
 		app,
@@ -347,8 +358,17 @@ function matchAndRender (err, payload,request,reply,ttl) {
 							<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 							<meta http-equiv="Pragma" content="no-cache" />
 							<meta http-equiv="Expires" content="0" />
-
 							<meta name="viewport" content="width=device-width, initial-scale=1 minimum-scale=0.5"/>
+							<meta name="description" content=${meta.description} />
+							<meta property="og:description" content=${meta.description} />
+							<meta property="og:title" content=${meta.title} />
+							<meta property="og:site_name" content=${meta.site_name} />
+							<meta property="og:url" content=${meta.url} />
+							<meta property="og:image" content=${meta.image} />
+							<meta property="og:locale" content=${meta.locale} />
+							
+							
+
 							<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
 							<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 							<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -380,6 +400,7 @@ function matchAndRender (err, payload,request,reply,ttl) {
           						window.__INITIAL_STATE__ = ${JSON.stringify(finalState)};
         					</script>
         					<script src=${'"'+(process.env.NODE_ENV === "production" ? "" : '//localhost:85')+'/dist/client.js"'}></script>
+        					${bot_comments}
 						</body>
 					</html>`
 				);
