@@ -1,0 +1,143 @@
+/**
+ *	Shape of the Qwiket state. Language Strings (ls) are split between app components to facilitate translation by users. Will be expanded to contain the state of the
+ *	translation sub-component as needed in the future.
+ *
+ *
+ * 
+ */
+
+{
+	"msg":{
+		"text":"",
+		"type":
+		},
+	"app":{
+		"community":{
+			"communityName":"US Conservative",
+			"forum":"usconservative",
+			"communities":[
+				{
+					"name":"",
+					"description":"",
+					"forum":""
+				}
+			],
+			"ls":{
+
+			}
+
+		},
+		"online":{
+			"userLang":"en",
+			"login":1,
+			"userName":"Forum Defence Team",
+			"avatar":"http://disqus.com/blah.jpg",
+			"ls":{
+				[Symbol("blah")]:"Ерунда"
+			}
+		}
+
+	},
+	"newsline":{
+		"topics":{
+			"lastid":0,
+			"isFetching":false,
+			"items":[]
+		},
+		"posts":{
+			"type":"",//community,parent,level,child
+			"lastids":[],
+			"isFetching":false,
+			"items":[]
+		},
+		"forums":[],
+		"ls":{
+
+		}
+	},
+	"context":{
+        "isFetching":false,
+		"topic":{
+
+		},
+        /**
+         * Note that by default nativeD4 state params is true until proven otherwise, gives a chance for a child component to go and get posts for native forum. If it can't it will trigger event "noNative" that will reset this state param
+         * qwoketD4 which plays similiar role for local (qwiket hosted) forums is set to false as the check will be made by this component in any case and it will enable this state if succesful (adding a button to switch to context view of local forum)
+         */
+		
+        "qwiketD4":false,           /*this thread on selected qwiket community forum is loaded on D4                        */   
+        "qwiketForumid":0,          /*forumid of the qwiket community forum for this thread                                 */
+        "qwiketThread":0,           /*Disqus thread id (or future similiar alternative from other services)  */
+        "nativeD4":true,            /*this thread on native forum is loaded on D4                                           */
+        "nativeForumid":0,
+        "nativeThread":0,        
+        "sideTopics":{
+			"lastid":0,
+			"isFetching":false,
+			"items":[]
+		},
+		"ls":{
+
+		}	
+	},
+
+	"D4Context":{
+		"postCoords":{}, //Immutable Map
+		"queueCoords":{},
+		"childColumnTop":0,
+		"postid":0, //selected postid
+		"transitions":{		//this is no dependent on any server state and is managed internally via actions by reducer
+			"transition":{
+				"type":"childToLevel",
+				"start":0, //time, ms
+				"end":0,
+				"startCoords":{
+					"top":0,
+					"left":0
+				},
+				"targetCoords":{
+					"top":0,
+					"left"
+				},
+
+				"items":[],
+				"targetPostid":0,
+				"targetQueue":0
+
+			},
+					},
+		"parent":{
+			
+			"isFetching":false,
+			"items":[],
+			"holding":[]   //old items in case of restore on aborted drag
+		},
+		"level":{
+			"lastid":0,    //only level posts are delivered in chunks
+			"isFetching":false,
+			"items":[],
+			"holding":[]
+
+		},
+		"child":{
+			"isFetching":false,
+			"items":[],
+			"holding":[]
+		}
+
+	},
+	"publishing":{
+		"link":"",
+		"isSubmitting":false,
+		"community":"",
+		"comment":"",
+		"title":"",
+		"image":"",
+		"description":"",
+		"site_name":"",
+		"author":"",
+		"locale":"",
+		"approval":false
+	}
+	
+}
