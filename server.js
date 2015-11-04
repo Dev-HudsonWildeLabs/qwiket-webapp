@@ -328,10 +328,13 @@ server.route({
 					query:    request.query
 				})
 				callback(null,u);
-				//console.log('D4API PROXY:', u)
+				console.log('D4API PROXY:', u)
 			},
 			onResponse (err, res, request, reply, settings, ttl) {
-				
+				//console.log(res)
+					/*Wreck.read(res, null, function(err, payload){
+					//console.log(JSON.parse(payload));
+				})*/
 				reply(res).ttl(ttl);
 			}
 		}
@@ -344,6 +347,7 @@ function matchAndRender (err, payload,request,reply,ttl) {
 	if(landing.redirect){
 		redirect=landing.redirect;
 		reply.redirect(redirect);
+		console.log("REDIRECT TO ".redirect)
 		return;
 	}
 	let app=Immutable.fromJS(landing.app);
