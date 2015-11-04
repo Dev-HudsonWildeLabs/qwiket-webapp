@@ -8,7 +8,7 @@ import Radium from 'radium'
 import {Link,History} from 'react-router'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {fetchTopics,clearTopics} from './d4shared/actions/newslineAction';
+import {fetchTopics,clearTopics} from './actions/newslineAction';
 import {fetchPosts,clearPosts} from './d4shared/actions/postsAction';
 
 

@@ -13,7 +13,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import Immutable from 'immutable';
 import mapify from 'es6-mapify'
-import configureStore from './components/d4shared/store/configureStore'
+import configureStore from './components/store/configureStore'
 
 
 
@@ -70,14 +70,25 @@ server.route({
 			passThrough: true,
 			mapUri (request, callback) {
 				let query=request.query;
-			
+				
 				let u="http://"+apiServer+":"+apiPort+"/api?task=landing";
 					//console.log('INDEX / u=',u)
+				if (request.query.login) {
+        			u+="&login="+request.query.login;
+    			}
+    			if (request.query.code) {
+        			u+="&code="+request.query.code;
+    			}
+
 				callback(null,u);
-				//console.log('mapUri:', u)
+				console.log('mapUri:', u)
 			},
 			onResponse (err, res, request, reply, settings, ttl) {
 				//console.log('INSIDE 111')
+				//
+				//
+				/*if (request.query.login||request.query.code)
+					return;*/
 				Wreck.read(res, null, function(err, payload){
 					//console.log('LANDING PAYLOAD:',JSON.parse(payload))
 					matchAndRender(err, payload,request,reply,ttl);
@@ -88,6 +99,7 @@ server.route({
 		}
 	}
 });
+
 server.route({
 	method:  "GET",
 	path:    "/newsline/{community}/{params*}",
@@ -98,12 +110,18 @@ server.route({
 				let query=request.query;
 				//console.log('query=%o',request)
 				let u="http://"+apiServer+":"+apiPort+"/api?task=landing&type=newsline&community="+encodeURIComponent(request.params.community);
-
+				if (request.query.login) {
+        			u+="&login="+request.query.login;
+    			}
+    			if (request.query.code) {
+        			u+="&code="+request.query.code;
+    			}
 				callback(null,u);
 				//console.log('mapUri:', u)
 			},
 			onResponse (err, res, request, reply, settings, ttl) {
-				
+				/*if (request.query.login||request.query.code)
+					return;*/
 				//console.log('INSIDE 222')
 				Wreck.read(res, null, function(err, payload){
 					matchAndRender(err, payload,request,reply,ttl);
@@ -124,11 +142,18 @@ server.route({
 				let query=request.query;
 				//console.log('query=%o',request)
 				let u="http://"+apiServer+":"+apiPort+"/api?task=landing&community="+request.params.community+"&type=context&postid="+request.params.postid;
-
+				if (request.query.login) {
+        			u+="&login="+request.query.login;
+    			}
+    			if (request.query.code) {
+        			u+="&code="+request.query.code;
+    			}
 				callback(null,u);
 				//console.log('mapUri:', u)
 			},
 			onResponse (err, res, request, reply, settings, ttl) {
+				/*if (request.query.login||request.query.code)
+					return;*/
 				Wreck.read(res, null, function(err, payload){
 					matchAndRender(err, payload,request,reply,ttl);
 				})
@@ -140,7 +165,7 @@ server.route({
 });
 server.route({
 	method:  "GET",
-	path:    "/context/{community}/post/{postid}/{local}",
+	path:    "/context/{community}/post/{postid}/{local}/{params*}",
 	handler: {
 		proxy: {
 			passThrough: true,
@@ -148,11 +173,22 @@ server.route({
 				let query=request.query;
 				//console.log('query=%o',request)
 				let u="http://"+apiServer+":"+apiPort+"/api?task=landing&community="+request.params.community+"&type=context&postid="+request.params.postid+"&local="+request.params.local;
+				if (request.query.login) {
+        			u+="&login="+request.query.login;
+    			}
+    			if (request.query.code) {
+        			u+="&code="+request.query.code;
+    			}
 
 				callback(null,u);
-				//console.log('mapUri:', u)
+				console.log('mapUri:', u)
 			},
 			onResponse (err, res, request, reply, settings, ttl) {
+			/*	if (request.query.login||request.query.code){
+					console.log("SPECIAL RETURN ",request.query.login,request.query.code)
+					
+					return;
+				}*/
 				Wreck.read(res, null, function(err, payload){
 					matchAndRender(err, payload,request,reply,ttl);
 				})
@@ -172,11 +208,19 @@ server.route({
 				let query=request.query;
 				//console.log('CONTEXT query=%o',request)
 				let u="http://"+apiServer+":"+apiPort+"/api?task=landing&community="+request.params.community+"&type=context&threadid="+request.params.threadid;
+				if (request.query.login) {
+        			u+="&login="+request.query.login;
+    			}
+    			if (request.query.code) {
+        			u+="&code="+request.query.code;
+    			}
 
 				callback(null,u);
 				console.log('mapUri:', u)
 			},
 			onResponse (err, res, request, reply, settings, ttl) {
+				//if (request.query.login||request.query.code)
+				//	return;
 				Wreck.read(res, null, function(err, payload){
 					matchAndRender(err, payload,request,reply,ttl);
 				})
@@ -196,11 +240,19 @@ server.route({
 				let query=request.query;
 				//console.log('CONTEXT query=%o',request)
 				let u="http://"+apiServer+":"+apiPort+"/api?task=landing&community="+encodeURIComponent(request.params.community+"&type=context&threadid="+request.params.threadid+"&local="+request.params.local);
+				if (request.query.login) {
+        			u+="&login="+request.query.login;
+    			}
+    			if (request.query.code) {
+        			u+="&code="+request.query.code;
+    			}
 
 				callback(null,u);
-				//console.log('mapUri:', u)
+				console.log('mapUri:', u)
 			},
 			onResponse (err, res, request, reply, settings, ttl) {
+				//if (request.query.login||request.query.code)
+				//	return;
 				Wreck.read(res, null, function(err, payload){
 					matchAndRender(err, payload,request,reply,ttl);
 				})
@@ -288,6 +340,12 @@ server.route({
 
 function matchAndRender (err, payload,request,reply,ttl) {
 	var landing= JSON.parse(payload);
+	let redirect="";
+	if(landing.redirect){
+		redirect=landing.redirect;
+		reply.redirect(redirect);
+		return;
+	}
 	let app=Immutable.fromJS(landing.app);
 	let msg=Immutable.fromJS(landing.msg);
 	let newsline=Immutable.fromJS(landing.newsline);

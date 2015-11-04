@@ -6,8 +6,8 @@ import { bindActionCreators } from 'redux';
 import {Items,Item} from  './newsline.js' 
 import Local from  './local.js' 
 import u from './d4shared/utils.jsx'
-import {fetchTopics,clearTopics} from './d4shared/actions/newslineAction';
-import {fetchContextTopicForPostid,fetchContextTopicForThread,clearContextTopic} from './d4shared/actions/contextAction';
+import {fetchTopics,clearTopics} from './actions/newslineAction';
+import {fetchContextTopicForPostid,fetchContextTopicForThread,clearContextTopic} from './actions/contextAction';
 import {setChildTop} from './d4shared/actions/D4ContextAction';
 import PostContext from './d4shared/postcontext.jsx'
 

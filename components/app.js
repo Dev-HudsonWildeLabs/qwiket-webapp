@@ -8,7 +8,7 @@ import u from './d4shared/utils.jsx'
 import {Link} from 'react-router'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {selectCommunity} from './d4shared/actions/appAction.js';
+import {selectCommunity} from './actions/appAction.js';
 
 let Community=React.createClass({
 	
@@ -183,10 +183,24 @@ let Online=React.createClass({
     			marginLeft:-15,
     			marginRight:0,
     			padding:0,
+    			marginTop:-15,
     			fontFamily: "'Sigmar One', cursive"
     		},
-    		logoMenu:{float:"left",marginLeft:-15,width:30,height:"auto"},
-    		brandMenu:{color:"#fff",float:"left",marginLeft:20, fontFamily: "'Sigmar One', cursive", fontSize: "2.3rem"},
+    		uname:{
+    			fontSize:'1.0rem',
+    			color:"#fff",
+    			marginTop:-10,
+    			marginBottom:20
+    		},
+    		avatar:{
+    			float:"right",
+    			position:"fixed",
+    			width:48,
+    			height:'auto',
+    			padding:10
+    		},
+    		logoMenu:{float:"left",marginLeft:-15,width:30,marginTop:-15,height:"auto"},
+    		brandMenu:{color:"#fff",float:"left",marginLeft:20, marginTop:-15,fontFamily: "'Sigmar One', cursive", fontSize: "2.3rem"},
     		brand:{
     			fontFamily: "'Sigmar One', cursive", 
     			
@@ -201,11 +215,39 @@ let Online=React.createClass({
     			padding:0}
     	
 	    }
+	    let umenu="";
+	    if(this.props.onlineState.login){
+	    	console.log(this.props.onlineState.toObject())
+	    	umenu=(
+	    		<div>
+		    		<div>
+		    			<Link to="/?login=1"><span className="glyphicon glyphicon-log-in"></span> Login [Disqus] </Link> 
+		    		</div>
+	        		<div id="signup">
+	        			<Link to="#" data-toggle="modal" data-target="#signup_modal"><span className="glyphicon glyphicon-user"></span> Signup</Link> 
+	        		</div>
+        		</div>
+			)
+	    }
+	    else{
+	    	console.log(this.props.onlineState.toObject())
+	    	umenu=(
+				<div>
+					<div style={{height:"40px"}}><span className="avatar" style={{float:"right",marginRight:10}}><img  style={styles.avatar} src={this.props.onlineState.get("avatar")}/></span><span className="user-name" style={styles.uname}>{"Logged in as: "+this.props.onlineState.get("userName")}</span></div>
+					<div className="divider"></div>
+					<div className="divider"></div><br/>
+					<div>
+						<Link to="/?logout=1"><span className="glyphicon glyphicon-log-out"></span> Logout </Link> 
+					</div>
+	        		
+        		</div>
+	    		)
+	    }
 	   // console.log('Render App stte=%o',this.state)
 	    return (
 	    	<div id="outer-container" style={{minWidth:460}}>  
 	    	<Menu ref="BurgerMenu" width={220} pageWrapId={ "page-wrap" } outerContainerId={"outer-container"} >
-	    	<div style={{height:200,display:"block",height:"200px",width:"auto"}}>
+	    	<div style={{display:"block",width:"auto"}}>
 		    	<div>
 		    	<img className="newsline-logo-menu"  style={styles.logoMenu} src="/css/logo2.png" alt="Qwiket"/>
 					     	
@@ -214,10 +256,8 @@ let Online=React.createClass({
 				
 				</div>	
 			</div>      	
-        	<div><Link to="/?login=1"><span className="glyphicon glyphicon-log-in"></span> Login [Disqus] </Link> </div>
-        	<div id="signup"><Link to="#" data-toggle="modal" data-target="#signup_modal"><span className="glyphicon glyphicon-user"></span> Signup</Link> </div>
-
-			<div className="divider"></div>
+        	{umenu}
+			<div className="divider"></div><br/>
 			<div id="user_lang"><Link to="#" data-toggle="modal" data-target="#userlang_modal"><i className="fa fa-language"></i> {this.props.onlineState.get("userLang")} </Link> </div>
 			<div className="divider"></div>
 			<div id="help_menu"><Link to="/docs"><span className="glyphicon glyphicon-info-sign"></span> Help</Link></div>

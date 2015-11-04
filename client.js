@@ -12,7 +12,7 @@ import Newsline from './components/newsline.js'
 import Context from './components/context.js'
 import {createHistory} from "history"; 
 import { Provider } from 'react-redux';
-import configureStore from './components/d4shared/store/configureStore'
+import configureStore from './components/store/configureStore'
 
 //console.log("ENTERED QWIKET !!!")
 // Set a device type based on window width, so that we can write media queries in javascript

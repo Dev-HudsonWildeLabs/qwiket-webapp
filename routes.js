@@ -7,7 +7,7 @@ import Context from  './components/context.js'
 export default (
 	<Router>
     	<Route path="/" component={MainPage}>
-      		
+		
       		<Route path="/newsline/:community" component={Newsline}>
       			<Route path="/newsline/:community/:orderby" component={Newsline}>
       			</Route>
@@ -26,7 +26,9 @@ export default (
       				<Route path="/context/:community/topic/:threadid/:local/:showcontext" component={Context}>
       				</Route>
       			</Route>
-  			</Route>  
+  			</Route>
+       
     	</Route>
+
 	</Router>
 );

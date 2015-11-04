@@ -4,6 +4,90 @@
 		"selected_items":
 		[
 			[
+				"new",
+				"newParentItems"
+			],
+			[
+				"child",
+				"childColumnTop"
+			],
+			[
+				"selecte",
+				"selectedPostid"
+			],
+			[
+				"sele",
+				"selectedPostid"
+			],
+			[
+				"st",
+				"startTranstitionAction"
+			],
+			[
+				"setC",
+				"setChildTop"
+			],
+			[
+				"setChi",
+				"setChildTopAction"
+			],
+			[
+				"max",
+				"maxWidth"
+			],
+			[
+				"vis",
+				"visible-sm"
+			],
+			[
+				"ro",
+				"scaleRotate"
+			],
+			[
+				"let",
+				"LEVEL_TO_PARENT"
+			],
+			[
+				"comm",
+				"communityName"
+			],
+			[
+				"co",
+				"communityName"
+			],
+			[
+				"communit",
+				"communityForums"
+			],
+			[
+				"fetch",
+				"fetchTopics"
+			],
+			[
+				"onl",
+				"onlineState"
+			],
+			[
+				"render",
+				"renderToString"
+			],
+			[
+				"api",
+				"apiServer"
+			],
+			[
+				"visible",
+				"visible-lg"
+			],
+			[
+				"visib",
+				"visible-md"
+			],
+			[
+				"visibl",
+				"visible-sm"
+			],
+			[
 				"hand",
 				"handleBottomScroll"
 			],
@@ -212,53 +296,98 @@
 	"buffers":
 	[
 		{
+			"file": "package.json",
+			"settings":
+			{
+				"buffer_size": 2645,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "components/app.js",
 			"settings":
 			{
-				"buffer_size": 8603,
+				"buffer_size": 12552,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"contents": "|+| \"curl_getinfo($ch, CURLINFO_HTTP_CODE)\"\n|+| \"$match\"\n|+| \"$client->config\"\n|+| \"$property\"\n|+| \"$name\"\n|+| \"$content\"\n|+| \"$http_equiv\"\n",
+			"file": "routes.js",
 			"settings":
 			{
-				"buffer_size": 140,
-				"line_ending": "Windows",
-				"name": "Xdebug Watch",
-				"read_only": true,
-				"scratch": true
+				"buffer_size": 1176,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "babel.server.js",
+			"settings":
+			{
+				"buffer_size": 375,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "node_modules/react-burger-menu/src/menus/scaleRotate.js",
+			"settings":
+			{
+				"buffer_size": 495,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "node_modules/react-burger-menu/src/CrossIcon.js",
+			"settings":
+			{
+				"buffer_size": 1049,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "node_modules/react-burger-menu/src/menuFactory.js",
+			"settings":
+			{
+				"buffer_size": 6311,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "node_modules/react-burger-menu/src/BurgerIcon.js",
+			"settings":
+			{
+				"buffer_size": 2215,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "node_modules/react-burger-menu/package.json",
+			"settings":
+			{
+				"buffer_size": 1856,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "static/css/newsline.css",
+			"settings":
+			{
+				"buffer_size": 6739,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "static/css/d4rum.css",
+			"settings":
+			{
+				"buffer_size": 3818,
+				"line_ending": "Windows"
 			}
 		},
 		{
 			"file": "components/newsline.js",
 			"settings":
 			{
-				"buffer_size": 20553,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "components/router.js",
-			"settings":
-			{
-				"buffer_size": 2249,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "static/dist/client.js",
-			"settings":
-			{
-				"buffer_size": 1331473,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "components/d4shared/postcontext.jsx",
-			"settings":
-			{
-				"buffer_size": 6060,
+				"buffer_size": 15427,
 				"line_ending": "Windows"
 			}
 		},
@@ -266,7 +395,7 @@
 			"file": "components/d4shared/postqueue.jsx",
 			"settings":
 			{
-				"buffer_size": 12772,
+				"buffer_size": 6472,
 				"line_ending": "Windows"
 			}
 		},
@@ -274,57 +403,7 @@
 			"file": "components/d4shared/posts.jsx",
 			"settings":
 			{
-				"buffer_size": 5203,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"contents": "import {Server} from \"hapi\";\nimport h2o2 from \"h2o2\";\nimport inert from \"inert\";\nimport React from \"react\";\nimport ReactDOM from \"react-dom/server\";\nimport {RoutingContext, match} from \"react-router\";\n//import createLocation from \"history/lib/createLocation\";\nimport Transmit from \"react-transmit\";\nimport routes from \"./routes\";\nimport history from \"history\"\nimport url from \"url\";\nvar Wreck = require('wreck'); \n//console.log(process)\nvar hostname = process.env.HOSTNAME || \"localhost\";\nvar apiServer = process.env.QWIKETAPI|| \"localhost\";\nvar apiPort=process.env.QWIKETAPIPORT|| \"8088\";\nGLOBAL.window = GLOBAL;  \n\n\n/**\n * Start Hapi server on port 8000.\n */\n\n//console.info('$$$$$$$$######  process.env=%o',process.env)\nconsole.log('starting server 1 ',Date.now());\nconst server = new Server();\nconsole.log('starting server 2 ',Date.now());\nserver.connection({host: hostname, port: process.env.PORT || 8000});\nconsole.log('starting server 3 ',Date.now());\nserver.register([\n	h2o2,\n    inert\n], function (err) {\n	if (err) {\n		throw err;\n	}\nconsole.log('starting server 4 ',Date.now());\n	server.start(function () {\n		console.info(\"==> ✅  Server is listening\");\n		console.info(\"==> 🌎  Go to \" + server.info.uri.toLowerCase());\n	});\n});\nconsole.log('starting server 5 ',Date.now());\n\n/**\n * Attempt to serve static requests from the public folder.\n */ \nserver.route({\n	method:  \"GET\",\n	path:    \"/\",\n	handler: {\n		proxy: {\n			passThrough: true,\n			mapUri (request, callback) {\n				let query=request.query;\n				console.log('INDEX /')\n				let u=\"http://\"+apiServer+\":\"+apiPort+\"/api?task=landing\";\n\n				callback(null,u);\n				console.log('mapUri:', u)\n			},\n			onResponse (err, res, request, reply, settings, ttl) {\n				console.log('INSIDE 111')\n				Wreck.read(res, null, function(err, payload){\n					matchAndRender(err, payload,request,reply)\n				})\n			\n            	//console.log('res ',res)\n			}\n		}\n	}\n});\nserver.route({\n	method:  \"GET\",\n	path:    \"/newsline/{community}/{params*}\",\n	handler: {\n		proxy: {\n			passThrough: true,\n			mapUri (request, callback) {\n				let query=request.query;\n				//console.log('query=%o',request)\n				let u=\"http://\"+apiServer+\":\"+apiPort+\"/api?task=landing&community=\"+encodeURIComponent(request.params.community);\n\n				callback(null,u);\n				console.log('mapUri:', u)\n			},\n			onResponse (err, res, request, reply, settings, ttl) {\n				//console.log('INSIDE 222')\n				Wreck.read(res, null, function(err, payload){\n					matchAndRender(err, payload,request,reply)\n				})\n			\n            	//console.log('res ',res)\n			}\n		}\n	}\n});\nserver.route({\n	method:  \"GET\",\n	path:    \"/context/{community}/{params*}\",\n	handler: {\n		proxy: {\n			passThrough: true,\n			mapUri (request, callback) {\n				let query=request.query;\n				//console.log('query=%o',request)\n				let u=\"http://\"+apiServer+\":\"+apiPort+\"/api?task=landing&community=\"+encodeURIComponent(request.params.community);\n\n				callback(null,u);\n				console.log('mapUri:', u)\n			},\n			onResponse (err, res, request, reply, settings, ttl) {\n				Wreck.read(res, null, function(err, payload){\n					matchAndRender(err, payload,request,reply)\n				})\n			\n            	//console.log('res ',res)\n			}\n		}\n	}\n});\nserver.route({\n	method:  \"GET\",\n	path:    \"/css/{params*}\", \n	handler: {\n		file: (request) => \"static\" + request.path\n	}\n});\n\nserver.route({\n	method:  \"GET\",\n	path:    \"/js/{params*}\", \n	handler: {\n		file: (request) => \"static\" + request.path\n	}\n});\nserver.route({\n	method:  \"GET\",\n	path:    \"/dist/{params*}\", \n	handler: {\n		file: (request) => \"static\" + request.path\n	}\n});\n/**\n * Endpoint that proxies all GitHub API requests to https://api.github.com.\n */\nserver.route({\n	method: \"GET\",\n	path: \"/api/{params*}\",\n	handler: {\n		proxy: {\n			passThrough: true,\n			mapUri (request, callback) {\n				let u=\n				 url.format({\n					protocol: \"http\",\n					host:     apiServer+\":\"+apiPort,\n					\n					pathname: \"api\",\n					query:    request.query\n				})\n				callback(null,u);\n				console.log('API PROXY:', u)\n			},\n			onResponse (err, res, request, reply, settings, ttl) {\n				//console.log('API RESPONSE',res);\n				reply(res);\n			}\n		}\n	}\n});\nserver.route({\n	method: \"GET\",\n	path: \"/d4api/{params*}\",\n	handler: {\n		proxy: {\n			passThrough: true,\n			mapUri (request, callback) {\n				let u=\n				 url.format({\n					protocol: \"http\",\n					host:     apiServer+\":\"+apiPort,\n				\n					pathname: \"d4api\",\n					query:    request.query\n				})\n				callback(null,u);\n				console.log('D4API PROXY:', u)\n			},\n			onResponse (err, res, request, reply, settings, ttl) {\n				\n				reply(res);\n			}\n		}\n	}\n});\n\nfunction matchAndRender (err, payload,request,reply) {\n	let y= JSON.parse(payload);\n		//console.log(payload,y);\n		//reply(payload);\n		\n	window.server = y.server;\n\n	//console.log(\"STEP 2\")\n	match({routes, location:request.url}, (error, redirectLocation, renderProps) => {\n		//console.log('matched',error,redirectLocation, renderProps)\n		if (redirectLocation) { \n			console.log('redirect')\n			reply.redirect(redirectLocation.pathname + redirectLocation.search)\n		}\n		else if (error || !renderProps) {\n			console.log('continue');\n			reply.continue(); \n		}\n		else {\n			//console.log(window.server);\n			//console.log('renderToString')\n			console.log(' calling renderToString:', Date.now() )\n			Transmit.renderToString(RoutingContext, renderProps).then(({reactString, reactData}) => {\n				//console.log('renderToString returned !!!')\n				let output = (\n					`<!doctype html>\n					<html lang=\"en-us\">\n						<head>\n							<meta charset=\"utf-8\">\n\n						  <title>Qwiket </title>\n						  <meta http-equiv=\"Cache-Control\" content=\"no-cache, no-store, must-revalidate\" />\n						  <meta http-equiv=\"Pragma\" content=\"no-cache\" />\n						  <meta http-equiv=\"Expires\" content=\"0\" />\n						    \n						  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1 minimum-scale=0.5\"/>\n						  <link rel=\"stylesheet\" href=\"http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css\"/>\n						  <script type=\"text/javascript\" src=\"http://code.jquery.com/jquery-2.1.1.min.js\"></script>\n						  <script src=\"http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js\"></script>\n\n						  <link rel=\"stylesheet\" href=\"//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css\"/>\n\n						<!-- Latest compiled and minified CSS -->\n						<link rel=\"stylesheet\" href=\"//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css\">\n\n						<!-- Latest compiled and minified JavaScript -->\n						<script src=\"//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js\"></script>\n\n						  <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>\n						  <link href='https://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>\n						  <link href='https://fonts.googleapis.com/css?family=Sigmar+One' rel='stylesheet' type='text/css'>\n						    \n						    <script src=\"/js/star-rating.min.js\" type=\"text/javascript\"></script>\n						    <link href=\"/css/star-rating.min.css\" media=\"all\" rel=\"stylesheet\" type=\"text/css\" />\n						  <link rel=\"stylesheet\" href=\"/css/newsline.css\"/>\n						  <link rel=\"stylesheet\" href=\"/css/d4rum.css\"/>\n						  <link rel=\"icon\" type=\"image/png\" href=\"/css/logo2.png\"/>\n						</head>\n						<body>\n							<script id=\"server-payload\">\n								window.server= ${JSON.stringify(window.server)}\n							</script>\n							<div id=\"react-root\">${reactString}</div>\n							\n								<!--<script src=\"/dist/client.js\" type=\"text/javascript\"></script>-->\n							\n						</body>\n					</html>`\n				);\n				//console.log('>>>>>>>>>>>>>sss>>',output)\n				const webserver = process.env.NODE_ENV === \"production\" ? \"\" : \"//\" + hostname + \":8080\";\n\n				output          = Transmit.injectIntoMarkup(output, reactData, [`${webserver}/dist/client.js`]);\n				console.log(' output generated:', Date.now() )\n				reply(output);\n			}).catch((error) => {\n				console.error(error);\n			});\n		}\n	});\n}\n",
-			"file": "server.js",
-			"file_size": 8288,
-			"file_write_time": 130894241587341973,
-			"settings":
-			{
-				"buffer_size": 7976,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/C/projects/qwiket-api/server/api.php",
-			"settings":
-			{
-				"buffer_size": 81249,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"settings":
-			{
-				"buffer_size": 0,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "client.js",
-			"settings":
-			{
-				"buffer_size": 2086,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "webpack.client-watch.js",
-			"settings":
-			{
-				"buffer_size": 1368,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "webpack.client.js",
-			"settings":
-			{
-				"buffer_size": 1192,
+				"buffer_size": 5204,
 				"line_ending": "Windows"
 			}
 		},
@@ -332,23 +411,204 @@
 			"file": "components/d4shared/post.jsx",
 			"settings":
 			{
-				"buffer_size": 5744,
+				"buffer_size": 8835,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "package.json",
+			"file": "static/js/visible.js",
 			"settings":
 			{
-				"buffer_size": 2314,
+				"buffer_size": 2947,
+				"line_ending": "Windows",
+				"name": "(function($){"
+			}
+		},
+		{
+			"file": "components/d4shared/actions/postsAction.js",
+			"settings":
+			{
+				"buffer_size": 3671,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "components/d4shared/reducers/newslineReducer.js",
+			"settings":
+			{
+				"buffer_size": 4359,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "components/d4shared/actions/D4ContextAction.js",
+			"settings":
+			{
+				"buffer_size": 1927,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "components/d4shared/postcontext.jsx",
+			"settings":
+			{
+				"buffer_size": 9661,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": ".eslintignore",
+			"settings":
+			{
+				"buffer_size": 43,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "server.js",
+			"settings":
+			{
+				"buffer_size": 14036,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/projects/qwiket-api/server/api.php",
+			"settings":
+			{
+				"buffer_size": 105223,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/projects/qwiket-api/server/disqus_client.php",
+			"settings":
+			{
+				"buffer_size": 27015,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "client.js",
+			"settings":
+			{
+				"buffer_size": 3020,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "Searching 27 files for \"D4context\"\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\postcontext.jsx:\n    5  import PostQueue from './postqueue.jsx'\n    6  import {fetchPosts} from './actions/postsAction';\n    7: import {fetchContextTopicForPostid,fetchContextTopicForThread} from './actions/D4ContextAction';\n    8  import u from './utils.jsx'\n    9  var ReactCSSTransitionGroup = require('react-addons-css-transition-group');\n   ..\n   81  				childQueue:{\n   82  					padding:0,\n   83: 					top:(this.props.d4context.childColumnTop+(this.props.d4context.parent.items.length>0?30:0))//==60?0:this.state.childQueuePosition.top)\n   84  				},\n   85  				levelQueue:{\n   86: 					top:(this.props.d4context.parent.items.length>0?30:0),\n   87  					padding:0\n   88  				}\n   ..\n   97  				<div>\n   98  				\n   99: 			      	<div className=\"col-xs-4\" key=\"parent-queue-wrapper\" style={this.props.d4context.parent.items.length>0&&this.props.d4context.level.items.length>0?styles.visible:styles.hidden}>{bottomArrow}\n  100  			      		<PostQueue key=\"parent-queue\"  scope={scope} local={this.props.local} type=\"context:parent\" forumid={this.props.forumid} community={community} constraint_type={constraint_type} constraint_value={constraint_value} search={search}/>\n  101  			      	</div>\n  102: 					<div key=\"level-queue-wrapper\" className={this.props.d4context.parent.items.length>0?\"col-xs-4\":\"col-xs-8\"} style={this.props.d4context.level.items.length>0?styles.levelQueue:[styles.hidden,styles.levelQueue]}>{this.props.d4context.parent.items.length>0?leftArrow:upArrow}\n  103  			      		<PostQueue key=\"level-queue\" scope={scope} local={this.props.local} type=\"context:level\" forumid={this.props.forumid} community={community} constraint_type={constraint_type} constraint_value={constraint_value} search={search}/> \n  104  			      	</div>\n  105: 					<div key=\"child-queue-wrapper\" id=\"ch\" className=\"col-xs-4\"  style={this.props.d4context.level.items.length>0&&this.props.d4context.child.items.length>0?styles.childQueue:[styles.hidden,styles.childQueue]}>{leftArrow}\n  106  			      		<PostQueue key=\"child-queue\" scope={scope} local={this.props.local} data-spy=\"affix\" forumid={this.props.forumid} type=\"context:child\" community={community} constraint_type={constraint_type} constraint_value={constraint_value} search={search}/>\n  107  			      	</div>\n  ...\n  136    return {\n  137     context:state.context,\n  138:    d4context:state.d4context,\n  139     communityName:state.app.community.communityName\n  140    };\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\reducers\\D4ContextReducer.js:\n    1: import * as d4Actions from '../actions/D4ContextAction';\n    2  import * as actions from '../actions/postsAction';\n    3  import Immutable from 'immutable';\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\reducers\\index.js:\n    3  import newsline from './newslineReducer';\n    4  import context from './contextReducer';\n    5: import D4Context from './D4ContextReducer';\n    6  import msg from './info';\n    7  \n    8  const rootReducer = combineReducers({\n    9:   msg,app,newsline,context,D4Context\n   10  });\n   11  \n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\reducers\\state.json:\n   75  	},\n   76  \n   77: 	\"D4Context\":{\n   78  		\"postCoords\":{}, //Immutable Map\n   79  		\"queueCoords\":{},\n\n18 matches across 4 files\n\n\nSearching 27 files for \"reportCoord\"\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\actions\\D4ContextAction.js:\n   36    };\n   37  }\n   38: export function reportCoord(postid,coord) {\n   39    return function(dispatch) { //middleware thunk\n   40       dispatch(setCoord(postid,coord));\n\n1 match in 1 file\n\n\nSearching 27 files for \"setChildTop\"\n\nc:\\projects\\qwiket-webapp\\components\\context.js:\n    9  import {fetchTopics,clearTopics} from './d4shared/actions/newslineAction';\n   10  import {fetchContextTopicForPostid,fetchContextTopicForThread,clearContextTopic} from './d4shared/actions/contextAction';\n   11: import {setChildTop} from './d4shared/actions/D4ContextAction';\n   12  import PostContext from './d4shared/postcontext.jsx'\n   13  \n   ..\n  181  	reportSelectedPostY:function(y){\n  182  			console.log(y)\n  183: 			this.props.setChildTopAction.setChildTop(y);\n  184  	},\n  185  	render:function(){\n  ...\n  293  		fetchContextTopicForThread:bindActionCreators({ fetchContextTopicForThread }, dispatch),\n  294  		clearContextTopicAction:bindActionCreators({clearContextTopic},dispatch),\n  295: 		setChildTopAction:bindActionCreators({setChildTop},dispatch)\n  296  	};\n  297  }\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\actions\\D4ContextAction.js:\n   75  }\n   76  export const SET_CHILD_TOP = 'SET_CHILD_TOP';\n   77: export function setChildTop(y) {\n   78    return {\n   79      type: SET_CHILD_TOP,\n\n6 matches across 2 files\n\n\nSearching 27 files for \"community render\"\n\nc:\\projects\\qwiket-webapp\\components\\app.js:\n   15  	\n   16  	render:function(){\n   17: 		console.log('Community render %o',this.props.communityName)\n   18  		let lines=[];\n   19  		//console.log('RENDER Community: this.params=%o',this.props)\n\n1 match in 1 file\n\n\nSearching 27 files for \"fetchTopics\"\n\nc:\\projects\\qwiket-webapp\\components\\context.js:\n    7  import Local from  './local.js' \n    8  import u from './d4shared/utils.jsx'\n    9: import {fetchTopics,clearTopics} from './d4shared/actions/newslineAction';\n   10  import {fetchContextTopicForPostid,fetchContextTopicForThread,clearContextTopic} from './d4shared/actions/contextAction';\n   11  import {setChildTop} from './d4shared/actions/D4ContextAction';\n   ..\n  267  					 \n  268  					<div ><span className=\"label label-info\">{sn}</span>\n  269: 						{sn?(<Items query={\"\"} topics={this.props.sideTopics.items} state={this.props.sideTopics} sideTopics={true} clearTopics={this.props.clearTopicsAction.clearTopics} fetchTopics={this.props.fetchTopicsAction.fetchTopics} sitename={sn} orderby={0} community={community}/>):\"\"}\n  270  		         	\n  271  		         	</div>\n  ...\n  288  //	console.log('mapDispatch')\n  289    return {\n  290:   		fetchTopicsAction:bindActionCreators({ fetchTopics }, dispatch),\n  291    		clearTopicsAction:bindActionCreators({ clearTopics }, dispatch),\n  292    		fetchContextTopicForPostid:bindActionCreators({ fetchContextTopicForPostid }, dispatch),\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\actions\\newslineAction.js:\n   28  }\n   29  \n   30: export function fetchTopics(clear,community = 'pointofviewworld', orderby = 0, state,sideTopics=false,lastid = common.MAXID, sitename = '', limit = 25, query = '') {\n   31  \n   32    return function(dispatch) { //middleware thunk\n   ..\n   35        return;\n   36    }*/\n   37:    console.log('fetchTopics lastid=%s',lastid)\n   38      dispatch(requestTopics());\n   39      if(clear)\n\nc:\\projects\\qwiket-webapp\\components\\newsline.js:\n    9  import { connect } from 'react-redux';\n   10  import { bindActionCreators } from 'redux';\n   11: import {fetchTopics,clearTopics} from './d4shared/actions/newslineAction';\n   12  import {fetchPosts,clearPosts} from './d4shared/actions/postsAction';\n   13  \n   ..\n  327  	    };\n  328  	},*/\n  329: 	//fetchTopics(community = 'pointofviewworld', orderby = 0, lastid = common.MAXID, sitename = '', limit = 25, query = '') \n  330  	fetch:function(clear,remove,props){\n  331  		//console.log('fetch clear=%s,props=%o',clear,this.props)\n  332  		if(remove)\n  333  			props.clearTopics();\n  334: 		props.fetchTopics(clear,props.community,props.orderby,props.state,this.props.sideTopics,props.state.lastid,props.sitename,25,props.query);\n  335  	},\n  336  	/*\n  ...\n  640           					</div>		\n  641  		         			<div className=\"row\">\n  642: 		         					<Items query={search}  orderby={orderby} community={this.props.params.community} sideTopics={false} topics={this.props.topics.items} state={this.props.topics} clearTopics={this.props.clearTopicsAction.clearTopics} fetchTopics={this.props.fetchTopicsAction.fetchTopics}/>\n  643  		         			</div>			\n  644  					</div>\n  ...\n  670  function mapDispatchToProps(dispatch) {\n  671    return {\n  672:   		fetchTopicsAction:bindActionCreators({ fetchTopics }, dispatch),\n  673  		clearTopicsAction:bindActionCreators({ clearTopics }, dispatch),\n  674  		fetchPostsAction:bindActionCreators({ fetchPosts }, dispatch),\n\n16 matches across 3 files\n\n\nSearching 27 files for \"count\"\n\nc:\\projects\\qwiket-webapp\\components\\app.js:\n   19  		//console.log('RENDER Community: this.params=%o',this.props)\n   20  		//console.log('render %o',this.state);\n   21: 		/*for(var i=0;i<this.props.communities.count;i++){ \n   22  			let c=this.props.communities[i]\n   23  			lines.push(<li id={\"community_\"+c.forum} key={\"key_community_\"+c.forum}><Link to={\"/newsline/\"+c.forum+\"/newest\"}><span className=\"glyphicon glyphicon-log-in\"></span> {c.name}</Link></li>);\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\post.jsx:\n  159  	    		padding:\"2px 10px 0px 0px\"\n  160  	    	},\n  161: 	    	responseCounter:{\n  162  	    		marginLeft:4,\n  163  	    		color:'#DfD'\n  ...\n  180      		<span className=\"label label-default\" ref=\"NameSpan\" style={[styles.nameSpan]}> \n  181  	    		<a ref=\"NameLink\"  style={[styles.name,styles.link]} href={p.author_profileurl} target=\"origin\">{p.author_name}</a> &nbsp; <span className=\"post-time\"> {u.timeConverter(p.createdat,(window.firstRender?p.stamp:0))}</span>\n  182: 	    		{+p.children>0?(<span ref=\"ResponseCounter\" style={styles.responseCounter}><i className=\"fa fa-share\" ></i>&nbsp;{p.children}</span>):\"\"}\n  183  	    	</span>\n  184  	      	<div style={styles.titleSpan}>\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\postqueue.jsx:\n   39  		//console.log('postqueue mount');\n   40  		u.registerEvent('topScroll',this.topScroll,{me:this});\n   41: 		if(!this.props.posts||this.props.posts.count==0){\n   42  		//	console.log('fetching posts')\n   43  			this.fetch(true,this.props)\n   ..\n  157  	  		//console.log(icon)\n  158  	  	  	rows.push(\n  159: 	  			<Post key={forumid*1000000000+qpostid} ref={forumid*1000000000+qpostid} reportY={this.props.reportY} reportCoord={this.props.reportCoord} reportQueueCoord={this.props.reportQueueCoord} icon={icon} local={this.props.local} ref={cb} lastRow={i==posts.count-1} post={p} community={community} selectedPostid={this.props.constraint_value} type={this.props.type} startTransition={this.props.startTransition}  />\n  160    			)\n  161    		})\n  162: 	  	if(posts.count==0){\n  163  	  		if(this.props.type=='context:child')\n  164  	  			rows.push(<small key=\"nothingNotice\" style={{margin:6,color:\"#aaa\"}}>  No replies yet...</small>)\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\reducers\\D4ContextReducer.js:\n   67                newChildItems=state.get(\"level\").get(\"items\");\n   68              }\n   69:             else if (i < items.count - 2) {\n   70                newLevelItems = newLevelItems.push(post);\n   71                newChildItems = newChildItems.push(items.get(i - 1));\n   72              }\n   73:             else if (i == items.count - 2)\n   74                 level2Double=true;\n   75                 newLevelItems=holding;\n   ..\n   93          })\n   94          let items = state.get(\"level\").get(\"items\");\n   95:         for (let i = 0; i < items.count; i++) {\n   96            let post = items.get(\"i\");\n   97            if (post.id == action.postid) {\n   ..\n  119          if (postid) {\n  120  \n  121:           for(let i=0;i<items.count++;i++){\n  122              if(items.get(i).id==postid){\n  123                newParentItems=newParentItems.unshift(items.get(i));\n  ...\n  134            newChildItems=newChildItems.set(i,post.set(\"hole\",true));\n  135          });\n  136:         if(newParentItems.count<2){\n  137            level2Single=true;\n  138            holding=items;\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\reducers\\newslineReducer.js:\n   39    let itemsMap=new Map();\n   40    //console.log('first:'+oldItems.length)\n   41:   for (var i=0;i<oldItems.count;i++){\n   42      //if(i>100)\n   43      //  break;\n   ..\n   55    console.log(\"itemsArray: %o\",itemsArray);\n   56    console.log(\"items: %o\",items);\n   57:   console.log(\"count: %o\",items.count());\n   58:   console.log(\"item: %o\",items.get(items.count()-1))\n   59:   let lastid=items.get(items.count()-1).get(\"xid\")\n   60     // unique(combine(oldItems,items));\n   61     if(!action.sideTopics) \n   ..\n   96      let items1=new Map();\n   97      //console.log('first:'+oldItems.length)\n   98:     for (var i=0;i<oldItems.count;i++){\n   99       // if(i>100)\n  100       //   break;\n\nc:\\projects\\qwiket-webapp\\components\\newsline.js:\n  270  	componentDidMount: function() {\n  271  		u.registerEvent('topScroll',this.topScroll,{me:this});\n  272: 		if(this.props.topics.count==0)\n  273  			this.fetch(true,true,this.props)\n  274  		$(\".rating\").rating({\n  ...\n  327  	  		};\n  328  	  	  	rows.push(\n  329: 	  			<Item key={xid} sitename={sitename} community={this.props.community} ref={cb} lastRow={i==this.props.topics.count-1} topic={p} full={false} orderby={this.props.orderby}/>\n  330    			)\n  331  	  	})\n\n20 matches across 6 files\n\n\nSearching 27 files for \"count\"\n\nc:\\projects\\qwiket-webapp\\components\\app.js:\n   19  		//console.log('RENDER Community: this.params=%o',this.props)\n   20  		//console.log('render %o',this.state);\n   21: 		/*for(var i=0;i<this.props.communities.count;i++){ \n   22  			let c=this.props.communities[i]\n   23  			lines.push(<li id={\"community_\"+c.forum} key={\"key_community_\"+c.forum}><Link to={\"/newsline/\"+c.forum+\"/newest\"}><span className=\"glyphicon glyphicon-log-in\"></span> {c.name}</Link></li>);\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\post.jsx:\n  159  	    		padding:\"2px 10px 0px 0px\"\n  160  	    	},\n  161: 	    	responseCounter:{\n  162  	    		marginLeft:4,\n  163  	    		color:'#DfD'\n  ...\n  180      		<span className=\"label label-default\" ref=\"NameSpan\" style={[styles.nameSpan]}> \n  181  	    		<a ref=\"NameLink\"  style={[styles.name,styles.link]} href={p.author_profileurl} target=\"origin\">{p.author_name}</a> &nbsp; <span className=\"post-time\"> {u.timeConverter(p.createdat,(window.firstRender?p.stamp:0))}</span>\n  182: 	    		{+p.children>0?(<span ref=\"ResponseCounter\" style={styles.responseCounter}><i className=\"fa fa-share\" ></i>&nbsp;{p.children}</span>):\"\"}\n  183  	    	</span>\n  184  	      	<div style={styles.titleSpan}>\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\postqueue.jsx:\n   39  		//console.log('postqueue mount');\n   40  		u.registerEvent('topScroll',this.topScroll,{me:this});\n   41: 		if(!this.props.posts||this.props.posts.count==0){\n   42  		//	console.log('fetching posts')\n   43  			this.fetch(true,this.props)\n   ..\n  157  	  		//console.log(icon)\n  158  	  	  	rows.push(\n  159: 	  			<Post key={forumid*1000000000+qpostid} ref={forumid*1000000000+qpostid} reportY={this.props.reportY} reportCoord={this.props.reportCoord} reportQueueCoord={this.props.reportQueueCoord} icon={icon} local={this.props.local} ref={cb} lastRow={i==posts.count-1} post={p} community={community} selectedPostid={this.props.constraint_value} type={this.props.type} startTransition={this.props.startTransition}  />\n  160    			)\n  161    		})\n  162: 	  	if(posts.count==0){\n  163  	  		if(this.props.type=='context:child')\n  164  	  			rows.push(<small key=\"nothingNotice\" style={{margin:6,color:\"#aaa\"}}>  No replies yet...</small>)\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\reducers\\D4ContextReducer.js:\n   67                newChildItems=state.get(\"level\").get(\"items\");\n   68              }\n   69:             else if (i < items.count - 2) {\n   70                newLevelItems = newLevelItems.push(post);\n   71                newChildItems = newChildItems.push(items.get(i - 1));\n   72              }\n   73:             else if (i == items.count - 2)\n   74                 level2Double=true;\n   75                 newLevelItems=holding;\n   ..\n   93          })\n   94          let items = state.get(\"level\").get(\"items\");\n   95:         for (let i = 0; i < items.count; i++) {\n   96            let post = items.get(\"i\");\n   97            if (post.id == action.postid) {\n   ..\n  119          if (postid) {\n  120  \n  121:           for(let i=0;i<items.count++;i++){\n  122              if(items.get(i).id==postid){\n  123                newParentItems=newParentItems.unshift(items.get(i));\n  ...\n  134            newChildItems=newChildItems.set(i,post.set(\"hole\",true));\n  135          });\n  136:         if(newParentItems.count<2){\n  137            level2Single=true;\n  138            holding=items;\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\reducers\\newslineReducer.js:\n   39    let itemsMap=new Map();\n   40    //console.log('first:'+oldItems.length)\n   41:   for (var i=0;i<oldItems.count;i++){\n   42      //if(i>100)\n   43      //  break;\n   ..\n   55    console.log(\"itemsArray: %o\",itemsArray);\n   56    console.log(\"items: %o\",items);\n   57:   console.log(\"count: %o\",items.count());\n   58:   console.log(\"item: %o\",items.get(items.count()-1))\n   59:   let lastid=items.get(items.count()-1).get(\"xid\")\n   60     // unique(combine(oldItems,items));\n   61     if(!action.sideTopics) \n   ..\n   96      let items1=new Map();\n   97      //console.log('first:'+oldItems.length)\n   98:     for (var i=0;i<oldItems.count;i++){\n   99       // if(i>100)\n  100       //   break;\n\nc:\\projects\\qwiket-webapp\\components\\newsline.js:\n  270  	componentDidMount: function() {\n  271  		u.registerEvent('topScroll',this.topScroll,{me:this});\n  272: 		if(this.props.topics.count==0)\n  273  			this.fetch(true,true,this.props)\n  274  		$(\".rating\").rating({\n  ...\n  327  	  		};\n  328  	  	  	rows.push(\n  329: 	  			<Item key={xid} sitename={sitename} community={this.props.community} ref={cb} lastRow={i==this.props.topics.count-1} topic={p} full={false} orderby={this.props.orderby}/>\n  330    			)\n  331  	  	})\n\n20 matches across 6 files\n\n\nSearching 27 files for \"count\"\n\nc:\\projects\\qwiket-webapp\\components\\app.js:\n   19  		//console.log('RENDER Community: this.params=%o',this.props)\n   20  		//console.log('render %o',this.state);\n   21: 		/*for(var i=0;i<this.props.communities.count;i++){ \n   22  			let c=this.props.communities[i]\n   23  			lines.push(<li id={\"community_\"+c.forum} key={\"key_community_\"+c.forum}><Link to={\"/newsline/\"+c.forum+\"/newest\"}><span className=\"glyphicon glyphicon-log-in\"></span> {c.name}</Link></li>);\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\post.jsx:\n  159  	    		padding:\"2px 10px 0px 0px\"\n  160  	    	},\n  161: 	    	responseCounter:{\n  162  	    		marginLeft:4,\n  163  	    		color:'#DfD'\n  ...\n  180      		<span className=\"label label-default\" ref=\"NameSpan\" style={[styles.nameSpan]}> \n  181  	    		<a ref=\"NameLink\"  style={[styles.name,styles.link]} href={p.author_profileurl} target=\"origin\">{p.author_name}</a> &nbsp; <span className=\"post-time\"> {u.timeConverter(p.createdat,(window.firstRender?p.stamp:0))}</span>\n  182: 	    		{+p.children>0?(<span ref=\"ResponseCounter\" style={styles.responseCounter}><i className=\"fa fa-share\" ></i>&nbsp;{p.children}</span>):\"\"}\n  183  	    	</span>\n  184  	      	<div style={styles.titleSpan}>\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\postqueue.jsx:\n   39  		//console.log('postqueue mount');\n   40  		u.registerEvent('topScroll',this.topScroll,{me:this});\n   41: 		if(!this.props.posts||this.props.posts.count()==0){\n   42  		//	console.log('fetching posts')\n   43  			this.fetch(true,this.props)\n   ..\n  157  	  		//console.log(icon)\n  158  	  	  	rows.push(\n  159: 	  			<Post key={forumid*1000000000+qpostid} ref={forumid*1000000000+qpostid} reportY={this.props.reportY} reportCoord={this.props.reportCoord} reportQueueCoord={this.props.reportQueueCoord} icon={icon} local={this.props.local} ref={cb} lastRow={i==posts.count-1} post={p} community={community} selectedPostid={this.props.constraint_value} type={this.props.type} startTransition={this.props.startTransition}  />\n  160    			)\n  161    		})\n  162: 	  	if(posts.count==0){\n  163  	  		if(this.props.type=='context:child')\n  164  	  			rows.push(<small key=\"nothingNotice\" style={{margin:6,color:\"#aaa\"}}>  No replies yet...</small>)\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\reducers\\D4ContextReducer.js:\n   67                newChildItems=state.get(\"level\").get(\"items\");\n   68              }\n   69:             else if (i < items.count - 2) {\n   70                newLevelItems = newLevelItems.push(post);\n   71                newChildItems = newChildItems.push(items.get(i - 1));\n   72              }\n   73:             else if (i == items.count - 2)\n   74                 level2Double=true;\n   75                 newLevelItems=holding;\n   ..\n   93          })\n   94          let items = state.get(\"level\").get(\"items\");\n   95:         for (let i = 0; i < items.count; i++) {\n   96            let post = items.get(\"i\");\n   97            if (post.id == action.postid) {\n   ..\n  119          if (postid) {\n  120  \n  121:           for(let i=0;i<items.count++;i++){\n  122              if(items.get(i).id==postid){\n  123                newParentItems=newParentItems.unshift(items.get(i));\n  ...\n  134            newChildItems=newChildItems.set(i,post.set(\"hole\",true));\n  135          });\n  136:         if(newParentItems.count<2){\n  137            level2Single=true;\n  138            holding=items;\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\reducers\\newslineReducer.js:\n   39    let itemsMap=new Map();\n   40    //console.log('first:'+oldItems.length)\n   41:   for (var i=0;i<oldItems.count;i++){\n   42      //if(i>100)\n   43      //  break;\n   ..\n   55    console.log(\"itemsArray: %o\",itemsArray);\n   56    console.log(\"items: %o\",items);\n   57:   console.log(\"count: %o\",items.count());\n   58:   console.log(\"item: %o\",items.get(items.count()-1))\n   59:   let lastid=items.get(items.count()-1).get(\"xid\")\n   60     // unique(combine(oldItems,items));\n   61     if(!action.sideTopics) \n   ..\n   96      let items1=new Map();\n   97      //console.log('first:'+oldItems.length)\n   98:     for (var i=0;i<oldItems.count;i++){\n   99       // if(i>100)\n  100       //   break;\n\nc:\\projects\\qwiket-webapp\\components\\newsline.js:\n  270  	componentDidMount: function() {\n  271  		u.registerEvent('topScroll',this.topScroll,{me:this});\n  272: 		if(this.props.topics.count==0)\n  273  			this.fetch(true,true,this.props)\n  274  		$(\".rating\").rating({\n  ...\n  327  	  		};\n  328  	  	  	rows.push(\n  329: 	  			<Item key={xid} sitename={sitename} community={this.props.community} ref={cb} lastRow={i==this.props.topics.count-1} topic={p} full={false} orderby={this.props.orderby}/>\n  330    			)\n  331  	  	})\n\n20 matches across 6 files\n\n\nSearching 27 files for \"count\"\n\nc:\\projects\\qwiket-webapp\\components\\app.js:\n   19  		//console.log('RENDER Community: this.params=%o',this.props)\n   20  		//console.log('render %o',this.state);\n   21: 		/*for(var i=0;i<this.props.communities.count;i++){ \n   22  			let c=this.props.communities[i]\n   23  			lines.push(<li id={\"community_\"+c.forum} key={\"key_community_\"+c.forum}><Link to={\"/newsline/\"+c.forum+\"/newest\"}><span className=\"glyphicon glyphicon-log-in\"></span> {c.name}</Link></li>);\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\post.jsx:\n  159  	    		padding:\"2px 10px 0px 0px\"\n  160  	    	},\n  161: 	    	responseCounter:{\n  162  	    		marginLeft:4,\n  163  	    		color:'#DfD'\n  ...\n  180      		<span className=\"label label-default\" ref=\"NameSpan\" style={[styles.nameSpan]}> \n  181  	    		<a ref=\"NameLink\"  style={[styles.name,styles.link]} href={p.author_profileurl} target=\"origin\">{p.author_name}</a> &nbsp; <span className=\"post-time\"> {u.timeConverter(p.createdat,(window.firstRender?p.stamp:0))}</span>\n  182: 	    		{+p.children>0?(<span ref=\"ResponseCounter\" style={styles.responseCounter}><i className=\"fa fa-share\" ></i>&nbsp;{p.children}</span>):\"\"}\n  183  	    	</span>\n  184  	      	<div style={styles.titleSpan}>\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\postqueue.jsx:\n   39  		//console.log('postqueue mount');\n   40  		u.registerEvent('topScroll',this.topScroll,{me:this});\n   41: 		if(!this.props.posts||this.props.posts.count()==0){\n   42  		//	console.log('fetching posts')\n   43  			this.fetch(true,this.props)\n   ..\n  157  	  		//console.log(icon)\n  158  	  	  	rows.push(\n  159: 	  			<Post key={forumid*1000000000+qpostid} ref={forumid*1000000000+qpostid} reportY={this.props.reportY} reportCoord={this.props.reportCoord} reportQueueCoord={this.props.reportQueueCoord} icon={icon} local={this.props.local} ref={cb} lastRow={i==posts.count()-1} post={p} community={community} selectedPostid={this.props.constraint_value} type={this.props.type} startTransition={this.props.startTransition}  />\n  160    			)\n  161    		})\n  162: 	  	if(posts.count==0){\n  163  	  		if(this.props.type=='context:child')\n  164  	  			rows.push(<small key=\"nothingNotice\" style={{margin:6,color:\"#aaa\"}}>  No replies yet...</small>)\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\reducers\\D4ContextReducer.js:\n   67                newChildItems=state.get(\"level\").get(\"items\");\n   68              }\n   69:             else if (i < items.count - 2) {\n   70                newLevelItems = newLevelItems.push(post);\n   71                newChildItems = newChildItems.push(items.get(i - 1));\n   72              }\n   73:             else if (i == items.count - 2)\n   74                 level2Double=true;\n   75                 newLevelItems=holding;\n   ..\n   93          })\n   94          let items = state.get(\"level\").get(\"items\");\n   95:         for (let i = 0; i < items.count; i++) {\n   96            let post = items.get(\"i\");\n   97            if (post.id == action.postid) {\n   ..\n  119          if (postid) {\n  120  \n  121:           for(let i=0;i<items.count++;i++){\n  122              if(items.get(i).id==postid){\n  123                newParentItems=newParentItems.unshift(items.get(i));\n  ...\n  134            newChildItems=newChildItems.set(i,post.set(\"hole\",true));\n  135          });\n  136:         if(newParentItems.count<2){\n  137            level2Single=true;\n  138            holding=items;\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\reducers\\newslineReducer.js:\n   39    let itemsMap=new Map();\n   40    //console.log('first:'+oldItems.length)\n   41:   for (var i=0;i<oldItems.count;i++){\n   42      //if(i>100)\n   43      //  break;\n   ..\n   55    console.log(\"itemsArray: %o\",itemsArray);\n   56    console.log(\"items: %o\",items);\n   57:   console.log(\"count: %o\",items.count());\n   58:   console.log(\"item: %o\",items.get(items.count()-1))\n   59:   let lastid=items.get(items.count()-1).get(\"xid\")\n   60     // unique(combine(oldItems,items));\n   61     if(!action.sideTopics) \n   ..\n   96      let items1=new Map();\n   97      //console.log('first:'+oldItems.length)\n   98:     for (var i=0;i<oldItems.count;i++){\n   99       // if(i>100)\n  100       //   break;\n\nc:\\projects\\qwiket-webapp\\components\\newsline.js:\n  270  	componentDidMount: function() {\n  271  		u.registerEvent('topScroll',this.topScroll,{me:this});\n  272: 		if(this.props.topics.count==0)\n  273  			this.fetch(true,true,this.props)\n  274  		$(\".rating\").rating({\n  ...\n  327  	  		};\n  328  	  	  	rows.push(\n  329: 	  			<Item key={xid} sitename={sitename} community={this.props.community} ref={cb} lastRow={i==this.props.topics.count-1} topic={p} full={false} orderby={this.props.orderby}/>\n  330    			)\n  331  	  	})\n\n20 matches across 6 files\n\n\nSearching 27 files for \"count\"\n\nc:\\projects\\qwiket-webapp\\components\\app.js:\n   19  		//console.log('RENDER Community: this.params=%o',this.props)\n   20  		//console.log('render %o',this.state);\n   21: 		/*for(var i=0;i<this.props.communities.count;i++){ \n   22  			let c=this.props.communities[i]\n   23  			lines.push(<li id={\"community_\"+c.forum} key={\"key_community_\"+c.forum}><Link to={\"/newsline/\"+c.forum+\"/newest\"}><span className=\"glyphicon glyphicon-log-in\"></span> {c.name}</Link></li>);\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\post.jsx:\n  159  	    		padding:\"2px 10px 0px 0px\"\n  160  	    	},\n  161: 	    	responseCounter:{\n  162  	    		marginLeft:4,\n  163  	    		color:'#DfD'\n  ...\n  180      		<span className=\"label label-default\" ref=\"NameSpan\" style={[styles.nameSpan]}> \n  181  	    		<a ref=\"NameLink\"  style={[styles.name,styles.link]} href={p.author_profileurl} target=\"origin\">{p.author_name}</a> &nbsp; <span className=\"post-time\"> {u.timeConverter(p.createdat,(window.firstRender?p.stamp:0))}</span>\n  182: 	    		{+p.children>0?(<span ref=\"ResponseCounter\" style={styles.responseCounter}><i className=\"fa fa-share\" ></i>&nbsp;{p.children}</span>):\"\"}\n  183  	    	</span>\n  184  	      	<div style={styles.titleSpan}>\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\postqueue.jsx:\n   39  		//console.log('postqueue mount');\n   40  		u.registerEvent('topScroll',this.topScroll,{me:this});\n   41: 		if(!this.props.posts||this.props.posts.count()==0){\n   42  		//	console.log('fetching posts')\n   43  			this.fetch(true,this.props)\n   ..\n  157  	  		//console.log(icon)\n  158  	  	  	rows.push(\n  159: 	  			<Post key={forumid*1000000000+qpostid} ref={forumid*1000000000+qpostid} reportY={this.props.reportY} reportCoord={this.props.reportCoord} reportQueueCoord={this.props.reportQueueCoord} icon={icon} local={this.props.local} ref={cb} lastRow={i==posts.count()-1} post={p} community={community} selectedPostid={this.props.constraint_value} type={this.props.type} startTransition={this.props.startTransition}  />\n  160    			)\n  161    		})\n  162: 	  	if(posts.count==0){\n  163  	  		if(this.props.type=='context:child')\n  164  	  			rows.push(<small key=\"nothingNotice\" style={{margin:6,color:\"#aaa\"}}>  No replies yet...</small>)\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\reducers\\D4ContextReducer.js:\n   67                newChildItems=state.get(\"level\").get(\"items\");\n   68              }\n   69:             else if (i < items.count - 2) {\n   70                newLevelItems = newLevelItems.push(post);\n   71                newChildItems = newChildItems.push(items.get(i - 1));\n   72              }\n   73:             else if (i == items.count - 2)\n   74                 level2Double=true;\n   75                 newLevelItems=holding;\n   ..\n   93          })\n   94          let items = state.get(\"level\").get(\"items\");\n   95:         for (let i = 0; i < items.count; i++) {\n   96            let post = items.get(\"i\");\n   97            if (post.id == action.postid) {\n   ..\n  119          if (postid) {\n  120  \n  121:           for(let i=0;i<items.count++;i++){\n  122              if(items.get(i).id==postid){\n  123                newParentItems=newParentItems.unshift(items.get(i));\n  ...\n  134            newChildItems=newChildItems.set(i,post.set(\"hole\",true));\n  135          });\n  136:         if(newParentItems.count<2){\n  137            level2Single=true;\n  138            holding=items;\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\reducers\\newslineReducer.js:\n   39    let itemsMap=new Map();\n   40    //console.log('first:'+oldItems.length)\n   41:   for (var i=0;i<oldItems.count;i++){\n   42      //if(i>100)\n   43      //  break;\n   ..\n   55    console.log(\"itemsArray: %o\",itemsArray);\n   56    console.log(\"items: %o\",items);\n   57:   console.log(\"count: %o\",items.count());\n   58:   console.log(\"item: %o\",items.get(items.count()-1))\n   59:   let lastid=items.get(items.count()-1).get(\"xid\")\n   60     // unique(combine(oldItems,items));\n   61     if(!action.sideTopics) \n   ..\n   96      let items1=new Map();\n   97      //console.log('first:'+oldItems.length)\n   98:     for (var i=0;i<oldItems.count;i++){\n   99       // if(i>100)\n  100       //   break;\n\nc:\\projects\\qwiket-webapp\\components\\newsline.js:\n  270  	componentDidMount: function() {\n  271  		u.registerEvent('topScroll',this.topScroll,{me:this});\n  272: 		if(this.props.topics.count==0)\n  273  			this.fetch(true,true,this.props)\n  274  		$(\".rating\").rating({\n  ...\n  327  	  		};\n  328  	  	  	rows.push(\n  329: 	  			<Item key={xid} sitename={sitename} community={this.props.community} ref={cb} lastRow={i==this.props.topics.count-1} topic={p} full={false} orderby={this.props.orderby}/>\n  330    			)\n  331  	  	})\n\n20 matches across 6 files\n\n\nSearching 27 files for \"count\"\n\nc:\\projects\\qwiket-webapp\\components\\app.js:\n   19  		//console.log('RENDER Community: this.params=%o',this.props)\n   20  		//console.log('render %o',this.state);\n   21: 		/*for(var i=0;i<this.props.communities.count;i++){ \n   22  			let c=this.props.communities[i]\n   23  			lines.push(<li id={\"community_\"+c.forum} key={\"key_community_\"+c.forum}><Link to={\"/newsline/\"+c.forum+\"/newest\"}><span className=\"glyphicon glyphicon-log-in\"></span> {c.name}</Link></li>);\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\post.jsx:\n  159  	    		padding:\"2px 10px 0px 0px\"\n  160  	    	},\n  161: 	    	responseCounter:{\n  162  	    		marginLeft:4,\n  163  	    		color:'#DfD'\n  ...\n  180      		<span className=\"label label-default\" ref=\"NameSpan\" style={[styles.nameSpan]}> \n  181  	    		<a ref=\"NameLink\"  style={[styles.name,styles.link]} href={p.author_profileurl} target=\"origin\">{p.author_name}</a> &nbsp; <span className=\"post-time\"> {u.timeConverter(p.createdat,(window.firstRender?p.stamp:0))}</span>\n  182: 	    		{+p.children>0?(<span ref=\"ResponseCounter\" style={styles.responseCounter}><i className=\"fa fa-share\" ></i>&nbsp;{p.children}</span>):\"\"}\n  183  	    	</span>\n  184  	      	<div style={styles.titleSpan}>\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\postqueue.jsx:\n   39  		//console.log('postqueue mount');\n   40  		u.registerEvent('topScroll',this.topScroll,{me:this});\n   41: 		if(!this.props.posts||this.props.posts.count()==0){\n   42  		//	console.log('fetching posts')\n   43  			this.fetch(true,this.props)\n   ..\n  157  	  		//console.log(icon)\n  158  	  	  	rows.push(\n  159: 	  			<Post key={forumid*1000000000+qpostid} ref={forumid*1000000000+qpostid} reportY={this.props.reportY} reportCoord={this.props.reportCoord} reportQueueCoord={this.props.reportQueueCoord} icon={icon} local={this.props.local} ref={cb} lastRow={i==posts.count()-1} post={p} community={community} selectedPostid={this.props.constraint_value} type={this.props.type} startTransition={this.props.startTransition}  />\n  160    			)\n  161    		})\n  162: 	  	if(posts.count()==0){\n  163  	  		if(this.props.type=='context:child')\n  164  	  			rows.push(<small key=\"nothingNotice\" style={{margin:6,color:\"#aaa\"}}>  No replies yet...</small>)\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\reducers\\D4ContextReducer.js:\n   67                newChildItems=state.get(\"level\").get(\"items\");\n   68              }\n   69:             else if (i < items.count - 2) {\n   70                newLevelItems = newLevelItems.push(post);\n   71                newChildItems = newChildItems.push(items.get(i - 1));\n   72              }\n   73:             else if (i == items.count - 2)\n   74                 level2Double=true;\n   75                 newLevelItems=holding;\n   ..\n   93          })\n   94          let items = state.get(\"level\").get(\"items\");\n   95:         for (let i = 0; i < items.count; i++) {\n   96            let post = items.get(\"i\");\n   97            if (post.id == action.postid) {\n   ..\n  119          if (postid) {\n  120  \n  121:           for(let i=0;i<items.count++;i++){\n  122              if(items.get(i).id==postid){\n  123                newParentItems=newParentItems.unshift(items.get(i));\n  ...\n  134            newChildItems=newChildItems.set(i,post.set(\"hole\",true));\n  135          });\n  136:         if(newParentItems.count<2){\n  137            level2Single=true;\n  138            holding=items;\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\reducers\\newslineReducer.js:\n   39    let itemsMap=new Map();\n   40    //console.log('first:'+oldItems.length)\n   41:   for (var i=0;i<oldItems.count;i++){\n   42      //if(i>100)\n   43      //  break;\n   ..\n   55    console.log(\"itemsArray: %o\",itemsArray);\n   56    console.log(\"items: %o\",items);\n   57:   console.log(\"count: %o\",items.count());\n   58:   console.log(\"item: %o\",items.get(items.count()-1))\n   59:   let lastid=items.get(items.count()-1).get(\"xid\")\n   60     // unique(combine(oldItems,items));\n   61     if(!action.sideTopics) \n   ..\n   96      let items1=new Map();\n   97      //console.log('first:'+oldItems.length)\n   98:     for (var i=0;i<oldItems.count;i++){\n   99       // if(i>100)\n  100       //   break;\n\nc:\\projects\\qwiket-webapp\\components\\newsline.js:\n  270  	componentDidMount: function() {\n  271  		u.registerEvent('topScroll',this.topScroll,{me:this});\n  272: 		if(this.props.topics.count==0)\n  273  			this.fetch(true,true,this.props)\n  274  		$(\".rating\").rating({\n  ...\n  327  	  		};\n  328  	  	  	rows.push(\n  329: 	  			<Item key={xid} sitename={sitename} community={this.props.community} ref={cb} lastRow={i==this.props.topics.count-1} topic={p} full={false} orderby={this.props.orderby}/>\n  330    			)\n  331  	  	})\n\n20 matches across 6 files\n\n\nSearching 27 files for \"count\"\n\nc:\\projects\\qwiket-webapp\\components\\app.js:\n   19  		//console.log('RENDER Community: this.params=%o',this.props)\n   20  		//console.log('render %o',this.state);\n   21: 		/*for(var i=0;i<this.props.communities.count;i++){ \n   22  			let c=this.props.communities[i]\n   23  			lines.push(<li id={\"community_\"+c.forum} key={\"key_community_\"+c.forum}><Link to={\"/newsline/\"+c.forum+\"/newest\"}><span className=\"glyphicon glyphicon-log-in\"></span> {c.name}</Link></li>);\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\post.jsx:\n  159  	    		padding:\"2px 10px 0px 0px\"\n  160  	    	},\n  161: 	    	responseCounter:{\n  162  	    		marginLeft:4,\n  163  	    		color:'#DfD'\n  ...\n  180      		<span className=\"label label-default\" ref=\"NameSpan\" style={[styles.nameSpan]}> \n  181  	    		<a ref=\"NameLink\"  style={[styles.name,styles.link]} href={p.author_profileurl} target=\"origin\">{p.author_name}</a> &nbsp; <span className=\"post-time\"> {u.timeConverter(p.createdat,(window.firstRender?p.stamp:0))}</span>\n  182: 	    		{+p.children>0?(<span ref=\"ResponseCounter\" style={styles.responseCounter}><i className=\"fa fa-share\" ></i>&nbsp;{p.children}</span>):\"\"}\n  183  	    	</span>\n  184  	      	<div style={styles.titleSpan}>\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\postqueue.jsx:\n   39  		//console.log('postqueue mount');\n   40  		u.registerEvent('topScroll',this.topScroll,{me:this});\n   41: 		if(!this.props.posts||this.props.posts.count()==0){\n   42  		//	console.log('fetching posts')\n   43  			this.fetch(true,this.props)\n   ..\n  157  	  		//console.log(icon)\n  158  	  	  	rows.push(\n  159: 	  			<Post key={forumid*1000000000+qpostid} ref={forumid*1000000000+qpostid} reportY={this.props.reportY} reportCoord={this.props.reportCoord} reportQueueCoord={this.props.reportQueueCoord} icon={icon} local={this.props.local} ref={cb} lastRow={i==posts.count()-1} post={p} community={community} selectedPostid={this.props.constraint_value} type={this.props.type} startTransition={this.props.startTransition}  />\n  160    			)\n  161    		})\n  162: 	  	if(posts.count()==0){\n  163  	  		if(this.props.type=='context:child')\n  164  	  			rows.push(<small key=\"nothingNotice\" style={{margin:6,color:\"#aaa\"}}>  No replies yet...</small>)\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\reducers\\D4ContextReducer.js:\n   67                newChildItems=state.get(\"level\").get(\"items\");\n   68              }\n   69:             else if (i < items.count() - 2) {\n   70                newLevelItems = newLevelItems.push(post);\n   71                newChildItems = newChildItems.push(items.get(i - 1));\n   72              }\n   73:             else if (i == items.count() - 2)\n   74                 level2Double=true;\n   75                 newLevelItems=holding;\n   ..\n   93          })\n   94          let items = state.get(\"level\").get(\"items\");\n   95:         for (let i = 0; i < items.count(); i++) {\n   96            let post = items.get(\"i\");\n   97            if (post.id == action.postid) {\n   ..\n  119          if (postid) {\n  120  \n  121:           for(let i=0;i<items.count();i++){\n  122              if(items.get(i).id==postid){\n  123                newParentItems=newParentItems.unshift(items.get(i));\n  ...\n  134            newChildItems=newChildItems.set(i,post.set(\"hole\",true));\n  135          });\n  136:         if(newParentItems.count()<2){\n  137            level2Single=true;\n  138            holding=items;\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\reducers\\newslineReducer.js:\n   39    let itemsMap=new Map();\n   40    //console.log('first:'+oldItems.length)\n   41:   for (var i=0;i<oldItems.count;i++){\n   42      //if(i>100)\n   43      //  break;\n   ..\n   55    console.log(\"itemsArray: %o\",itemsArray);\n   56    console.log(\"items: %o\",items);\n   57:   console.log(\"count: %o\",items.count());\n   58:   console.log(\"item: %o\",items.get(items.count()-1))\n   59:   let lastid=items.get(items.count()-1).get(\"xid\")\n   60     // unique(combine(oldItems,items));\n   61     if(!action.sideTopics) \n   ..\n   96      let items1=new Map();\n   97      //console.log('first:'+oldItems.length)\n   98:     for (var i=0;i<oldItems.count;i++){\n   99       // if(i>100)\n  100       //   break;\n\nc:\\projects\\qwiket-webapp\\components\\newsline.js:\n  270  	componentDidMount: function() {\n  271  		u.registerEvent('topScroll',this.topScroll,{me:this});\n  272: 		if(this.props.topics.count==0)\n  273  			this.fetch(true,true,this.props)\n  274  		$(\".rating\").rating({\n  ...\n  327  	  		};\n  328  	  	  	rows.push(\n  329: 	  			<Item key={xid} sitename={sitename} community={this.props.community} ref={cb} lastRow={i==this.props.topics.count-1} topic={p} full={false} orderby={this.props.orderby}/>\n  330    			)\n  331  	  	})\n\n20 matches across 6 files\n\n\nSearching 27 files for \"count\"\n\nc:\\projects\\qwiket-webapp\\components\\app.js:\n   19  		//console.log('RENDER Community: this.params=%o',this.props)\n   20  		//console.log('render %o',this.state);\n   21: 		/*for(var i=0;i<this.props.communities.count;i++){ \n   22  			let c=this.props.communities[i]\n   23  			lines.push(<li id={\"community_\"+c.forum} key={\"key_community_\"+c.forum}><Link to={\"/newsline/\"+c.forum+\"/newest\"}><span className=\"glyphicon glyphicon-log-in\"></span> {c.name}</Link></li>);\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\post.jsx:\n  159  	    		padding:\"2px 10px 0px 0px\"\n  160  	    	},\n  161: 	    	responseCounter:{\n  162  	    		marginLeft:4,\n  163  	    		color:'#DfD'\n  ...\n  180      		<span className=\"label label-default\" ref=\"NameSpan\" style={[styles.nameSpan]}> \n  181  	    		<a ref=\"NameLink\"  style={[styles.name,styles.link]} href={p.author_profileurl} target=\"origin\">{p.author_name}</a> &nbsp; <span className=\"post-time\"> {u.timeConverter(p.createdat,(window.firstRender?p.stamp:0))}</span>\n  182: 	    		{+p.children>0?(<span ref=\"ResponseCounter\" style={styles.responseCounter}><i className=\"fa fa-share\" ></i>&nbsp;{p.children}</span>):\"\"}\n  183  	    	</span>\n  184  	      	<div style={styles.titleSpan}>\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\postqueue.jsx:\n   39  		//console.log('postqueue mount');\n   40  		u.registerEvent('topScroll',this.topScroll,{me:this});\n   41: 		if(!this.props.posts||this.props.posts.count()==0){\n   42  		//	console.log('fetching posts')\n   43  			this.fetch(true,this.props)\n   ..\n  157  	  		//console.log(icon)\n  158  	  	  	rows.push(\n  159: 	  			<Post key={forumid*1000000000+qpostid} ref={forumid*1000000000+qpostid} reportY={this.props.reportY} reportCoord={this.props.reportCoord} reportQueueCoord={this.props.reportQueueCoord} icon={icon} local={this.props.local} ref={cb} lastRow={i==posts.count()-1} post={p} community={community} selectedPostid={this.props.constraint_value} type={this.props.type} startTransition={this.props.startTransition}  />\n  160    			)\n  161    		})\n  162: 	  	if(posts.count()==0){\n  163  	  		if(this.props.type=='context:child')\n  164  	  			rows.push(<small key=\"nothingNotice\" style={{margin:6,color:\"#aaa\"}}>  No replies yet...</small>)\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\reducers\\D4ContextReducer.js:\n   67                newChildItems=state.get(\"level\").get(\"items\");\n   68              }\n   69:             else if (i < items.count() - 2) {\n   70                newLevelItems = newLevelItems.push(post);\n   71                newChildItems = newChildItems.push(items.get(i - 1));\n   72              }\n   73:             else if (i == items.count() - 2)\n   74                 level2Double=true;\n   75                 newLevelItems=holding;\n   ..\n   93          })\n   94          let items = state.get(\"level\").get(\"items\");\n   95:         for (let i = 0; i < items.count(); i++) {\n   96            let post = items.get(\"i\");\n   97            if (post.id == action.postid) {\n   ..\n  119          if (postid) {\n  120  \n  121:           for(let i=0;i<items.count();i++){\n  122              if(items.get(i).id==postid){\n  123                newParentItems=newParentItems.unshift(items.get(i));\n  ...\n  134            newChildItems=newChildItems.set(i,post.set(\"hole\",true));\n  135          });\n  136:         if(newParentItems.count()<2){\n  137            level2Single=true;\n  138            holding=items;\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\reducers\\newslineReducer.js:\n   39    let itemsMap=new Map();\n   40    //console.log('first:'+oldItems.length)\n   41:   for (var i=0;i<oldItems.count();i++){\n   42      //if(i>100)\n   43      //  break;\n   ..\n   55    console.log(\"itemsArray: %o\",itemsArray);\n   56    console.log(\"items: %o\",items);\n   57:   console.log(\"count: %o\",items.count());\n   58:   console.log(\"item: %o\",items.get(items.count()-1))\n   59:   let lastid=items.get(items.count()-1).get(\"xid\")\n   60     // unique(combine(oldItems,items));\n   61     if(!action.sideTopics) \n   ..\n   96      let items1=new Map();\n   97      //console.log('first:'+oldItems.length)\n   98:     for (var i=0;i<oldItems.count();i++){\n   99       // if(i>100)\n  100       //   break;\n\nc:\\projects\\qwiket-webapp\\components\\newsline.js:\n  270  	componentDidMount: function() {\n  271  		u.registerEvent('topScroll',this.topScroll,{me:this});\n  272: 		if(this.props.topics.count==0)\n  273  			this.fetch(true,true,this.props)\n  274  		$(\".rating\").rating({\n  ...\n  327  	  		};\n  328  	  	  	rows.push(\n  329: 	  			<Item key={xid} sitename={sitename} community={this.props.community} ref={cb} lastRow={i==this.props.topics.count-1} topic={p} full={false} orderby={this.props.orderby}/>\n  330    			)\n  331  	  	})\n\n20 matches across 6 files\n\n\nSearching 27 files for \"count\"\n\nc:\\projects\\qwiket-webapp\\components\\app.js:\n   19  		//console.log('RENDER Community: this.params=%o',this.props)\n   20  		//console.log('render %o',this.state);\n   21: 		/*for(var i=0;i<this.props.communities.count;i++){ \n   22  			let c=this.props.communities[i]\n   23  			lines.push(<li id={\"community_\"+c.forum} key={\"key_community_\"+c.forum}><Link to={\"/newsline/\"+c.forum+\"/newest\"}><span className=\"glyphicon glyphicon-log-in\"></span> {c.name}</Link></li>);\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\post.jsx:\n  159  	    		padding:\"2px 10px 0px 0px\"\n  160  	    	},\n  161: 	    	responseCounter:{\n  162  	    		marginLeft:4,\n  163  	    		color:'#DfD'\n  ...\n  180      		<span className=\"label label-default\" ref=\"NameSpan\" style={[styles.nameSpan]}> \n  181  	    		<a ref=\"NameLink\"  style={[styles.name,styles.link]} href={p.author_profileurl} target=\"origin\">{p.author_name}</a> &nbsp; <span className=\"post-time\"> {u.timeConverter(p.createdat,(window.firstRender?p.stamp:0))}</span>\n  182: 	    		{+p.children>0?(<span ref=\"ResponseCounter\" style={styles.responseCounter}><i className=\"fa fa-share\" ></i>&nbsp;{p.children}</span>):\"\"}\n  183  	    	</span>\n  184  	      	<div style={styles.titleSpan}>\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\postqueue.jsx:\n   39  		//console.log('postqueue mount');\n   40  		u.registerEvent('topScroll',this.topScroll,{me:this});\n   41: 		if(!this.props.posts||this.props.posts.count()==0){\n   42  		//	console.log('fetching posts')\n   43  			this.fetch(true,this.props)\n   ..\n  157  	  		//console.log(icon)\n  158  	  	  	rows.push(\n  159: 	  			<Post key={forumid*1000000000+qpostid} ref={forumid*1000000000+qpostid} reportY={this.props.reportY} reportCoord={this.props.reportCoord} reportQueueCoord={this.props.reportQueueCoord} icon={icon} local={this.props.local} ref={cb} lastRow={i==posts.count()-1} post={p} community={community} selectedPostid={this.props.constraint_value} type={this.props.type} startTransition={this.props.startTransition}  />\n  160    			)\n  161    		})\n  162: 	  	if(posts.count()==0){\n  163  	  		if(this.props.type=='context:child')\n  164  	  			rows.push(<small key=\"nothingNotice\" style={{margin:6,color:\"#aaa\"}}>  No replies yet...</small>)\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\reducers\\D4ContextReducer.js:\n   67                newChildItems=state.get(\"level\").get(\"items\");\n   68              }\n   69:             else if (i < items.count() - 2) {\n   70                newLevelItems = newLevelItems.push(post);\n   71                newChildItems = newChildItems.push(items.get(i - 1));\n   72              }\n   73:             else if (i == items.count() - 2)\n   74                 level2Double=true;\n   75                 newLevelItems=holding;\n   ..\n   93          })\n   94          let items = state.get(\"level\").get(\"items\");\n   95:         for (let i = 0; i < items.count(); i++) {\n   96            let post = items.get(\"i\");\n   97            if (post.id == action.postid) {\n   ..\n  119          if (postid) {\n  120  \n  121:           for(let i=0;i<items.count();i++){\n  122              if(items.get(i).id==postid){\n  123                newParentItems=newParentItems.unshift(items.get(i));\n  ...\n  134            newChildItems=newChildItems.set(i,post.set(\"hole\",true));\n  135          });\n  136:         if(newParentItems.count()<2){\n  137            level2Single=true;\n  138            holding=items;\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\reducers\\newslineReducer.js:\n   39    let itemsMap=new Map();\n   40    //console.log('first:'+oldItems.length)\n   41:   for (var i=0;i<oldItems.count();i++){\n   42      //if(i>100)\n   43      //  break;\n   ..\n   55    console.log(\"itemsArray: %o\",itemsArray);\n   56    console.log(\"items: %o\",items);\n   57:   console.log(\"count: %o\",items.count());\n   58:   console.log(\"item: %o\",items.get(items.count()-1))\n   59:   let lastid=items.get(items.count()-1).get(\"xid\")\n   60     // unique(combine(oldItems,items));\n   61     if(!action.sideTopics) \n   ..\n   96      let items1=new Map();\n   97      //console.log('first:'+oldItems.length)\n   98:     for (var i=0;i<oldItems.count();i++){\n   99       // if(i>100)\n  100       //   break;\n\nc:\\projects\\qwiket-webapp\\components\\newsline.js:\n  270  	componentDidMount: function() {\n  271  		u.registerEvent('topScroll',this.topScroll,{me:this});\n  272: 		if(this.props.topics.count()==0)\n  273  			this.fetch(true,true,this.props)\n  274  		$(\".rating\").rating({\n  ...\n  327  	  		};\n  328  	  	  	rows.push(\n  329: 	  			<Item key={xid} sitename={sitename} community={this.props.community} ref={cb} lastRow={i==this.props.topics.count()-1} topic={p} full={false} orderby={this.props.orderby}/>\n  330    			)\n  331  	  	})\n\n20 matches across 6 files\n\n\nSearching 27 files for \"LOADED_COMMUNITY_FORUMS\"\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\actions\\appAction.js:\n   38    };\n   39  }\n   40: export const LOADED_COMMUNITY_FORUMS = 'LOADED_COMMUNITY_FORUMS';\n   41  export function receiveForums(forums) { \n   42    return {\n   43:     type: LOADED_COMMUNITY_FORUMS,\n   44      forums\n   45    };\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\reducers\\newslineReducer.js:\n   85    else\n   86      return state;\n   87:   case appActions.LOADED_COMMUNITY_FORUMS:\n   88      return state.merge({\n   89        forums:new Immutable.List(action.forums)      \n\n4 matches across 2 files\n\n\nSearching 27 files for \"e.get\"\n\nc:\\projects\\qwiket-webapp\\components\\app.js:\n  133  			//console.log\n  134  			//console.log('redirect to %o',\"/newsline/\"+this.props.communityState.forum+\"/newest\")\n  135: 			this.props.history.pushState(null,\"/newsline/\"+this.props.communityState.get(\"forum\")+\"/newest\");\n  136  		}\n  137  	},\n  ...\n  147  		let Menu = BurgerMenu['push'];\n  148  		u.registerEvent('reqAppState',this.reqAppState,{me:this});\n  149: 		if(__CLIENT__&&(this.props.communityState.get(\"forum\")!=this.props.params.community))\n  150  			setTimeout(()=>this.props.selectCommunity(this.props.params.community));\n  151  	    var styles={\n  ...\n  205  \n  206  			<div className=\"divider\"></div>\n  207: 			<div id=\"user_lang\"><Link to=\"#\" data-toggle=\"modal\" data-target=\"#userlang_modal\"><i className=\"fa fa-language\"></i> {this.props.onlineState.get(\"userLang\")} </Link> </div>\n  208  			<div className=\"divider\"></div>\n  209  			<div id=\"help_menu\"><Link to=\"/docs\"><span className=\"glyphicon glyphicon-info-sign\"></span> Help</Link></div>\n  ...\n  243    		\n  244            		\n  245:          			<div style={styles.community}><Community ref=\"Community\" ls={this.props.communityState.get(\"ls\")} communities={this.props.communityState.get(\"communities\")} communityName={this.props.communityState.get(\"communityName\")} /></div>\n  246          					\n  247  		        </nav>\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\actions\\postsAction.js:\n  104  \n  105    return function(dispatch) { //middleware thunk\n  106:     if(state.get(\"isFetching\")&&(state.get(\"isFetching\").get(forumid))){\n  107        console.log('skipping fetchoPosts')\n  108        return;\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\postqueue.jsx:\n   85  				}\n   86  				else\n   87: 					lastids+=this.props.state.get(lastids).get(\"forumid\");\n   88  			});\n   89  			//console.log('fetching lastids=%s',lastids);\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\reducers\\appReducer.js:\n   20          communityName: action.communityName,\n   21          forum:action.community,\n   22:         communities:state.get(\"community\").get(\"communities\"),\n   23:         ls:state.get(\"community\").get(\"ls\")\n   24        }))\n   25    default:\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\reducers\\contextReducer.js:\n   47        sideTopics:{\n   48          isFetching: true,\n   49:         items:state.get(\"sideTopics\").get(\"items\"),\n   50:         lastid:state.get(\"sideTopics\").get(\"lastid\")\n   51        }\n   52          \n   ..\n   56    if(!action.items||action.items.length==0||!action.sideTopics)\n   57      return state;\n   58:   let oldItems=state.get(\"sideTopics\").get(\"items\");\n   59    let items1\n   60    items1=new Map();\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\reducers\\D4ContextReducer.js:\n   31        let end = Date.now() + TRANSITION_PERIOD;\n   32        //console.log(\"TRANSITION CREATE action=%o,start=%s, end=%s,type=\"+postType,action,start,end);\n   33:       let parentItems=state.get(\"parent\").get(\"items\");\n   34:       let levelItems=state.get(\"level\").get(\"items\");\n   35:       let childItems=state.get(\"child\").get(\"items\");\n   36        let level2Double=false;\n   37        let level2Single=false;\n   38:       let holding= state.get(\"level\").get(\"holding\");\n   39:     //  let childColumnTop=state.get(\"childColumnTop\");\n   40        if(!holding)\n   41          holding=new Immutable.List([]);\n   ..\n   53           **/\n   54          //let post;        \n   55:         let items = state.get(\"parent\").get(\"items\");\n   56          let v = false;\n   57          let newParentItems = items;\n   ..\n   66              if (i == 0){\n   67                newLevelItems = newLevelItems.unshift(post);\n   68:               newChildItems=state.get(\"level\").get(\"items\");\n   69              }\n   70              else if (i < items.count() - 2) {\n   ..\n   99        } else if (postType == \"context:level\") {\n  100     \n  101:         let newChildItems=state.get(\"child\").get(\"items\");\n  102         // console.log(2)\n  103:         state.get(\"child\").get(\"items\").forEach((post,i)=>{\n  104            newChildItems=newChildItems.set(i,post.set(\"hole\",true));\n  105          })\n  106          //console.log(3)\n  107:     /*    let items = state.get(\"level\").get(\"items\");\n  108          console.log(\"items %o\",items)\n  109          console.log(4)\n  ...\n  112            console.log(\"LEVEL id=%s Action.postid=%s\",post.get(\"id\"),action.postid)\n  113            if (post.get(\"id\") == action.postid) {\n  114:            // console.log(\"postCoords=%o\",state.get(\"postCoords\"));\n  115:           //  console.log(\"LEVEL, setting childColumnTop %o\",state.get(\"postCoords\").get(action.postid))\n  116:           //  childColumnTop= state.get(\"postCoords\").get(action.postid).get(\"top\")\n  117              break;\n  118            }\n  ...\n  129           * \n  130           */\n  131:         let items = state.get(\"level\").get(\"items\");\n  132:         let newParentItems = state.get(\"parent\").get(\"items\");\n  133          let newLevelItems = new Immutable.List([]);\n  134:         let newChildItems=state.get(\"child\").get(\"items\");\n  135          //console.log(\"newChildItems=%o\",newChildItems.toObject())\n  136          // console.log(\"newParentItems=%o\",newParentItems.toObject())\n  137:         let postid=state.get(\"postid\"); \n  138          let postFound=false;\n  139          if (postid) {\n  ...\n  153            //TODO - put a placeholder in the beginning of a parent queue\n  154          }\n  155:         newChildItems=state.get(\"child\").get(\"items\");\n  156:         state.get(\"child\").get(\"items\").forEach((post,i)=>{\n  157           // console.log('shifting item to level')\n  158            newLevelItems.push(post);\n  ...\n  276          parent: {\n  277            isFetching: true,\n  278:           items: state.get(\"parent\").get(\"items\")\n  279          }\n  280  \n  ...\n  284          level: {\n  285            isFetching: true,\n  286:           items: state.get(\"level\").get(\"items\"),\n  287:           holding:state.get(\"level\").get(\"holding\"),\n  288          }\n  289  \n  ...\n  293          child: {\n  294            isFetching: true,\n  295:           items: state.get(\"parent\").get(\"items\")\n  296          }\n  297  \n  ...\n  320            isFetching: false,\n  321            items: new Immutable.fromJS(action.items),\n  322:           holding:state.get(\"level\").get(\"holding\")\n  323          }\n  324  \n  ...\n  372            isFetching: false,\n  373            items:new Immutable.List([]),\n  374:           holding:state.get(\"level\").get(\"holding\")\n  375          }\n  376  \n  ...\n  389        // console.log(state.postCoords);\n  390        return state.merge({\n  391:          postCoords: state.get(\"postCoords\") ? (state.get(\"postCoords\").set(action.postid, action.coord)) : (new Immutable.Map([\n  392            [action.postid, new Immutable.Map(action.coord)]\n  393          ]))\n  ...\n  397        //console.log('d4Actions.SET_DEFAULT_QUEUE_COORD')\n  398         return state.merge({\n  399:          queueCoords: state.get(\"queueCoords\") ? state.get(\"queueCoords\").set(action.queue, action.coord) : new Immutable.Map([\n  400            [action.queue, new Immutable.Map(action.coord)]\n  401          ])\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\reducers\\newslineReducer.js:\n   24          topics: {\n   25            isFetching: true,\n   26:           items: state.get(\"topics\").get(\"items\"),\n   27:           lastid:state.get(\"topics\").get(\"lastid\")\n   28          }\n   29  \n   ..\n   32    if(!action.items||action.items.length==0)\n   33      return state;\n   34:   let oldItems=state.get(\"topics\").get(\"items\");\n   35    \n   36  \n   ..\n   95      \n   96     \n   97:     let oldItems=state.get(\"posts\").get(\"items\");\n   98      \n   99      let items1=new Map();\n  ...\n  126      let forumid=action.forumid\n  127      //console.log('action.items %o',action.items)\n  128:     let lastids=state.get(\"posts\").get(\"lastids\").toArray();\n  129      //console.log('lastids %o',lastids)\n  130      lastids[forumid]=lastid;\n  131     // console.log(\"items=%o\",items)\n  132:     let isFetching=state.get(\"posts\").get(\"isFetching\");\n  133      //isFetching[forumid]=false\n  134      return state.merge({\n  ...\n  150      });\n  151    case postActions.REQUEST_COMMUNITY_POSTS:\n  152:   let isFetching=state.get(\"posts\").get(\"isFetching\");\n  153    //isFetching[action.forumid]=true;\n  154    return state.merge( {\n  155          posts:{\n  156            isFetching,\n  157:           items:state.get(\"posts\").get(\"items\"),\n  158:           lastids:state.get(\"posts\").get(\"lastids\")\n  159          }    \n  160      }); \n\nc:\\projects\\qwiket-webapp\\components\\newsline.js:\n  300  		if(remove)\n  301  			props.clearTopics();\n  302: 		props.fetchTopics(clear,props.community,props.orderby,props.state,this.props.sideTopics,props.state.get(\"lastid\"),props.sitename,25,props.query);\n  303  	},\n  304  	componentWillReceiveProps:function(nextProps){\n  ...\n  440  function mapStateToProps(state) {\n  441    return {\n  442:     topics: state.newsline.get(\"topics\"),\n  443:     posts:state.newsline.get(\"posts\"),\n  444:     forums:state.newsline.get(\"forums\"),\n  445:     ls:state.newsline.get(\"ls\"),\n  446    };\n  447  }\n\n57 matches across 8 files\n\n\nSearching 27 files for \"e.get\" (whole word)\n\n0 matches\n\nSearching 27 files for \"selectCommunity\" (whole word)\n\nc:\\projects\\qwiket-webapp\\components\\app.js:\n    9  import { connect } from 'react-redux';\n   10  import { bindActionCreators } from 'redux';\n   11: import {selectCommunity} from './d4shared/actions/appAction.js';\n   12  \n   13  let Community=React.createClass({\n   ..\n  148  		u.registerEvent('reqAppState',this.reqAppState,{me:this});\n  149  		if(__CLIENT__&&(this.props.communityState.get(\"forum\")!=this.props.params.community))\n  150: 			setTimeout(()=>this.props.selectCommunity(this.props.params.community));\n  151  	    var styles={\n  152  	    	community:{\n  ...\n  273  }\n  274  function mapDispatchToProps(dispatch) {\n  275:   return bindActionCreators({ selectCommunity }, dispatch);\n  276  }\n  277  \n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\actions\\appAction.js:\n    9  export const SET_LANGUAGE='SET_LANGUAGE'\n   10  \n   11: export function selectCommunity(community) {\n   12   //TODO: ajax update the server community property\n   13:  console.log('selectCommunity '+community)\n   14   return function(dispatch) { //middleware thunk\n   15  \n\n5 matches across 2 files\n\n\nSearching 27 files for \"selectCommunity\" (whole word)\n\nc:\\projects\\qwiket-webapp\\components\\app.js:\n    9  import { connect } from 'react-redux';\n   10  import { bindActionCreators } from 'redux';\n   11: import {selectCommunity} from './d4shared/actions/appAction.js';\n   12  \n   13  let Community=React.createClass({\n   ..\n  149  		if(__CLIENT__&&(this.props.communityState.get(\"forum\")!=this.props.params.community)){\n  150  			console.log(\"getForum %o\",this.props.communityState.get(\"forum\"))\n  151: 			setTimeout(()=>this.props.selectCommunity(this.props.params.community));\n  152  		}\n  153  	    var styles={\n  ...\n  275  }\n  276  function mapDispatchToProps(dispatch) {\n  277:   return bindActionCreators({ selectCommunity }, dispatch);\n  278  }\n  279  \n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\actions\\appAction.js:\n    9  export const SET_LANGUAGE='SET_LANGUAGE'\n   10  \n   11: export function selectCommunity(community) {\n   12   //TODO: ajax update the server community property\n   13:  console.log('selectCommunity '+community)\n   14   return function(dispatch) { //middleware thunk\n   15  \n\n5 matches across 2 files\n\n\nSearching 27 files for \"doneScrolling\"\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\post.jsx:\n    8  var Post=React.createClass({\n    9  	mixins: [ History ],\n   10: 	doneScrolling:false,\n   11  	isSelected:false,\n   12  	ensureVisible() {\n   ..\n   25  			let j=$(el);\n   26  		//	console.log('visible=%s',j.visible(true))\n   27: 			if(!j.visible(true)&&(!this.doneScrolling)){\n   28  				//console.log(\"SCROLLINTOVIEW ++++++++++++++++++++++++\")\n   29  	      		//el.scrollIntoView();\n   30: 	      		  this.doneScrolling=true;\n   31  				   $('html, body').animate({\n   32  				    	scrollTop: j.offset().top-300\n\nc:\\projects\\qwiket-webapp\\components\\d4shared\\postqueue.jsx:\n   17  		}\n   18  		if(this.props.type==\"context:level\"){\n   19: 		//console.log(\"killing all doneScrolling 1\")\n   20  		for(let i=0;i<this.refs.length;i++){\n   21  \n   22: 			this.refs[i].doneScrolling=true;\n   23  		}}\n   24  		\n   ..\n   28  		if(this.props.type==\"context:level\")\n   29  		for(let i=0;i<this.refs.length;i++){\n   30: 			//console.log(\"killing all doneScrolling 2\")\n   31: 			this.refs[i].doneScrolling=true;\n   32  		}\n   33  		if(this.props.type.indexOf('context')<0){\n\n7 matches across 2 files\n",
+			"settings":
+			{
+				"buffer_size": 64659,
+				"line_ending": "Windows",
+				"name": "Find Results",
+				"scratch": true
+			}
+		},
+		{
+			"file": "components/d4shared/actions/common.js",
+			"settings":
+			{
+				"buffer_size": 172,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "components/d4shared/reducers/index.js",
+			"settings":
+			{
+				"buffer_size": 333,
+				"line_ending": "Windows",
+				"name": "import { combineReducers } from 'redux';"
+			}
+		},
+		{
+			"file": "components/d4shared/store/configureStore.js",
+			"settings":
+			{
+				"buffer_size": 664,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "components/d4shared/reducers/appReducer.js",
+			"settings":
+			{
+				"buffer_size": 808,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "components/d4shared/reducers/state.json",
+			"settings":
+			{
+				"buffer_size": 2967,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "components/d4shared/reducers/info.js",
+			"settings":
+			{
+				"buffer_size": 340,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "components/d4shared/actions/appAction.js",
+			"settings":
+			{
+				"buffer_size": 1626,
+				"line_ending": "Windows",
+				"name": "export const SET_COUNTER = 'SET_COUNTER';"
+			}
+		},
+		{
+			"file": "components/d4shared/actions/contextAction.js",
+			"settings":
+			{
+				"buffer_size": 2506,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "components/d4shared/reducers/D4ContextReducer.js",
+			"settings":
+			{
+				"buffer_size": 14275,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "webpack.client-watch.js",
+			"settings":
+			{
+				"buffer_size": 1426,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "dev.cmd",
+			"settings":
+			{
+				"buffer_size": 127,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Nicholas/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+			"settings":
+			{
+				"buffer_size": 184,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "components/d4shared/utils.jsx",
+			"file": "components/d4shared/reducers/contextReducer.js",
 			"settings":
 			{
-				"buffer_size": 4256,
+				"buffer_size": 2835,
 				"line_ending": "Windows"
 			}
 		},
@@ -356,7 +616,42 @@
 			"file": "components/context.js",
 			"settings":
 			{
-				"buffer_size": 11655,
+				"buffer_size": 10312,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "components/local.js",
+			"settings":
+			{
+				"buffer_size": 940,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "components/d4shared/actions/newslineAction.js",
+			"settings":
+			{
+				"buffer_size": 1773,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "|+| \"curl_getinfo($ch, CURLINFO_HTTP_CODE)\"\n|+| \"$match\"\n|+| \"$client->config\"\n|+| \"$property\"\n|+| \"$name\"\n|+| \"$content\"\n|+| \"$http_equiv\"\n|+| \"$posts[0]\"\n|+| \"$lastid[$i]\"\n",
+			"settings":
+			{
+				"buffer_size": 174,
+				"line_ending": "Windows",
+				"name": "Xdebug Watch",
+				"read_only": true,
+				"scratch": true
+			}
+		},
+		{
+			"file": ".flowconfig",
+			"settings":
+			{
+				"buffer_size": 77,
 				"line_ending": "Windows"
 			}
 		},
@@ -383,10 +678,10 @@
 			}
 		},
 		{
-			"contents": "=> C:\\projects\\d4rum\\server\\hub_data_service.php\n	|+| 4970\n=> C:\\projects\\d4rum\\server\\landing.php\n	|+| 180\n	|+| 182\n	|+| 254\n	|+| 273\n=> C:\\projects\\qwiket-api\\d4server\\api.php\n	|+| 2369\n=> C:\\projects\\qwiket-api\\server\\api.php\n	|+| 20\n	|+| 52\n	|+| 597\n	|+| 598\n	|+| 624\n=> C:\\projects\\qwiket\\d4server\\api.php\n	|+| 2324\n=> C:\\projects\\qwiket\\d4server\\hub_data_service.php\n	|+| 4463\n=> C:\\projects\\qwiket\\server\\D4crawler.php\n	|+| 23\n	|+| 82\n=> C:\\projects\\qwiket\\server\\api.php\n	|+| 555\n	|+| 1538\n	|+| 1621\n	|+| 1644\n=> C:\\projects\\qwiket\\server\\pov_data_service.php\n	|+| 87\n	|+| 1427\n=> C:\\qwiket\\newsline\\php\\pov_data_service.php\n	|+| 1548\n",
+			"contents": "=> C:\\projects\\d4rum\\server\\hub_data_service.php\n    |+| 4970\n=> C:\\projects\\d4rum\\server\\landing.php\n    |+| 180\n    |+| 182\n    |+| 254\n    |+| 273\n=> C:\\projects\\qwiket-api\\d4server\\api.php\n    |+| 486\n    |+| 2374\n    |+| 2383\n    |+| 2390\n    |+| 2403\n    |+| 2427\n=> C:\\projects\\qwiket-api\\d4server\\hub_data_service.php\n    |+| 4290\n=> C:\\projects\\qwiket-api\\server\\api.php\n    |+| 52\n    |+| 693\n    |+| 700\n    |+| 712\n    |+| 796\n    |+| 835\n    |+| 1045\n    |+| 1246\n    |+| 1266\n=> C:\\projects\\qwiket\\d4server\\api.php\n    |+| 2324\n=> C:\\projects\\qwiket\\d4server\\hub_data_service.php\n    |+| 4463\n=> C:\\projects\\qwiket\\server\\D4crawler.php\n    |+| 23\n    |+| 82\n=> C:\\projects\\qwiket\\server\\api.php\n    |+| 555\n    |+| 1538\n    |+| 1621\n    |+| 1644\n=> C:\\projects\\qwiket\\server\\pov_data_service.php\n    |+| 87\n    |+| 1427\n=> C:\\qwiket\\newsline\\php\\pov_data_service.php\n    |+| 1548\n",
 			"settings":
 			{
-				"buffer_size": 643,
+				"buffer_size": 894,
 				"line_ending": "Windows",
 				"name": "Xdebug Breakpoint",
 				"read_only": true,
@@ -450,22 +745,55 @@
 		"/C/projects/qwiket-webapp",
 		"/C/projects/qwiket-webapp/components",
 		"/C/projects/qwiket-webapp/components/d4shared",
-		"/C/projects/qwiket-webapp/static"
+		"/C/projects/qwiket-webapp/components/d4shared/actions",
+		"/C/projects/qwiket-webapp/components/d4shared/reducers",
+		"/C/projects/qwiket-webapp/components/d4shared/store",
+		"/C/projects/qwiket-webapp/static",
+		"/C/projects/qwiket-webapp/static/dist",
+		"/C/projects/qwiket-webapp/static/js"
 	],
 	"file_history":
 	[
+		"/C/projects/qwiket-webapp/static/dist/client.js",
+		"/C/projects/qwiket-api/d4server/api.php",
+		"/C/projects/qwiket-webapp/babel.server.js",
+		"/C/projects/qwiket-webapp/routes.js",
+		"/C/projects/qwiket-webapp/components/d4shared/infobox.jsx",
+		"/C/projects/qwiket-webapp/test.cmd",
+		"/C/projects/qwiket-webapp/components/d4shared/postqueue.jsx",
 		"/C/projects/qwiket-api/server/api.php",
+		"/C/projects/qwiket-webapp/components/d4shared/posts.jsx",
+		"/C/projects/qwiket-webapp/server.js",
+		"/C/projects/qwiket-webapp/client.js",
+		"/C/projects/qwiket-webapp/webpack.client-watch.js",
+		"/C/projects/qwiket-webapp/npm-debug.log",
+		"/C/qwiket/apache/conf/httpd.conf",
+		"/C/projects/qwiket-webapp/webpack.client.js",
+		"/C/projects/qwiket-webapp/components/d4shared/post.jsx",
+		"/C/projects/qwiket-webapp/package.json",
+		"/C/projects/qwiket-webapp/components/d4shared/utils.jsx",
+		"/C/projects/qwiket-webapp/components/d4shared/store/configureStore.js",
+		"/C/projects/qwiket-webapp/components/router.js",
+		"/C/projects/qwiket-webapp/components/d4shared/actions/postsAction.js",
+		"/C/projects/qwiket-webapp/components/d4shared/reducers/info.js",
+		"/C/Users/Nicholas/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/Users/Nicholas/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/C/projects/qwiket-webapp/static/css/logo2pale.png",
+		"/C/projects/qwiket-webapp/components/d4shared/reducers/postsReducer.js",
+		"/C/projects/qwiket-webapp/components/d4shared/actions/index.js",
+		"/C/projects/qwiket-webapp/components/d4shared/actions/info.js",
+		"/C/projects/qwiket-webapp/static/css/newsline.css",
+		"/C/projects/qwiket-webapp/components/d4shared/postcontext.jsx",
+		"/c/projects/qwiket-webapp/server-failed.js",
+		"/C/projects/qwiket-webapp/components/d4shared/actions/index,js",
 		"/C/Users/Nicholas/AppData/Roaming/Sublime Text 3/Packages/Xdebug Client/Xdebug.sublime-settings",
 		"/C/qwiket/apache/conf/extra/httpd-vhosts.conf",
 		"/C/projects/qwiket-webapp/components/app.js",
 		"/C/projects/qwiket-webapp/components/context.js",
 		"/C/projects/qwiket-webapp/components/local.js",
 		"/C/projects/qwiket-webapp/components/newsline.js",
-		"/C/projects/qwiket-webapp/components/router.js",
 		"/C/projects/qwiket-webapp/server-failed.js",
-		"/C/projects/qwiket-webapp/npm-debug.log",
 		"/C/projects/qwiket-webapp/components/Head.js",
-		"/C/projects/qwiket-webapp/components/d4shared/post.jsx",
 		"/C/projects/qwiket-webapp/webpack-config-failed.js",
 		"/C/projects/qwiket-webapp/package-failed.json",
 		"/C/projects/qwiket-webapp/preprocessor-failed.js",
@@ -473,7 +801,6 @@
 		"/C/projects/qwiket-webapp/Dockerfile-failed",
 		"/C/projects/qwiket-webapp/dispatcher-failed.js",
 		"/C/projects/qwiket-webapp/client-failed.js",
-		"/C/projects/qwiket-webapp/client.js",
 		"/C/projects/qwiket-webapp/server-express.js",
 		"/C/qwiket/apache/logs/access.log",
 		"/C/projects/qwiket-webapp/node_modules/react-disqus-thread/package.json",
@@ -514,14 +841,12 @@
 		"/C/projects/qwiket/gulpfile.js",
 		"/C/projects/qwiket/package.json",
 		"/C/projects/qwiket/README.md",
-		"/C/qwiket/apache/conf/httpd.conf",
 		"/C/projects/d4rum/client/components/shared/README.md",
 		"/C/qwiket/newsline/index.php",
 		"/C/Users/Public/Desktop/desktop.ini",
 		"/C/qwiket/d4rum/php/d4rum_data_service.php",
 		"/C/qwiket/d4rum/php/nodemanager_data_service.php",
 		"/C/qwiket/d4rum/server/landing.php",
-		"/C/Users/Nicholas/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
 		"/C/qwiket/d4rum/server/user_manager.php",
 		"/C/qwiket/d4rum/php/user_manager.php",
 		"/C/qwiket/d4rum/php/usernode_data_service.php",
@@ -556,32 +881,7 @@
 		"/C/qwiket/newsline/php/api.php",
 		"/C/qwiket/newsline/dist/php/pov_data_service.php",
 		"/C/qwiket/newsline/php/pov_data_service.php",
-		"/C/qwiket/newsline/php/docs_helper.php",
-		"/C/qwiket/newsline/.htaccess",
-		"/C/qwiket/newsline/dist/.htaccess",
-		"/C/qwiket/newsline/php/log_data_service.php",
-		"/C/qwiket/newsline/php/landing.php",
-		"/C/qwiket/newsline/dist/php/client_secrets.json",
-		"/C/qwiket/newsline/dist/new404.html",
-		"/C/qwiket/newsline/php/crawler.php",
-		"/C/qwiket/newsline/lib/interests.js",
-		"/C/qwiket/newsline/lib/share.js",
-		"/C/Users/Nicholas/Downloads/API Project-c90425e6979a.json",
-		"/C/qwiket/google-api-php-client/src/Google/Config.php",
-		"/C/qwiket/google-api-php-client/src/Google/Client.php",
-		"/C/qwiket/google-api-php-client/src/Google/Http/REST.php",
-		"/C/qwiket/google-api-php-client/src/Google/Auth/OAuth2.php",
-		"/C/qwiket/newsline/php/oauth2.php",
-		"/C/qwiket/newsline/php/sitemapper.php",
-		"/C/qwiket/newsline/dist/php/sitemapper.php",
-		"/C/qwiket/newsline/Gruntfile.js",
-		"/C/qwiket/newsline/sitemaps/newsline_sm_1435422891.xml",
-		"/C/qwiket/newsline/composer.json",
-		"/C/qwiket/newsline/php/sitemap_service.php",
-		"/C/qwiket/newsline/php/newsline_sm_1435422891.xml",
-		"/C/qwiket/newsline/php/nroport.php",
-		"/C/Users/Nicholas/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
-		"/C/qwiket/newsline/lib/approve.js"
+		"/C/qwiket/newsline/php/docs_helper.php"
 	],
 	"find":
 	{
@@ -592,6 +892,10 @@
 		"height": 176.0,
 		"where_history":
 		[
+			"c:/projects/qwiket-webapp/components",
+			"c:/projects/qwiket-webapp/,-node_modules/*",
+			"c:/projects/qwiket-webapp/,-c:/projects/qwiket-webapp/node_modules",
+			"c:/projects/qwiket-webapp/",
 			"c:/projects/qwiket-webapp/components",
 			"c:/projects/qwiket-webapp/",
 			"c:/projects/qwiket-webapp/components",
@@ -639,6 +943,89 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"params",
+			"doneScrolling",
+			"donescrolling",
+			"brand",
+			"min-width",
+			"radium",
+			"lastids",
+			"selectCommunity",
+			"e.get",
+			"appactions",
+			"LOADED_COMMUNITY_FORUMS",
+			"receve_forums",
+			"items fetch",
+			"Local",
+			"SINGLE",
+			"forumid",
+			"donescrolling",
+			"xid",
+			"click",
+			"Item",
+			"topics",
+			"click",
+			"sort",
+			"action.",
+			"count",
+			"action.",
+			"clear",
+			"length",
+			"userlang",
+			"rating",
+			"fetchTopics",
+			"community render",
+			"fetch",
+			"context",
+			"startcoord",
+			"setChildTop",
+			"reportCoord",
+			"radius",
+			"round",
+			"window",
+			"searc",
+			"col",
+			"fetchTopics",
+			"clear",
+			"cleartopics",
+			"D4context",
+			"state",
+			"fetch",
+			"d4Actions",
+			"postcontext",
+			"childqueuep",
+			"virgin",
+			"nonem",
+			"publish",
+			"fetch",
+			"fetchtopics",
+			"img",
+			"opacity",
+			"rating",
+			"icon",
+			"RECEIVE_COMMUNITY_POSTS",
+			"clearT",
+			"fetchTopics",
+			"fetchtopics",
+			"select",
+			"SELECT_LANGUAGE",
+			"selectLanguage",
+			"handleChangeCommunity",
+			"xid",
+			"cleartopic",
+			"selectco",
+			"uri",
+			"najax",
+			"lodash",
+			"jquery",
+			"$",
+			"8080",
+			"8088",
+			"pushstate",
+			"new",
+			"nevest",
+			"GLOBAL",
+			"mynav",
 			"items",
 			"$$$",
 			"image",
@@ -683,90 +1070,7 @@
 			"server",
 			"link",
 			"href",
-			"shared_by_profileurl",
-			"href",
-			"#",
-			"native_href",
-			"#",
-			"landing",
-			"loadForum",
-			"landing",
-			"loadforums",
-			"landing",
-			"enviro",
-			"ocketio",
-			"registerEvent\n",
-			");\n",
-			"window",
-			"server",
-			"Utils",
-			"stage",
-			"peer",
-			"match",
-			"submittopic",
-			"inner-link",
-			"community_forums",
-			"server.post",
-			"onclick",
-			"get_thread_for_post",
-			"loadCommunityTopics",
-			"load",
-			"get_thread_for_post",
-			"textAlign",
-			"forum has not been",
-			"bottom",
-			"topic-site-name",
-			"topic-image",
-			"topic-middle",
-			"s",
-			"arrow",
-			"resp",
-			"args",
-			"loadqueueit",
-			"queue",
-			"resp",
-			"conta",
-			"r",
-			"container",
-			"splice",
-			"site_name",
-			"getthread",
-			"getD4ThreadId",
-			"Error fetching thread and forumid",
-			"getForumAndThreadForUrls",
-			"getD4Status",
-			"http://qwiket.com/usconservative/un-secretary-general-issues-despicable-statement-condemning-israel/7/",
-			"get_d4_status",
-			"getD4Status",
-			" let url=\"http://qwiket.com/\"+this.props.params.community+\"/\"+data.topic.threadid+\"/7/\";\n			        console.log('calling get_d4_status for postid url=%s,forum=%s',url,this.props.params.community)",
-			"getD4ThreadId",
-			"bottom-arrow",
-			"arrow",
-			"getD4ThreadId",
-			" getD4ThreadId($threadid)",
-			"load_queue",
-			"load_gugug",
-			"getThread",
-			"getthread",
-			"gettopic",
-			"lastid",
-			"last",
-			"lastid",
-			"loadPosts",
-			"queueitems",
-			"queue",
-			"load",
-			"unregisterEvent",
-			"inside",
-			"Breitbart",
-			"submittopic",
-			"submitto",
-			"submittopi",
-			"submitlink",
-			"unregisterEvents",
-			"topscroll",
-			"fetch",
-			"CDEbug"
+			"shared_by_profileurl"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -774,6 +1078,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"new",
 			"utils",
 			"h2"
 		],
@@ -786,252 +1091,54 @@
 	"groups":
 	[
 		{
-			"selected": 8,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "components/app.js",
+					"file": "package.json",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8603,
+						"buffer_size": 2645,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6506,
-								6506
+								528,
+								528
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 4120.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 140,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								140,
-								140
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
-							"word_wrap": false
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 15,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "components/newsline.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 20553,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								14348,
-								14348
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 8528.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "components/router.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2249,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 17,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "static/dist/client.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1331473,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								258936,
-								258936
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 1102.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 16,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "components/d4shared/postcontext.jsx",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 6060,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								112,
-								112
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "components/d4shared/postqueue.jsx",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 12772,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								5264,
-								5264
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 2887.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 9,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "components/d4shared/posts.jsx",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5203,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1199,
-								1199
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 151.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 18,
 					"type": "text"
 				},
 				{
-					"buffer": 8,
-					"file": "server.js",
+					"buffer": 1,
+					"file": "components/app.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7976,
+						"buffer_size": 12552,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1593,
-								1593
+								6787,
+								6787
 							]
 						],
 						"settings":
@@ -1040,205 +1147,32 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 5424.0,
+						"translation.y": 5935.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 9,
-					"file": "/C/projects/qwiket-api/server/api.php",
+					"buffer": 2,
+					"file": "routes.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 81249,
+						"buffer_size": 1176,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								821,
-								821
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 551.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 11,
-					"type": "text"
-				},
-				{
-					"buffer": 10,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 0,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"default_dir": "C:\\projects\\qwiket-webapp\\static",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 21,
-					"type": "text"
-				},
-				{
-					"buffer": 11,
-					"file": "client.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2086,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1873,
-								1875
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 1032.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 12,
-					"file": "webpack.client-watch.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1368,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								203,
-								203
+								1146,
+								1146
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 19,
-					"type": "text"
-				},
-				{
-					"buffer": 13,
-					"file": "webpack.client.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1192,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								115,
-								115
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 20,
-					"type": "text"
-				},
-				{
-					"buffer": 14,
-					"file": "components/d4shared/post.jsx",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5744,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								183,
-								204
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 15,
-					"file": "package.json",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 2314,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1280,
-								1280
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
@@ -1250,49 +1184,258 @@
 					"type": "text"
 				},
 				{
-					"buffer": 16,
-					"file": "components/d4shared/utils.jsx",
+					"buffer": 3,
+					"file": "babel.server.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4256,
+						"buffer_size": 375,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1516,
-								1516
+								351,
+								351
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1351.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 23,
 					"type": "text"
 				},
 				{
-					"buffer": 17,
-					"file": "components/context.js",
+					"buffer": 4,
+					"file": "node_modules/react-burger-menu/src/menus/scaleRotate.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 11655,
+						"buffer_size": 495,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								8378,
-								8380
+								183,
+								183
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 45,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "node_modules/react-burger-menu/src/CrossIcon.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1049,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								465,
+								465
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 972.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 44,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "node_modules/react-burger-menu/src/menuFactory.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6311,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2647,
+								2647
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 7020.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 39,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "node_modules/react-burger-menu/src/BurgerIcon.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2215,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								612,
+								612
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1080.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 42,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "node_modules/react-burger-menu/package.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1856,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1704,
+								1704
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1512.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 43,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "static/css/newsline.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6739,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								948,
+								948
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2376.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 20,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "static/css/d4rum.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3818,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1492,
+								1492
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2706.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 19,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "components/newsline.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 15427,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								12244,
+								12244
 							]
 						],
 						"settings":
@@ -1301,58 +1444,255 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 5599.0,
+						"translation.y": 9768.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 16,
 					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 0,
-			"sheets":
-			[
+				},
 				{
-					"buffer": 18,
+					"buffer": 12,
+					"file": "components/d4shared/postqueue.jsx",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 0,
+						"buffer_size": 6472,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								995,
+								995
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
-							"word_wrap": false
+							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 155.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 13,
 					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 0,
-			"sheets":
-			[
+				},
 				{
-					"buffer": 19,
+					"buffer": 13,
+					"file": "components/d4shared/posts.jsx",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 0,
+						"buffer_size": 5204,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1091,
+								1091
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 540.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 21,
+					"type": "text"
+				},
+				{
+					"buffer": 14,
+					"file": "components/d4shared/post.jsx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8835,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								481,
+								481
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 396.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 15,
+					"file": "static/js/visible.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2947,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2947,
+								2947
+							]
+						],
+						"settings":
+						{
+							"auto_name": "(function($){",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1404.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 37,
+					"type": "text"
+				},
+				{
+					"buffer": 16,
+					"file": "components/d4shared/actions/postsAction.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3671,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								102,
+								68
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 32,
+					"type": "text"
+				},
+				{
+					"buffer": 17,
+					"file": "components/d4shared/reducers/newslineReducer.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4359,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2246,
+								2246
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2376.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 26,
+					"type": "text"
+				},
+				{
+					"buffer": 18,
+					"file": "components/d4shared/actions/D4ContextAction.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1927,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								30,
+								64
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1512.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 35,
+					"type": "text"
+				},
+				{
+					"buffer": 19,
+					"file": "components/d4shared/postcontext.jsx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9661,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								409,
+								412
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 15,
+					"type": "text"
+				},
+				{
+					"buffer": 20,
+					"file": ".eslintignore",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 43,
 						"regions":
 						{
 						},
@@ -1365,30 +1705,1926 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
-							"word_wrap": false
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 38,
+					"type": "text"
+				},
+				{
+					"buffer": 21,
+					"file": "server.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 14036,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8946,
+								8946
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 11484.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 22,
+					"file": "/C/projects/qwiket-api/server/api.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 105223,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								24486,
+								24486
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 42730.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 23,
+					"file": "/C/projects/qwiket-api/server/disqus_client.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 27015,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3600,
+								3600
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3348.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 24,
+					"file": "client.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3020,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1318,
+								1318
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1188.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 25,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 64659,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										289,
+										298
+									],
+									[
+										506,
+										515
+									],
+									[
+										543,
+										552
+									],
+									[
+										691,
+										700
+									],
+									[
+										888,
+										897
+									],
+									[
+										932,
+										941
+									],
+									[
+										1345,
+										1354
+									],
+									[
+										1418,
+										1427
+									],
+									[
+										1514,
+										1523
+									],
+									[
+										1927,
+										1936
+									],
+									[
+										1970,
+										1979
+									],
+									[
+										2420,
+										2429
+									],
+									[
+										2436,
+										2445
+									],
+									[
+										2640,
+										2649
+									],
+									[
+										2934,
+										2943
+									],
+									[
+										2952,
+										2961
+									],
+									[
+										3091,
+										3100
+									],
+									[
+										3216,
+										3225
+									],
+									[
+										3483,
+										3494
+									],
+									[
+										3947,
+										3958
+									],
+									[
+										4164,
+										4175
+									],
+									[
+										4182,
+										4193
+									],
+									[
+										4432,
+										4443
+									],
+									[
+										4470,
+										4481
+									],
+									[
+										4673,
+										4684
+									],
+									[
+										4914,
+										4930
+									],
+									[
+										5261,
+										5272
+									],
+									[
+										5789,
+										5800
+									],
+									[
+										5813,
+										5824
+									],
+									[
+										5831,
+										5842
+									],
+									[
+										6017,
+										6028
+									],
+									[
+										6056,
+										6067
+									],
+									[
+										6372,
+										6383
+									],
+									[
+										6649,
+										6660
+									],
+									[
+										6902,
+										6913
+									],
+									[
+										7098,
+										7109
+									],
+									[
+										7395,
+										7406
+									],
+									[
+										7866,
+										7877
+									],
+									[
+										7890,
+										7901
+									],
+									[
+										7908,
+										7919
+									],
+									[
+										8055,
+										8066
+									],
+									[
+										8094,
+										8105
+									],
+									[
+										8538,
+										8543
+									],
+									[
+										8928,
+										8933
+									],
+									[
+										9377,
+										9382
+									],
+									[
+										9408,
+										9413
+									],
+									[
+										9764,
+										9769
+									],
+									[
+										10180,
+										10185
+									],
+									[
+										10385,
+										10390
+									],
+									[
+										10760,
+										10765
+									],
+									[
+										10971,
+										10976
+									],
+									[
+										11193,
+										11198
+									],
+									[
+										11380,
+										11385
+									],
+									[
+										11649,
+										11654
+									],
+									[
+										11918,
+										11923
+									],
+									[
+										12095,
+										12100
+									],
+									[
+										12112,
+										12117
+									],
+									[
+										12170,
+										12175
+									],
+									[
+										12218,
+										12223
+									],
+									[
+										12445,
+										12450
+									],
+									[
+										12691,
+										12696
+									],
+									[
+										12942,
+										12947
+									],
+									[
+										13305,
+										13310
+									],
+									[
+										13695,
+										13700
+									],
+									[
+										14144,
+										14149
+									],
+									[
+										14175,
+										14180
+									],
+									[
+										14531,
+										14536
+									],
+									[
+										14947,
+										14952
+									],
+									[
+										15152,
+										15157
+									],
+									[
+										15527,
+										15532
+									],
+									[
+										15738,
+										15743
+									],
+									[
+										15960,
+										15965
+									],
+									[
+										16147,
+										16152
+									],
+									[
+										16416,
+										16421
+									],
+									[
+										16685,
+										16690
+									],
+									[
+										16862,
+										16867
+									],
+									[
+										16879,
+										16884
+									],
+									[
+										16937,
+										16942
+									],
+									[
+										16985,
+										16990
+									],
+									[
+										17212,
+										17217
+									],
+									[
+										17458,
+										17463
+									],
+									[
+										17709,
+										17714
+									],
+									[
+										18072,
+										18077
+									],
+									[
+										18462,
+										18467
+									],
+									[
+										18911,
+										18916
+									],
+									[
+										18942,
+										18947
+									],
+									[
+										19298,
+										19303
+									],
+									[
+										19716,
+										19721
+									],
+									[
+										19921,
+										19926
+									],
+									[
+										20296,
+										20301
+									],
+									[
+										20507,
+										20512
+									],
+									[
+										20729,
+										20734
+									],
+									[
+										20916,
+										20921
+									],
+									[
+										21185,
+										21190
+									],
+									[
+										21454,
+										21459
+									],
+									[
+										21631,
+										21636
+									],
+									[
+										21648,
+										21653
+									],
+									[
+										21706,
+										21711
+									],
+									[
+										21754,
+										21759
+									],
+									[
+										21981,
+										21986
+									],
+									[
+										22227,
+										22232
+									],
+									[
+										22478,
+										22483
+									],
+									[
+										22841,
+										22846
+									],
+									[
+										23231,
+										23236
+									],
+									[
+										23680,
+										23685
+									],
+									[
+										23711,
+										23716
+									],
+									[
+										24067,
+										24072
+									],
+									[
+										24485,
+										24490
+									],
+									[
+										24692,
+										24697
+									],
+									[
+										25067,
+										25072
+									],
+									[
+										25278,
+										25283
+									],
+									[
+										25500,
+										25505
+									],
+									[
+										25687,
+										25692
+									],
+									[
+										25956,
+										25961
+									],
+									[
+										26225,
+										26230
+									],
+									[
+										26402,
+										26407
+									],
+									[
+										26419,
+										26424
+									],
+									[
+										26477,
+										26482
+									],
+									[
+										26525,
+										26530
+									],
+									[
+										26752,
+										26757
+									],
+									[
+										26998,
+										27003
+									],
+									[
+										27249,
+										27254
+									],
+									[
+										27612,
+										27617
+									],
+									[
+										28002,
+										28007
+									],
+									[
+										28451,
+										28456
+									],
+									[
+										28482,
+										28487
+									],
+									[
+										28838,
+										28843
+									],
+									[
+										29256,
+										29261
+									],
+									[
+										29463,
+										29468
+									],
+									[
+										29838,
+										29843
+									],
+									[
+										30049,
+										30054
+									],
+									[
+										30271,
+										30276
+									],
+									[
+										30458,
+										30463
+									],
+									[
+										30727,
+										30732
+									],
+									[
+										30996,
+										31001
+									],
+									[
+										31173,
+										31178
+									],
+									[
+										31190,
+										31195
+									],
+									[
+										31248,
+										31253
+									],
+									[
+										31296,
+										31301
+									],
+									[
+										31523,
+										31528
+									],
+									[
+										31769,
+										31774
+									],
+									[
+										32020,
+										32025
+									],
+									[
+										32383,
+										32388
+									],
+									[
+										32773,
+										32778
+									],
+									[
+										33222,
+										33227
+									],
+									[
+										33253,
+										33258
+									],
+									[
+										33609,
+										33614
+									],
+									[
+										34027,
+										34032
+									],
+									[
+										34234,
+										34239
+									],
+									[
+										34611,
+										34616
+									],
+									[
+										34822,
+										34827
+									],
+									[
+										35044,
+										35049
+									],
+									[
+										35231,
+										35236
+									],
+									[
+										35500,
+										35505
+									],
+									[
+										35769,
+										35774
+									],
+									[
+										35946,
+										35951
+									],
+									[
+										35963,
+										35968
+									],
+									[
+										36021,
+										36026
+									],
+									[
+										36069,
+										36074
+									],
+									[
+										36296,
+										36301
+									],
+									[
+										36542,
+										36547
+									],
+									[
+										36793,
+										36798
+									],
+									[
+										37156,
+										37161
+									],
+									[
+										37546,
+										37551
+									],
+									[
+										37995,
+										38000
+									],
+									[
+										38026,
+										38031
+									],
+									[
+										38382,
+										38387
+									],
+									[
+										38800,
+										38805
+									],
+									[
+										39007,
+										39012
+									],
+									[
+										39384,
+										39389
+									],
+									[
+										39597,
+										39602
+									],
+									[
+										39821,
+										39826
+									],
+									[
+										40010,
+										40015
+									],
+									[
+										40279,
+										40284
+									],
+									[
+										40550,
+										40555
+									],
+									[
+										40727,
+										40732
+									],
+									[
+										40744,
+										40749
+									],
+									[
+										40802,
+										40807
+									],
+									[
+										40850,
+										40855
+									],
+									[
+										41077,
+										41082
+									],
+									[
+										41323,
+										41328
+									],
+									[
+										41574,
+										41579
+									],
+									[
+										41937,
+										41942
+									],
+									[
+										42327,
+										42332
+									],
+									[
+										42776,
+										42781
+									],
+									[
+										42807,
+										42812
+									],
+									[
+										43163,
+										43168
+									],
+									[
+										43581,
+										43586
+									],
+									[
+										43788,
+										43793
+									],
+									[
+										44165,
+										44170
+									],
+									[
+										44378,
+										44383
+									],
+									[
+										44602,
+										44607
+									],
+									[
+										44791,
+										44796
+									],
+									[
+										45060,
+										45065
+									],
+									[
+										45331,
+										45336
+									],
+									[
+										45510,
+										45515
+									],
+									[
+										45527,
+										45532
+									],
+									[
+										45585,
+										45590
+									],
+									[
+										45633,
+										45638
+									],
+									[
+										45860,
+										45865
+									],
+									[
+										46108,
+										46113
+									],
+									[
+										46359,
+										46364
+									],
+									[
+										46722,
+										46727
+									],
+									[
+										47112,
+										47117
+									],
+									[
+										47561,
+										47566
+									],
+									[
+										47592,
+										47597
+									],
+									[
+										47948,
+										47953
+									],
+									[
+										48366,
+										48371
+									],
+									[
+										48573,
+										48578
+									],
+									[
+										48950,
+										48955
+									],
+									[
+										49163,
+										49168
+									],
+									[
+										49387,
+										49392
+									],
+									[
+										49576,
+										49581
+									],
+									[
+										49845,
+										49850
+									],
+									[
+										50116,
+										50121
+									],
+									[
+										50295,
+										50300
+									],
+									[
+										50312,
+										50317
+									],
+									[
+										50370,
+										50375
+									],
+									[
+										50418,
+										50423
+									],
+									[
+										50645,
+										50650
+									],
+									[
+										50893,
+										50898
+									],
+									[
+										51146,
+										51151
+									],
+									[
+										51427,
+										51450
+									],
+									[
+										51454,
+										51477
+									],
+									[
+										51563,
+										51586
+									],
+									[
+										51758,
+										51781
+									],
+									[
+										52182,
+										52187
+									],
+									[
+										52394,
+										52399
+									],
+									[
+										52754,
+										52759
+									],
+									[
+										53093,
+										53098
+									],
+									[
+										53143,
+										53148
+									],
+									[
+										53204,
+										53209
+									],
+									[
+										53435,
+										53440
+									],
+									[
+										53461,
+										53466
+									],
+									[
+										53694,
+										53699
+									],
+									[
+										53988,
+										53993
+									],
+									[
+										54049,
+										54054
+									],
+									[
+										54272,
+										54277
+									],
+									[
+										54332,
+										54337
+									],
+									[
+										54525,
+										54530
+									],
+									[
+										54879,
+										54884
+									],
+									[
+										54941,
+										54946
+									],
+									[
+										55002,
+										55007
+									],
+									[
+										55135,
+										55140
+									],
+									[
+										55204,
+										55209
+									],
+									[
+										55394,
+										55399
+									],
+									[
+										55640,
+										55645
+									],
+									[
+										55852,
+										55857
+									],
+									[
+										55932,
+										55937
+									],
+									[
+										56138,
+										56143
+									],
+									[
+										56447,
+										56452
+									],
+									[
+										56541,
+										56546
+									],
+									[
+										56622,
+										56627
+									],
+									[
+										56792,
+										56797
+									],
+									[
+										56861,
+										56866
+									],
+									[
+										56987,
+										56992
+									],
+									[
+										57197,
+										57202
+									],
+									[
+										57415,
+										57420
+									],
+									[
+										57463,
+										57468
+									],
+									[
+										57705,
+										57710
+									],
+									[
+										57852,
+										57857
+									],
+									[
+										57910,
+										57915
+									],
+									[
+										58059,
+										58064
+									],
+									[
+										58244,
+										58249
+									],
+									[
+										58417,
+										58422
+									],
+									[
+										58591,
+										58596
+									],
+									[
+										58618,
+										58623
+									],
+									[
+										58918,
+										58923
+									],
+									[
+										58945,
+										58950
+									],
+									[
+										59267,
+										59272
+									],
+									[
+										59325,
+										59330
+									],
+									[
+										59488,
+										59493
+									],
+									[
+										59593,
+										59598
+									],
+									[
+										59795,
+										59800
+									],
+									[
+										59992,
+										59997
+									],
+									[
+										60197,
+										60202
+									],
+									[
+										60385,
+										60390
+									],
+									[
+										60443,
+										60448
+									],
+									[
+										60719,
+										60724
+									],
+									[
+										60930,
+										60935
+									],
+									[
+										60977,
+										60982
+									],
+									[
+										61024,
+										61029
+									],
+									[
+										61068,
+										61073
+									],
+									[
+										61399,
+										61414
+									],
+									[
+										61710,
+										61725
+									],
+									[
+										61906,
+										61921
+									],
+									[
+										62101,
+										62116
+									],
+									[
+										62209,
+										62224
+									],
+									[
+										62541,
+										62556
+									],
+									[
+										62861,
+										62876
+									],
+									[
+										63043,
+										63058
+									],
+									[
+										63238,
+										63253
+									],
+									[
+										63346,
+										63361
+									],
+									[
+										63635,
+										63648
+									],
+									[
+										63829,
+										63842
+									],
+									[
+										63976,
+										63989
+									],
+									[
+										64238,
+										64251
+									],
+									[
+										64333,
+										64346
+									],
+									[
+										64510,
+										64523
+									],
+									[
+										64551,
+										64564
+									]
+								],
+								"scope": ""
+							}
+						},
+						"selection":
+						[
+							[
+								63995,
+								63995
+							]
+						],
+						"settings":
+						{
+							"detect_indentation": false,
+							"line_numbers": false,
+							"output_tag": 20,
+							"result_base_dir": "",
+							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 53496.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 12,
 					"type": "text"
 				},
 				{
-					"buffer": 20,
+					"buffer": 26,
+					"file": "components/d4shared/actions/common.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 643,
+						"buffer_size": 172,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								643,
-								643
+								85,
+								85
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 33,
+					"type": "text"
+				},
+				{
+					"buffer": 27,
+					"file": "components/d4shared/reducers/index.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 333,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								333,
+								333
+							]
+						],
+						"settings":
+						{
+							"auto_name": "import { combineReducers } from 'redux';",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 40,
+					"type": "text"
+				},
+				{
+					"buffer": 28,
+					"file": "components/d4shared/store/configureStore.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 664,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								606,
+								606
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 24,
+					"type": "text"
+				},
+				{
+					"buffer": 29,
+					"file": "components/d4shared/reducers/appReducer.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 808,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								337,
+								337
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 29,
+					"type": "text"
+				},
+				{
+					"buffer": 30,
+					"file": "components/d4shared/reducers/state.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2967,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2203,
+								2217
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 216.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 31,
+					"file": "components/d4shared/reducers/info.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 340,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								81,
+								47
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 25,
+					"type": "text"
+				},
+				{
+					"buffer": 32,
+					"file": "components/d4shared/actions/appAction.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1626,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								65,
+								65
+							]
+						],
+						"settings":
+						{
+							"auto_name": "export const SET_COUNTER = 'SET_COUNTER';",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 108.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 30,
+					"type": "text"
+				},
+				{
+					"buffer": 33,
+					"file": "components/d4shared/actions/contextAction.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2506,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								68,
+								68
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 28,
+					"type": "text"
+				},
+				{
+					"buffer": 34,
+					"file": "components/d4shared/reducers/D4ContextReducer.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 14275,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								14118,
+								14118
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4140.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 36,
+					"type": "text"
+				},
+				{
+					"buffer": 35,
+					"file": "webpack.client-watch.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1426,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								283,
+								283
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": -0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 17,
+					"type": "text"
+				},
+				{
+					"buffer": 36,
+					"file": "dev.cmd",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 127,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								27,
+								27
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 22,
+					"type": "text"
+				},
+				{
+					"buffer": 37,
+					"file": "/C/Users/Nicholas/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 184,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								184
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 41,
+					"type": "text"
+				},
+				{
+					"buffer": 38,
+					"file": "components/d4shared/reducers/contextReducer.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2835,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								483,
+								483
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 27,
+					"type": "text"
+				},
+				{
+					"buffer": 39,
+					"file": "components/context.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10312,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								9191,
+								9192
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 4943.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 14,
+					"type": "text"
+				},
+				{
+					"buffer": 40,
+					"file": "components/local.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 940,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								147,
+								147
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 34,
+					"type": "text"
+				},
+				{
+					"buffer": 41,
+					"file": "components/d4shared/actions/newslineAction.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1773,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1423,
+								1423
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 648.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 31,
+					"type": "text"
+				},
+				{
+					"buffer": 42,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 174,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								174,
+								174
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 324.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 46,
+					"type": "text"
+				},
+				{
+					"buffer": 43,
+					"file": ".flowconfig",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 77,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								76,
+								76
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 324.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 44,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
 							]
 						],
 						"settings":
@@ -1400,7 +3636,69 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 14,
+					"stack_index": 5,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 45,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 46,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 894,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								894,
+								894
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
 					"type": "text"
 				}
 			]
@@ -1408,7 +3706,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 39.0
+		"height": 46.0
 	},
 	"input":
 	{
@@ -1453,7 +3751,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 248.0
+		"height": 48.0
 	},
 	"output.find_results":
 	{
@@ -1467,7 +3765,7 @@
 	"project": "qwiket-webapp.sublime-project",
 	"replace":
 	{
-		"height": 74.0
+		"height": 88.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1497,92 +3795,223 @@
 		],
 		"width": 0.0
 	},
-	"selected_group": 2,
+	"selected_group": 0,
 	"settings":
 	{
 		"xdebug":
 		{
+			"hide_conflict": false,
 			"restore_index":
 			{
-				"100":
-				{
-					"group": 0,
-					"index": 11
-				},
-				"103":
-				{
-					"group": 0,
-					"index": 12
-				},
-				"109":
-				{
-					"group": 0,
-					"index": 14
-				},
 				"110":
-				{
-					"group": 0,
-					"index": 8
-				},
-				"112":
 				{
 					"group": 0,
 					"index": 3
 				},
-				"124":
+				"114":
 				{
-					"group": 0,
-					"index": 13
-				},
-				"142":
-				{
-					"group": 0,
-					"index": 10
-				},
-				"161":
-				{
-					"group": 0,
-					"index": 5
-				},
-				"167":
-				{
-					"group": 0,
-					"index": 1
-				},
-				"67":
-				{
-					"group": 0,
+					"group": 1,
 					"index": 0
 				},
-				"68":
+				"137":
 				{
 					"group": 0,
-					"index": 15
+					"index": 34
 				},
-				"71":
+				"141":
 				{
 					"group": 0,
 					"index": 2
 				},
-				"75":
+				"50":
+				{
+					"group": 0,
+					"index": 0
+				},
+				"51":
+				{
+					"group": 0,
+					"index": 1
+				},
+				"52":
+				{
+					"group": 0,
+					"index": 4
+				},
+				"53":
+				{
+					"group": 0,
+					"index": 5
+				},
+				"54":
 				{
 					"group": 0,
 					"index": 6
 				},
-				"76":
+				"55":
 				{
 					"group": 0,
 					"index": 7
 				},
-				"78":
+				"56":
+				{
+					"group": 0,
+					"index": 8
+				},
+				"57":
 				{
 					"group": 0,
 					"index": 9
 				},
-				"96":
+				"58":
 				{
 					"group": 0,
-					"index": 4
+					"index": 10
+				},
+				"59":
+				{
+					"group": 0,
+					"index": 11
+				},
+				"61":
+				{
+					"group": 0,
+					"index": 12
+				},
+				"62":
+				{
+					"group": 0,
+					"index": 13
+				},
+				"63":
+				{
+					"group": 0,
+					"index": 14
+				},
+				"65":
+				{
+					"group": 0,
+					"index": 15
+				},
+				"66":
+				{
+					"group": 0,
+					"index": 16
+				},
+				"67":
+				{
+					"group": 0,
+					"index": 17
+				},
+				"68":
+				{
+					"group": 0,
+					"index": 18
+				},
+				"69":
+				{
+					"group": 0,
+					"index": 19
+				},
+				"70":
+				{
+					"group": 0,
+					"index": 20
+				},
+				"71":
+				{
+					"group": 0,
+					"index": 21
+				},
+				"72":
+				{
+					"group": 0,
+					"index": 22
+				},
+				"73":
+				{
+					"group": 0,
+					"index": 23
+				},
+				"74":
+				{
+					"group": 0,
+					"index": 24
+				},
+				"75":
+				{
+					"group": 0,
+					"index": 25
+				},
+				"76":
+				{
+					"group": 0,
+					"index": 26
+				},
+				"77":
+				{
+					"group": 0,
+					"index": 27
+				},
+				"78":
+				{
+					"group": 0,
+					"index": 28
+				},
+				"79":
+				{
+					"group": 0,
+					"index": 29
+				},
+				"80":
+				{
+					"group": 0,
+					"index": 30
+				},
+				"81":
+				{
+					"group": 0,
+					"index": 31
+				},
+				"82":
+				{
+					"group": 0,
+					"index": 32
+				},
+				"83":
+				{
+					"group": 0,
+					"index": 33
+				},
+				"84":
+				{
+					"group": 0,
+					"index": 35
+				},
+				"85":
+				{
+					"group": 0,
+					"index": 36
+				},
+				"86":
+				{
+					"group": 0,
+					"index": 37
+				},
+				"87":
+				{
+					"group": 0,
+					"index": 38
+				},
+				"88":
+				{
+					"group": 0,
+					"index": 39
+				},
+				"89":
+				{
+					"group": 0,
+					"index": 40
 				}
 			},
 			"restore_layout":
@@ -1592,18 +4021,32 @@
 					[
 						0,
 						0,
-						1,
+						2,
 						1
+					],
+					[
+						0,
+						1,
+						1,
+						2
+					],
+					[
+						1,
+						1,
+						2,
+						2
 					]
 				],
 				"cols":
 				[
 					0.0,
+					0.5,
 					1.0
 				],
 				"rows":
 				[
 					0.0,
+					0.711652542373,
 					1.0
 				]
 			}
