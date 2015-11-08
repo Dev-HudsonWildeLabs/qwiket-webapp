@@ -26,7 +26,9 @@ config.plugins = [
 config.module = {
 	loaders: [
 		{include: /\.json$/, loaders: ["json-loader"]},
+		
 		{include: /\.js$/, loaders: ["react-hot", "babel-loader?stage=0&optional=runtime&plugins=typecheck"], exclude: /node_modules/},
+
 		{include: /\.jsx$/, loaders: ["react-hot", "babel-loader?stage=0&optional=runtime&plugins=typecheck"], exclude: /node_modules/}
 	]
 };

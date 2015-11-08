@@ -317,7 +317,7 @@ var Items=React.createClass({
 		//let topics=this.props.topics;
 		//let l=topics.length;
 		let sitename=(typeof(this.props.sitename)!='undefined'&&this.props.sitename)?this.props.sitename:'';
-		console.log("sitename = %o",sitename)
+	//	console.log("sitename = %o",sitename)
 		//console.log('length=%s',l)
 		//for(var i=0;i<l;i++){
 		this.props.topics.forEach((p,i)=>{

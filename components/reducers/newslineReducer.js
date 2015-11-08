@@ -19,6 +19,7 @@ export default function newsline(state = 0, action) {
       }
       
     });*/
+  //return state;
 
   return state.merge({
         topics: {
@@ -85,15 +86,24 @@ export default function newsline(state = 0, action) {
   else
     return state;
   case appActions.LOADED_COMMUNITY_FORUMS:
+
+  //console.log("FORUMS: %o",action.forums)
     return state.merge({
-      forums:new Immutable.List(action.forums)      
+      forums:action.forums  ,
+      posts:new Immutable.Map({
+        items:new Immutable.List([]),
+        lastids:new Immutable.List([]),
+        isFetching:false,
+        type:"community"
+         
+      })    
     })
 
 
   case postActions.RECEIVE_COMMUNITY_POSTS:
   {
     
-   console.log('((((((((((((((((((((((((((((((((((((((((((((((((((((())) RECEIVE_COMMUNITY_POSTS')
+   //console.log('((((((((((((((((((((((((((((((((((((((((((((((((((((())) RECEIVE_COMMUNITY_POSTS')
     let oldItems=state.get("posts").get("items");
     
     let items1=new Map();

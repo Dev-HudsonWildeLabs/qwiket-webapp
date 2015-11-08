@@ -248,11 +248,49 @@ server.route({
     			}
 
 				callback(null,u);
-				console.log('mapUri:', u)
+				//console.log('mapUri:', u)
 			},
 			onResponse (err, res, request, reply, settings, ttl) {
 				//if (request.query.login||request.query.code)
 				//	return;
+				Wreck.read(res, null, function(err, payload){
+					matchAndRender(err, payload,request,reply,ttl);
+				})
+			
+            	//console.log('res ',res)
+			}
+		}
+	}
+});
+
+server.route({
+	method:  "GET",
+	path:    "/publish/{params*}",
+	handler: {
+		proxy: {
+			passThrough: true,
+			mapUri (request, callback) {
+				let query=request.query;
+				//console.log('query=%o',request)
+				let u="http://"+apiServer+":"+apiPort+"/api?task=landing&type=submit";
+				if (request.query.login) {
+        			u+="&login="+request.query.login;
+    			}
+    			if (request.query.code) {
+        			u+="&code="+request.query.code;
+    			}
+    			{
+    			if (request.query.url) {
+        			u+="&link="+request.query.url;
+    			}
+    			}
+				callback(null,u);
+				console.log('mapUri:', u)
+			},
+			onResponse (err, res, request, reply, settings, ttl) {
+				/*if (request.query.login||request.query.code)
+					return;*/
+				//console.log('INSIDE 222')
 				Wreck.read(res, null, function(err, payload){
 					matchAndRender(err, payload,request,reply,ttl);
 				})
@@ -351,6 +389,7 @@ function matchAndRender (err, payload,request,reply,ttl) {
 		return;
 	}
 	let app=Immutable.fromJS(landing.app);
+	let topic=Immutable.fromJS(landing.topic);
 	let msg=Immutable.fromJS(landing.msg);
 	let newsline=Immutable.fromJS(landing.newsline);
 	let context=Immutable.fromJS(landing.context);
@@ -371,7 +410,8 @@ function matchAndRender (err, payload,request,reply,ttl) {
 		app,
 		newsline,
 		context,
-		d4context
+		d4context,
+		topic
 	}
 	//console.log(landing)
 		//console.log(payload,y);
@@ -388,12 +428,12 @@ function matchAndRender (err, payload,request,reply,ttl) {
 			reply.redirect(redirectLocation.pathname + redirectLocation.search)
 		}
 		else if (error || !renderProps) {
-			console.log('continue'); 
+			console.log('error',error,renderProps); 
 			reply.continue(); 
 		}
 		else {
 			//console.log(window.server);
-			//console.log('renderToString')
+			console.log('renderToString')
 			let QwiketState;
 			//console.log(landing)
 			
@@ -449,7 +489,9 @@ function matchAndRender (err, payload,request,reply,ttl) {
 							<link href='https://fonts.googleapis.com/css?family=Black+Ops+One' rel='stylesheet' type='text/css'>
 						    
 						    <script src="/js/star-rating.min.js" type="text/javascript"></script>
-						      <script src="/js/visible.js" type="text/javascript"></script>
+						    <script src="/js/visible.js" type="text/javascript"></script>
+						    <script src="/js/typeahead-bundle.min.js" type="text/javascript"></script>
+
 						    <link href="/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
 							<link rel="stylesheet" href="/css/newsline.css"/>
 							<link rel="stylesheet" href="/css/d4rum.css"/>

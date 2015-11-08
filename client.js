@@ -45,12 +45,14 @@ let app=Immutable.fromJS(initialState.app);
   let newsline=Immutable.fromJS(initialState.newsline);
   let context=Immutable.fromJS(initialState.context);
   let d4context=Immutable.fromJS(initialState.d4context);
+  let topic=Immutable.fromJS(initialState.topic);
   let landing={
     msg,
     app,
     newsline,
     context,
-    d4context
+    d4context,
+    topic
   }
 console.log(landing);
 const store = configureStore(landing);

@@ -9,44 +9,7 @@ import {Link} from 'react-router'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {selectCommunity} from './actions/appAction.js';
-
-let Community=React.createClass({
-	
-	
-	render:function(){
-		//console.log('Community render %o',this.props.communityName)
-		let lines=[];
-		//console.log('RENDER Community: this.params=%o',this.props)
-		//console.log('render %o',this.state);
-		/*for(var i=0;i<this.props.communities.count;i++){ 
-			let c=this.props.communities[i]
-			lines.push(<li id={"community_"+c.forum} key={"key_community_"+c.forum}><Link to={"/newsline/"+c.forum+"/newest"}><span className="glyphicon glyphicon-log-in"></span> {c.name}</Link></li>);
-		}*/
-		this.props.communities.forEach((item,index,array)=>{
-			let forum=item.get("forum");
-			let name=item.get("name");
-			lines.push(<li id={"community_"+forum} key={"key_community_"+forum}><Link to={"/newsline/"+forum+"/newest"}><span className="glyphicon glyphicon-log-in"></span> {name}</Link></li>);
-		})
-		var styles={
-	    	communityName:{
-	    		color:'#fff',
-	    		backgroundColor:'#222244',
-	    		textDecoration:'none',
-	    		marginLeft:30,
-	    	}
-    	}
-	
-		return(
-			<div className="dropdown">
-				<a className="dropdown-toggle" data-toggle="dropdown" href="#" style={styles.communityName}>{this.props.communityName}
-		            <span className="caret"></span></a>
-		            <ul className="dropdown-menu dropdown-menu-right">
-		            	{lines}
-		            </ul>
-		    </div>        
-		)
-	}
-});
+import Community from './community'
 
 let Online=React.createClass({
 	render: function(){
@@ -128,6 +91,9 @@ let Online=React.createClass({
 });
 
  var App = React.createClass({
+ 	getInitialState: function() {
+    	return {link: ''};
+  	},
 	componentDidMount: function() {
 		if(this.props.location.pathname=="/"){
 			//console.log
@@ -143,12 +109,21 @@ let Online=React.createClass({
   		//console.log('click');
   		this.refs.BurgerMenu.toggleMenu();
   	},
+  	onSubmitLink:function(event){
+  		console.log('onSubmitLink ref=%o',this.state.link)
+  		let link=this.state.link;
+  		this.props.history.pushState(null,"/publish/?url="+encodeURIComponent(link));      
+  	},
+	handleLinkChange: function(event) {
+    	this.setState({link: event.target.value});
+  	},
+
 	render:function(){
 		let Menu = BurgerMenu['push'];
 		u.registerEvent('reqAppState',this.reqAppState,{me:this});
 		if(__CLIENT__&&(this.props.communityState.get("forum")!=this.props.params.community)){
-			console.log("getForum %o",this.props.communityState)
-			setTimeout(()=>this.props.selectCommunity(this.props.params.community));
+			//console.log("getForum %o",this.props.communityState)
+			//setTimeout(()=>this.props.selectCommunity(this.props.params.community));
 		}
 	    var styles={
 	    	community:{
@@ -215,9 +190,21 @@ let Online=React.createClass({
     			padding:0}
     	
 	    }
+	    let communityStyles={
+	    	 communityName:{
+                color:'#fff',
+                backgroundColor:'#222244',
+                textDecoration:'none',
+                marginLeft:30,
+            },
+            dropdownLine:{
+                padding:4,
+                maxWidth:400
+            }
+	    }
 	    let umenu="";
 	    if(this.props.onlineState.login){
-	    	console.log(this.props.onlineState.toObject())
+	    	//console.log(this.props.onlineState.toObject())
 	    	umenu=(
 	    		<div>
 		    		<div>
@@ -230,7 +217,7 @@ let Online=React.createClass({
 			)
 	    }
 	    else{
-	    	console.log(this.props.onlineState.toObject())
+	    	//console.log(this.props.onlineState.toObject())
 	    	umenu=(
 				<div>
 					<div style={{height:"40px"}}><span className="avatar" style={{float:"right",marginRight:10}}><img  style={styles.avatar} src={this.props.onlineState.get("avatar")}/></span><span className="user-name" style={styles.uname}>{"Logged in as: "+this.props.onlineState.get("userName")}</span></div>
@@ -290,13 +277,13 @@ let Online=React.createClass({
 			      	
       				<div style={{float:"left",height:20,marginTop:0,marginBottom:0,marginLeft:15}} role="form">
 						<div className="form-group form-group-sm visible-lg visible-md visible-sm">
-		            		<input type="text" placeholder="Paste a link to publish..." className="form-control search-field input-sm" style={{float:"left",marginLeft:10,height:20,marginTop:10,marginBottom:0,backgroundColor:"#EEEEEE"}} id="reshare" />
-		            		<button type="button" id="reshare_btn" style={{float:"right",marginTop:10,marginRight:15,marginLeft:2,height:20,width:20,padding:0}} className="btn btn-success btn-sm"><i className="fa fa-clipboard"></i></button>
+		            		<input type="text" placeholder="Paste a link to publish..." onChange={this.handleLinkChange}  className="form-control search-field input-sm" style={{float:"left",marginLeft:10,height:20,marginTop:10,marginBottom:0,backgroundColor:"#EEEEEE"}} id="reshare" />
+		            		<button type="button" onClick={this.onSubmitLink} id="reshare_btn" style={{float:"right",marginTop:10,marginRight:15,marginLeft:2,height:20,width:20,padding:0}} className="btn btn-success btn-sm"><i className="fa fa-clipboard"></i></button>
 		            	</div>
 					</div>
   		
           		
-         			<div style={styles.community}><Community ref="Community" ls={this.props.communityState.get("ls")} communities={this.props.communityState.get("communities")} communityName={this.props.communityState.get("communityName")} /></div>
+         			<div style={styles.community}><Community styles={communityStyles} ref="Community" ls={this.props.communityState.get("ls")} communities={this.props.communityState.get("communities")} communityName={this.props.communityState.get("communityName")} select={this.props.selectCommunity} history={this.props.history}/></div>
         					
 		        </nav>
 		        

@@ -126,8 +126,9 @@
 		}
 
 	},
-	"publishing":{
+	"topic":{
 		"link":"",
+		"threadid":""
 		"isSubmitting":false,
 		"community":"",
 		"comment":"",
