@@ -18,17 +18,23 @@ export function submittedShareLink(threadid) {
     threadid
   };
 }
+
+
+
 export function selectCommunity(history,community){
-  
+ return function (dispatch){
+    updateCommunity(community);
+  }
 }
 export function shareLink(link,state){
+ console.log("shareLink")
   return function(dispatch) { //middleware thunk
-    if (state.isSubmitting) {
+    if (state.get("isSubmitting")) {
       console.log('skipping shareLink')
       return;
     }
     dispatch(startShareLink(url));
-    let url = `/api?task=submit_link&link=${link}&community=${community}`;
+    let url = `/api?task=submit_link&link=${link}`;
     return fetch(url, {
         credentials: 'same-origin'
       })
@@ -86,4 +92,25 @@ export function submitTopic(threadid,title,author,image,site_name,description,te
     });
   } 
 }
+export function updateState(state){
+  console.log('inside updateState');
+  return doUpdateState(state);
+  
+}
+export const UPDATE_STATE = 'UPDATE_STATE';
+export function doUpdateState(state) {
+  console.log('doUpdateState')
+  return {
+    type: UPDATE_STATE,
+    state:state
+  };
+}
+export const UPDATE_COMMUNITY = 'UPDATE_COMMUNITY';
+export function updateCommunity(community) {
+  return {
+    type: UPDATE_COMMUNITY,
+    community
+  };
+}
+
 

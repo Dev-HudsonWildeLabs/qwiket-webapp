@@ -121,10 +121,7 @@ let Online=React.createClass({
 	render:function(){
 		let Menu = BurgerMenu['push'];
 		u.registerEvent('reqAppState',this.reqAppState,{me:this});
-		if(__CLIENT__&&(this.props.communityState.get("forum")!=this.props.params.community)){
-			//console.log("getForum %o",this.props.communityState)
-			//setTimeout(()=>this.props.selectCommunity(this.props.params.community));
-		}
+		
 	    var styles={
 	    	community:{
 	    		display:'block',
@@ -238,7 +235,7 @@ let Online=React.createClass({
 		    	<div>
 		    	<img className="newsline-logo-menu"  style={styles.logoMenu} src="/css/logo2.png" alt="Qwiket"/>
 					     	
-				<Link id="logo" style={styles.brandMenu} className="visible-xs visible-sm visible-md visible-lg" to={'/newsline/'+this.props.params.community+'/newest'}> Qwiket </Link>
+				<Link id="logo" style={styles.brandMenu} className="visible-xs visible-sm visible-md visible-lg" to={'/newsline/'+this.props.communityState.get("forum")+'/newest'}> Qwiket </Link>
 				<br/><br/><span className="text-uppercase" style={styles.slogan}>the internet of us</span> <br/>
 				
 				</div>	
@@ -270,7 +267,7 @@ let Online=React.createClass({
 				        <span className="icon-bar" onClick={this.onClick}></span>
 				    </button>
 				   
-			     	<Link to={'/newsline/'+this.props.params.community+'/newest'}>  <img  style={styles.logo}  src="/css/logo2.png" alt="Qwiket"/><span style={styles.brand}  className="navbar-brand ">Qwiket</span> </Link>   
+			     	<Link to={'/newsline/'+this.props.communityState.get("forum")+'/newest'}>  <img  style={styles.logo}  src="/css/logo2.png" alt="Qwiket"/><span style={styles.brand}  className="navbar-brand ">Qwiket</span> </Link>   
 		      		
 		      		
 
@@ -305,7 +302,7 @@ let Online=React.createClass({
 });
 App=Radium(App)
 function mapStateToProps(state) {
-	//console.log('mapStateToProps app %o',state.app)
+  console.log('mapStateToProps community %o',state.app.get("community").toObject())
   return {
     msg: state.msg,
     communityState:state.app.get("community"),

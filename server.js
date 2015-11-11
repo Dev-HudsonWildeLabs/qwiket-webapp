@@ -490,7 +490,7 @@ function matchAndRender (err, payload,request,reply,ttl) {
 						    
 						    <script src="/js/star-rating.min.js" type="text/javascript"></script>
 						    <script src="/js/visible.js" type="text/javascript"></script>
-						    <script src="/js/typeahead-bundle.min.js" type="text/javascript"></script>
+						    <script src="/js/typeahead.bundle.min.js" type="text/javascript"></script>
 
 						    <link href="/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
 							<link rel="stylesheet" href="/css/newsline.css"/>

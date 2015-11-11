@@ -1,8 +1,25 @@
 import 'babel-core/polyfill';
 import Immutable from 'immutable';
 import * as actions from '../actions/topicAction';
-export default function topic(state =0, action) {
- console.log(action)
+export default function topic(state = new Immutable.Map({
+  isSubmitting: false,
+  owner: "",
+  threadid: "",
+  url: "",
+  community: "",
+  text: "",
+  title: "",
+  image: "",
+  site_name: "",
+  description: "",
+  user_name: "",
+  updated_time: "",
+  shared_time: "",
+  reshare: "",
+  author: "",
+  locale: "fr"
+  }), action) {
+  console.log("TOPIC REDUCER action=%o",action)
   switch (action.type) {
     case actions.START_SHARE_LINK:
       return state.merge( {
@@ -17,7 +34,7 @@ export default function topic(state =0, action) {
     
   });
 case actions.RECEIVE_TOPIC:
-console.log("RECEIVE_TOPIC");
+  console.log("RECEIVE_TOPIC");
   let thread = action.thread;
   return state.merge({
       owner: thread.owner,
@@ -36,6 +53,14 @@ console.log("RECEIVE_TOPIC");
       author: thread.author,
       locale: thread.local
   });
+  case actions.UPDATE_STATE:
+    console.log("UPDATE STATE old state=%o, new state=%o",state.toObject(),action.state.toObject());
+    return action.state;
+  case actions.UPDATE_COMMUNITY:
+    let community=action.community;
+    return state.merge({
+      community
+    });  
   default:
     return state;
   }

@@ -9,12 +9,12 @@ import {Link} from 'react-router'
 let Community=React.createClass({
     
     //setTimeout(()=>this.props.selectCommunity(this.props.params.community)
-    onSelect:function(forum,event){
-        console.log("onSelect %s",forum)
-        setTimeout(()=>this.props.select(this.props.history,forum));
+    onSelect:function(forum,name,event){
+        console.log("onSelect %s, %s",forum,name)
+        setTimeout(()=>this.props.select(this.props.history,forum,name));
     },
     render:function(){
-        //console.log('Community render %o',this.props.communityName)
+        console.log('Community render %o',this.props.communityName)
         let lines=[];
         //console.log('RENDER Community: this.params=%o',this.props)
         //console.log('render %o',this.state);
@@ -28,7 +28,7 @@ let Community=React.createClass({
             let forum=item.get("forum");
             let name=item.get("name");
            // console.log("forum %s",forum)
-            lines.push(<li id={"community_"+forum} key={"key_community_"+forum} style={styles.dropdownLine} onClick={this.onSelect.bind(this,forum)}><span className="glyphicon glyphicon-log-in"></span> {name}</li>);
+            lines.push(<li id={"community_"+forum} key={"key_community_"+forum} style={styles.dropdownLine} onClick={this.onSelect.bind(this,forum,name)}><span className="glyphicon glyphicon-log-in"></span> {name}</li>);
         })
         
     
