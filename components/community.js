@@ -45,5 +45,5 @@ let Community=React.createClass({
 });
 
 
-Community=Radium(Community)
+//Community=Radium(Community)
 module.exports = Community;

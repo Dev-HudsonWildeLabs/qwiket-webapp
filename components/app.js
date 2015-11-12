@@ -285,7 +285,7 @@ let Online=React.createClass({
 		        </nav>
 		        
 		        <div className="col-xs-6">
-			 	<InfoBox ref="InfoBox" text={this.props.msg.get("text")} type={this.props.msg.get("type")}/>
+			 	<InfoBox ref="InfoBox"/> 
 				</div>
 			 	
 
@@ -302,7 +302,7 @@ let Online=React.createClass({
 });
 App=Radium(App)
 function mapStateToProps(state) {
-  console.log('mapStateToProps community %o',state.app.get("community").toObject())
+ // console.log('mapStateToProps community %o',state.app.get("community").toObject())
   return {
     msg: state.msg,
     communityState:state.app.get("community"),

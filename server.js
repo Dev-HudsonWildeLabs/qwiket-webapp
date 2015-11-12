@@ -495,6 +495,7 @@ function matchAndRender (err, payload,request,reply,ttl) {
 						    <link href="/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
 							<link rel="stylesheet" href="/css/newsline.css"/>
 							<link rel="stylesheet" href="/css/d4rum.css"/>
+							<link rel="stylesheet" href="/css/load-mask.css"/>
 							<link rel="icon" type="image/png" href="/css/logo2.png"/>
 						</head>
 						<body>	

@@ -28,6 +28,7 @@ var Item=React.createClass({
 		let title=topic.title;
 		let site_name=topic.site_name;
 		let description=topic.description;
+		let author=topic.author;
 		let date=topic.date;
 		let user_name=topic.user_name;
 		let rating=topic.rating;
@@ -80,7 +81,7 @@ var Item=React.createClass({
 		    		':active':{
 		    			color:'greay'
 		    		},
-	    			fontSize: '1.5rem'
+	    			fontSize: '1.6rem'
 	    		},
 	    		comment:{
 	    			fontSize: '1.2rem'
@@ -161,6 +162,8 @@ var Item=React.createClass({
 	    		},
 	    		comment:{
 	    			fontSize: '0.9rem'
+	    			
+	    			
 	    		},
 	    		topic:{
 	    			padding:"5px 0 0 5px",
@@ -216,12 +219,23 @@ var Item=React.createClass({
 	    	}
 	    }
 	    //console.log(topic.stamp)
+	    let s=(<span/>);
+	    if(date)
+	    	s=(<span ref="SharedBySpan" style={styles.sharedby}>{sb}&nbsp;<a ref="SharedByLink" style={styles.sblink} href={shared_by_profileurl} target="_blank">{user_name}</a>&nbsp;{pb}
+	        		<span >{u.timeConverter(date,(window.firstRender?topic.stamp:0))}</span>
+	        	</span>);
+	    let comment=(<span/>);
+	    if(text&&!sitename){
+	    	comment=(<div ref="ItemComment" className="small alert alert-info col-xs-12" style={styles.comment}>{text}</div>)
+	    }
+	    let authorHtml=(<span/>)
+	    if(author){
+	    	authorHtml=(<div ><em>{author}</em></div>);
+	    }
 	    return (
 	    <div ref="NewsItem"  className="list-group-item" threadid={threadid} style={styles.post}>
 	        <div>
-		       	<span ref="SharedBySpan" style={styles.sharedby}>{sb}&nbsp;<a ref="SharedByLink" style={styles.sblink} href={shared_by_profileurl} target="_blank">{user_name}</a>&nbsp;{pb}
-	        		<span >{u.timeConverter(date,(window.firstRender?topic.stamp:0))}</span>
-	        	</span>
+		       {s}
         		<div ref ="ItemMenu" className="dropdown"  style={styles.menu}>
 				   	<button type="button" className="btn btn-link dropdown-toggle"  data-toggle="dropdown" >
 				   		{(!sitename)?(<i className="fa fa-bars fa-lg"></i>):(<i className="fa fa-bars fa-sm"></i>)}
@@ -234,15 +248,19 @@ var Item=React.createClass({
 				      	<li><Link  className="discuss" to={"/local/"+threadid}><i className="fa fa-hand-paper-o fa-fw fa-sm"></i>&nbsp;Unplug this Feed</Link></li>
 				    </ul>
 					</div>	
+
 	        </div>
 	        <div onClick={this.itemClick}>
-		      	<div ref="ItemComment" className="small" style={styles.comment}>{text}</div>
-		    	<span >
-		    		<a ref="ItemTitle" href={link}  className="" style={styles.title} target="origin"><div dangerouslySetInnerHTML={{__html: title}}></div></a>
+		      	<span >
+		    		<Link ref="ItemTitle" to={link}   style={styles.title} target="origin" dangerouslySetInnerHTML={{__html: title}}></Link>
 		    	</span>
+		    	<div>
+		      	{comment}
+		    	</div>
 		        <div ref="Topic" style={styles.topic}>
 		        	<img ref="TopicImage" className="topic-image img-responsive" style={styles.image} src={image}/>
 		        	<blockquote-reverse><div dangerouslySetInnerHTML={{__html: description}}></div></blockquote-reverse>
+		        	{author}
 		        	<div style={styles.sitename}>&copy;{site_name}</div>
 		        	<a href={link} style={styles.linkmore} target="origin">{this.props.full?"Click here to read the full article.":""}</a>
 		    
