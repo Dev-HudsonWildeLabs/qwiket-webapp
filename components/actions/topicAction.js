@@ -99,7 +99,7 @@ export function submitTopic(state){
   text=u.entityToHtml(text);
   
   //console.log('After cleanup: Saving topic title=%s,description=%s,author=%s,image=%s,community=%s,text=%s,locale=%sEND',title,description,author,image,community,text,locale);
-   let url = `/api?task=submit_topic&threadid=${state.get("threadid")}&title=${title}&author=${author}&image=${image}&site_name=${state.get("site_name")}&description=${description}&text=${text}&locale=${locale}&community=${community}`;
+   let url = `/api?task=submit_topic&threadid=${state.get("threadid")}&title=${title}&author=${author}&image=${image}&site_name=${state.get("site_name")}&description=${description}&text=${text}&locale=${locale}&forum=${community}`;
    // return fetch(url, {
 /*let url = `/api?task=submit_topic&threadid=${state.get("threadid")}&title=${encodeURIComponent(title)}
    &author=${encodeURIComponent(author)}&image=${encodeURIComponent(image)}
