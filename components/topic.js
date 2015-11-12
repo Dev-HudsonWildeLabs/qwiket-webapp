@@ -208,9 +208,7 @@ var Topic=React.createClass({
      
         return (
             <div className="item-edit container" threadid={'"'+threadid+'"'} style={styles.outer}>
-                <h2 className="jumbotron">Publish link
-                     
-                </h2>
+                
               
                 <form className="form-horizontal" role="form">
                     {shared_by}

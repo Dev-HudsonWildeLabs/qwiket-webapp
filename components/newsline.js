@@ -251,13 +251,14 @@ var Item=React.createClass({
 
 	        </div>
 	        <div onClick={this.itemClick}>
+		      	<div>
+		      	{comment}
+		    	</div>
 		      	<span >
 		    		<Link ref="ItemTitle" to={link}   style={styles.title} target="origin" dangerouslySetInnerHTML={{__html: title}}></Link>
 		    	</span>
-		    	<div>
-		      	{comment}
-		    	</div>
-		        <div ref="Topic" style={styles.topic}>
+		    	
+		      	<div ref="Topic" style={styles.topic}>
 		        	<img ref="TopicImage" className="topic-image img-responsive" style={styles.image} src={image}/>
 		        	<blockquote-reverse><div dangerouslySetInnerHTML={{__html: description}}></div></blockquote-reverse>
 		        	{author}
