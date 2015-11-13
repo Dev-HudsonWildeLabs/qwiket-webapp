@@ -117,7 +117,37 @@ let Online=React.createClass({
 	handleLinkChange: function(event) {
     	this.setState({link: event.target.value});
   	},
-
+    linkSelect:function(event){
+        console.log(event)
+        event.target.select();
+    },
+    linkKeyDown:function(event){
+        let key=event.keyCode;
+        if(key==13){
+            this.onSubmitLink(event);
+        }
+    },
+    paste:function(event){
+        let c=event.clipboardData;
+        let items=c.items;
+        let l=items.length;
+        let item;
+        let me=this;
+        if(l==1){
+            item=items[0];
+            let type=item.type;
+            let kind=item.kind;
+            if(kind=='string'&&type=="text/plain"){
+                items[0].getAsString((link)=>{
+                    console.log("ITEM=%s, type=%s,kind=%s",link,type,kind);
+                    this.refs.link.value=link;
+                    this.props.history.pushState(null,"/publish/?url="+encodeURIComponent(link));     
+                });
+            }
+           
+        }
+        
+    },
 	render:function(){
 		let Menu = BurgerMenu['push'];
 		u.registerEvent('reqAppState',this.reqAppState,{me:this});
@@ -256,7 +286,7 @@ let Online=React.createClass({
 	        
 	      </Menu>
 			<main id="page-wrap">
-	      	<div className="container-fluid"  style={{padding:0,background:"#EEE"}}>
+	      	<div onPaste={this.paste} className="container-fluid"  style={{padding:0,background:"#EEE"}}>
 			 
 			 	<nav className="navbar navbar-inverse " style={{backgroundColor:"#222244",borderRadius:"0px",border:"none",marginBottom:10,height:42,minHeight:42,padding:0}}>
 		 			
@@ -272,9 +302,9 @@ let Online=React.createClass({
 		      		
 
 			      	
-      				<div style={{float:"left",height:20,marginTop:0,marginBottom:0,marginLeft:15}} role="form">
+      				<div style={{float:"left",height:20,marginTop:0,marginBottom:0,marginLeft:15}} onKeyDown={this.linkKeyDown} role="form">
 						<div className="form-group form-group-sm visible-lg visible-md visible-sm">
-		            		<input type="text" placeholder="Paste a link to publish..." onChange={this.handleLinkChange}  className="form-control search-field input-sm" style={{float:"left",marginLeft:10,height:20,marginTop:10,marginBottom:0,backgroundColor:"#EEEEEE"}} id="reshare" />
+		            		<input ref="link" type="text" placeholder="Paste a link to publish..." onChange={this.handleLinkChange} onClick={this.linkSelect} className="form-control search-field input-sm" style={{float:"left",marginLeft:10,height:20,marginTop:10,marginBottom:0,backgroundColor:"#EEEEEE"}} id="reshare" />
 		            		<button type="button" onClick={this.onSubmitLink} id="reshare_btn" style={{float:"right",marginTop:10,marginRight:15,marginLeft:2,height:20,width:20,padding:0}} className="btn btn-success btn-sm"><i className="fa fa-clipboard"></i></button>
 		            	</div>
 					</div>
@@ -283,11 +313,9 @@ let Online=React.createClass({
          			<div style={styles.community}><Community styles={communityStyles} ref="Community" ls={this.props.communityState.get("ls")} communities={this.props.communityState.get("communities")} communityName={this.props.communityState.get("communityName")} select={this.props.selectCommunity} history={this.props.history}/></div>
         					
 		        </nav>
-		        
-		        <div className="col-xs-6">
+		       <div>
 			 	<InfoBox ref="InfoBox"/> 
 				</div>
-			 	
 
 				<div className="col-xs-12">	
 

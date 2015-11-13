@@ -10,11 +10,11 @@ let Community=React.createClass({
     
     //setTimeout(()=>this.props.selectCommunity(this.props.params.community)
     onSelect:function(forum,name,event){
-        console.log("onSelect %s, %s",forum,name)
+      //  console.log("onSelect %s, %s",forum,name)
         setTimeout(()=>this.props.select(this.props.history,forum,name));
     },
     render:function(){
-        console.log('Community render %o',this.props.communityName)
+      //  console.log('Community render %o',this.props.communityName)
         let lines=[];
         //console.log('RENDER Community: this.params=%o',this.props)
         //console.log('render %o',this.state);

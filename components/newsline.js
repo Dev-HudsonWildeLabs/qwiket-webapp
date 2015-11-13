@@ -33,9 +33,11 @@ var Item=React.createClass({
 		let user_name=topic.user_name;
 		let rating=topic.rating;
 		let shared_by_profileurl=topic.shared_by_profileurl;
+		let shared_by_avatar=topic.shared_by_avatar;
       	let orderby=this.props.orderby;
 		let sitename=(typeof(this.props.sitename)!='undefined'&&this.props.sitename)?this.props.sitename:'';	
-	    
+	    //console.log('topic=%o',topic);
+	    //console.log("shared_by_avatar=%s",shared_by_avatar)
 	    var html='';
 	    if(!description)
 	        description='';
@@ -226,7 +228,11 @@ var Item=React.createClass({
 	        	</span>);
 	    let comment=(<span/>);
 	    if(text&&!sitename){
-	    	comment=(<div ref="ItemComment" className="small alert alert-info col-xs-12" style={styles.comment}>{text}</div>)
+	    	let avatar=<div/>;
+
+	    	if(shared_by_avatar)
+	    		avatar=<img className="post-image img-responsive" style={{maxWidth:'10%',height:"auto", float:"left",clear:"right",marginRight:"10px",marginBottom:"4px"}} src={shared_by_avatar}/>
+	    	comment=(<div ref="ItemComment" className="small alert alert-info col-xs-12" style={styles.comment}>{avatar}{text}</div>)
 	    }
 	    let authorHtml=(<span/>)
 	    if(author){

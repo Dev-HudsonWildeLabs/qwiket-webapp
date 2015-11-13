@@ -116,6 +116,7 @@ export function submitTopic(state){
         if (json.success) {
           //dispatch(submittedShareLink(json.thread.threadid))   
           dispatch(common.serviceSuccess("Topic submitted.")) ;
+          dispatch(loadTopic(state.get("threadid"),state));
           dispatch(doUpdateState(state.merge({isSubmitting:false})))
           
         } else {

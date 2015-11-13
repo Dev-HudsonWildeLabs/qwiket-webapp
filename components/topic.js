@@ -13,7 +13,7 @@ var LoadMask = require('react-load-mask')
 
 var Topic=React.createClass({
     componentDidMount: function() {
-        //console.log("componentDidMount %o",this.props.topic)
+        console.log("componentDidMount %o",this.props.topic)
         let url=this.props.location.query.url;
         let me=this;
         if(this.props.topic.get("url")!=url){
@@ -28,7 +28,7 @@ var Topic=React.createClass({
                 displayKey: 'name',
                 source:locales
             });
-            console.log("init locale from %s",this.props.topic.get("locale"))
+           // console.log("init locale from %s",this.props.topic.get("locale"))
             $.ajax({
                 url: "/api?task=load_locales",
                 data:{
@@ -46,7 +46,7 @@ var Topic=React.createClass({
             $("#post_edit_locales_selector").on("typeahead:selected typeahead:autocompleted", function(e,datum) {
                 //console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
                 me.props.updateStateAction.updateState(me.props.topic.merge({locale:datum.id}));
-            /* me.selected_locale= datum.id;*/ console.log('selected '+datum.id)});
+            /* me.selected_locale= datum.id;*/ /*console.log('selected '+datum.id)*/});
             let community=this.props.topic.get("community");
             if(!community){
                 let communityName=this.props.communityState.get("communityName")
@@ -66,9 +66,9 @@ var Topic=React.createClass({
     componentWillReceiveProps(nextProps){
         let url=nextProps.location.query.url;
         let link=this.props.topic.get("url")
-        console.log("URL=%s, LINK=%s",url,link)
+       //console.log("URL=%s, LINK=%s",url,link)
         if(link!=url){
-            console.log('calling shareLink')
+           // console.log('calling shareLink')
            this.props.shareLinkAction.shareLink(url,this.props.topic);
         }
     },
@@ -76,9 +76,9 @@ var Topic=React.createClass({
         
         let url=this.props.location.query.url;
         let link=this.props.topic.get("url")
-        console.log("URL=%s, LINK=%s",url,link)
+        //console.log("URL=%s, LINK=%s",url,link)
         if(link!=url){
-            console.log('adjusting urlk')
+           //console.log('adjusting urlk')
            this.props.history.pushState(null,"/publish/?url="+encodeURIComponent(link));   
         }   
         //console.log("REFRESH LOCALE %s",this.props.topic.get("locale"))
@@ -103,7 +103,7 @@ var Topic=React.createClass({
         this.props.updateStateAction.updateState(this.props.topic.merge({site_name:event.target.value}));
     },
     onLocaleChange(event){
-        console.log('onLocaleChange event=%o',event)
+        //console.log('onLocaleChange event=%o',event)
         this.props.updateStateAction.updateState(this.props.topic.merge({locale:event.target.value}));
     },
     onImageChange(event){ 
@@ -114,7 +114,7 @@ var Topic=React.createClass({
         this.props.updateStateAction.updateState(this.props.topic.merge({community,community_name}));
     },
     submitTopic(){
-        console.log('submitTopic')
+       // console.log('submitTopic')
         this.props.submitTopicAction.submitTopic(this.props.topic);
     },
     render: function(){
@@ -147,7 +147,7 @@ var Topic=React.createClass({
             communityName=this.props.communityState.get("communityName")
           
             community=this.props.communityState.get("forum");
-            console.log("BLANK COMMUNITY setting community=%s, communityName=%s",community,communityName);
+           // console.log("BLANK COMMUNITY setting community=%s, communityName=%s",community,communityName);
            // setTimeout(this.onCommunitySelect(this.props.history,community,communityName));
         }
         if(!locale){
@@ -155,7 +155,7 @@ var Topic=React.createClass({
              $('#post_edit_locales_selector').typeahead('val','English');
             //setTimeout(this.props.updateStateAction.updateState(this.props.topic.merge({locale:'en_US'})));
         }
-        console.log("communityname=%s",communityName)
+       // console.log("communityname=%s",communityName)
         console.log('topic: %o',this.props.topic.toObject())
         var styles={
             community:{     
@@ -239,9 +239,9 @@ var Topic=React.createClass({
                     <div className="form-group "> 
                         <label className="control-label col-sm-2" htmlFor="image_static"></label>  
                         <div className="col-sm-10">
-                            <p className="form-control-static">
+                            <div className="form-control-static">
                              <div style={{float:"right"}}><Item topic={this.props.topic} full={true} orderby={0}/></div>
-                               </p>    
+                               </div>    
                         </div>  
                     </div>
                     <div className="form-group " > 
