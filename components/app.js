@@ -11,95 +11,26 @@ import { bindActionCreators } from 'redux';
 import {selectCommunity} from './actions/appAction.js';
 import Community from './community'
 
-let Online=React.createClass({
-	render: function(){
-		//console.log('render Online %o',this.props)
-		var styles={
-    	menu:{
-    		color:'#fff',
-    		backgroundColor:'#222244',
-    		textDecoration:'none'
-    	   	},
-    	button:{
-    		padding:3,
-    		marginTop:0,
-    		//marginBottom:15
-    		//width:20,
-    		//height:20
-    		}   	
-    	}
-	
-		if(this.props.login){
-			
-	      	return (
-	    <div className="collapse navbar-collapse" id="myNavbar">	
-		  	<ul className="nav navbar-nav navbar-right">	 	
-				<li className="dropdown">
-					<a className="dropdown-toggle" data-toggle="dropdown" href="#" style={styles.menu}><span className="visible-xs">Login Menu</span>
 
-					    <button type="button" className="navbar-toggle visible-sm visible-md visible-lg" style={styles.button}>
-					        <span className="icon-bar"></span>
-					        <span className="icon-bar"></span>
-					        <span className="icon-bar"></span>
-					    </button>
-					</a>
-		            <ul className="dropdown-menu dropdown-menu-right">
-		            	<li id="login"><a href="/?login=1"><span className="glyphicon glyphicon-log-in"></span> Login with Disqus</a></li>  
-		            	<li id="signup"><a href="#" data-toggle="modal" data-target="#signup_modal"><span className="glyphicon glyphicon-user"></span> Signup</a> </li>
-
-						<li className="divider"></li>
-						<li id="user_lang"><a href="#" data-toggle="modal" data-target="#userlang_modal"><i className="fa fa-language"></i> {this.props.lang}</a> </li>
-						<li className="divider"></li>
-						<li id="help_menu"><a href="/docs"><span className="glyphicon glyphicon-info-sign"></span> Help</a></li>
-						<li id="support_menu"><a href="/docs#support" target="_help"><span className="glyphicon glyphicon-question-sign" ></span> Support</a></li>
-						
-			            
-						<li className="divider"></li>
-						<li id="about_menu"><a href="#"><span className="glyphicon glyphicon-exclamation-sign"></span> About</a></li> 
-		            </ul>
-	        	</li>
-			</ul>
-		</div>);
-	  	}
-	  	else {
-	  		
-	  		return (
-	  		<div className="collapse navbar-collapse" id="myNavbar">	
-	      	<ul className="nav navbar-nav navbar-right"> 
-	      
-	      	
-			<li className="dropdown">
-	            <a className="dropdown-toggle" data-toggle="dropdown" href="#">{this.props.username}
-	            <span className="caret"></span></a>
-	            <ul className="dropdown-menu dropdown-menu-right">
-	            	<li id="logout"><a href="/?logout=1"><span className="glyphicon glyphicon-log-out"></span> Logout</a></li>
-					<li className="divider"></li>
-					<li id="user_lang"><a href="#" data-toggle="modal" data-target="#userlang_modal"><i className="fa fa-language"></i> {this.props.lang}</a> </li>
-					<li className="divider"></li>
-					<li id="help_menu"><a href="/docs" target="_help"><span className="glyphicon glyphicon-info-sign"></span> Help</a></li>
-					<li id="support_menu"><a href="/docs#support" target="_help"><span className="glyphicon glyphicon-question-sign" ></span> Support</a></li>
-					<li id="settings_menu"><a href="#"><span className="glyphicon glyphicon-wrench"></span> Settings</a></li>
-					<li className="divider"></li>
-					<li id="about_menu"><a href="#"><span className="glyphicon glyphicon-exclamation-sign"></span> About</a></li> 
-	            </ul>
-	        </li>
-		    </ul>   
-		    </div> 
-      		);
-	  	}
-	}
-});
 
  var App = React.createClass({
  	getInitialState: function() {
     	return {link: ''};
   	},
 	componentDidMount: function() {
-		if(this.props.location.pathname=="/"){
+        console.log('props =%o',this.props)
+		 console.log('search=%s',this.props.location.search);
+        if(this.props.location.search){
+            console.log(this.props.location.search.toUpperCase());
+            if(this.props.location.search.toUpperCase().indexOf('URL')==-1)
+                this.props.history.pushState(null,this.props.location.pathname);
+        }
+        if(this.props.location.pathname=="/"){
 			//console.log
 			//console.log('redirect to %o',"/newsline/"+this.props.communityState.forum+"/newest")
 			this.props.history.pushState(null,"/newsline/"+this.props.communityState.get("forum")+"/newest");
 		}
+
 	},
 	showSettings: function(event) {
     	event.preventDefault();
@@ -229,35 +160,50 @@ let Online=React.createClass({
                 maxWidth:400
             }
 	    }
-	    let umenu="";
-	    if(this.props.onlineState.login){
-	    	//console.log(this.props.onlineState.toObject())
-	    	umenu=(
+	    let umenu="",avatar=<span/>;
+	    if(this.props.onlineState.get("login")){
+	    	//console.log("LOGIN %o",this.props.onlineState.toObject())
+            let path=this.props.location.pathname;
+	        let arg=(path.indexOf('?')!=-1)?'&':'?';
+            let loginArg=arg+((path.indexOf('login=1')!=-1)?'':'login=1');
+          //  console.log('loginArg=%s',loginArg)
+
+            umenu=(
 	    		<div>
 		    		<div>
-		    			<Link to="/?login=1"><span className="glyphicon glyphicon-log-in"></span> Login [Disqus] </Link> 
+		    			<a href={path+loginArg}><span className="glyphicon glyphicon-log-in"></span> Login [Disqus] </a> 
 		    		</div>
 	        		<div id="signup">
 	        			<Link to="#" data-toggle="modal" data-target="#signup_modal"><span className="glyphicon glyphicon-user"></span> Signup</Link> 
 	        		</div>
         		</div>
-			)
+			);
+           
 	    }
 	    else{
+           // console.log("LOGOUT %o",this.props.onlineState.toObject())
 	    	//console.log(this.props.onlineState.toObject())
+         
+            let path=this.props.location.pathname;
+            let arg=(path.indexOf('?')!=-1)?'&':'?';
+            let logoutArg=arg+((path.indexOf('logout=1')!=-1)?'':'logout=1');
+                
 	    	umenu=(
 				<div>
 					<div style={{height:"40px"}}><span className="avatar" style={{float:"right",marginRight:10}}><img  style={styles.avatar} src={this.props.onlineState.get("avatar")}/></span><span className="user-name" style={styles.uname}>{"Logged in as: "+this.props.onlineState.get("userName")}</span></div>
 					<div className="divider"></div>
 					<div className="divider"></div><br/>
 					<div>
-						<Link to="/?logout=1"><span className="glyphicon glyphicon-log-out"></span> Logout </Link> 
+						<a href={path+logoutArg}><span className="glyphicon glyphicon-log-out"></span> Logout </a> 
 					</div>
 	        		
         		</div>
-	    		)
-	    }
+	    	);
+            avatar=<div id="user_avatar" style={{float:'right',marginTop:10,width:24,display:'inline-block'}}><img className="post-image img-responsive" style={{maxWidth:20,height:"auto", marginRight:"auto",marginLeft:"auto",marginBottom:"auto",marginTop:"auto"}} src={this.props.onlineState.get("avatar")}/></div>;
+	      // console.log('avatar %o',avatar)
+        }
 	   // console.log('Render App stte=%o',this.state)
+       // 
 	    return (
 	    	<div id="outer-container" style={{minWidth:460}}>  
 	    	<Menu ref="BurgerMenu" width={220} pageWrapId={ "page-wrap" } outerContainerId={"outer-container"} >
@@ -269,7 +215,8 @@ let Online=React.createClass({
 				<br/><br/><span className="text-uppercase" style={styles.slogan}>the internet of us</span> <br/>
 				
 				</div>	
-			</div>      	
+			</div> 
+            	
         	{umenu}
 			<div className="divider"></div><br/>
 			<div id="user_lang"><Link to="#" data-toggle="modal" data-target="#userlang_modal"><i className="fa fa-language"></i> {this.props.onlineState.get("userLang")} </Link> </div>
@@ -308,10 +255,10 @@ let Online=React.createClass({
 		            		<button type="button" onClick={this.onSubmitLink} id="reshare_btn" style={{float:"right",marginTop:10,marginRight:15,marginLeft:2,height:20,width:20,padding:0}} className="btn btn-success btn-sm"><i className="fa fa-clipboard"></i></button>
 		            	</div>
 					</div>
-  		
+  		            
           		
          			<div style={styles.community}><Community styles={communityStyles} ref="Community" ls={this.props.communityState.get("ls")} communities={this.props.communityState.get("communities")} communityName={this.props.communityState.get("communityName")} select={this.props.selectCommunity} history={this.props.history}/></div>
-        					
+        			 {avatar}    		
 		        </nav>
 		       <div>
 			 	<InfoBox ref="InfoBox"/> 

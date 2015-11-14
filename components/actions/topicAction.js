@@ -27,13 +27,14 @@ export function selectCommunity(history,community){
   }
 }
 export function shareLink(link,state){
- //console.log("shareLink")
+  console.log("shareLink")
   return function(dispatch) { //middleware thunk
   /*  if (state.get("isSubmitting")) {
       console.log('skipping shareLink')
       return;
     }*/
     dispatch(startShareLink(link));
+    console.log('after dispatch(startShareLink(link)');
     let url = `/api?task=submit_link&link=${link}`;
     return fetch(url, {
         credentials: 'same-origin'
@@ -54,6 +55,7 @@ export function loadTopic(threadid,state){
   return function(dispatch) { //middleware thunk
 
     let url = `/api?task=edit_thread&threadid=${threadid}`;
+    console.log('loadTopic, calling startShareLink with link=%s full state=%o',state.get("url"),state.toObject())
     dispatch(startShareLink(state.get("url")));
     return fetch(url, {
         credentials: 'same-origin'
@@ -125,17 +127,17 @@ export function submitTopic(state){
     });
   } 
 }
-export function updateState(state){
+export function updateState(changes){
  // console.log('inside updateState');
-  return doUpdateState(state);
+  return doUpdateState(changes);
   
 }
 export const UPDATE_STATE = 'UPDATE_STATE';
-export function doUpdateState(state) {
+export function doUpdateState(changes) {
   //console.log('doUpdateState')
   return {
     type: UPDATE_STATE,
-    state:state
+    changes
   };
 }
 export const UPDATE_COMMUNITY = 'UPDATE_COMMUNITY';

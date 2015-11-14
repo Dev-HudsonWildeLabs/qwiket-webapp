@@ -128,14 +128,14 @@
 	},
 	"topic":{
 		"link":"",
-		"threadid":""
+		"threadid":"",
 		"isSubmitting":false,
 		"community":"",
 		"comment":"",
 		"title":"",
 		"image":"",
 		"description":"",
-		"site_name":"",
+		"sitename":"",
 		"author":"",
 		"locale":"",
 		"approval":false

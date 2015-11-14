@@ -24,9 +24,14 @@ export default function topic(state = new Immutable.Map({
  //console.log("TOPIC REDUCER action=%o",action)
   switch (action.type) {
     case actions.START_SHARE_LINK:
+    console.log("STATE=%o, action=%o",state.toObject(),action)
+    let link=state.get("url");
+
+    if(action.url&&link!=action.url)
+      link=action.url
       return state.merge( {
         isSubmitting: true,
-        url: action.url
+        url: link
       
       });
   case actions.SUBMITTED_SHARE_LINK:
@@ -38,7 +43,7 @@ export default function topic(state = new Immutable.Map({
 case actions.RECEIVE_TOPIC:
   //console.log("RECEIVE_TOPIC");
   let thread = action.thread;
-  let locale=thread.locale.trim();
+  let locale=thread.locale;
   if(!locale){
     locale="en_EN";
   }
@@ -61,7 +66,7 @@ case actions.RECEIVE_TOPIC:
   });
   case actions.UPDATE_STATE:
   //  console.log("UPDATE STATE old state=%o, new state=%o",state.toObject(),action.state.toObject());
-    return action.state;
+    return state.merge(action.changes);
   case actions.UPDATE_COMMUNITY:
     let community=action.community;
     return state.merge({

@@ -36,7 +36,9 @@ var Item=React.createClass({
 		let shared_by_avatar=topic.shared_by_avatar;
       	let orderby=this.props.orderby;
 		let sitename=(typeof(this.props.sitename)!='undefined'&&this.props.sitename)?this.props.sitename:'';	
-	    //console.log('topic=%o',topic);
+		if(!description&&!title&&!text)
+			return <div/>
+	   // console.log('topic=%o',topic);
 	    //console.log("shared_by_avatar=%s",shared_by_avatar)
 	    var html='';
 	    if(!description)
@@ -238,6 +240,7 @@ var Item=React.createClass({
 	    if(author){
 	    	authorHtml=(<div ><em>{author}</em></div>);
 	    }
+	   // console.log("about to return from topic render")
 	    return (
 	    <div ref="NewsItem"  className="list-group-item" threadid={threadid} style={styles.post}>
 	        <div>
@@ -265,7 +268,7 @@ var Item=React.createClass({
 		    	</span>
 		    	
 		      	<div ref="Topic" style={styles.topic}>
-		        	<img ref="TopicImage" className="topic-image img-responsive" style={styles.image} src={image}/>
+		        	<img ref="TopicImage" className="topic-image img-responsive" style={styles.image} src={image}></img>
 		        	<blockquote-reverse><div dangerouslySetInnerHTML={{__html: description}}></div></blockquote-reverse>
 		        	{author}
 		        	<div style={styles.sitename}>&copy;{site_name}</div>
@@ -274,7 +277,7 @@ var Item=React.createClass({
 		    	</div>
 		    	<div ref="ItemFooter" style={styles.footer}>
 			    	<div ref="ItemRatings" style={styles.ratings}>
-			    		{(!sitename)?(<input style={{marginTop:0}}className="rating" data-size="xs" data-symbol={"\uf0f4"} data-glyphicon="false" data-rating-class="rating-fa" data-default-caption="{rating} cups" data-star-captions="{}" stars="3" value={rating}/>):""}
+			    		{(!sitename)?(<input style={{marginTop:0}}className="rating" data-size="xs" data-symbol={"\uf0f4"} data-glyphicon="false" data-rating-class="rating-fa" data-default-caption="{rating} cups" data-star-captions="{}" stars="3" value={rating}></input>):""}
 			    	</div>
 			    </div>
 		    </div>

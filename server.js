@@ -76,6 +76,9 @@ server.route({
 				if (request.query.login) {
         			u+="&login="+request.query.login;
     			}
+    			if (request.query.logout) {
+        			u+="&logout="+request.query.logout;
+    			}
     			if (request.query.code) {
         			u+="&code="+request.query.code;
     			}
@@ -113,6 +116,9 @@ server.route({
 				if (request.query.login) {
         			u+="&login="+request.query.login;
     			}
+    			if (request.query.logout) {
+        			u+="&logout="+request.query.logout;
+    			}
     			if (request.query.code) {
         			u+="&code="+request.query.code;
     			}
@@ -145,6 +151,9 @@ server.route({
 				if (request.query.login) {
         			u+="&login="+request.query.login;
     			}
+    			if (request.query.logout) {
+        			u+="&logout="+request.query.logout;
+    			}
     			if (request.query.code) {
         			u+="&code="+request.query.code;
     			}
@@ -175,6 +184,9 @@ server.route({
 				let u="http://"+apiServer+":"+apiPort+"/api?task=landing&community="+request.params.community+"&type=context&postid="+request.params.postid+"&local="+request.params.local;
 				if (request.query.login) {
         			u+="&login="+request.query.login;
+    			}
+    			if (request.query.logout) {
+        			u+="&logout="+request.query.logout;
     			}
     			if (request.query.code) {
         			u+="&code="+request.query.code;
@@ -211,6 +223,9 @@ server.route({
 				if (request.query.login) {
         			u+="&login="+request.query.login;
     			}
+    			if (request.query.logout) {
+        			u+="&logout="+request.query.logout;
+    			}
     			if (request.query.code) {
         			u+="&code="+request.query.code;
     			}
@@ -242,6 +257,9 @@ server.route({
 				let u="http://"+apiServer+":"+apiPort+"/api?task=landing&community="+encodeURIComponent(request.params.community+"&type=context&threadid="+request.params.threadid+"&local="+request.params.local);
 				if (request.query.login) {
         			u+="&login="+request.query.login;
+    			}
+    			if (request.query.logout) {
+        			u+="&logout="+request.query.logout;
     			}
     			if (request.query.code) {
         			u+="&code="+request.query.code;
@@ -275,6 +293,9 @@ server.route({
 				let u="http://"+apiServer+":"+apiPort+"/api?task=landing&type=submit";
 				if (request.query.login) {
         			u+="&login="+request.query.login;
+    			}
+    			if (request.query.logout) {
+        			u+="&logout="+request.query.logout;
     			}
     			if (request.query.code) {
         			u+="&code="+request.query.code;
@@ -369,11 +390,12 @@ server.route({
 				console.log('D4API PROXY:', u)
 			},
 			onResponse (err, res, request, reply, settings, ttl) {
-				//console.log(res)
+				// console.log(res)
 					/*Wreck.read(res, null, function(err, payload){
 					//console.log(JSON.parse(payload));
 				})*/
 				reply(res).ttl(ttl);
+				
 			}
 		}
 	}
@@ -382,6 +404,9 @@ server.route({
 function matchAndRender (err, payload,request,reply,ttl) {
 	var landing= JSON.parse(payload);
 	let redirect="";
+	let cookie=landing.cookie;
+   // console.log(landing)
+	//let logout=request.query.logout?true:false;
 	if(landing.redirect){
 		redirect=landing.redirect;
 		reply.redirect(redirect);
@@ -433,7 +458,7 @@ function matchAndRender (err, payload,request,reply,ttl) {
 		}
 		else {
 			//console.log(window.server);
-			console.log('renderToString')
+			//console.log('renderToString')
 			let QwiketState;
 			//console.log(landing)
 			
@@ -514,7 +539,17 @@ function matchAndRender (err, payload,request,reply,ttl) {
 
 				//output          = Transmit.injectIntoMarkup(output, reactData, [`${webserver}/dist/client.js`]);
 				//console.log(' output generated:', Date.now() )
-				reply(output).ttl(ttl);
+				//console.log("COOKIE=%o",cookie);
+				if(cookie){
+					let id=cookie.identity;
+					if(id){
+						reply(output).ttl(ttl).state('identity',id,{path:"/",ttl: 24 * 60 * 60 * 1000 * 30});
+						console.log("set cookie identity to ",id);
+					}
+				}
+				else
+					reply(output).ttl(ttl);
+				
 			
 		}
 	});

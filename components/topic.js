@@ -1,5 +1,6 @@
 require("babel/register");
 import React from 'react'
+import ReactDom from 'react-dom';
 //import ReactTypeahead from 'react-twitter-typeahead'
 import * as actions from './actions/topicAction.js';
 import u from './d4shared/utils.jsx'
@@ -17,12 +18,14 @@ var Topic=React.createClass({
         let url=this.props.location.query.url;
         let me=this;
         if(this.props.topic.get("url")!=url){
+            console.log('calling shareLinkAction on comp mount')
             this.props.shareLinkAction.shareLink(url,this.props.topic);
+             console.log('after calling shareLinkAction')
         }
         if(__CLIENT__){
-           // console.log("init locales")
+            console.log("init locales")
 
-            $('#post_edit_locales_selector').typeahead(null, {
+            $ (ReactDom.findDOMNode(this.refs.typeahead)).typeahead({
                 name: 'locales',
                 valueKey:'id',
                 displayKey: 'name',
@@ -32,20 +35,24 @@ var Topic=React.createClass({
             $.ajax({
                 url: "/api?task=load_locales",
                 data:{
-                    query:this.props.topic.get("locale").trim()
+                    query:this.props.topic.get("locale")
                 },
                 dataType: 'json'
-            }).success(function(data) {
+            }).success((data)=> {
                 //console.log(data);
                 if(data.length==1){
                     var l=data[0];
-                    if(l)
-                        $('#post_edit_locales_selector').typeahead('val',l.name.trim());
+                    if(l){
+                        let node=ReactDom.findDOMNode(this.refs.typeahead);
+                        let jNode=$ (node);
+                        console.log('node=%o,jNode=%o',node,jNode);
+                        jNode.typeahead('val',l.name.trim());
+                    }
                  }
             });
-            $("#post_edit_locales_selector").on("typeahead:selected typeahead:autocompleted", function(e,datum) {
+            $ (ReactDom.findDOMNode(this.refs.typeahead)).on("typeahead:selected typeahead:autocompleted", function(e,datum) {
                 //console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
-                me.props.updateStateAction.updateState(me.props.topic.merge({locale:datum.id}));
+                me.props.updateStateAction.updateState({locale:datum.id});
             /* me.selected_locale= datum.id;*/ /*console.log('selected '+datum.id)*/});
             let community=this.props.topic.get("community");
             if(!community){
@@ -64,20 +71,22 @@ var Topic=React.createClass({
         }
     },
     componentWillReceiveProps(nextProps){
-        let url=nextProps.location.query.url;
-        let link=this.props.topic.get("url")
-       //console.log("URL=%s, LINK=%s",url,link)
-        if(link!=url){
-           // console.log('calling shareLink')
-           this.props.shareLinkAction.shareLink(url,this.props.topic);
-        }
+      /*  let url=nextProps.location.query.url;
+        let link=nextProps.topic.get("url")
+        if(u.is(url)){
+            console.log("URL=%s, LINK=%s",url,link)
+            if(link!=url){
+               console.log('calling shareLink')
+               this.props.shareLinkAction.shareLink(url,this.props.topic);
+            }
+        }*/
     },
     componentDidUpdate:function(prevProps, prevState){
         
         let url=this.props.location.query.url;
         let link=this.props.topic.get("url")
         //console.log("URL=%s, LINK=%s",url,link)
-        if(link!=url){
+        if(u.is(url)&&link!=url){
            //console.log('adjusting urlk')
            this.props.history.pushState(null,"/publish/?url="+encodeURIComponent(link));   
         }   
@@ -88,37 +97,49 @@ var Topic=React.createClass({
     },
     
     onCommentChange(event){
-        this.props.updateStateAction.updateState(this.props.topic.merge({text:event.target.value}));
+        this.props.updateStateAction.updateState({text:event.target.value});
     },
     onDescriptionChange(event){
-        this.props.updateStateAction.updateState(this.props.topic.merge({description:event.target.value}));
+        this.props.updateStateAction.updateState({description:event.target.value});
     },
     onTitleChange(event){
-        this.props.updateStateAction.updateState(this.props.topic.merge({title:event.target.value}));
+        this.props.updateStateAction.updateState({title:event.target.value});
     },
     onAuthorChange(event){
-        this.props.updateStateAction.updateState(this.props.topic.merge({author:event.target.value}));
+        this.props.updateStateAction.updateState({author:event.target.value});
     },
     onSitenameChange(event){
-        this.props.updateStateAction.updateState(this.props.topic.merge({site_name:event.target.value}));
+        this.props.updateStateAction.updateState({site_name:event.target.value});
     },
     onLocaleChange(event){
         //console.log('onLocaleChange event=%o',event)
-        this.props.updateStateAction.updateState(this.props.topic.merge({locale:event.target.value}));
+        this.props.updateStateAction.updateState({locale:event.target.value});
     },
     onImageChange(event){ 
-        this.props.updateStateAction.updateState(this.props.topic.merge({image:event.target.value}));
+        this.props.updateStateAction.updateState({image:event.target.value});
     },
     onCommunitySelect(history,community,community_name){
-       // console.log('onCommunitySelect %s, props=%o',community,this.props)
-        this.props.updateStateAction.updateState(this.props.topic.merge({community,community_name}));
+        console.log('onCommunitySelect %s, props=%o',community,this.props)
+        console.log('topic=%o',this.props.topic.toObject())
+        this.props.updateStateAction.updateState({community,community_name});
     },
     submitTopic(){
-       // console.log('submitTopic')
+        console.log('submitTopic')
         this.props.submitTopicAction.submitTopic(this.props.topic);
     },
     render: function(){
-        console.log("RENDER TOPIC")
+
+    if(this.props.onlineState.login){
+        return (
+
+            <div>
+            This functionality requires you to login with your Disqus account. Please click <Link to={this.props.location.pathname+"?login=1"}>here</Link> to proceed.
+            </div>
+            )
+
+    }
+
+        //console.log("RENDER TOPIC")
         let html='';
         let shared_by;
         
@@ -152,11 +173,15 @@ var Topic=React.createClass({
         }
         if(!locale){
             locale='en_EN';
-             $('#post_edit_locales_selector').typeahead('val','English');
+             let node=ReactDom.findDOMNode(this.refs.typeahead);
+            let jNode=$ (node);
+            console.log('node=%o,jNode=%o',node,jNode);
+            jNode.typeahead('val','English');
+             //$('#post_edit_locales_selector').typeahead('val','English');
             //setTimeout(this.props.updateStateAction.updateState(this.props.topic.merge({locale:'en_US'})));
         }
        // console.log("communityname=%s",communityName)
-        console.log('topic: %o',this.props.topic.toObject())
+       // console.log('topic: %o',this.props.topic.toObject())
         var styles={
             community:{     
                 float:"right",
@@ -205,7 +230,7 @@ var Topic=React.createClass({
         if(+owner||(+feed&&!+reshare)){
             isDisabled=false;
         }
-     
+        console.log("topic edit render")
         return (
             <div className="item-edit container" threadid={'"'+threadid+'"'} style={styles.outer}>
                 
@@ -264,11 +289,13 @@ var Topic=React.createClass({
                     </div>
                     <div className="form-group"> 
                         <label className="control-label col-sm-2" htmlFor="post_edit_author">Author:</label>
-                        <div className= "col-sm-10"><input disabled={isDisabled ? "disabled" : false} type="text" className="form-control" id="post_edit_author" onChange={this.onAuthorChange} value={author}/></div>
+                        <div className= "col-sm-10"><input disabled={isDisabled ? "disabled" : false} type="text" className="form-control" id="post_edit_author" onChange={this.onAuthorChange} value={author}></input></div>
                     </div>
                     <div id="prefetch_locales" className="form-group"> 
                         <label className="control-label col-sm-2" htmlFor="post_edit_locales_selector">Language:</label>
-                        <div className= "col-sm-10"><input disabled={isDisabled ? "disabled" : false} id="post_edit_locales_selector"  type="text" className="form-control" onChange={this.onLocaleChange} placeholder="Locales" /></div>
+                        <div className= "col-sm-10">
+                            <input ref="typeahead" disabled={isDisabled ? "disabled" : false} id="post_edit_locales_selector"  type="text" className="form-control" onChange={this.onLocaleChange} placeholder="Locales"></input>
+                        </div>
                     </div>
                     <div className="form-group" >
                         <div style={styles.button}>
@@ -276,7 +303,7 @@ var Topic=React.createClass({
                         </div>
                     </div>
                 </form>
-                <LoadMask visible={this.props.topic.get("isSubmitting")}/>
+                <LoadMask visible={this.props.topic.get("isSubmitting")}></LoadMask>
             </div>);
     }
 });
@@ -285,6 +312,7 @@ function mapStateToProps(state) {
   return {
    topic:state.topic,
    communityState:state.app.get("community"),
+   onlineState:state.app.get("online")
   };
 }
 function mapDispatchToProps(dispatch) {
