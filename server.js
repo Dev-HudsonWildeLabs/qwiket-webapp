@@ -62,6 +62,24 @@ console.log('starting server 5 ',Date.now());
 /**
  * Attempt to serve static requests from the public folder.
  */ 
+server.route([
+  {
+    method: 'GET',
+    path: '/',
+    vhost:'d4rum.com',
+    handler: {
+      proxy: {
+        host: 'localhost',
+        port: 80,
+        protocol: 'http',
+        passThrough: true,
+        xforward: true
+      }
+    }
+  }
+]);
+
+
 server.route({
 	method:  "GET",
 	path:    "/",
