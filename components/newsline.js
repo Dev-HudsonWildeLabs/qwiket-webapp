@@ -19,10 +19,13 @@ var Item=React.createClass({
 		this.history.pushState(null,'/context/'+this.props.community+'/topic/'+this.props.topic.get("threadid"));
 	},
 	render:function(){
-		//console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ topic=%o",this.props.topic);
+		
 		let topic=this.props.topic.toObject();
+		//console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ topic=%o",topic);
 		let threadid=topic.threadid;
-		let link=topic.link;
+		let link=topic.url;
+		link="/link/"+encodeURIComponent(link);
+		console.log('link=%s',link)
 		let text=topic.text;
 		let image=topic.image;
 		let title=topic.title;
@@ -240,7 +243,7 @@ var Item=React.createClass({
 	    if(author){
 	    	authorHtml=(<div ><em>{author}</em></div>);
 	    }
-	   // console.log("about to return from topic render")
+	    console.log("about to return from topic render link=%s",link)
 	    return (
 	    <div ref="NewsItem"  className="list-group-item" threadid={threadid} style={styles.post}>
 	        <div>
@@ -259,15 +262,15 @@ var Item=React.createClass({
 					</div>	
 
 	        </div>
-	        <div onClick={this.itemClick}>
+	        <div >
 		      	<div>
 		      	{comment}
 		    	</div>
 		      	<span >
-		    		<Link ref="ItemTitle" to={link}   style={styles.title} target="origin" dangerouslySetInnerHTML={{__html: title}}></Link>
+		    		<Link ref="ItemTitle" to={link}   style={styles.title} dangerouslySetInnerHTML={{__html: title}}></Link>
 		    	</span>
 		    	
-		      	<div ref="Topic" style={styles.topic}>
+		      	<div ref="Topic" style={styles.topic} onClick={this.itemClick}>
 		        	<img ref="TopicImage" className="topic-image img-responsive" style={styles.image} src={image}></img>
 		        	<blockquote-reverse><div dangerouslySetInnerHTML={{__html: description}}></div></blockquote-reverse>
 		        	{author}
@@ -275,7 +278,7 @@ var Item=React.createClass({
 		        	<a href={link} style={styles.linkmore} target="origin">{this.props.full?"Click here to read the full article.":""}</a>
 		    
 		    	</div>
-		    	<div ref="ItemFooter" style={styles.footer}>
+		    	<div ref="ItemFooter" style={styles.footer} onClick={this.itemClick}> 
 			    	<div ref="ItemRatings" style={styles.ratings}>
 			    		{(!sitename)?(<input style={{marginTop:0}}className="rating" data-size="xs" data-symbol={"\uf0f4"} data-glyphicon="false" data-rating-class="rating-fa" data-default-caption="{rating} cups" data-star-captions="{}" stars="3" value={rating}></input>):""}
 			    	</div>
