@@ -124,7 +124,7 @@ server.route({
 
 server.route({
 	method:  "GET",
-	path:    "/{community}/{threadid}/7",
+	path:    "/{community}/{threadid}/7/",
 	handler: {
 		proxy: {
 			passThrough: true,
