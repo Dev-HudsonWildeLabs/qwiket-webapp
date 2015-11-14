@@ -18,10 +18,10 @@ import Community from './community'
     	return {link: ''};
   	},
 	componentDidMount: function() {
-        console.log('props =%o',this.props)
-		 console.log('search=%s',this.props.location.search);
+       //console.log('props =%o',this.props)
+		// console.log('search=%s',this.props.location.search);
         if(this.props.location.search){
-            console.log(this.props.location.search.toUpperCase());
+            //console.log(this.props.location.search.toUpperCase());
             if(this.props.location.search.toUpperCase().indexOf('URL')==-1)
                 this.props.history.pushState(null,this.props.location.pathname);
         }
@@ -41,7 +41,7 @@ import Community from './community'
   		this.refs.BurgerMenu.toggleMenu();
   	},
   	onSubmitLink:function(event){
-  		console.log('onSubmitLink ref=%o',this.state.link)
+  		//console.log('onSubmitLink ref=%o',this.state.link)
   		let link=this.state.link;
   		this.props.history.pushState(null,"/publish/?url="+encodeURIComponent(link));      
   	},
@@ -49,7 +49,7 @@ import Community from './community'
     	this.setState({link: event.target.value});
   	},
     linkSelect:function(event){
-        console.log(event)
+        //console.log(event)
         event.target.select();
     },
     linkKeyDown:function(event){
@@ -70,7 +70,7 @@ import Community from './community'
             let kind=item.kind;
             if(kind=='string'&&type=="text/plain"){
                 items[0].getAsString((link)=>{
-                    console.log("ITEM=%s, type=%s,kind=%s",link,type,kind);
+                   // console.log("ITEM=%s, type=%s,kind=%s",link,type,kind);
                     this.refs.link.value=link;
                     this.props.history.pushState(null,"/publish/?url="+encodeURIComponent(link));     
                 });

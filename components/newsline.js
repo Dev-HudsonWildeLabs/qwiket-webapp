@@ -25,7 +25,7 @@ var Item=React.createClass({
 		let threadid=topic.threadid;
 		let link=topic.url;
 		link="/link/"+encodeURIComponent(link);
-		console.log('link=%s',link)
+		//console.log('link=%s',link)
 		let text=topic.text;
 		let image=topic.image;
 		let title=topic.title;
@@ -243,7 +243,7 @@ var Item=React.createClass({
 	    if(author){
 	    	authorHtml=(<div ><em>{author}</em></div>);
 	    }
-	    console.log("about to return from topic render link=%s",link)
+	   // console.log("about to return from topic render link=%s",link)
 	    return (
 	    <div ref="NewsItem"  className="list-group-item" threadid={threadid} style={styles.post}>
 	        <div>
@@ -266,19 +266,19 @@ var Item=React.createClass({
 		      	<div>
 		      	{comment}
 		    	</div>
-		      	<span >
+		      	<div>
 		    		<Link ref="ItemTitle" to={link}   style={styles.title} dangerouslySetInnerHTML={{__html: title}}></Link>
-		    	</span>
+		    	</div>
 		    	
-		      	<div ref="Topic" style={styles.topic} onClick={this.itemClick}>
-		        	<img ref="TopicImage" className="topic-image img-responsive" style={styles.image} src={image}></img>
-		        	<blockquote-reverse><div dangerouslySetInnerHTML={{__html: description}}></div></blockquote-reverse>
+		      	<div ref="Topic" style={styles.topic} >
+		        	<img ref="TopicImage" className="topic-image img-responsive" style={styles.image} src={image} onClick={this.itemClick}></img>
+		        	<blockquote-reverse onClick={this.itemClick}><div dangerouslySetInnerHTML={{__html: description}}></div></blockquote-reverse>
 		        	{author}
-		        	<div style={styles.sitename}>&copy;{site_name}</div>
-		        	<a href={link} style={styles.linkmore} target="origin">{this.props.full?"Click here to read the full article.":""}</a>
+		        	<div style={styles.sitename} onClick={this.itemClick}>&copy;{site_name}</div>
+		        	<Link to={link} style={styles.linkmore} >{this.props.full?"Click here to read the full article.":""}</Link>
 		    
 		    	</div>
-		    	<div ref="ItemFooter" style={styles.footer} onClick={this.itemClick}> 
+		    	<div ref="ItemFooter" style={styles.footer} > 
 			    	<div ref="ItemRatings" style={styles.ratings}>
 			    		{(!sitename)?(<input style={{marginTop:0}}className="rating" data-size="xs" data-symbol={"\uf0f4"} data-glyphicon="false" data-rating-class="rating-fa" data-default-caption="{rating} cups" data-star-captions="{}" stars="3" value={rating}></input>):""}
 			    	</div>
@@ -327,7 +327,7 @@ var Items=React.createClass({
 	},
 
 	fetch:function(clear,remove,props){
-		console.log("ITEMS FETCH")
+	//	console.log("ITEMS FETCH")
 		if(remove)
 			props.clearTopics();
 		props.fetchTopics(clear,props.community,props.orderby,props.state,this.props.sideTopics,props.state.get("lastid"),props.sitename,25,props.query);
