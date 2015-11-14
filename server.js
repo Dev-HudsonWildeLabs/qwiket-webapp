@@ -65,7 +65,7 @@ console.log('starting server 5 ',Date.now());
 server.route([
   {
     method: 'GET',
-    path: '/',
+    path: '/{path*}',
     vhost:'d4rum.com',
     handler: {
       proxy: {
