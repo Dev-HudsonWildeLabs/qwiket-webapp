@@ -24,7 +24,7 @@ export default function topic(state = new Immutable.Map({
  //console.log("TOPIC REDUCER action=%o",action)
   switch (action.type) {
     case actions.START_SHARE_LINK:
-    console.log("STATE=%o, action=%o",state.toObject(),action)
+    //console.log("STATE=%o, action=%o",state.toObject(),action)
     let link=state.get("url");
 
     if(action.url&&link!=action.url)

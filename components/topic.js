@@ -1,6 +1,7 @@
 require("babel/register");
 import React from 'react'
 import ReactDom from 'react-dom';
+import {Link} from 'react-router';
 //import ReactTypeahead from 'react-twitter-typeahead'
 import * as actions from './actions/topicAction.js';
 import u from './d4shared/utils.jsx'
@@ -14,16 +15,16 @@ var LoadMask = require('react-load-mask')
 
 var Topic=React.createClass({
     componentDidMount: function() {
-        console.log("componentDidMount %o",this.props.topic)
+        //console.log("componentDidMount %o",this.props.topic)
         let url=this.props.location.query.url;
         let me=this;
         if(this.props.topic.get("url")!=url){
-            console.log('calling shareLinkAction on comp mount')
+           // console.log('calling shareLinkAction on comp mount')
             this.props.shareLinkAction.shareLink(url,this.props.topic);
-             console.log('after calling shareLinkAction')
+             //console.log('after calling shareLinkAction')
         }
         if(__CLIENT__){
-            console.log("init locales")
+           // console.log("init locales")
 
             $ (ReactDom.findDOMNode(this.refs.typeahead)).typeahead({
                 name: 'locales',
@@ -45,7 +46,7 @@ var Topic=React.createClass({
                     if(l){
                         let node=ReactDom.findDOMNode(this.refs.typeahead);
                         let jNode=$ (node);
-                        console.log('node=%o,jNode=%o',node,jNode);
+                       // console.log('node=%o,jNode=%o',node,jNode);
                         jNode.typeahead('val',l.name.trim());
                     }
                  }
@@ -119,21 +120,22 @@ var Topic=React.createClass({
         this.props.updateStateAction.updateState({image:event.target.value});
     },
     onCommunitySelect(history,community,community_name){
-        console.log('onCommunitySelect %s, props=%o',community,this.props)
-        console.log('topic=%o',this.props.topic.toObject())
+       // console.log('onCommunitySelect %s, props=%o',community,this.props)
+       // console.log('topic=%o',this.props.topic.toObject())
         this.props.updateStateAction.updateState({community,community_name});
     },
     submitTopic(){
-        console.log('submitTopic')
+       // console.log('submitTopic')
         this.props.submitTopicAction.submitTopic(this.props.topic);
     },
     render: function(){
 
-    if(this.props.onlineState.login){
+    if(this.props.onlineState.get("login")){
+        let search=this.props.location.search;
         return (
 
             <div>
-            This functionality requires you to login with your Disqus account. Please click <Link to={this.props.location.pathname+"?login=1"}>here</Link> to proceed.
+            This functionality requires you to login with your Disqus account. Please click <a href={this.props.location.pathname+"?url="+encodeURIComponent(this.props.topic.get("url"))+"&login=1"}>here to proceed</a>.
             </div>
             )
 
@@ -175,7 +177,7 @@ var Topic=React.createClass({
             locale='en_EN';
              let node=ReactDom.findDOMNode(this.refs.typeahead);
             let jNode=$ (node);
-            console.log('node=%o,jNode=%o',node,jNode);
+           // console.log('node=%o,jNode=%o',node,jNode);
             jNode.typeahead('val','English');
              //$('#post_edit_locales_selector').typeahead('val','English');
             //setTimeout(this.props.updateStateAction.updateState(this.props.topic.merge({locale:'en_US'})));
@@ -230,7 +232,7 @@ var Topic=React.createClass({
         if(+owner||(+feed&&!+reshare)){
             isDisabled=false;
         }
-        console.log("topic edit render")
+        //console.log("topic edit render")
         return (
             <div className="item-edit container" threadid={'"'+threadid+'"'} style={styles.outer}>
                 
