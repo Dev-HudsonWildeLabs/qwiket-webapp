@@ -18,6 +18,10 @@ var Item=React.createClass({
 		window.scrollTo(0, 0);
 		this.history.pushState(null,'/context/'+this.props.community+'/topic/'+this.props.topic.get("threadid"));
 	},
+	shareFB(){
+		console.log('shareFB');
+		u.popupHandler('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent('http://qwiket.com/context/'+this.props.community+'/topic/'+this.props.topic.get("threadid")));
+	},
 	render:function(){
 		
 		let topic=this.props.topic.toObject();
@@ -244,6 +248,11 @@ var Item=React.createClass({
 	    	authorHtml=(<div ><em>{author}</em></div>);
 	    }
 	   // console.log("about to return from topic render link=%s",link)
+	    /*
+	  	<li><Link  className="discuss" to={"/local/"+threadid}><i className="fa fa-share-alt fa-fw fa-sm"></i>&nbsp;Share link</Link></li>
+				      	<li><Link  className="discuss" to={"/local/"+threadid}><i className="fa fa-hand-paper-o fa-fw fa-sm"></i>&nbsp;Unplug this Feed</Link></li>
+				   
+				    */
 	    return (
 	    <div ref="NewsItem"  className="list-group-item" threadid={threadid} style={styles.post}>
 	        <div>
@@ -253,11 +262,9 @@ var Item=React.createClass({
 				   		{(!sitename)?(<i className="fa fa-bars fa-lg"></i>):(<i className="fa fa-bars fa-sm"></i>)}
 				   	</button>
 					<ul className="dropdown-menu dropdown-menu-right" >
-				      	<li><Link  className="discuss" to={"/local/"+threadid}><i className="fa fa-comments-o fa-fw fa-sm"></i>&nbsp;Comments</Link></li>
-				      	<li><Link  className="discuss" to={"/local/"+threadid}><i className="fa fa-thumbs-o-up fa-fw fa-sm"></i>&nbsp;Reshare on Qwiket</Link></li>
-				      	<li><Link  className="discuss" to={"/local/"+threadid}><i className="fa fa-facebook fa-fw fa-sm"></i>&nbsp;Share on Facebook</Link></li>
-				      	<li><Link  className="discuss" to={"/local/"+threadid}><i className="fa fa-share-alt fa-fw fa-sm"></i>&nbsp;Share link</Link></li>
-				      	<li><Link  className="discuss" to={"/local/"+threadid}><i className="fa fa-hand-paper-o fa-fw fa-sm"></i>&nbsp;Unplug this Feed</Link></li>
+				      	<li><Link  className="discuss" to={'/context/'+this.props.community+'/topic/'+this.props.topic.get("threadid")}><i className="fa fa-comments-o fa-fw fa-sm"></i>&nbsp;Comments</Link></li>
+				      	<li><Link  className="discuss" to={'/publish/?url='+encodeURIComponent(topic.url)}><i className="fa fa-thumbs-o-up fa-fw fa-sm"></i>&nbsp;Reshare on Qwiket</Link></li>
+				      	<li><a  href='#' onClick={this.shareFB} className="discuss" to={"/local/"+threadid}><i className="fa fa-facebook fa-fw fa-sm"></i>&nbsp;Share on Facebook</a></li>
 				    </ul>
 					</div>	
 

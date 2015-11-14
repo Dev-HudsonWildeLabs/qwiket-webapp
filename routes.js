@@ -10,8 +10,12 @@ export default (
 	<Router>
       <Route path="/link/:url" component={QwiketLink}>
         </Route>
+
     	<Route path="/" component={MainPage}>
-    		<Route path="/publish/" component={Topic}>
+    		<Route path="/:community/:threadid/7"  component={Context}>
+        </Route>
+
+        <Route path="/publish/" component={Topic}>
         </Route>
 
         <Route path="/newsline/:community" component={Newsline}>

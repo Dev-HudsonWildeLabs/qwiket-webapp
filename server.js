@@ -19,6 +19,7 @@ import configureStore from './components/store/configureStore'
 
 //console.log(process)
 var hostname = process.env.HOSTNAME || "localhost";
+var port = process.env.PORT || "80";
 var apiServer = process.env.QWIKETAPI|| "localhost";
 var apiPort=process.env.QWIKETAPIPORT|| "8088";
 GLOBAL.window = GLOBAL;  
@@ -112,6 +113,42 @@ server.route({
 					return;*/
 				Wreck.read(res, null, function(err, payload){
 					//console.log('LANDING PAYLOAD:',JSON.parse(payload))
+					matchAndRender(err, payload,request,reply,ttl);
+				})
+			
+            	//console.log('res ',res)
+			}
+		}
+	}
+});
+
+server.route({
+	method:  "GET",
+	path:    "/{community}/{threadid}/7",
+	handler: {
+		proxy: {
+			passThrough: true,
+			mapUri (request, callback) {
+				let query=request.query;
+				//console.log('CONTEXT query=%o',request)
+				let u="http://"+apiServer+":"+apiPort+"/api?task=landing&community="+request.params.community+"&type=context&threadid="+request.params.threadid;
+				if (request.query.login) {
+        			u+="&login="+request.query.login;
+    			}
+    			if (request.query.logout) {
+        			u+="&logout="+request.query.logout;
+    			}
+    			if (request.query.code) {
+        			u+="&code="+request.query.code;
+    			}
+
+				callback(null,u);
+				console.log('mapUri:', u)
+			},
+			onResponse (err, res, request, reply, settings, ttl) {
+				//if (request.query.login||request.query.code)
+				//	return;
+				Wreck.read(res, null, function(err, payload){
 					matchAndRender(err, payload,request,reply,ttl);
 				})
 			
