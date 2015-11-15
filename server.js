@@ -90,6 +90,8 @@ server.route({
 		proxy: {
 			passThrough: true,
 			mapUri (request, callback) {
+				var xFF = request.headers['x-forwarded-for'];
+				var ip = xFF ? xFF.split(',')[0] : request.info.remoteAddress;
 				let query=request.query;
 				
 				let u="http://"+apiServer+":"+apiPort+"/api?task=landing";
@@ -103,7 +105,7 @@ server.route({
     			if (request.query.code) {
         			u+="&code="+request.query.code;
     			}
-
+				u+='&xip='+ip;
 				callback(null,u);
 				console.log('mapUri:', u)
 			},
@@ -131,6 +133,8 @@ server.route({
 		proxy: {
 			passThrough: true,
 			mapUri (request, callback) {
+				var xFF = request.headers['x-forwarded-for'];
+				var ip = xFF ? xFF.split(',')[0] : request.info.remoteAddress;
 				let query=request.query;
 				//console.log('CONTEXT query=%o',request)
 				let u="http://"+apiServer+":"+apiPort+"/api?task=landing&community="+request.params.community+"&type=context&threadid="+request.params.threadid;
@@ -143,7 +147,7 @@ server.route({
     			if (request.query.code) {
         			u+="&code="+request.query.code;
     			}
-
+    			u+='&xip='+ip;
 				callback(null,u);
 				console.log('mapUri:', u)
 			},
@@ -167,6 +171,8 @@ server.route({
 		proxy: {
 			passThrough: true,
 			mapUri (request, callback) {
+				var xFF = request.headers['x-forwarded-for'];
+				var ip = xFF ? xFF.split(',')[0] : request.info.remoteAddress;
 				let query=request.query;
 				//console.log('query=%o',request)
 				let u="http://"+apiServer+":"+apiPort+"/api?task=landing&type=newsline&community="+encodeURIComponent(request.params.community);
@@ -179,8 +185,9 @@ server.route({
     			if (request.query.code) {
         			u+="&code="+request.query.code;
     			}
+    			u+='&xip='+ip;
 				callback(null,u);
-				//console.log('mapUri:', u)
+				console.log('mapUri:', u)
 			},
 			onResponse (err, res, request, reply, settings, ttl) {
 				/*if (request.query.login||request.query.code)
@@ -202,6 +209,8 @@ server.route({
 		proxy: {
 			passThrough: true,
 			mapUri (request, callback) {
+				var xFF = request.headers['x-forwarded-for'];
+				var ip = xFF ? xFF.split(',')[0] : request.info.remoteAddress;
 				let query=request.query;
 				//console.log('query=%o',request)
 				let u="http://"+apiServer+":"+apiPort+"/api?task=landing&community="+request.params.community+"&type=context&postid="+request.params.postid;
@@ -214,8 +223,9 @@ server.route({
     			if (request.query.code) {
         			u+="&code="+request.query.code;
     			}
+    			u+='&xip='+ip;
 				callback(null,u);
-				//console.log('mapUri:', u)
+				console.log('mapUri:', u)
 			},
 			onResponse (err, res, request, reply, settings, ttl) {
 				/*if (request.query.login||request.query.code)
@@ -236,6 +246,8 @@ server.route({
 		proxy: {
 			passThrough: true,
 			mapUri (request, callback) {
+				var xFF = request.headers['x-forwarded-for'];
+				var ip = xFF ? xFF.split(',')[0] : request.info.remoteAddress;
 				let query=request.query;
 				//console.log('query=%o',request)
 				let u="http://"+apiServer+":"+apiPort+"/api?task=landing&community="+request.params.community+"&type=context&postid="+request.params.postid+"&local="+request.params.local;
@@ -248,6 +260,7 @@ server.route({
     			if (request.query.code) {
         			u+="&code="+request.query.code;
     			}
+    			u+='&xip='+ip;
 
 				callback(null,u);
 				console.log('mapUri:', u)
@@ -274,6 +287,8 @@ server.route({
 		proxy: {
 			passThrough: true,
 			mapUri (request, callback) {
+				var xFF = request.headers['x-forwarded-for'];
+				var ip = xFF ? xFF.split(',')[0] : request.info.remoteAddress;
 				let query=request.query;
 				//console.log('CONTEXT query=%o',request)
 				let u="http://"+apiServer+":"+apiPort+"/api?task=landing&community="+request.params.community+"&type=context&threadid="+request.params.threadid;
@@ -286,6 +301,7 @@ server.route({
     			if (request.query.code) {
         			u+="&code="+request.query.code;
     			}
+    			u+='&xip='+ip;
 
 				callback(null,u);
 				console.log('mapUri:', u)
@@ -309,6 +325,8 @@ server.route({
 		proxy: {
 			passThrough: true,
 			mapUri (request, callback) {
+				var xFF = request.headers['x-forwarded-for'];
+				var ip = xFF ? xFF.split(',')[0] : request.info.remoteAddress;
 				let query=request.query;
 				//console.log('CONTEXT query=%o',request)
 				let u="http://"+apiServer+":"+apiPort+"/api?task=landing&community="+encodeURIComponent(request.params.community+"&type=context&threadid="+request.params.threadid+"&local="+request.params.local);
@@ -321,9 +339,10 @@ server.route({
     			if (request.query.code) {
         			u+="&code="+request.query.code;
     			}
+    			u+='&xip='+ip;
 
 				callback(null,u);
-				//console.log('mapUri:', u)
+				console.log('mapUri:', u)
 			},
 			onResponse (err, res, request, reply, settings, ttl) {
 				//if (request.query.login||request.query.code)
@@ -410,14 +429,20 @@ server.route({
 		proxy: {
 			passThrough: true,
 			mapUri (request, callback) {
-				let u=
+				var query = request.url.search ? request.url.search : '';
+        	
+				var xFF = request.headers['x-forwarded-for'];
+				var ip = xFF ? xFF.split(',')[0] : request.info.remoteAddress;
+    			console.log(ip)
+				/*let u=
 				 url.format({
 					protocol: "http",
 					host:     apiServer+":"+apiPort,
 					
 					pathname: "api",
-					query:    request.query
-				})
+					query:    request.query+'&xip='+ip
+				})*/
+				let u="http://"+apiServer+":"+apiPort+"/api"+query+'&xip='+ip
 				callback(null,u);
 				console.log('API PROXY:', u)
 			},
@@ -435,14 +460,13 @@ server.route({
 		proxy: {
 			passThrough: true,
 			mapUri (request, callback) {
-				let u=
-				 url.format({
-					protocol: "http",
-					host:     apiServer+":"+apiPort,
+				var query = request.url.search ? request.url.search : '';
+        	
+				var xFF = request.headers['x-forwarded-for'];
+				var ip = xFF ? xFF.split(',')[0] : request.info.remoteAddress;
+    			console.log(ip)
 				
-					pathname: "d4api",
-					query:    request.query
-				})
+				let u="http://"+apiServer+":"+apiPort+"/d4api"+query+'&xip='+ip
 				callback(null,u);
 				console.log('D4API PROXY:', u)
 			},
@@ -462,7 +486,7 @@ function matchAndRender (err, payload,request,reply,ttl) {
 	var landing= JSON.parse(payload);
 	let redirect="";
 	let cookie=landing.cookie;
-   // console.log(landing)
+	
 	//let logout=request.query.logout?true:false;
 	if(landing.redirect){
 		redirect=landing.redirect;
