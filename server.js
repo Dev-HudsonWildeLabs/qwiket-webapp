@@ -536,13 +536,21 @@ function matchAndRender (err, payload,request,reply,ttl) {
 					`<!doctype html>
 					<html lang="en-us">
 						<head>
-							<meta charset="utf-8">
+							
 
-							<title>Qwiket </title>
-							<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-							<meta http-equiv="Pragma" content="no-cache" />
-							<meta http-equiv="Expires" content="0" />
+							
+							<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# object: http://ogp.me/ns/object# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#">
+							<meta http-equiv="content-type" content="text/html; charset=utf-8">
+							<meta charset="utf-8">
+							<meta http-equiv="X-UA-Compatible" content="IE=edge">
+							<meta http-equiv="Content-Language" content="en">
 							<meta name="viewport" content="width=device-width, initial-scale=1 minimum-scale=0.5"/>
+							<title>Qwiket ${meta.title}</title>
+							<link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-114.png">
+							<link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114.png">
+							<link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-144.png">
+							<link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144.png">
+							<meta property="fb:app_id" content="1401488693436528">
 							<meta property="og:type"   content="website" /> 
 							<meta property="og:title" content=${'"'+htmlEncode(meta.title)+'"'} />
 							<meta name="description" content=${'"'+htmlEncode(meta.description)+'"'} />
@@ -553,8 +561,9 @@ function matchAndRender (err, payload,request,reply,ttl) {
 							<meta property="og:image" content=${'"'+meta.image+'"'} />
 							<meta property="og:locale" content=${'"'+meta.locale+'"'} />
 							
-							
-
+							<meta name="pjax-timeout" content="1000">
+							<meta name="is-dotcom" content="true">
+							<meta name="hostname" content="github.com">
 							<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
 							<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 							<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
