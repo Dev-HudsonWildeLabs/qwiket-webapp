@@ -530,7 +530,7 @@ function matchAndRender (err, payload,request,reply,ttl) {
 			//console.log('renderToString done')
 			//Transmit.renderToString(RoutingContext, renderProps).then(({reactString, reactData}) => {
 				 const finalState = store.getState();
-				console.log('renderToString returned !!!')
+				//console.log('renderToString returned !!!')
 		
 				var output = (
 					`<!doctype html>
@@ -612,7 +612,7 @@ function matchAndRender (err, payload,request,reply,ttl) {
 					let id=cookie.identity;
 					if(id){
 						reply(output).ttl(ttl).state('identity',id,{path:"/",ttl: 24 * 60 * 60 * 1000 * 30});
-						console.log("set cookie identity to ",id);
+						//console.log("set cookie identity to ",id);
 					}
 				}
 				else
