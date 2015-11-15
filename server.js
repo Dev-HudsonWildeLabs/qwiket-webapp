@@ -528,7 +528,7 @@ function matchAndRender (err, payload,request,reply,ttl) {
 			//console.log('renderToString done')
 			//Transmit.renderToString(RoutingContext, renderProps).then(({reactString, reactData}) => {
 				 const finalState = store.getState();
-				//console.log('renderToString returned !!!')
+				console.log('renderToString returned !!!')
 		
 				var output = (
 					`<!doctype html>
