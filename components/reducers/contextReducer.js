@@ -23,7 +23,19 @@ export default function context(state = new Immutable.Map({}), action) {
   case contextActions.REQUEST_CONTEXT_TOPIC:
     return state.set("isFetching",true);
   //return Object.assign({}, state, {isFetching:true}); 
-  
+  case appActions.LOADED_COMMUNITY_FORUMS:
+
+  //console.log("FORUMS: %o",action.forums)
+    return state.merge({
+     
+      sideTopics:new Immutable.Map({
+        items:new Immutable.List([]),
+        lastids:new Immutable.List([]),
+        isFetching:false,
+      }) 
+    })
+
+
   case contextActions.RECEIVE_CONTEXT_TOPIC:
  // console.log("RECEIVE_CONTEXT_TOPIC %o",action)
   //return Object.assign({}, state, 

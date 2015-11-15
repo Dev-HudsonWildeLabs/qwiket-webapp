@@ -96,7 +96,12 @@ export default function newsline(state = 0, action) {
         isFetching:false,
         type:"community"
          
-      })    
+      }),
+      topics:new Immutable.Map({
+        items:new Immutable.List([]),
+        lastids:new Immutable.List([]),
+        isFetching:false,
+      }) 
     })
 
 
