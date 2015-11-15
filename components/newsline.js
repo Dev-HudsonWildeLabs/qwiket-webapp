@@ -23,7 +23,8 @@ var Item=React.createClass({
 		u.popupHandler('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent('http://qwiket.com/context/'+this.props.community+'/topic/'+this.props.topic.get("threadid")));
 	},
 	render:function(){
-		
+		if(!this.props.topic)
+			return <div/>
 		let topic=this.props.topic.toObject();
 		//console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ topic=%o",topic);
 		let threadid=topic.threadid;
