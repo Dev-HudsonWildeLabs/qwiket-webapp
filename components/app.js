@@ -26,10 +26,15 @@ import Community from './community'
                 this.props.history.pushState(null,this.props.location.pathname);
         }
         if(this.props.location.pathname=="/"){
-			//console.log
+			console.log(document.domain)
 			//console.log('redirect to %o',"/newsline/"+this.props.communityState.forum+"/newest")
 			this.props.history.pushState(null,"/newsline/"+this.props.communityState.get("forum")+"/newest");
 		}
+        console.log(document.domain)
+        if(document.domain.indexOf('newsline.world')!=-1){
+            console.log("navigating %s","http://qwiket.com"+this.props.location.pathname+this.props.location.search)
+            location.href="http://qwiket.com"+this.props.location.pathname+this.props.location.search;
+        }
 
 	},
 	showSettings: function(event) {

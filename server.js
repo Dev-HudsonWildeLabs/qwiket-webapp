@@ -81,23 +81,6 @@ server.route([
     }
   }
 ]);
-server.route([
-  {
-    method: 'GET',
-    path: '/{path*}',
-    vhost:'newsline.world',
-    handler: {
-      proxy: {
-        host: 'qwiket.com',
-        port: 80,
-        protocol: 'http',
-        passThrough: true,
-        xforward: true
-      }
-    }
-  }
-]);
-
 
 server.route({
 	method:  "GET",
