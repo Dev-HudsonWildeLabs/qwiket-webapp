@@ -28,7 +28,7 @@ var Local=React.createClass({
                   identifier={topic.threadid}
                   title={t}
                   url={url}
-                  categoryId="3710580"
+                 
                   onNewComment={this.handleNewComment}/>
 
           );
