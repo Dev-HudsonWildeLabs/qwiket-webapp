@@ -15,6 +15,8 @@ import Immutable from 'immutable';
 import mapify from 'es6-mapify'
 import configureStore from './components/store/configureStore'
 
+var htmlEncode = require('js-htmlencode');
+
 
 
 //console.log(process)
@@ -541,10 +543,10 @@ function matchAndRender (err, payload,request,reply,ttl) {
 							<meta http-equiv="Pragma" content="no-cache" />
 							<meta http-equiv="Expires" content="0" />
 							<meta name="viewport" content="width=device-width, initial-scale=1 minimum-scale=0.5"/>
-							<meta name="description" content=${'"'+meta.description+'"'} />
-							<meta property="og:description" content=${'"'+meta.description+'"'} />
-							<meta property="og:title" content=${'"'+meta.title+'"'} />
-							<meta property="og:site_name" content=${'"'+meta.site_name+'"'} />
+							<meta name="description" content=${'"'+htmlEncode(meta.description)+'"'} />
+							<meta property="og:description" content=${'"'+htmlEncode(meta.description)+'"'} />
+							<meta property="og:title" content=${'"'+htmlEncode(meta.title)+'"'} />
+							<meta property="og:site_name" content=${'"'+htmlEncode(meta.site_name)+'"'} />
 							<meta property="og:url" content=${'"'+meta.url+'"'} />
 							<meta property="og:image" content=${'"'+meta.image+'"'} />
 							<meta property="og:locale" content=${'"'+meta.locale+'"'} />
