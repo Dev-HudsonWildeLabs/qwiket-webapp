@@ -19,7 +19,7 @@ var Item=React.createClass({
 		this.history.pushState(null,'/context/'+this.props.community+'/topic/'+this.props.topic.get("threadid"));
 	},
 	shareFB(){
-		console.log('shareFB');
+		console.log('shareFB ',this.props.community);
 		u.popupHandler('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent('http://qwiket.com/context/'+this.props.community+'/topic/'+this.props.topic.get("threadid")));
 	},
 	render:function(){

@@ -123,7 +123,7 @@ var Context=React.createClass({
 				<div style={{background:bg,padding:0,borderRadius: 4}} className="row" key={'context-wrap-'+cv}>                              
 					<div className="panel panel-default" style={{marginTop:0,marginBottom:0,paddingBottom:600,background:bg,borderBottomLeftRadius: 4,borderBottomRightRadius:4}}>
 					  <div  style={{background:bg}} className="panel-heading"><span className="label label-default">{communityName}</span> &nbsp;&nbsp;{this.props.context.get("qwiketd4")?showContextBtn:''}{native}</div>
-					  <div  style={{borderTopLeftRadius: 4,borderTopRightRadius: 4,background:bg,padding:20}} key={postid}><Item topic={this.props.context.get("topic")} full={true} orderby={0}/></div>
+					  <div  style={{borderTopLeftRadius: 4,borderTopRightRadius: 4,background:bg,padding:20}} key={postid}><Item topic={this.props.context.get("topic")} community={community} full={true} orderby={0}/></div>
 					  <div className="panel-body">{localChild}</div>
 					</div>
 				</div>
@@ -137,7 +137,7 @@ var Context=React.createClass({
 				<div style={{background:bg,padding:0,borderRadius: 4}} className="row" key={'context-wrap-17'}>                              
 					<div className="panel panel-default" style={{marginTop:0,marginBottom:0,paddingBottom:600,background:bg,borderBottomLeftRadius: 4,borderBottomRightRadius:4}}>
 					  <div style={{background:bg}} className="panel-heading"><span className="label label-default">{"Fluid Context: "}<span className="hidden-xs">{forum_str}</span></span> <Link  to={local_href} style={{marginTop:0,float:"right", textDecoration: "none"}} ><span className="label label-default">{communityName+ ""}</span>&nbsp;&nbsp;<span style={{marginTop:2,float:"right", textDecoration: "none"}}><i className="fa fa-chevron-right fa-lg"></i><i className="fa fa-chevron-right fa-lg"></i><i className="fa fa-chevron-right fa-lg"></i></span></Link></div>
-					  <div  style={{borderTopLeftRadius: 4,borderTopRightRadius: 4,background:bg,padding:20}} key={postid}><Item topic={this.props.context.get("topic")} full={true} orderby={0}/></div>
+					  <div  style={{borderTopLeftRadius: 4,borderTopRightRadius: 4,background:bg,padding:20}} key={postid}><Item topic={this.props.context.get("topic")} community={community} full={true} orderby={0}/></div>
 					  <div className="panel-body"><PostContext  reportY={this.reportSelectedPostY} key="postcontext1" local={false} scope='working' type='context' forumid={this.props.context.get("nativeForumid")} thread={this.props.context.get("nativeThread")} community={community} constraint_type={ct} constraint_value={cv}/></div>
 					</div>
 				</div>
