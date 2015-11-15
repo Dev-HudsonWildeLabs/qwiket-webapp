@@ -1,15 +1,9 @@
 import React from 'react'
 var ReactDisqusThread = require('react-disqus-thread');
 var Local=React.createClass({
-	componentWillUnmount(){
-   // console.log("unmounting")
-     if (typeof DISQUS !== "undefined") {
-      //  console.log("undefine")
-        DISQUS=undefined;
-     }
-  },
+	
 	 handleNewComment: function(comment) {
-        console.log(comment.text);
+      //  console.log(comment.text);
     },
 	render: function(){
     let topic=this.props.topic.toObject();
@@ -18,10 +12,10 @@ var Local=React.createClass({
   		var t=topic.title.replace(/"/g,'\'');
   		t=t.replace(':','-');
   		let url="http://qwiket.com/context/"+this.props.community+"/topic/"+topic.threadid;
-  		console.log('title=%s',t);
-  		console.log('shortname=%s',this.props.community)
-  		console.log('identifier=%s',topic.threadid)	
-  		console.log('url=%s',url)
+  		//console.log('title=%s',t);
+  	//	console.log('shortname=%s',this.props.community)
+  		//console.log('identifier=%s',topic.threadid)	
+  	//	console.log('url=%s',url)
   	  return (
               <ReactDisqusThread
                   shortname={this.props.community}
