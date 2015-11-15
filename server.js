@@ -568,7 +568,7 @@ function matchAndRender (err, payload,request,reply,ttl) {
 							<meta http-equiv="X-UA-Compatible" content="IE=edge">
 							<meta http-equiv="Content-Language" content="en">
 							<meta name="viewport" content="width=device-width, initial-scale=1 minimum-scale=0.5"/>
-							<title>Qwiket ${meta.title}</title>
+							<title>${meta.title}</title>
 							<link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-114.png">
 							<link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114.png">
 							<link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-144.png">
