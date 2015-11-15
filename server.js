@@ -72,8 +72,8 @@ server.route([
     vhost:'d4rum.com',
     handler: {
       proxy: {
-        host: 'localhost',
-        port: 80,
+        host: 'd4rum.com',
+        port: 8081,
         protocol: 'http',
         passThrough: true,
         xforward: true
