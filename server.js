@@ -539,7 +539,7 @@ function matchAndRender (err, payload,request,reply,ttl) {
 							
 
 							
-							<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# object: http://ogp.me/ns/object# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#">
+							
 							<meta http-equiv="content-type" content="text/html; charset=utf-8">
 							<meta charset="utf-8">
 							<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -550,7 +550,7 @@ function matchAndRender (err, payload,request,reply,ttl) {
 							<link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114.png">
 							<link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-144.png">
 							<link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144.png">
-							<meta property="fb:app_id" content="1401488693436528">
+							
 							<meta property="og:type"   content="website" /> 
 							<meta property="og:title" content=${'"'+htmlEncode(meta.title)+'"'} />
 							<meta name="description" content=${'"'+htmlEncode(meta.description)+'"'} />
@@ -559,7 +559,7 @@ function matchAndRender (err, payload,request,reply,ttl) {
 							<meta property="og:site_name" content=${'"'+htmlEncode(meta.site_name)+'"'} />
 							<meta property="og:url" content=${'"'+meta.url+'"'} />
 							<meta property="og:image" content=${'"'+meta.image+'"'} />
-							<meta property="og:locale" content=${'"'+meta.locale+'"'} />
+							
 							
 							<meta name="pjax-timeout" content="1000">
 							<meta name="is-dotcom" content="true">
