@@ -8,15 +8,25 @@ import Radium from 'radium'
 import {Link,History} from 'react-router'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {fetchTopics,clearTopics} from './actions/newslineAction';
+import {fetchTopics,clearTopics,startTransition} from './actions/newslineAction';
+import {invalidateContext} from './actions/contextAction';
 import {fetchPosts,clearPosts} from './d4shared/actions/postsAction';
 
 
 var Item=React.createClass({
 	mixins: [ History ],
 	itemClick:function(e,t){
-		window.scrollTo(0, 0);
-		this.history.pushState(null,'/context/'+this.props.community+'/topic/'+this.props.topic.get("threadid"));
+		console.log('item clicked')
+		if(this.props.full){
+			console.log('do nothing')
+		}
+		else {
+			window.scrollTo(0, 0);
+			console.log("calling invalidateContext")
+			this.props.invalidateContext();
+			startTransition(this.props.topic.get("threadid"),this.props.sideTopics);
+			this.history.pushState(null,'/context/'+this.props.community+'/topic/'+this.props.topic.get("threadid"));
+		}
 	},
 	shareFB(){
 		console.log('shareFB ',this.props.community);
@@ -378,7 +388,7 @@ var Items=React.createClass({
 	  			console.log("---LAST ROW RENDERING ---");
 	  		}*/
 	  	  	rows.push(
-	  			<Item key={xid} sitename={sitename} community={this.props.community} ref={cb} lastRow={lr} topic={p} full={false} orderby={this.props.orderby}/>
+	  			<Item key={xid} sitename={sitename} community={this.props.community} sideTopics={this.props.sideTopics} ref={cb} lastRow={lr} topic={p} full={false} orderby={this.props.orderby} invalidateContext={this.props.invalidateContext} startTransition={this.props.startTransition}/>
   			)
 	  	})
       	return (
@@ -458,7 +468,16 @@ var Newsline=React.createClass({
 	         				</div>
      					</div>		
 	         			<div className="row">
-	         					<Items query={search}  orderby={orderby} community={this.props.params.community} sideTopics={false} topics={this.props.topics.get("items")} state={this.props.topics} clearTopics={this.props.clearTopicsAction.clearTopics} fetchTopics={this.props.fetchTopicsAction.fetchTopics}/>
+	         					<Items 	query={search}  
+	         							orderby={orderby} 
+	         							community={this.props.params.community} 
+	         							sideTopics={false} 
+	         							topics={this.props.topics.get("items")} 
+	         							state={this.props.topics} 
+	         							clearTopics={this.props.clearTopicsAction.clearTopics} 
+	         							fetchTopics={this.props.fetchTopicsAction.fetchTopics} 
+	         							invalidateContext={this.props.invalidateContextAction.invalidateContext} 
+	         							startTransition={this.props.startTransitionAction.startTransition}/>
 	         			</div>			
 				</div>
 				<div id="rightpanel" className="col-xs-5 col-sm-4 col-md-4 col-lg-4">
@@ -486,6 +505,8 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
   return {
+  		startTransitionAction:bindActionCreators({startTransition},dispatch),
+  		invalidateContextAction:bindActionCreators({ invalidateContext }, dispatch),
 		fetchTopicsAction:bindActionCreators({ fetchTopics }, dispatch),
 		clearTopicsAction:bindActionCreators({ clearTopics }, dispatch),
 		fetchPostsAction:bindActionCreators({ fetchPosts }, dispatch),

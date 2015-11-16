@@ -56,8 +56,11 @@
 		}
 	},
 	"context":{
+		"invalid":false,
         "isFetching":false,
 		"topic":{
+			"touched":false,
+			"intransit":false  // added by ui as necessary, not transmitted from server aplies to all items of type topic
 
 		},
         /**
@@ -82,6 +85,7 @@
 	},
 
 	"D4Context":{
+		"invalid":false,
 		"postCoords":{}, //Immutable Map
 		"queueCoords":{},
 		"childColumnTop":0,

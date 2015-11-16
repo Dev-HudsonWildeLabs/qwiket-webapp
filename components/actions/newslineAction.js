@@ -16,6 +16,14 @@ export function requestTopics() {
     type: REQUEST_TOPICS
   };
 }
+export const START_TRANSITION='START_TRANSITION';
+export function startTransition(threadid,sideTopics) {
+  return {
+    type: START_TRANSITION,
+    threadid,
+    sideTopics
+  };
+}
 
 export const RECEIVE_TOPICS = 'RECEIVE_TOPICS';
 export function receiveTopics(json,url,sideTopics) {

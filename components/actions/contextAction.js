@@ -1,5 +1,6 @@
 import 'babel-core/polyfill';
 import fetch from 'isomorphic-fetch';
+import * as d4context from '../d4shared/actions/D4ContextAction'
 import Immutable from 'immutable';
 
 import * as common from '../d4shared/actions/common'
@@ -31,7 +32,16 @@ export function receiveContextTopic(topic,qwiketForumid,qwiketD4,qwiketThread,na
     url
   };
 }
-
+export const INVALIDATE_CONTEXT='INVALIDATE_CONTEXT';
+export function invalidateContext(){
+  return function(dispatch) { 
+    console.log('inside invalidateContext')
+    dispatch(d4context.invalidateContext());
+    return {
+      type: INVALIDATE_CONTEXT
+    }
+  }
+}
 export function fetchContextTopicForPostid(postid,state,community = 'pointofviewworld') {
   return function(dispatch) { //middleware thunk
   if(state.isFetching){
