@@ -71,7 +71,7 @@ export default function context(state = new Immutable.Map({}), action) {
       // console.log("RECEIVE_CONTEXT_TOPIC %o",action)
       //return Object.assign({}, state, 
       let sideTopics = action.sideTopics;
-      if (action.topic.site_name == state.get("topic").get("site_name"))
+      if (state.get("topic")&&action.topic.site_name == state.get("topic").get("site_name"))
         sideTopics = state.get("sideTopics");
       return state.merge({
         invalid: false,

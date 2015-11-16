@@ -16,20 +16,20 @@ import {fetchPosts,clearPosts} from './d4shared/actions/postsAction';
 var Item=React.createClass({
 	mixins: [ History ],
 	itemClick:function(e,t){
-		console.log('item clicked')
+		//console.log('item clicked')
 		if(this.props.full){
-			console.log('do nothing')
+			//console.log('do nothing')
 		}
 		else {
 			window.scrollTo(0, 0);
-			console.log("calling invalidateContext")
+			//console.log("calling invalidateContext")
 			this.props.invalidateContext();
 			startTransition(this.props.topic.get("threadid"),this.props.sideTopics);
 			this.history.pushState(null,'/context/'+this.props.community+'/topic/'+this.props.topic.get("threadid"));
 		}
 	},
 	shareFB(){
-		console.log('shareFB ',this.props.community);
+		//console.log('shareFB ',this.props.community);
 		u.popupHandler('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent('http://qwiket.com/context/'+this.props.community+'/topic/'+this.props.topic.get("threadid")));
 	},
 	render:function(){
