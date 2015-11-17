@@ -63,6 +63,9 @@ import Community from './community'
             this.onSubmitLink(event);
         }
     },
+    communitySelect(history,community){
+      location.href="/newsline/"+community+"/newest";
+    },
     paste:function(event){
         let c=event.clipboardData;
         let items=c.items;
@@ -262,7 +265,7 @@ import Community from './community'
 					</div>
   		            
           		
-         			<div style={styles.community}><Community styles={communityStyles} ref="Community" ls={this.props.communityState.get("ls")} communities={this.props.communityState.get("communities")} communityName={this.props.communityState.get("communityName")} select={this.props.selectCommunity} history={this.props.history}/></div>
+         			<div style={styles.community}><Community styles={communityStyles} ref="Community" ls={this.props.communityState.get("ls")} communities={this.props.communityState.get("communities")} communityName={this.props.communityState.get("communityName")} select={this.communitySelect} history={this.props.history}/></div>
         			 {avatar}    		
 		        </nav>
 		       <div>
