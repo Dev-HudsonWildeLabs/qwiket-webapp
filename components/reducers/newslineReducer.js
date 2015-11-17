@@ -8,7 +8,7 @@ function createdatSort(b, a) {
 }
 
 export default function newsline(state = 0, action) {
-  //console.log('newsline reducer state=%o')
+  //console.log('newsline reducer action=%s',action.type)
   switch (action.type) {
     case actions.REQUEST_TOPICS:
       return state.merge({
@@ -18,29 +18,38 @@ export default function newsline(state = 0, action) {
           lastid: state.get("topics").get("lastid")
         }
       });
-    case actions.START_TRANSITION:{
-      if(action.sideTopics)
-        return state;
-      //find item in newsline and mark it for transition
-      let items=state.get("topics").get("items");
-       let itemsMap = new Map();
-      for (var i = 0; i < items.count(); i++) {
-          let item = items.get(i);
+    case actions.START_TRANSITION:
+      {
+        if (action.sideTopics)
+          return state;
+        //find item in newsline and mark it for transition
+        let oldItems = state.get("topics").get("items");
+        let items = [];
+        for (var i = 0; i < oldItems.count(); i++) {
+          let item = oldItems.get(i);
 
-          let threadid=item.get("threadid");
-          if(threadid==action.threadid){
-            item.set({intransit:true})
+          let threadid = item.get("threadid");
+          if (threadid == action.threadid) {
+            item = item.merge({
+              intransit: true
+            })
+          } else {
+            if (item.get("intransit")) {
+              item = item.merge({
+                intransit: false
+              })
+            }
           }
-          itemsMap.set(item.get("xid"), item);
-      }
-      items = Immutable.fromJS(itemsMap);
-      return state.merge({
-        topics: {
-          items
+          items.push(item);
         }
+        let immutable_items = new Immutable.List(items);
+        return state.merge({
+          topics: {
+            items: immutable_items
+          }
 
-      });
-    }  
+        });
+      }
     case actions.RECEIVE_TOPICS:
       if (!action.items || action.items.length == 0 || action.sideTopics)
         return state;
@@ -51,7 +60,7 @@ export default function newsline(state = 0, action) {
       for (var i = 0; i < oldItems.count(); i++) {
         let item = oldItems.get(i);
         let pojso = item.toObject();
-        pojso.intransit = false;
+        //  pojso.intransit = false;
         itemsMap.set(item.get("xid"), pojso);
       }
       let actionItems = Immutable.fromJS(action.items);
@@ -59,7 +68,7 @@ export default function newsline(state = 0, action) {
       for (i = 0; i < actionItems.count(); i++) {
         let item = actionItems.get(i);
         let pojso = item.toObject();
-        pojso.intransit = false;
+        //pojso.intransit = false;
         //console.log('setting new item '+item.qpostid)
         itemsMap.set(item.get("xid"), pojso);
       }
@@ -113,7 +122,32 @@ export default function newsline(state = 0, action) {
         })
       })
 
-
+    case postActions.POST_START_TRANSITION:
+      console.log("START POST TRANSITION");
+      if (action.posttype.indexOf("context") >= 0)
+        return state;
+      let posts = state.get("posts").get("items");
+      let holdingArray = [];
+      for (var i = 0; i < posts.count(); i++) {
+        let post = posts.get(i);
+        if (post.get("id") == action.postid) {
+          post = post.merge({
+            intransit: true
+          });
+        } else if (post.get("intransit")) {
+          post = post.merge({
+            intransit: false
+          })
+        }
+        holdingArray.push(post);
+      }
+      let newposts = new Immutable.List(holdingArray)
+      console.log("about to return")
+      return state.merge({
+        posts: state.get("posts").merge({
+          items: newposts
+        })
+      });
     case postActions.RECEIVE_COMMUNITY_POSTS:
       {
 

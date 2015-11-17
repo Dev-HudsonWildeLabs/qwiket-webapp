@@ -18,6 +18,7 @@ export function requestTopics() {
 }
 export const START_TRANSITION='START_TRANSITION';
 export function startTransition(threadid,sideTopics) {
+  console.log('startTransition')
   return {
     type: START_TRANSITION,
     threadid,

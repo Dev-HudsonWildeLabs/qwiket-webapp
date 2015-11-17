@@ -7,6 +7,7 @@ import * as appActions from '../actions/appAction';
 
 
 
+
 function createdatSort(b, a) {
   return a.createdat - b.createdat;
 }
@@ -19,24 +20,35 @@ export default function context(state = new Immutable.Map({}), action) {
       {
         if (!action.sideTopics)
           return state;
-
-        let items = state.get("sideTopics").get("items");
-        let itemsMap = new Map();
-        for (var i = 0; i < items.count(); i++) {
-          let item = items.get(i);
+        console.log(state.get("sideTopics"))
+        let oldItems = state.get("sideTopics").get("items");
+        let items=[];
+        console.log("newsline START_TRANSITION")
+        for (var i = 0; i < oldItems.count(); i++) {
+          let item = oldItems.get(i);
 
           let threadid = item.get("threadid");
           if (threadid == action.threadid) {
-            item.set({
+            console.log("MARKING INTRANSIT TOPIC")
+            item=item.merge({
               intransit: true
             })
           }
-          itemsMap.set(item.get("xid"), item);
+          else {
+            if(item.get('intransit')){
+              console.log("UNMARKINg")
+               item=item.merge({
+                intransit: false
+            })
+            }
+          }
+          items.push(item);
         }
-        items = Immutable.fromJS(itemsMap);
+        let immutable_items  = new Immutable.List(items);
+        //let items = Immutable.fromJS(itemsMap);
         return state.merge({
           sideTopics: {
-            items
+            items:immutable_items
           }
 
         });
@@ -108,13 +120,13 @@ export default function context(state = new Immutable.Map({}), action) {
         //if(i>100)
         //  break;
         let item = oldItems.get(i);
-        item.set("intransit", false);
+        //item.set("intransit", false);
         items1.set(item.get("xid"), item);
       }
       let actionItems = Immutable.fromJS(action.items)
       for (i = 0; i < actionItems.count(); i++) {
         let item = actionItems.get(i);
-        item.set("intransit", false);
+        //item.set("intransit", false);
         //console.log('setting new item '+item.qpostid)
         items1.set(item.get("xid"), item);
       }
@@ -148,8 +160,6 @@ export default function context(state = new Immutable.Map({}), action) {
           }
 
         })
-
-
 
     default:
       return state;
