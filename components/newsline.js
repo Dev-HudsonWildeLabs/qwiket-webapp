@@ -482,7 +482,7 @@ var Newsline=React.createClass({
 				</div>
 				<div id="rightpanel" className="col-xs-5 col-sm-4 col-md-4 col-lg-4">
 					<div className="list-group ">
-						<PostQueue scope='working' type='community' reportY={this.reportSelectedPostY} community={this.props.params.community} communityForums={this.props.forums} posts={this.props.posts.get("items")} constraint_type={""} constraint_value={0} fetchPosts={this.props.fetchPostsAction.fetchPosts} clearPosts={this.props.clearPostsAction.clearPosts} state={this.props.posts} />
+						<PostQueue scope='working' type='community' reportY={this.reportSelectedPostY} community={this.props.params.community} communityForums={this.props.forums} posts={this.props.posts.get("items")} constraint_type={""} constraint_value={0} fetchPosts={this.props.fetchPostsAction.fetchPosts} clearPosts={this.props.clearPostsAction.clearPosts} state={this.props.posts} invalidateContext={this.props.invalidateContextAction.invalidateContext} />
 					</div>
 				</div>	
 			</div>
