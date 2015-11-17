@@ -9,7 +9,7 @@ export const SET_LANGUAGE='SET_LANGUAGE'
 
 export function selectCommunity(history,community) {
  //TODO: ajax update the server community property
- console.log('selectCommunity '+community)
+//console.log('selectCommunity '+community)
  return function(dispatch) { //middleware thunk
    
     let url = `/api?task=load_community_forums&community=${community}`;

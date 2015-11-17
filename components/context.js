@@ -51,12 +51,12 @@ var Context=React.createClass({
 	
 	componentWillReceiveProps:function(nextProps){
 		if(this.props.params.threadid!=nextProps.params.threadid||this.props.params.local!=nextProps.params.local||this.props.params.postid!=nextProps.params.postid){	
-			
+			//console.log('componentWillReceiveProps')
 			this.fetch(nextProps);
 		}
 	},
 	fetch:function(props){
-		//console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@FETCH TOPIC %o",props)
+		//console.log("@@@ FETCH TOPIC postid= %s",props.params.postid)
 		if(u.is(props.params.postid)){
 			this.props.fetchContextTopicForPostid.fetchContextTopicForPostid(props.params.postid,props.context,props.params.community)
 		}

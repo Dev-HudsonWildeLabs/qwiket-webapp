@@ -45,8 +45,8 @@ var Item=React.createClass({
 		link="/link/"+encodeURIComponent(link);
 		//console.log('link=%s',link)
 		let intransit=topic.intransit;
-		if(intransit)
-		console.log("intransit=%s",intransit);
+		//if(intransit)
+		//console.log("intransit=%s",intransit);
 		let text=topic.text;
 		let image=topic.image;
 		let title=topic.title;
@@ -320,6 +320,7 @@ Item=Radium(Item)
 var Items=React.createClass({
 
 	topScroll:function(name,e){
+		console.log("topScroll")
 		this.fetch(true,false,this.props);
 	},
 	bottomScroll:function(name,e){
@@ -328,8 +329,10 @@ var Items=React.createClass({
 	},
 	componentDidMount: function() {
 		u.registerEvent('topScroll',this.topScroll,{me:this});
-		if(this.props.topics.count()==0)
+		if(this.props.topics.count()==0){
+			//console.log('Items componentDidMount, fetchingTopics '+this.props.sitename)
 			this.fetch(true,true,this.props)
+		}
 		$(".rating").rating({
             stars:3,
             max:3,
@@ -353,7 +356,7 @@ var Items=React.createClass({
 	},
 
 	fetch:function(clear,remove,props){
-	//	console.log("ITEMS FETCH")
+		//console.log("ITEMS FETCH")
 		if(remove)
 			props.clearTopics();
 		props.fetchTopics(clear,props.community,props.orderby,props.state,this.props.sideTopics,props.state.get("lastid"),props.sitename,25,props.query);
@@ -436,7 +439,7 @@ var Newsline=React.createClass({
 	
 	},
 	render: function(){
-		console.log("render newsline")
+		//console.log("render newsline")
 		if(typeof(this.props.params.orderby)=='undefined'){
 			this.props.history.pushState(null,'/newsline/'+this.props.params.community+'/newest');
 		}

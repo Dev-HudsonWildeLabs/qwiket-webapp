@@ -15,28 +15,38 @@ function createdatSort(b, a) {
 export default function context(state = new Immutable.Map({}), action) {
   //console.log('context reducer state=%o',state)
   switch (action.type) {
-
+    case postActions.POST_START_TRANSITION:
+   // console.log("POST_START_TRANSITION")
+     if (action.posttype.indexOf("context") >= 0)
+        return state;
+     // console.log('EMTPY SIDE')
+      return state.merge({
+        topic:new Immutable.Map(),
+        sideTopics:state.get("sideTopics").merge({
+          items:new Immutable.List()
+        })
+      })
     case newslineActions.START_TRANSITION:
       {
         if (!action.sideTopics)
           return state;
-        console.log(state.get("sideTopics"))
+       // console.log(state.get("sideTopics"))
         let oldItems = state.get("sideTopics").get("items");
         let items=[];
-        console.log("newsline START_TRANSITION")
+       // console.log("newsline START_TRANSITION")
         for (var i = 0; i < oldItems.count(); i++) {
           let item = oldItems.get(i);
 
           let threadid = item.get("threadid");
           if (threadid == action.threadid) {
-            console.log("MARKING INTRANSIT TOPIC")
+         //   console.log("MARKING INTRANSIT TOPIC")
             item=item.merge({
               intransit: true
             })
           }
           else {
             if(item.get('intransit')){
-              console.log("UNMARKINg")
+            //  console.log("UNMARKINg")
                item=item.merge({
                 intransit: false
             })
