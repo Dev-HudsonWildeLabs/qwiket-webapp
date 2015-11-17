@@ -42,7 +42,7 @@ export default function context(state = new Immutable.Map({}), action) {
         });
       }
     case contextActions.INVALIDATE_CONTEXT:
-        console.log("context reducer INVALIDATE_CONTEXT")
+        //console.log("context reducer INVALIDATE_CONTEXT")
         return state.merge({
           invalid: true
         })
@@ -68,7 +68,7 @@ export default function context(state = new Immutable.Map({}), action) {
 
 
     case contextActions.RECEIVE_CONTEXT_TOPIC:
-      // console.log("RECEIVE_CONTEXT_TOPIC %o",action)
+      //console.log("RECEIVE_CONTEXT_TOPIC %o",action)
       //return Object.assign({}, state, 
       let sideTopics = action.sideTopics;
       if (state.get("topic")&&action.topic.site_name == state.get("topic").get("site_name"))

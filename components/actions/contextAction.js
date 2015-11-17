@@ -35,7 +35,7 @@ export function receiveContextTopic(topic,qwiketForumid,qwiketD4,qwiketThread,na
 export const INVALIDATE_CONTEXT='INVALIDATE_CONTEXT';
 export function invalidateContext(){
   return function(dispatch) { 
-    console.log('inside invalidateContext')
+    //console.log('inside invalidateContext')
     dispatch(d4context.invalidateContext());
     return {
       type: INVALIDATE_CONTEXT
@@ -44,10 +44,10 @@ export function invalidateContext(){
 }
 export function fetchContextTopicForPostid(postid,state,community = 'pointofviewworld') {
   return function(dispatch) { //middleware thunk
-  if(state.isFetching){
+  /*if(state.isFetching){
       console.log('skipping context topic fetch')
       return;
-  }
+  }*/
  // console.log('fetchContextTopic postid=%s',postid)
   dispatch(requestContextTopic());
   let url = `/api?task=get_context_topic_for_post&postid=${postid}&community=${community}`;
@@ -56,7 +56,9 @@ export function fetchContextTopicForPostid(postid,state,community = 'pointofview
       })
     .then(response => response.json())
     .then(json => {
+     //console.log("fetch return")
       if (json.success) {
+        //console.log("SUCCESS GET_CONTEXT_TOPIC")
         return dispatch(receiveContextTopic(json.topic,json.info.qwiketForumid,json.info.qwiketD4,json.info.qwiketThread,json.info.nativeForumid,json.info.nativeD4,json.info.nativeThread,url))
       }
       else{
@@ -67,11 +69,12 @@ export function fetchContextTopicForPostid(postid,state,community = 'pointofview
 }
 export function fetchContextTopicForThread(threadid,state,community = 'pointofviewworld') {
   return function(dispatch) { //middleware thunk
-  if(state.isFetching){
+ // console.log("inside fetchContextTopicForThread")
+  /*if(state.isFetching){
       console.log('skipping context topic fetch')
       return;
-  }
-  //console.log('fetchContextTopic postid=%s',postid)
+  }*/
+ //console.log('fetchContextTopicForThread threadid=%s',threadid)
   dispatch(requestContextTopic());
   let url = `/api?task=get_context_topic_for_thread&threadid=${threadid}&community=${community}`;
   return fetch(url, {
@@ -80,6 +83,7 @@ export function fetchContextTopicForThread(threadid,state,community = 'pointofvi
     .then(response => response.json())
     .then(json => {
       if (json.success) {
+        //console.log("SUCCESS get_context_topic_for_thread")
         return dispatch(receiveContextTopic(json.topic,json.info.qwiketForumid,json.info.qwiketD4,json.info.qwiketThread,json.info.nativeForumid,json.info.nativeD4,json.info.nativeThread,url))
       }
       else{
