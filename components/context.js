@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import {Items,Item} from  './newsline.js' 
 import Local from  './local.js' 
 import u from './d4shared/utils.jsx'
-import {fetchTopics,clearTopics,startTransition} from './actions/newslineAction';
+import {fetchTopics,clearTopics} from './actions/newslineAction';
 import {fetchContextTopicForPostid,fetchContextTopicForThread,clearContextTopic,invalidateContext} from './actions/contextAction';
 import {setChildTop} from './d4shared/actions/D4ContextAction';
 import PostContext from './d4shared/postcontext.jsx'
@@ -152,7 +152,7 @@ var Context=React.createClass({
 				<div className="col-xs-12 col-sm-9 col-md-9 col-lg-8">
 				{resp}
 				</div>
-				<div className="col-sm-3 col-md-3 col-lg-4 hidden-xs  ">
+				<div className="col-sm-3 col-md-3 col-lg-4 hidden-xs  " style={{opacity:(invalid?"0.4":"1")}}>
 					 
 					<div ><span className="label label-info">{sn}</span>
 						{sn?(<Items 
@@ -165,8 +165,7 @@ var Context=React.createClass({
                             sitename={sn} 
                             orderby={0} 
                             community={community}
-                            invalidateContext={this.props.invalidateContextAction.invalidateContext} 
-                            startTransition={this.props.startTransitionAction.startTransition}/>):""}
+                            invalidateContext={this.props.invalidateContextAction.invalidateContext} />):""}
 		         	
 		         	</div>
 
@@ -193,7 +192,6 @@ function mapDispatchToProps(dispatch) {
 		fetchContextTopicForThread:bindActionCreators({ fetchContextTopicForThread }, dispatch),
 		clearContextTopicAction:bindActionCreators({clearContextTopic},dispatch),
 		setChildTopAction:bindActionCreators({setChildTop},dispatch),
-        startTransitionAction:bindActionCreators({startTransition},dispatch),
         invalidateContextAction:bindActionCreators({ invalidateContext }, dispatch)
 	};
 }

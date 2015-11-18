@@ -122,32 +122,7 @@ export default function newsline(state = 0, action) {
         })
       })
 
-    case postActions.POST_START_TRANSITION:
-      //console.log("START POST TRANSITION");
-      if (action.posttype.indexOf("context") >= 0)
-        return state;
-      let posts = state.get("posts").get("items");
-      let holdingArray = [];
-      for (var i = 0; i < posts.count(); i++) {
-        let post = posts.get(i);
-        if (post.get("id") == action.postid) {
-          post = post.merge({
-            intransit: true
-          });
-        } else if (post.get("intransit")) {
-          post = post.merge({
-            intransit: false
-          })
-        }
-        holdingArray.push(post);
-      }
-      let newposts = new Immutable.List(holdingArray)
-     //console.log("about to return")
-      return state.merge({
-        posts: state.get("posts").merge({
-          items: newposts
-        })
-      });
+   
     case postActions.RECEIVE_COMMUNITY_POSTS:
       {
 

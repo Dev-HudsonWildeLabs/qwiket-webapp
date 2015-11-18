@@ -8,9 +8,9 @@ import Radium from 'radium'
 import {Link,History} from 'react-router'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {fetchTopics,clearTopics,startTransition} from './actions/newslineAction';
+import {fetchTopics,clearTopics} from './actions/newslineAction';
 import {invalidateContext} from './actions/contextAction';
-import {fetchPosts,clearPosts,postStartTransition} from './d4shared/actions/postsAction';
+import {fetchPosts,clearPosts} from './d4shared/actions/postsAction';
 
 
 var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
@@ -27,7 +27,7 @@ var Item=React.createClass({
 			window.scrollTo(0, 0);
 			//console.log("calling invalidateContext")
 			this.props.invalidateContext();
-			this.props.startTransition(this.props.topic.get("threadid"),this.props.sideTopics);
+			//this.props.startTransition(this.props.topic.get("threadid"),this.props.sideTopics);
 			this.history.pushState(null,'/context/'+this.props.community+'/topic/'+this.props.topic.get("threadid"));
 		}
 	},
@@ -488,13 +488,12 @@ var Newsline=React.createClass({
 	         							state={this.props.topics} 
 	         							clearTopics={this.props.clearTopicsAction.clearTopics} 
 	         							fetchTopics={this.props.fetchTopicsAction.fetchTopics} 
-	         							invalidateContext={this.props.invalidateContextAction.invalidateContext} 
-	         							startTransition={this.props.startTransitionAction.startTransition}/>
+	         							invalidateContext={this.props.invalidateContextAction.invalidateContext} />
 	         			</div>			
 				</div>
 				<div id="rightpanel" className="col-xs-5 col-sm-4 col-md-4 col-lg-4">
 					<div className="list-group ">
-						<PostQueue scope='working' type='community' reportY={this.reportSelectedPostY} community={this.props.params.community} communityForums={this.props.forums} posts={this.props.posts.get("items")} constraint_type={""} constraint_value={0} fetchPosts={this.props.fetchPostsAction.fetchPosts} clearPosts={this.props.clearPostsAction.clearPosts} state={this.props.posts} invalidateContext={this.props.invalidateContextAction.invalidateContext} clickTransition={this.props.postStartTransitionAction.postStartTransition}/>
+						<PostQueue scope='working' type='community' reportY={this.reportSelectedPostY} community={this.props.params.community} communityForums={this.props.forums} posts={this.props.posts.get("items")} constraint_type={""} constraint_value={0} fetchPosts={this.props.fetchPostsAction.fetchPosts} clearPosts={this.props.clearPostsAction.clearPosts} state={this.props.posts} invalidateContext={this.props.invalidateContextAction.invalidateContext} />
 					</div>
 				</div>	
 			</div>
@@ -517,9 +516,7 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
   return {
-  		startTransitionAction:bindActionCreators({startTransition},dispatch),
-  		postStartTransitionAction:bindActionCreators({postStartTransition},dispatch),
-  		invalidateContextAction:bindActionCreators({ invalidateContext }, dispatch),
+   		invalidateContextAction:bindActionCreators({ invalidateContext }, dispatch),
 		fetchTopicsAction:bindActionCreators({ fetchTopics }, dispatch),
 		clearTopicsAction:bindActionCreators({ clearTopics }, dispatch),
 		fetchPostsAction:bindActionCreators({ fetchPosts }, dispatch),

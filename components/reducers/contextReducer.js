@@ -15,60 +15,19 @@ function createdatSort(b, a) {
 export default function context(state = new Immutable.Map({}), action) {
   //console.log('context reducer state=%o',state)
   switch (action.type) {
-    case postActions.POST_START_TRANSITION:
-   // console.log("POST_START_TRANSITION")
-     if (action.posttype.indexOf("context") >= 0)
-        return state;
-     // console.log('EMTPY SIDE')
-      return state.merge({
-        topic:new Immutable.Map(),
-        sideTopics:state.get("sideTopics").merge({
-          items:new Immutable.List()
-        })
-      })
-    case newslineActions.START_TRANSITION:
-      {
-        if (!action.sideTopics)
-          return state;
-       // console.log(state.get("sideTopics"))
-        let oldItems = state.get("sideTopics").get("items");
-        let items=[];
-       // console.log("newsline START_TRANSITION")
-        for (var i = 0; i < oldItems.count(); i++) {
-          let item = oldItems.get(i);
-
-          let threadid = item.get("threadid");
-          if (threadid == action.threadid) {
-         //   console.log("MARKING INTRANSIT TOPIC")
-            item=item.merge({
-              intransit: true
-            })
-          }
-          else {
-            if(item.get('intransit')){
-            //  console.log("UNMARKINg")
-               item=item.merge({
-                intransit: false
-            })
-            }
-          }
-          items.push(item);
-        }
-        let immutable_items  = new Immutable.List(items);
-        //let items = Immutable.fromJS(itemsMap);
-        return state.merge({
-          sideTopics: {
-            items:immutable_items
-          }
-
-        });
-      }
+    
     case contextActions.INVALIDATE_CONTEXT:
+        {
         //console.log("context reducer INVALIDATE_CONTEXT")
+        let sideTopics=state.get("sideTopics").merge({
+            invalid:true
+          });
+        //console.log("invalidated sideTopics.invalid=%s",sideTopics.get("invalid"));
         return state.merge({
-          invalid: true
+          invalid: true,
+          sideTopics
         })
-
+      }
     case contextActions.CLEAR_CONTEXT_TOPIC:
       return state.set("topic", new Immutable.Map({}))
         //return Object.assign({}, state, {topic:{}}); 
@@ -110,19 +69,29 @@ export default function context(state = new Immutable.Map({}), action) {
 
 
     case newslineActions.REQUEST_TOPICS:
+    {
+      let sideTopics= state.get("sideTopics").merge({
+                isFetching: true,
+                items: state.get("sideTopics").get("items"),
+                lastid: state.get("sideTopics").get("lastid")
+              });
       return state.merge({
-        sideTopics: {
-          isFetching: true,
-          items: state.get("sideTopics").get("items"),
-          lastid: state.get("sideTopics").get("lastid")
-        }
+              sideTopics
+          });
 
-      });
+    }
     case newslineActions.RECEIVE_TOPICS:
+    {
       // console.log("RECEIVE_TOPICS")
       if (!action.items || action.items.length == 0 || !action.sideTopics)
         return state;
-      let oldItems = state.get("sideTopics").get("items");
+      let sideTopics=state.get("sideTopics")
+      let oldItems = sideTopics.get("items");
+     // console.log("sideTopics.invalid=%s",sideTopics.get("invalid"))
+      if(sideTopics.get("invalid")){
+
+        oldItems=new Immutable.List();
+      }
       let items1
       items1 = new Map();
       //console.log('first:'+oldItems.length)
@@ -151,12 +120,14 @@ export default function context(state = new Immutable.Map({}), action) {
         return state.merge({
 
           sideTopics: {
+            invalid:false,
             isFetching: false,
             items,
             lastid
           }
 
         });
+    }
     case newslineActions.CLEAR_TOPICS:
       if (!action.sideTopics)
         state

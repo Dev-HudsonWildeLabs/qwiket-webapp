@@ -75,6 +75,7 @@
         "nativeForumid":0,
         "nativeThread":0,        
         "sideTopics":{
+        	"invalid":false,
 			"lastid":0,
 			"isFetching":false,
 			"items":[]
