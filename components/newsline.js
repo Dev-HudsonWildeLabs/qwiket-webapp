@@ -200,13 +200,15 @@ var Item=React.createClass({
 	    			color:"#555",
 	    			margin:0,
   					display:"inline-block",
-  					fontSize: '1.1rem'
+  					fontSize: '1.1rem',
+  					cursor:'ponter'
 	    		},
 	    		image:{
 	    			float:"left",
 	    			clear:"left",
 	    			marginRight:10,
-	    			maxWidth:"20%"
+	    			maxWidth:"20%",
+	    			cursor:'pointer'
 	    		},
 	    		sharedby:{
 	    			fontSize: '1.0rem',
