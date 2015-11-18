@@ -123,13 +123,15 @@ var Item=React.createClass({
 	    			margin:0,
 	    			//position:"relative",
   					display:"inline-block",
-  					fontSize: '1.3rem'
+  					fontSize: '1.3rem',
+  					cursor:'pointer'
 	    		},
 	    		image:{
 	    			float:"left",
 	    			clear:"left",
 	    			marginRight:10,
-	    			maxWidth:"20%"
+	    			maxWidth:"20%",
+	    			cursor:'pointer'
 	    		},
 	    		sharedby:{
 	    			fontSize: '1.2rem',
@@ -156,10 +158,12 @@ var Item=React.createClass({
   					display: "block",
    	 				marginTop: 10,
   					verticalAlign: "bottom",
-  					fontSize: '1.4rem'
+  					fontSize: '1.4rem',
+  					cursor:'pointer'
 	    		},
 	    		footer:{
-	    			height:"2.4rem"
+	    			height:"2.4rem",
+	    			cursor:'pointer'
 	    		},
 	    		ratings:{
 	    				float:"right",
@@ -234,10 +238,12 @@ var Item=React.createClass({
   					display: "block",
    	 				marginTop: 10,
   					verticalAlign: "bottom",
-  					fontSize: '1.0rem'
+  					fontSize: '1.0rem',
+  					cursor:'pointer'
 	    		},
 	    		footer:{
-	    			height:"0.1rem"
+	    			height:"0.1rem",
+	    			cursor:'pointer'
 	    			
 	    		},
 	    		ratings:{
