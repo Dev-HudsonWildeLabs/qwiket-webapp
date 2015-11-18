@@ -191,8 +191,8 @@ var Item=React.createClass({
 	    			fontSize: '1.3rem'
 	    		},
 	    		comment:{
-	    			fontSize: '0.9rem'
-	    			
+	    			fontSize: '0.9rem',
+	    			backgroundColor:'#FFFFEA'
 	    			
 	    		},
 	    		topic:{
@@ -259,8 +259,8 @@ var Item=React.createClass({
 	    	let avatar=<div/>;
 
 	    	if(shared_by_avatar)
-	    		avatar=<img className="post-image img-responsive" style={{maxWidth:'10%',height:"auto", float:"left",clear:"right",marginRight:"10px",marginBottom:"4px"}} src={shared_by_avatar}/>
-	    	comment=(<div ref="ItemComment" className="small alert alert-info col-xs-12" style={styles.comment}>{avatar}{text}</div>)
+	    		avatar=<img className="post-image img-responsive" style={{maxWidth:'3%',height:"auto", float:"left",clear:"right",marginRight:"10px",marginBottom:"10px"}} src={shared_by_avatar}/>
+	    	comment=(<div ref="ItemComment" className="small  col-xs-12" style={styles.comment}>{avatar}<em>{text}</em></div>)
 	    }
 	    let authorHtml=(<span/>)
 	    if(author){
