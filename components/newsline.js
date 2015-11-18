@@ -320,7 +320,7 @@ Item=Radium(Item)
 var Items=React.createClass({
 
 	topScroll:function(name,e){
-		console.log("topScroll")
+		//console.log("topScroll")
 		this.fetch(true,false,this.props);
 	},
 	bottomScroll:function(name,e){
