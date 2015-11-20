@@ -205,7 +205,7 @@ var Item=React.createClass({
 	    			margin:0,
   					display:"inline-block",
   					fontSize: '1.1rem',
-  					cursor:'ponter'
+  					cursor:'pointer'
 	    		},
 	    		image:{
 	    			float:"left",

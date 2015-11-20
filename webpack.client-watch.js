@@ -13,7 +13,7 @@ config.entry.unshift(
 	//"webpack/hot/only-dev-server"
 );
 config.output.crossOriginLoading="anonymous";
-config.output.publicPath = "http://" + hostname + ":8080/";
+config.output.publicPath = "http://" + hostname + ":8080/dist/";
 config.output.hotUpdateMainFilename = "update/update.json";
 config.output.hotUpdateChunkFilename = "update/[id].update.js";
 

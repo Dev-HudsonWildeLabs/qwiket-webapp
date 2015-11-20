@@ -620,7 +620,7 @@ function matchAndRender (err, payload,request,reply,ttl) {
 							<script>
           						window.__INITIAL_STATE__ = ${JSON.stringify(finalState)};
         					</script>
-        					<script src=${'"'+(process.env.NODE_ENV === "production" ? "" : '//localhost:85')+'/dist/client.js"'}></script>
+        					<script src=${'"'+(process.env.NODE_ENV === "production" ? "" : '//localhost:8080')+'/dist/client.js"'}></script>
         					${bot_comments}
 						</body>
 					</html>`

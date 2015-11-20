@@ -114,7 +114,10 @@ var Context=React.createClass({
 	    let forum_str="Native";
 		if(this.props.context.get("topic")){
 			//resp.push(<div className="row" style={{borderTopLeftRadius: 4,borderTopRightRadius: 4,background:bg,padding:20}} key={postid}><Item topic={this.props.context.topic} full={true} orderby={0}/></div>)
-			forum_str=this.props.context.get("topic").get("site_name");
+			if(this.props.context.get("qwiketForumid")!=this.props.context.get('nativeForumid'))
+                forum_str=this.props.context.get("topic").get("site_name");
+            else
+                forum_str='blah7';//communityName;
 			//console.log('forum_str %s',forum_str)
 		}
 		/**/
@@ -150,7 +153,7 @@ var Context=React.createClass({
 		}
 		let sn=this.props.context.get("topic")?this.props.context.get("topic").get("site_name"):''
         let title=this.props.context.get("topic")?this.props.context.get("topic").get("title"):'Qwiket:The Internet of Us';
-        console.log('title=%s',title);
+       // console.log('title=%s',title);
 		return (	
 			<DocumentTitle title={title}>
             <div className="container" >
