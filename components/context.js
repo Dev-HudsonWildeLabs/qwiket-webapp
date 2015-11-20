@@ -117,7 +117,7 @@ var Context=React.createClass({
 			if(this.props.context.get("qwiketForumid")!=this.props.context.get('nativeForumid'))
                 forum_str=this.props.context.get("topic").get("site_name");
             else
-                forum_str='blah7';//communityName;
+                forum_str=communityName;
 			//console.log('forum_str %s',forum_str)
 		}
 		/**/
