@@ -1,5 +1,6 @@
 require("babel/register");
 var React = require('react');
+import DocumentTitle from 'react-document-title'
 import BurgerMenu from 'react-burger-menu';
 import Radium from 'radium'
 
@@ -241,6 +242,7 @@ import Community from './community'
 	        
 	      </Menu>
 			<main id="page-wrap">
+   
 	      	<div onPaste={this.paste} className="container-fluid"  style={{padding:0,background:"#EEE"}}>
 			 
 			 	<nav className="navbar navbar-inverse " style={{backgroundColor:"#222244",borderRadius:"0px",border:"none",marginBottom:10,height:42,minHeight:42,padding:0}}>
@@ -278,6 +280,7 @@ import Community from './community'
 				{this.props.children}
 				</div>
 			</div>
+     
 			</main>
 			</div>	  
       	);

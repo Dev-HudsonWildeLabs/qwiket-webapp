@@ -3,6 +3,8 @@ import React from 'react'
 import {Link} from 'react-router'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import DocumentTitle from 'react-document-title'
+
 import {Items,Item} from  './newsline.js' 
 import Local from  './local.js' 
 import u from './d4shared/utils.jsx'
@@ -147,8 +149,12 @@ var Context=React.createClass({
 			)
 		}
 		let sn=this.props.context.get("topic")?this.props.context.get("topic").get("site_name"):''
+        let title=this.props.context.get("topic")?this.props.context.get("topic").get("title"):'Qwiket:The Internet of Us';
+        console.log('title=%s',title);
 		return (	
-			<div className="container" >
+			<DocumentTitle title={title}>
+            <div className="container" >
+            
 				<div className="col-xs-12 col-sm-9 col-md-9 col-lg-8">
 				{resp}
 				</div>
@@ -170,7 +176,9 @@ var Context=React.createClass({
 		         	</div>
 
 				</div>
+            
 			</div>
+            </DocumentTitle>    
 		)
 	}
 });

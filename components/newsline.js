@@ -1,7 +1,7 @@
 require("babel/register");
 import React from 'react'
 import ReactDom from 'react-dom';
-
+import DocumentTitle from 'react-document-title'
 import u from './d4shared/utils.jsx'
 import PostQueue from './d4shared/postqueue.jsx'
 import Radium from 'radium'
@@ -469,7 +469,9 @@ var Newsline=React.createClass({
 			case 'myhistory':
 			orderby=3;
 		}
+		let title="Qwiket: "+this.props.communityState.get("communityName");
 		return (
+			<DocumentTitle title={title}>
 			<div className="container" >				
 				<div id="leftpanel" className="col-xs-7 col-sm-8 col-md-8 col-lg-8" >
 					<div className="row">
@@ -505,6 +507,7 @@ var Newsline=React.createClass({
 					</div>
 				</div>	
 			</div>
+			</DocumentTitle>
 		)
 	}
 });
@@ -519,6 +522,7 @@ function mapStateToProps(state) {
     topics: state.newsline.get("topics"),
     posts:state.newsline.get("posts"),
     forums:state.newsline.get("forums"),
+    communityState:state.app.get("community"),
     ls:state.newsline.get("ls"),
   };
 }
