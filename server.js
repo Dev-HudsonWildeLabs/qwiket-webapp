@@ -14,7 +14,7 @@ import { Provider } from 'react-redux';
 import Immutable from 'immutable';
 //import mapify from 'es6-mapify'
 import configureStore from './components/store/configureStore'
-
+var zlib = require('zlib');
 var htmlEncode = require('js-htmlencode');
 
 
@@ -116,7 +116,24 @@ server.route({
 					return;*/
 				Wreck.read(res, null, function(err, payload){
 					//console.log('LANDING PAYLOAD:',JSON.parse(payload))
-					matchAndRender(err, payload,request,reply,ttl);
+					switch (res.headers['content-encoding']) {
+                    // or, just use zlib.createUnzip() to handle both cases
+                    case 'gzip':
+                      console.log('GZIP')
+                        zlib.unzip(payload,function(err,buffer){
+                        matchAndRender(err, buffer,request,reply,ttl);
+                      })
+                      break;
+                    case 'deflate':
+                     console.log('DEFLATE')
+                        zlib.deflate(payload,function(err,buffer){
+                        matchAndRender(err, buffer,request,reply,ttl);
+                      })
+                        break;
+                    default:
+                        matchAndRender(err, payload,request,reply,ttl); 
+                  
+                  }
 				})
 			
             	//console.log('res ',res)
@@ -154,7 +171,24 @@ server.route({
 				//if (request.query.login||request.query.code)
 				//	return;
 				Wreck.read(res, null, function(err, payload){
-					matchAndRender(err, payload,request,reply,ttl);
+					switch (res.headers['content-encoding']) {
+                    // or, just use zlib.createUnzip() to handle both cases
+                    case 'gzip':
+                      console.log('GZIP')
+                        zlib.unzip(payload,function(err,buffer){
+                        matchAndRender(err, buffer,request,reply,ttl);
+                      })
+                      break;
+                    case 'deflate':
+                     console.log('DEFLATE')
+                        zlib.deflate(payload,function(err,buffer){
+                        matchAndRender(err, buffer,request,reply,ttl);
+                      })
+                        break;
+                    default:
+                        matchAndRender(err, payload,request,reply,ttl); 
+                  
+                  }
 				})
 			
             	//console.log('res ',res)
@@ -193,7 +227,24 @@ server.route({
 					return;*/
 				//console.log('INSIDE 222')
 				Wreck.read(res, null, function(err, payload){
-					matchAndRender(err, payload,request,reply,ttl);
+					switch (res.headers['content-encoding']) {
+                    // or, just use zlib.createUnzip() to handle both cases
+                    case 'gzip':
+                      console.log('GZIP')
+                        zlib.unzip(payload,function(err,buffer){
+                        matchAndRender(err, buffer,request,reply,ttl);
+                      })
+                      break;
+                    case 'deflate':
+                     console.log('DEFLATE')
+                        zlib.deflate(payload,function(err,buffer){
+                        matchAndRender(err, buffer,request,reply,ttl);
+                      })
+                        break;
+                    default:
+                        matchAndRender(err, payload,request,reply,ttl); 
+                  
+                  }
 				})
 			
             	//console.log('res ',res)
@@ -229,9 +280,31 @@ server.route({
 			onResponse (err, res, request, reply, settings, ttl) {
 				/*if (request.query.login||request.query.code)
 					return;*/
-				Wreck.read(res, null, function(err, payload){
-					matchAndRender(err, payload,request,reply,ttl);
-				})
+               
+
+
+               Wreck.read(res, null, function(err, payload){
+
+                 switch (res.headers['content-encoding']) {
+                    // or, just use zlib.createUnzip() to handle both cases
+                    case 'gzip':
+                      console.log('GZIP')
+                        zlib.unzip(payload,function(err,buffer){
+                        matchAndRender(err, buffer,request,reply,ttl);
+                      })
+                      break;
+                    case 'deflate':
+                     console.log('DEFLATE')
+                        zlib.deflate(payload,function(err,buffer){
+                        matchAndRender(err, buffer,request,reply,ttl);
+                      })
+                        break;
+                    default:
+                        matchAndRender(err, payload,request,reply,ttl); 
+                  
+                  }
+                    
+                })
 			
             	//console.log('res ',res)
 			}
@@ -270,8 +343,25 @@ server.route({
 					
 					return;
 				}*/
-				Wreck.read(res, null, function(err, payload){
-					matchAndRender(err, payload,request,reply,ttl);
+				Wreck.read(res, {json:true}, function(err, payload){
+					switch (res.headers['content-encoding']) {
+                    // or, just use zlib.createUnzip() to handle both cases
+                    case 'gzip':
+                      console.log('GZIP')
+                        zlib.unzip(payload,function(err,buffer){
+                        matchAndRender(err, buffer,request,reply,ttl);
+                      })
+                      break;
+                    case 'deflate':
+                     console.log('DEFLATE')
+                        zlib.deflate(payload,function(err,buffer){
+                        matchAndRender(err, buffer,request,reply,ttl);
+                      })
+                        break;
+                    default:
+                        matchAndRender(err, payload,request,reply,ttl); 
+                  
+                  }
 				})
 			
             	//console.log('res ',res)
@@ -309,7 +399,24 @@ server.route({
 				//if (request.query.login||request.query.code)
 				//	return;
 				Wreck.read(res, null, function(err, payload){
-					matchAndRender(err, payload,request,reply,ttl);
+					switch (res.headers['content-encoding']) {
+                    // or, just use zlib.createUnzip() to handle both cases
+                    case 'gzip':
+                      console.log('GZIP')
+                        zlib.unzip(payload,function(err,buffer){
+                        matchAndRender(err, buffer,request,reply,ttl);
+                      })
+                      break;
+                    case 'deflate':
+                     console.log('DEFLATE')
+                        zlib.deflate(payload,function(err,buffer){
+                        matchAndRender(err, buffer,request,reply,ttl);
+                      })
+                        break;
+                    default:
+                        matchAndRender(err, payload,request,reply,ttl); 
+                  
+                  }
 				})
 			
             	//console.log('res ',res)
@@ -347,7 +454,24 @@ server.route({
 				//if (request.query.login||request.query.code)
 				//	return;
 				Wreck.read(res, null, function(err, payload){
-					matchAndRender(err, payload,request,reply,ttl);
+					switch (res.headers['content-encoding']) {
+                    // or, just use zlib.createUnzip() to handle both cases
+                    case 'gzip':
+                      console.log('GZIP')
+                        zlib.unzip(payload,function(err,buffer){
+                        matchAndRender(err, buffer,request,reply,ttl);
+                      })
+                      break;
+                    case 'deflate':
+                     console.log('DEFLATE')
+                        zlib.deflate(payload,function(err,buffer){
+                        matchAndRender(err, buffer,request,reply,ttl);
+                      })
+                        break;
+                    default:
+                        matchAndRender(err, payload,request,reply,ttl); 
+                  
+                  }
 				})
 			
             	//console.log('res ',res)
@@ -388,7 +512,24 @@ server.route({
 					return;*/
 				//console.log('INSIDE 222')
 				Wreck.read(res, null, function(err, payload){
-					matchAndRender(err, payload,request,reply,ttl);
+					switch (res.headers['content-encoding']) {
+                    // or, just use zlib.createUnzip() to handle both cases
+                    case 'gzip':
+                      console.log('GZIP')
+                        zlib.unzip(payload,function(err,buffer){
+                        matchAndRender(err, buffer,request,reply,ttl);
+                      })
+                      break;
+                    case 'deflate':
+                     console.log('DEFLATE')
+                        zlib.deflate(payload,function(err,buffer){
+                        matchAndRender(err, buffer,request,reply,ttl);
+                      })
+                        break;
+                    default:
+                        matchAndRender(err, payload,request,reply,ttl); 
+                  
+                  }
 				})
 			
             	//console.log('res ',res)
@@ -480,10 +621,34 @@ server.route({
 		}
 	}
 });
+ function escapeSpecialChars(jsonString) {
+    if(!jsonString)
+        return jsonString;
+
+            return jsonString.replace(/\n/g, "\\n")
+                .replace(/\r/g, "\\r")
+                .replace(/\t/g, "\\t")
+                .replace(/\f/g, "\\f");
+
+        }
 
 function matchAndRender (err, payload,request,reply,ttl) {
-	var landing= JSON.parse(payload);
-	let redirect="";
+
+
+
+	console.log(payload);
+
+    var landing='';
+
+    try{
+        landing= JSON.parse(payload);
+    }
+    catch(error){
+        console.log(error);
+        return;
+    }
+	console.log(landing);
+    let redirect="";
 	let cookie=landing.cookie;
 	
 	//let logout=request.query.logout?true:false;
@@ -519,7 +684,7 @@ function matchAndRender (err, payload,request,reply,ttl) {
 		topic
 	}
 	//console.log(landing)
-		//console.log(payload,y);
+	//console.log(payload,y);
 		//reply(payload);
 		
 	//window.server = landing.server;
