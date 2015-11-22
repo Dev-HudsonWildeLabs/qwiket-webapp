@@ -12,7 +12,7 @@ import Wreck  from 'wreck';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import Immutable from 'immutable';
-import mapify from 'es6-mapify'
+//import mapify from 'es6-mapify'
 import configureStore from './components/store/configureStore'
 
 var htmlEncode = require('js-htmlencode');
