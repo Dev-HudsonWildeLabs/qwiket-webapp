@@ -636,7 +636,7 @@ function matchAndRender (err, payload,request,reply,ttl) {
 
 
 
-	console.log(payload);
+	//console.log(payload);
 
     var landing='';
 
@@ -647,7 +647,7 @@ function matchAndRender (err, payload,request,reply,ttl) {
         console.log(error);
         return;
     }
-	console.log(landing);
+	//console.log(landing);
     let redirect="";
 	let cookie=landing.cookie;
 	
