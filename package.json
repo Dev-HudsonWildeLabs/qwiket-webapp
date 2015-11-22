@@ -54,6 +54,7 @@
     "react-document-title": "^2.0.1",
     "react-dom": "0.14.0",
     "react-inline-css": "2.0.0",
+    "react-load-mask": "^1.0.1",
     "react-radio-group": "^2.1.1",
     "react-redux": "^4.0.0",
     "react-router": "1.0.0-rc3",
